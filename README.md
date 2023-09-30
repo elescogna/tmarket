@@ -7,10 +7,17 @@ The problem domain we would like to explore is student-centered e-commerce. When
 TmarkeTplace is a platform where students can post announcements of what they would like to sell and find interesting deals whenever they need to buy something. The concept is similar to that od Ebay - but by students, for students!
 
 ## 3. The API
-[a link for the documentation of the API we are using] \
-[a screenshot of an attempt to try to use the API]
+### Documentation
+Documentation for the Distance Matrix API can be found [here](https://developers.google.com/maps/documentation/distance-matrix/overview).
+
+### Screenshot (Attempting to call API from Postman)
+![Attempt to call the API from Postman](assets/images/postman_screenshot.png)
+
+### Java Proof of Concept Code
+
 Source code of calling the API from Java:
-```agsl
+
+```java
 import java.io.IOException;
 import okhttp3.*;
 
@@ -36,9 +43,10 @@ public class Main {
     System.out.println(callAPI());
   }
 }
+
 ```
 Example output of running our Java code:
-```
+```json
 {
    "destination_addresses" : 
    [
