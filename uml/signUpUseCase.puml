@@ -1,2 +1,26 @@
 @startuml
+interface SignupInputBoundary {
+    +execute(signupInputData: SignupInputData): void
+}
+class SignupInteractor implements SignupInputBoundary {
+    -userDataAccessObject: SignupUserDataAccessInterface
+    -userPresenter: SignupOutputBoundary
+    -userFactory: UserFactory
+    +SignupInteractor(signupDataAccessInterface: SignupUserDataAccessInterface, signupOutputBoundary: SignupOutputBoundary, userFactory: UserFactory): void
+    +execute(signupInputData: SignupInputData): void
+}
+class SignupView {
+    +viewName: String
+    -signupViewModel: SignUpViewModel
+    -usernameInputField: JTextField
+    -passwordInputField: JPasswordField
+    -repeatPasswordInputField: JPasswordField
+    -signupController: SignupController
+    -signUp: JButton
+    -cancel: JButton
+
+    +SignupView(controller: SignupController, signupViewModel: SignupViewModel): void
+    +actionPerformed(evt: ActionEvent): void
+    +propertyChange(evt: PropertyChangeEvent): void
+}
 @enduml
