@@ -118,6 +118,20 @@ class SignupInputData{
     String getRepeatPassword()
 }
 
+interface SignupOutputBoundary{
+    void prepareSuccessView(SignupOutputData)
+    void prepareFailView(String)
+}
+class SignupOutputData{
+    String username
+    String creationTime
+    Boolean useCaseFailed
+
+    String getUsername()
+    String getCreationTime()
+    void setCreationTime(String)
+}
+
 class SignupDataAccess{
     //api calls HOW?!
 }
