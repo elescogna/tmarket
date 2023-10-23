@@ -42,4 +42,61 @@ class SignupPresenter implements SignupOutputBoundary {
     +prepareSuccessView(SignupOutputData): void
     +prepareFailView(String): void
 }
+
+class SignupViewModel {
+    -viewName: String
+    -state: SignupState
+'    -support: PropertyChangeSupport
+
+    +SignupViewModel(): void
+
+    +getState(state: SignupState): SignupState
+    +setState(state: SignupState): void
+'    +firePropertyChanged(): void
+'    +addPropertyListener(listener: PropertyChangeListener): void
+}
+
+class SignupState {
+    -username: String
+    -usernameError: String
+    -password: String
+    -passwordError: String
+    -repeatPassword: String
+    -repeatPasswordError: String
+
+    +SignupState(copy: SignupState)
+    +SignupState()
+
+    +getUsername(): String
+    +getUsernameError(): String
+    +getPassword(): String
+    +getPasswordError(): String
+    +getRepeatPassword(): String
+    +getRepeatPasswordError(): String
+
+    +setUsername(username: String): void
+    +setUsernameError(usernameError: String): void
+    +setPassword(password: String): void
+    +setPasswordError(passwordError: String): void
+    +setRepeatPassword(repeatPassword: String): void
+    +setRepeatPasswordError(repeatPasswordError: String): void
+}
+
+interface User {
++ getName(): String
++ getPassword(): String
++ getCreationTime(): LocalDateTime
+}
+
+class CommonUser implements User {
+- name: String
+- password: String
+- creationTime: LocalDateTime
+
++CommonUser(String name, String password, LocalDateTime creationTime)
+
++getName(): String
++getPassword(): String
++getCreationTime(): LocalDateTime
+}
 @enduml
