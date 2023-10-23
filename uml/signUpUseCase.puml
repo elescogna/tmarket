@@ -99,4 +99,29 @@ class CommonUser implements User {
 +getPassword(): String
 +getCreationTime(): LocalDateTime
 }
+
+interface SignupInputBoundary{
+    void execute(SignupInputData)
+}
+
+interface SignupDataAccessInterface{
+    Boolean existsByName(String)
+    void save(User)
+}
+class SignupInputData{
+    String username
+    String password
+    String repeatPassword
+
+    String getUsername()
+    String getPassword()
+    String getRepeatPassword()
+}
+
+class SignupDataAccess{
+    //api calls HOW?!
+}
+
+SignupDataAccess <|-- SignupDataAccessInterface
+
 @enduml
