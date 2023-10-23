@@ -27,19 +27,19 @@ class SignupView {
 }
 
 class SignupController {
-+userSignupUseCaseInteractor: SignupInputBoundary
+    +userSignupUseCaseInteractor: SignupInputBoundary
 
-+SignupController(SignupInputBoundary)
-+execute(String, String, String): void
+    +SignupController(SignupInputBoundary)
+    +execute(String, String, String): void
 }
 
 class SignupPresenter implements SignupOutputBoundary {
--signupViewModel: SignupViewModel
--loginViewModel: LoginViewModel
--viewManagerModel: ViewManagerModel
+    -signupViewModel: SignupViewModel
+    -loginViewModel: LoginViewModel
+    -viewManagerModel: ViewManagerModel
 
-+SignupPresenter(ViewManagerModel,SignupViewModel,LoginViewModel)
-+prepareSuccessView(SignupOutputData): void
-+prepareFailView(String): void
+    +SignupPresenter(ViewManagerModel,SignupViewModel,LoginViewModel)
+    +prepareSuccessView(SignupOutputData): void
+    +prepareFailView(String): void
 }
 @enduml
