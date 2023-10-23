@@ -1,4 +1,6 @@
 @startuml
+!pragma layout smetana
+
 interface SignupInputBoundary {
     +execute(signupInputData: SignupInputData): void
 }
@@ -22,5 +24,22 @@ class SignupView {
     +SignupView(controller: SignupController, signupViewModel: SignupViewModel): void
     +actionPerformed(evt: ActionEvent): void
     +propertyChange(evt: PropertyChangeEvent): void
+}
+
+class SignupController {
++userSignupUseCaseInteractor: SignupInputBoundary
+
++SignupController(SignupInputBoundary)
++execute(String, String, String): void
+}
+
+class SignupPresenter implements SignupOutputBoundary {
+-signupViewModel: SignupViewModel
+-loginViewModel: LoginViewModel
+-viewManagerModel: ViewManagerModel
+
++SignupPresenter(ViewManagerModel,SignupViewModel,LoginViewModel)
++prepareSuccessView(SignupOutputData): void
++prepareFailView(String): void
 }
 @enduml
