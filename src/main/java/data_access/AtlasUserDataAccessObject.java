@@ -8,21 +8,20 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
-import use_case.SchoolItemDataAccessInterface;
+import use_case.UserDataAccessInterface;
 
-public class AtlasSchoolItemDataAccessObject
-    implements SchoolItemDataAccessInterface {
+public class AtlasUserDataAccessObject implements UserDataAccessInterface {
   private static final String atlasDataSourceName =
       System.getenv("ATLAS_DATA_SOURCE_NAME");
   private static final String atlasDatabaseName =
       System.getenv("ATLAS_DATABASE_NAME");
-  private static final String atlasCollectionName = "school-items";
+  private static final String atlasCollectionName = "users";
   private static final String atlasApiEndpoint =
       System.getenv("ATLAS_API_ENDPOINT");
   private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
   @Override
-  public String getAllSchoolItems() throws IOException {
+  public String getAllUsers() throws IOException {
     OkHttpClient client = new OkHttpClient().newBuilder().build();
 
     HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
