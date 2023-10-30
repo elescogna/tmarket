@@ -1,5 +1,5 @@
 package entities;
 
-public class Item {
+public abstract class Item {
   private String name;
 }
