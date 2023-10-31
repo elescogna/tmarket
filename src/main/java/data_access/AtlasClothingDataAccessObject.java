@@ -8,10 +8,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
-import use_case.ClothingDataAccessInterface;
+import use_case.HomeDataAccessInterface;
 
 public class AtlasClothingDataAccessObject
-    implements ClothingDataAccessInterface {
+    implements HomeDataAccessInterface {
     private static final String atlasDataSourceName =
         System.getenv("ATLAS_DATA_SOURCE_NAME");
     private static final String atlasDatabaseName =
@@ -22,7 +22,7 @@ public class AtlasClothingDataAccessObject
     private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
     @Override
-    public String getAllClothing() throws IOException {
+    public String getAllItems() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();

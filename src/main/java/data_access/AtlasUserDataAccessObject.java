@@ -8,9 +8,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
-import use_case.UserDataAccessInterface;
+import use_case.HomeDataAccessInterface;
 
-public class AtlasUserDataAccessObject implements UserDataAccessInterface {
+public class AtlasUserDataAccessObject implements HomeDataAccessInterface {
     private static final String atlasDataSourceName =
         System.getenv("ATLAS_DATA_SOURCE_NAME");
     private static final String atlasDatabaseName =
@@ -21,7 +21,7 @@ public class AtlasUserDataAccessObject implements UserDataAccessInterface {
     private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
     @Override
-    public String getAllUsers() throws IOException {
+    public String getAllItems() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();

@@ -7,11 +7,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import use_case.HomeDataAccessInterface;
+
 import org.json.JSONObject;
-import use_case.SchoolItemDataAccessInterface;
 
 public class AtlasSchoolItemDataAccessObject
-    implements SchoolItemDataAccessInterface {
+    implements HomeDataAccessInterface {
     private static final String atlasDataSourceName =
         System.getenv("ATLAS_DATA_SOURCE_NAME");
     private static final String atlasDatabaseName =
@@ -22,7 +23,7 @@ public class AtlasSchoolItemDataAccessObject
     private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
     @Override
-    public String getAllSchoolItems() throws IOException {
+    public String getAllItems() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
