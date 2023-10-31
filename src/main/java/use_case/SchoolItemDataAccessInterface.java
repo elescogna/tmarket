@@ -2,7 +2,7 @@ package use_case;
 
 import java.io.IOException;
 
-public interface FurnitureDataAccessInterface {
+public interface SchoolItemDataAccessInterface {
     // TODO: obviously change this to an ArrayList or something
-    String getAllFurniture() throws IOException;
+    String getAllSchoolItems() throws IOException;
 }
