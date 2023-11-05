@@ -7,5 +7,7 @@ public class HomeController {
     }
 
     public void execute() {
+        HomeInputData homeInputData = new HomeInputData();
+        this.homeInteractor.execute(homeInputData);
     }
 }
