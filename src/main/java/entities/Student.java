@@ -7,10 +7,10 @@ public class Student {
     private String uoftEmail;
     private String homeAddress;
     private boolean verified;
-    private List<Item> postedItems;
+    private ArrayList<Item> postedItems;
 
     public Student(String name, String password, String uoftEmail,
-            String homeAddress, Boolean verified, List<Item> postedItems) {
+            String homeAddress, boolean verified, ArrayList<Item> postedItems) {
         this.name = name;
         this.password = password;
         this.uoftEmail = uoftEmail;
@@ -41,9 +41,9 @@ public class Student {
 
     public boolean getVerified() { return verified; }
 
-    public void setPostedItems(List<Item> postedItems) {
+    public void setPostedItems(ArrayList<Item> postedItems) {
         this.postedItems = postedItems;
     }
 
-    public List<Item> getPostedItems() { return postedItems; }
+    public ArrayList<Item> getPostedItems() { return postedItems; }
 }
