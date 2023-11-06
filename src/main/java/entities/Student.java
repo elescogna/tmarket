@@ -10,7 +10,8 @@ public class Student {
     private ArrayList<Item> postedItems;
 
     public Student(String name, String password, String uoftEmail,
-            String homeAddress, boolean verified, ArrayList<Item> postedItems) {
+            String homeAddress, boolean verified,
+            ArrayList<Item> postedItems) {
         this.name = name;
         this.password = password;
         this.uoftEmail = uoftEmail;

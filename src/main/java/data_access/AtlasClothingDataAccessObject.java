@@ -16,15 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.HomeDataAccessInterface;
 
-public class AtlasClothingDataAccessObject implements HomeDataAccessInterface {
-    private static final String atlasDataSourceName =
-        System.getenv("ATLAS_DATA_SOURCE_NAME");
-    private static final String atlasDatabaseName =
-        System.getenv("ATLAS_DATABASE_NAME");
+public class AtlasClothingDataAccessObject
+    extends AtlasDataAccessObject implements HomeDataAccessInterface {
     private static final String atlasCollectionName = "clothing";
-    private static final String atlasApiEndpoint =
-        System.getenv("ATLAS_API_ENDPOINT");
-    private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
     @Override
     public ArrayList<Item> getAllItems() throws IOException {
@@ -59,7 +53,7 @@ public class AtlasClothingDataAccessObject implements HomeDataAccessInterface {
             for (Object document : allItemDocuments) {
                 JSONObject itemDocument = (JSONObject)document;
 
-                // General item attributes 
+                // General item attributes
 
                 String name = itemDocument.getString("name");
                 String description = itemDocument.getString("description");
