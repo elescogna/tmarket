@@ -1,5 +1,5 @@
 package use_case.Home;
 
 public interface HomeInputBoundary {
-    void execute();
+    void execute(HomeInputData homeInputData);
 }
