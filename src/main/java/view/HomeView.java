@@ -1,16 +1,13 @@
 package view;
 
-import javax.swing.JPanel;
-import javax.swing.JList;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class HomeView extends JPanel {
@@ -24,15 +21,13 @@ public class HomeView extends JPanel {
         this.setLayout(null);
         JButton btnNewButton = new JButton("New button");
         btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+            public void actionPerformed(ActionEvent e) {}
         });
         add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("New button");
         btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+            public void actionPerformed(ActionEvent e) {}
         });
         btnNewButton_1.setBounds(316, 97, 124, 47);
         add(btnNewButton_1);
@@ -51,12 +46,10 @@ public class HomeView extends JPanel {
         lblNewLabel.setBounds(10, 22, 430, 37);
         add(lblNewLabel);
 
-
-        JList list = new JList();
+        JList<String> list = new JList<String>();
 
         JScrollPane listScrollPane = new JScrollPane(list);
         listScrollPane.setBounds(21, 70, 285, 219);
         add(listScrollPane);
-
     }
 }
