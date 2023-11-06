@@ -3,11 +3,11 @@ package use_case.home;
 import java.util.ArrayList;
 
 public class HomeOutputData {
-    private ArrayList<String> wantedPosts;
-    public HomeOutputData(ArrayList<String> wantedPosts){
+    private ArrayList<Item> wantedPosts;
+    public HomeOutputData(ArrayList<Item> wantedPosts){
         this.wantedPosts = wantedPosts;
     }
-    public ArrayList<String> getWantedPosts() {
+    public ArrayList<Item> getWantedPosts() {
         return wantedPosts;
     }
 }
