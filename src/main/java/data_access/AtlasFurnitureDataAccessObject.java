@@ -10,8 +10,7 @@ import okhttp3.Response;
 import org.json.JSONObject;
 import use_case.HomeDataAccessInterface;
 
-public class AtlasFurnitureDataAccessObject
-    implements HomeDataAccessInterface {
+public class AtlasFurnitureDataAccessObject implements HomeDataAccessInterface {
     private static final String atlasDataSourceName =
         System.getenv("ATLAS_DATA_SOURCE_NAME");
     private static final String atlasDatabaseName =

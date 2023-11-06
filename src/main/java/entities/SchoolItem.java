@@ -1,14 +1,14 @@
-package main.java.entities;
+package entities;
 
 public class SchoolItem {
     private String brand;
     private String colour;
 
-    public void setBrand(String brand) {this.brand = brand;}
+    public void setBrand(String brand) { this.brand = brand; }
 
-    public String setBrand() {return this.brand;}
+    public String setBrand() { return this.brand; }
 
-    public void  setColour(String colour) {this.colour = colour;}
+    public void setColour(String colour) { this.colour = colour; }
 
-    public String getColour() {return this.colour;}
+    public String getColour() { return this.colour; }
 }

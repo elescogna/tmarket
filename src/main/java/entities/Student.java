@@ -9,7 +9,8 @@ public class Student {
     private boolean verified;
     private List<Item> postedItems;
 
-    public Student(String name, String password, String uoftEmail, String homeAddress, Boolean verified, List<Item> postedItems) {
+    public Student(String name, String password, String uoftEmail,
+            String homeAddress, Boolean verified, List<Item> postedItems) {
         this.name = name;
         this.password = password;
         this.uoftEmail = uoftEmail;
@@ -18,51 +19,31 @@ public class Student {
         this.postedItems = postedItems;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public void setUoftEmail(String uoftEmail) {
-        this.uoftEmail = uoftEmail;
-    }
+    public void setUoftEmail(String uoftEmail) { this.uoftEmail = uoftEmail; }
 
-    public String getUoftEmail() {
-        return uoftEmail;
-    }
+    public String getUoftEmail() { return uoftEmail; }
 
     public void setHomeAddress(String homeAddress) {
         this.homeAddress = homeAddress;
     }
 
-    public String getHomeAddress() {
-        return homeAddress;
-    }
+    public String getHomeAddress() { return homeAddress; }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
+    public void setVerified(boolean verified) { this.verified = verified; }
 
-    public boolean getVerified() {
-        return verified;
-    }
+    public boolean getVerified() { return verified; }
 
     public void setPostedItems(List<Item> postedItems) {
         this.postedItems = postedItems;
     }
 
-    public List<Item> getPostedItems() {
-        return postedItems;
-    }
+    public List<Item> getPostedItems() { return postedItems; }
 }
