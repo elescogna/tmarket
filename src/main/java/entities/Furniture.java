@@ -1,6 +1,6 @@
 package entities;
 
-public class Furniture extends Item {
+public class Furniture {
     private float length;
     private float width;
     private float height;

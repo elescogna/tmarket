@@ -2,7 +2,7 @@ package entities;
 
 import java.util.ArrayList;
 
-public class Technology extends Item {
+public class Technology {
     private String brand;
     private ArrayList<String> capabilities;
     private String colour;
