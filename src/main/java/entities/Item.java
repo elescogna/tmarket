@@ -1,9 +1,9 @@
 package entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public abstract class Item {
+    private String id;
     private String name;
     private String description;
     private String condition;
@@ -12,16 +12,16 @@ public abstract class Item {
     private boolean soldYet;
     private String pickupAddress;
     private double radius;
-    private ArrayList<String> filterableAttributes;
     private Student owner;
     private String type;
     private String picture;
     private LocalDateTime creationTime;
 
-    public Item(String name, String description, String condition, double price,
-            int age, boolean soldYet, String pickupAddress, double radius,
-            ArrayList<String> filterableAttributes, Student owner,
-            String type, String picture, LocalDateTime creationTime) {
+    public Item(String id, String name, String description, String condition,
+            double price, int age, boolean soldYet, String pickupAddress,
+            double radius, Student owner, String type, String picture,
+            LocalDateTime creationTime) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.condition = condition;
@@ -30,7 +30,6 @@ public abstract class Item {
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
         this.radius = radius;
-        this.filterableAttributes = filterableAttributes;
         this.owner = owner;
         this.type = type;
         this.picture = picture;
@@ -73,14 +72,6 @@ public abstract class Item {
 
     public void setRadius(double radius) { this.radius = radius; }
 
-    public ArrayList<String> getFilterableAttributes() {
-        return filterableAttributes;
-    }
-
-    public void setFilterableAttributes(ArrayList<String> filterableAttributes) {
-        this.filterableAttributes = filterableAttributes;
-    }
-
     public Student getOwner() { return owner; }
 
     public void setOwner(Student owner) { this.owner = owner; }
@@ -98,4 +89,8 @@ public abstract class Item {
     public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 }

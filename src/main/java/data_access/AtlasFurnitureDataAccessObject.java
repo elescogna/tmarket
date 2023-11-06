@@ -1,27 +1,25 @@
 package data_access;
 
+import entities.Furniture;
+import entities.Item;
+import entities.Student;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.HomeDataAccessInterface;
 
-public class AtlasFurnitureDataAccessObject implements HomeDataAccessInterface {
-    private static final String atlasDataSourceName =
-        System.getenv("ATLAS_DATA_SOURCE_NAME");
-    private static final String atlasDatabaseName =
-        System.getenv("ATLAS_DATABASE_NAME");
+public class AtlasFurnitureDataAccessObject
+    extends AtlasDataAccessObject implements HomeDataAccessInterface {
     private static final String atlasCollectionName = "furniture";
-    private static final String atlasApiEndpoint =
-        System.getenv("ATLAS_API_ENDPOINT");
-    private static final String atlasApiKey = System.getenv("ATLAS_API_KEY");
 
     @Override
-    public String getAllItems() throws IOException {
+    public ArrayList<Item> getAllItems() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -31,21 +29,54 @@ public class AtlasFurnitureDataAccessObject implements HomeDataAccessInterface {
         requestBodyMap.put("collection", atlasCollectionName);
         requestBodyMap.put("filter", new HashMap<String, String>());
 
-        RequestBody requestBody =
-            RequestBody.create(new JSONObject(requestBodyMap).toString(),
-                    MediaType.parse("application/json; charset=utf-8"));
-
         Request request =
-            new Request.Builder()
-            .url(atlasApiEndpoint + "/action/find")
-            .method("POST", requestBody)
-            .addHeader("Content-Type", "application/json; charset=utf-8")
-            .addHeader("Accept", "application/json; charset=utf-8")
-            .addHeader("apiKey", atlasApiKey)
-            .build();
+            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            JSONObject responseBodyJson = new JSONObject(response.body().string());
+            JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
+
+            ArrayList<Item> result = new ArrayList<Item>();
+
+            for (Object document : allItemDocuments) {
+                JSONObject itemDocument = (JSONObject)document;
+
+                // General item attributes
+
+                String id = itemDocument.getString("_id");
+                String name = itemDocument.getString("name");
+                String description = itemDocument.getString("description");
+                String condition = itemDocument.getString("condition");
+                double price = itemDocument.getDouble("price");
+                int age = itemDocument.getInt("age");
+                boolean soldYet = itemDocument.getBoolean("soldYet");
+                String pickupAddress = itemDocument.getString("pickupAddress");
+                double radius = itemDocument.getDouble("radius");
+                // TODO: when we get around to this, we have to get a student based on
+                // the owner ID that is provided here like:
+                // Student.get(jsonDocument.getString("ownerId"));
+                Student owner = new Student("id", "test", "test", "test", "test", false,
+                        new ArrayList<>());
+                String type = itemDocument.getString("type");
+                String picture = itemDocument.getString("picture");
+                LocalDateTime creationTime =
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
+
+                // Item-specific attributes
+
+                double length = itemDocument.getDouble("length");
+                double width = itemDocument.getDouble("width");
+                double height = itemDocument.getDouble("height");
+
+                Furniture newItem =
+                    new Furniture(id, name, description, condition, price, age, soldYet,
+                            pickupAddress, radius, owner, type, picture,
+                            creationTime, length, width, height);
+
+                result.add(newItem);
+            }
+
+            return result;
         }
     }
 }
