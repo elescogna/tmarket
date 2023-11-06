@@ -1,9 +1,12 @@
 package entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Clothing extends Item {
+    // TODO: fill these in
+    private static final String[] filterableAttributes = {};
+    private static final String[] allowedTypes = {};
+
     private String brand;
     private String colour;
     private String size;
@@ -11,12 +14,11 @@ public class Clothing extends Item {
 
     public Clothing(String name, String description, String condition,
             double price, int age, boolean soldYet, String pickupAddress,
-            double radius, ArrayList<String> filterableAttributes,
-            Student owner, String type, String picture,
+            double radius, Student owner, String type, String picture,
             LocalDateTime creationTime, String brand, String colour,
             String size, String material) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
-                radius, filterableAttributes, owner, type, picture, creationTime);
+                radius, owner, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;
         this.size = size;
@@ -38,4 +40,10 @@ public class Clothing extends Item {
     public void setMaterial(String material) { this.material = material; }
 
     public String getMaterial() { return this.material; }
+
+    public static String[] getFilterableattributes() {
+        return filterableAttributes;
+    }
+
+    public static String[] getAllowedtypes() { return allowedTypes; }
 }
