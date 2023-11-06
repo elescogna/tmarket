@@ -46,7 +46,7 @@ public class HomeView extends JPanel {
         lblNewLabel.setBounds(10, 22, 430, 37);
         add(lblNewLabel);
 
-        JList list = new JList();
+        JList<String> list = new JList<String>();
 
         JScrollPane listScrollPane = new JScrollPane(list);
         listScrollPane.setBounds(21, 70, 285, 219);
