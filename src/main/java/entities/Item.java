@@ -1,17 +1,27 @@
 package entities;
 
-public abstract class Item {
-    String name;
-    String description;
-    String condition;
-    float price;
-    int age;
-    boolean soldYet;
-    String pickupAddress;
-    float radius;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-    public Item(String name, String description, String condition, float price,
-            int age, boolean soldYet, String pickupAddress, float radius) {
+public abstract class Item {
+    private String name;
+    private String description;
+    private String condition;
+    private double price;
+    private int age;
+    private boolean soldYet;
+    private String pickupAddress;
+    private double radius;
+    private ArrayList<String> filterableAttributes;
+    private Student owner;
+    private String type;
+    private String picture;
+    private LocalDateTime creationTime;
+
+    public Item(String name, String description, String condition, double price,
+            int age, boolean soldYet, String pickupAddress, double radius,
+            ArrayList<String> filterableAttributes, Student owner,
+            String type, String picture, LocalDateTime creationTime) {
         this.name = name;
         this.description = description;
         this.condition = condition;
@@ -20,6 +30,11 @@ public abstract class Item {
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
         this.radius = radius;
+        this.filterableAttributes = filterableAttributes;
+        this.owner = owner;
+        this.type = type;
+        this.picture = picture;
+        this.creationTime = creationTime;
     }
 
     public String getName() { return name; }
@@ -36,9 +51,9 @@ public abstract class Item {
 
     public void setCondition(String condition) { this.condition = condition; }
 
-    public float getPrice() { return price; }
+    public double getPrice() { return price; }
 
-    public void setPrice(float price) { this.price = price; }
+    public void setPrice(double price) { this.price = price; }
 
     public int getAge() { return age; }
 
@@ -54,7 +69,33 @@ public abstract class Item {
         this.pickupAddress = pickupAddress;
     }
 
-    public float getRadius() { return radius; }
+    public double getRadius() { return radius; }
 
-    public void setRadius(float radius) { this.radius = radius; }
+    public void setRadius(double radius) { this.radius = radius; }
+
+    public ArrayList<String> getFilterableAttributes() {
+        return filterableAttributes;
+    }
+
+    public void setFilterableAttributes(ArrayList<String> filterableAttributes) {
+        this.filterableAttributes = filterableAttributes;
+    }
+
+    public Student getOwner() { return owner; }
+
+    public void setOwner(Student owner) { this.owner = owner; }
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
+
+    public String getPicture() { return picture; }
+
+    public void setPicture(String picture) { this.picture = picture; }
+
+    public LocalDateTime getCreationTime() { return creationTime; }
+
+    public void setCreationTime(LocalDateTime creationTime) {
+        this.creationTime = creationTime;
+    }
 }
