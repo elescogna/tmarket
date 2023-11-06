@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,18 +29,8 @@ public class AtlasFurnitureDataAccessObject
         requestBodyMap.put("collection", atlasCollectionName);
         requestBodyMap.put("filter", new HashMap<String, String>());
 
-        RequestBody requestBody =
-            RequestBody.create(new JSONObject(requestBodyMap).toString(),
-                    MediaType.parse("application/json; charset=utf-8"));
-
         Request request =
-            new Request.Builder()
-            .url(atlasApiEndpoint + "/action/find")
-            .method("POST", requestBody)
-            .addHeader("Content-Type", "application/json; charset=utf-8")
-            .addHeader("Accept", "application/json; charset=utf-8")
-            .addHeader("apiKey", atlasApiKey)
-            .build();
+            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             JSONObject responseBodyJson = new JSONObject(response.body().string());
