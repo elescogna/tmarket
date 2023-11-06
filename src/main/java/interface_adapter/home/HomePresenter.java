@@ -1,4 +1,4 @@
-package interface_adapters.home;
+package interface_adapter.home;
 import use_case.home.HomeOutputBoundary;
 import use_case.home.HomeOutputData;
 

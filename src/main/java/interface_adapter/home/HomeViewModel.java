@@ -1,9 +1,9 @@
-package interface_adapters.home;
+package interface_adapter.home;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import interface_adapters.ViewModel;
+import interface_adapter.ViewModel;
 
 public class HomeViewModel extends ViewModel{
     private HomeState state = new HomeState();
