@@ -12,12 +12,12 @@ public class Clothing extends Item {
     private String size;
     private String material;
 
-    public Clothing(String name, String description, String condition,
+    public Clothing(String id, String name, String description, String condition,
             double price, int age, boolean soldYet, String pickupAddress,
             double radius, Student owner, String type, String picture,
             LocalDateTime creationTime, String brand, String colour,
             String size, String material) {
-        super(name, description, condition, price, age, soldYet, pickupAddress,
+        super(id, name, description, condition, price, age, soldYet, pickupAddress,
                 radius, owner, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;

@@ -1,13 +1,15 @@
 package entities;
 
 public class Order {
+    private String id;
     private String buyerEmail;
     private String sellerEmail;
     private Item item;
     private String pickupLocation;
 
-    public Order(String buyerEmail, String sellerEmail, Item item,
+    public Order(String id, String buyerEmail, String sellerEmail, Item item,
             String pickupLocation) {
+        this.id = id;
         this.buyerEmail = buyerEmail;
         this.sellerEmail = sellerEmail;
         this.item = item;
@@ -33,4 +35,8 @@ public class Order {
     }
 
     public String getPickupLocation() { return pickupLocation; }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 }

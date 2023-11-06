@@ -43,6 +43,7 @@ public class AtlasSchoolItemDataAccessObject
 
                 // General item attributes
 
+                String id = itemDocument.getString("_id");
                 String name = itemDocument.getString("name");
                 String description = itemDocument.getString("description");
                 String condition = itemDocument.getString("condition");
@@ -54,7 +55,7 @@ public class AtlasSchoolItemDataAccessObject
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
-                Student owner = new Student("test", "test", "test", "test", false,
+                Student owner = new Student("id", "test", "test", "test", "test", false,
                         new ArrayList<>());
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
@@ -65,9 +66,10 @@ public class AtlasSchoolItemDataAccessObject
                 String brand = itemDocument.getString("brand");
                 String colour = itemDocument.getString("colour");
 
-                SchoolItem newItem = new SchoolItem(
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        radius, owner, type, picture, creationTime, brand, colour);
+                SchoolItem newItem =
+                    new SchoolItem(id, name, description, condition, price, age,
+                            soldYet, pickupAddress, radius, owner, type, picture,
+                            creationTime, brand, colour);
 
                 result.add(newItem);
             }

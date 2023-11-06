@@ -2,6 +2,7 @@ package entities;
 import java.util.*;
 
 public class Student {
+    private String id;
     private String name;
     private String password;
     private String uoftEmail;
@@ -9,13 +10,14 @@ public class Student {
     private boolean verified;
     private ArrayList<Item> postedItems;
 
-    public Student(String name, String password, String uoftEmail,
-            String homeAddress, boolean verified,
+    public Student(String id, String name, String password, String homeAddress,
+            String uoftEmail, boolean verified,
             ArrayList<Item> postedItems) {
+        this.id = id;
         this.name = name;
         this.password = password;
-        this.uoftEmail = uoftEmail;
         this.homeAddress = homeAddress;
+        this.uoftEmail = uoftEmail;
         this.verified = verified;
         this.postedItems = postedItems;
     }
@@ -47,4 +49,8 @@ public class Student {
     }
 
     public ArrayList<Item> getPostedItems() { return postedItems; }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 }

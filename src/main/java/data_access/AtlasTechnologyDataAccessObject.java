@@ -42,6 +42,7 @@ public class AtlasTechnologyDataAccessObject
 
                 // General item attributes
 
+                String id = itemDocument.getString("_id");
                 String name = itemDocument.getString("name");
                 String description = itemDocument.getString("description");
                 String condition = itemDocument.getString("condition");
@@ -53,7 +54,7 @@ public class AtlasTechnologyDataAccessObject
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = new Student("test", "test", "test", "test", false,
+                Student owner = new Student("id", "test", "test", "test", "test", false,
                         new ArrayList<>());
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
@@ -72,8 +73,8 @@ public class AtlasTechnologyDataAccessObject
                         }
 
                 Technology newItem =
-                    new Technology(name, description, condition, price, age, soldYet,
-                            pickupAddress, radius, owner, type, picture,
+                    new Technology(id, name, description, condition, price, age,
+                            soldYet, pickupAddress, radius, owner, type, picture,
                             creationTime, brand, capabilities, colour);
 
                 result.add(newItem);

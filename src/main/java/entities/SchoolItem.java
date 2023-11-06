@@ -10,12 +10,12 @@ public class SchoolItem extends Item {
     private String brand;
     private String colour;
 
-    public SchoolItem(String name, String description, String condition,
-            double price, int age, boolean soldYet,
+    public SchoolItem(String id, String name, String description,
+            String condition, double price, int age, boolean soldYet,
             String pickupAddress, double radius, Student owner,
             String type, String picture, LocalDateTime creationTime,
             String brand, String colour) {
-        super(name, description, condition, price, age, soldYet, pickupAddress,
+        super(id, name, description, condition, price, age, soldYet, pickupAddress,
                 radius, owner, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;

@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDateTime;
 
 public abstract class Item {
+    private String id;
     private String name;
     private String description;
     private String condition;
@@ -16,10 +17,11 @@ public abstract class Item {
     private String picture;
     private LocalDateTime creationTime;
 
-    public Item(String name, String description, String condition, double price,
-            int age, boolean soldYet, String pickupAddress, double radius,
-            Student owner, String type, String picture,
+    public Item(String id, String name, String description, String condition,
+            double price, int age, boolean soldYet, String pickupAddress,
+            double radius, Student owner, String type, String picture,
             LocalDateTime creationTime) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.condition = condition;
@@ -87,4 +89,8 @@ public abstract class Item {
     public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 }
