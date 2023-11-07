@@ -1,11 +1,12 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Clothing extends Item {
     // TODO: fill these in
-    private static final String[] filterableAttributes = {};
-    private static final String[] allowedTypes = {};
+    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
 
     private String brand;
     private String colour;
@@ -41,9 +42,7 @@ public class Clothing extends Item {
 
     public String getMaterial() { return this.material; }
 
-    public static String[] getFilterableattributes() {
+    public static HashMap<String, ArrayList<String>> getFilterableattributes() {
         return filterableAttributes;
     }
-
-    public static String[] getAllowedtypes() { return allowedTypes; }
 }
