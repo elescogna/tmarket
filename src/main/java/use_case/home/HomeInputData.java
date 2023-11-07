@@ -1,4 +1,4 @@
-package use_case.Home;
+package use_case.home;
 
 public class HomeInputData {
     public HomeInputData() {};

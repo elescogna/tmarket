@@ -1,5 +1,7 @@
 package use_case.home;
 
+import entities.Item;
+
 import java.util.ArrayList;
 
 public class HomeOutputData {
