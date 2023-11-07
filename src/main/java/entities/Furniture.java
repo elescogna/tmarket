@@ -1,11 +1,12 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Furniture extends Item {
     // TODO: fill these in
-    private static final String[] filterableAttributes = {};
-    private static final String[] allowedTypes = {};
+    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
 
     private double length;
     private double width;
@@ -35,9 +36,7 @@ public class Furniture extends Item {
 
     public void setHeight(double height) { this.height = height; }
 
-    public static String[] getFilterableattributes() {
+    public static HashMap<String, ArrayList<String>> getFilterableattributes() {
         return filterableAttributes;
     }
-
-    public static String[] getAllowedtypes() { return allowedTypes; }
 }
