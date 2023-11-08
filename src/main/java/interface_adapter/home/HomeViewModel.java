@@ -9,7 +9,7 @@ public class HomeViewModel extends ViewModel{
     private HomeState state = new HomeState();
 
     public HomeViewModel() {
-        super("home");
+        super("use_case/home");
     }
 
     public void setState(HomeState state) {

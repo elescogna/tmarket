@@ -1,5 +1,8 @@
 package view;
 
+import interface_adapter.home.HomeController;
+import interface_adapter.home.HomeViewModel;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +20,7 @@ public class HomeView extends JPanel {
     /**
      * Create the panel.
      */
-    public HomeView() {
+    public HomeView(HomeViewModel homeViewModel, HomeController homeController) {
         this.setLayout(null);
         JButton btnNewButton = new JButton("New button");
         btnNewButton.addActionListener(new ActionListener() {
@@ -51,5 +54,7 @@ public class HomeView extends JPanel {
         JScrollPane listScrollPane = new JScrollPane(list);
         listScrollPane.setBounds(21, 70, 285, 219);
         add(listScrollPane);
+
+        // TODO: add the the code that actually makes the view work (using the contructor parameters)
     }
 }

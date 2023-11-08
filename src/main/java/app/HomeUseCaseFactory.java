@@ -1,6 +1,13 @@
 package app;
 
-import use_case.HomeDataAccessInterface;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeController;
+import interface_adapter.home.HomePresenter;
+import interface_adapter.home.HomeViewModel;
+import use_case.home.HomeDataAccessInterface;
+import use_case.home.HomeInputBoundary;
+import use_case.home.HomeInteractor;
+import use_case.home.HomeOutputBoundary;
 import view.HomeView;
 
 import javax.swing.*;
@@ -14,11 +21,19 @@ public class HomeUseCaseFactory {
     public static HomeView create(
             ViewManagerModel viewManagerModel,
             HomeViewModel homeViewModel,
-            HomeDataAccessInterface homeDataAccessObject) {
+            HomeDataAccessInterface clothingDataAccessObject,
+            HomeDataAccessInterface furnitureDataAccessObject,
+            HomeDataAccessInterface orderDataAccessObject,
+            HomeDataAccessInterface schoolItemDataAccessInterface,
+            HomeDataAccessInterface technologyDataAccessInterface) {
 
-        // TODO: do we really need to have a try catch in this case?
         try {
-            HomeController homeController = createHomeUseCase(viewManagerModel, homeViewModel, homeDataAccessObject);
+            HomeController homeController = createHomeUseCase(viewManagerModel, homeViewModel,
+                    clothingDataAccessObject,
+                    furnitureDataAccessObject,
+                    orderDataAccessObject,
+                    schoolItemDataAccessInterface,
+                    technologyDataAccessInterface);
             return new HomeView(homeViewModel, homeController);
         } catch (IOException e) {
             // TODO: what should this actually print out?
@@ -31,13 +46,22 @@ public class HomeUseCaseFactory {
     private static HomeController createHomeUseCase(
             ViewManagerModel viewManagerModel,
             HomeViewModel homeViewModel,
-            HomeDataAccessInterface homeDataAccessObject) throws IOException {
+            HomeDataAccessInterface clothingDataAccessObject,
+            HomeDataAccessInterface furnitureDataAccessObject,
+            HomeDataAccessInterface orderDataAccessObject,
+            HomeDataAccessInterface schoolItemDataAccessInterface,
+            HomeDataAccessInterface technologyDataAccessInterface) throws IOException {
 
         // Pass this method's parameters to the Presenter.
         HomeOutputBoundary homeOutputBoundary = new HomePresenter(viewManagerModel, homeViewModel);
 
         HomeInputBoundary homeInteractor = new HomeInteractor(
-                homeDataAccessObject, homeOutputBoundary);
+                clothingDataAccessObject,
+                furnitureDataAccessObject,
+                orderDataAccessObject,
+                schoolItemDataAccessInterface,
+                technologyDataAccessInterface,
+                homeOutputBoundary);
 
         return new HomeController(homeInteractor);
     }

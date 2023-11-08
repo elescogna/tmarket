@@ -1,4 +1,4 @@
-package use_case.Home;
+package use_case.home;
 
 import entities.Item;
 import java.io.IOException;
