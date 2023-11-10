@@ -128,14 +128,15 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
 
                 // Item-specific attributes
 
-                double length = itemDocument.getDouble("length");
-                double width = itemDocument.getDouble("width");
-                double height = itemDocument.getDouble("height");
+                String brand = itemDocument.getString("brand");
+                String colour = itemDocument.getString("colour");
+                String size = itemDocument.getString("size");
+                String material = itemDocument.getString("material");
 
-                Furniture newItem =
-                        new Furniture(id, name, description, condition, price, age, soldYet,
+                Clothing newItem =
+                        new Clothing(id, name, description, condition, price, age, soldYet,
                                 pickupAddress, radius, owner, type, picture,
-                                creationTime, length, width, height);
+                                creationTime, brand, colour, size, material);
 
                 result.add(newItem);
             }

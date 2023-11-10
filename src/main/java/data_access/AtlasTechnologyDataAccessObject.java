@@ -131,14 +131,19 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
 
                 // Item-specific attributes
 
-                double length = itemDocument.getDouble("length");
-                double width = itemDocument.getDouble("width");
-                double height = itemDocument.getDouble("height");
+                String brand = itemDocument.getString("brand");
+                String colour = itemDocument.getString("colour");
+                ArrayList<String> capabilities = new ArrayList<>();
 
-                Furniture newItem =
-                        new Furniture(id, name, description, condition, price, age, soldYet,
-                                pickupAddress, radius, owner, type, picture,
-                                creationTime, length, width, height);
+                for (Object capability :
+                        itemDocument.getJSONArray("capabilities").toList()) {
+                    capabilities.add((String)capability);
+                }
+
+                Technology newItem =
+                        new Technology(id, name, description, condition, price, age,
+                                soldYet, pickupAddress, radius, owner, type, picture,
+                                creationTime, brand, capabilities, colour);
 
                 result.add(newItem);
             }
