@@ -90,7 +90,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
         HashMap<String, String> filter = new HashMap<String, String>();
         filter.put("_id", idToGet);
 
-        requestBodyMap.put("filter", new HashMap<String, String>());
+        requestBodyMap.put("filter", filter);
 
         Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
                 requestBodyMap);

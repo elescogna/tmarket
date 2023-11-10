@@ -97,7 +97,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         HashMap<String, String> filter = new HashMap<String, String>();
         filter.put("_id", idToGet);
 
-        requestBodyMap.put("filter", new HashMap<String, String>());
+        requestBodyMap.put("filter", filter);
 
         Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
                 requestBodyMap);
@@ -117,8 +117,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
                 double radius = itemDocument.getDouble("radius");
-                // TODO: when we get around to this, we have to get a student based on
-                // the owner ID that is provided here like:
+                // TODO: when we get around to this, we have to get a student based
+                // on the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
                 Student owner = new Student("id", "test", "test", "test", "test", false,
                         new ArrayList<>());

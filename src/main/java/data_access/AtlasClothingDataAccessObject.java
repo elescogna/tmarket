@@ -94,7 +94,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         HashMap<String, String> filter = new HashMap<String, String>();
         filter.put("_id", idtoGet);
 
-        requestBodyMap.put("filter", new HashMap<String, String>());
+        requestBodyMap.put("filter", filter);
 
         Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
                 requestBodyMap);
