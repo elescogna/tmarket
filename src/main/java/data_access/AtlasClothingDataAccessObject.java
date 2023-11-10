@@ -11,7 +11,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import use_case.home.HomeDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
@@ -129,7 +128,6 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
             int age = itemDocument.getInt("age");
             boolean soldYet = itemDocument.getBoolean("soldYet");
             String pickupAddress = itemDocument.getString("pickupAddress");
-            double radius = itemDocument.getDouble("radius");
             // TODO: when we get around to this, we have to get a student based on
             // the owner ID that is provided here like:
             // Student.get(jsonDocument.getString("ownerId"));
@@ -147,10 +145,9 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
             String size = itemDocument.getString("size");
             String material = itemDocument.getString("material");
 
-            Clothing newItem =
-                new Clothing(id, name, description, condition, price, age, soldYet,
-                        pickupAddress, radius, owner, type, picture,
-                        creationTime, brand, colour, size, material);
+            Clothing newItem = new Clothing(
+                    id, name, description, condition, price, age, soldYet, pickupAddress,
+                    owner, type, picture, creationTime, brand, colour, size, material);
             return newItem;
         }
     }
