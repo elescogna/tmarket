@@ -1,7 +1,6 @@
 package use_case.home;
 
 import entities.Item;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -13,9 +12,12 @@ public class HomeInteractor implements HomeInputBoundary {
     final HomeDataAccessInterface technologyDataAccessObject;
     final HomeOutputBoundary homePresenter;
 
-    public HomeInteractor(HomeDataAccessInterface clothingDataAccessObject, HomeDataAccessInterface furnitureDataAccessObject,
-                          HomeDataAccessInterface orderDataAccessObject, HomeDataAccessInterface schoolItemDataAccessObject,
-                          HomeDataAccessInterface technologyDataAccessObject, HomeOutputBoundary homeOutputBoundary) {
+    public HomeInteractor(HomeDataAccessInterface clothingDataAccessObject,
+            HomeDataAccessInterface furnitureDataAccessObject,
+            HomeDataAccessInterface orderDataAccessObject,
+            HomeDataAccessInterface schoolItemDataAccessObject,
+            HomeDataAccessInterface technologyDataAccessObject,
+            HomeOutputBoundary homeOutputBoundary) {
         this.clothingDataAccessObject = clothingDataAccessObject;
         this.furnitureDataAccessObject = furnitureDataAccessObject;
         this.orderDataAccessObject = orderDataAccessObject;
@@ -42,7 +44,7 @@ public class HomeInteractor implements HomeInputBoundary {
             Collections.reverse(items);
             HomeOutputData homeOutputData = new HomeOutputData(items);
             homePresenter.prepareSuccessView(homeOutputData);
-        } catch (IOException e)  {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

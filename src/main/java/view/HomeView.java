@@ -2,7 +2,6 @@ package view;
 
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomeViewModel;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,6 +54,7 @@ public class HomeView extends JPanel {
         listScrollPane.setBounds(21, 70, 285, 219);
         add(listScrollPane);
 
-        // TODO: add the the code that actually makes the view work (using the contructor parameters)
+        // TODO: add the the code that actually makes the view work (using the
+        // contructor parameters)
     }
 }

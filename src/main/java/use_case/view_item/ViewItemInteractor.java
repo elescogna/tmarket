@@ -24,6 +24,5 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
             }
 
     @Override
-    public void execute(ViewItemInputData viewItemData) {
-    }
+    public void execute(ViewItemInputData viewItemData) {}
 }

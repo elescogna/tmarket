@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.Font;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JButton;
 
 public class ViewItemView extends JPanel {
 
@@ -88,7 +88,7 @@ public class ViewItemView extends JPanel {
         lblCustom4.setFont(new Font("Dialog", Font.BOLD, 15));
         lblCustom4.setBounds(236, 414, 83, 17);
         add(lblCustom4);
-        
+
         JButton btnBack = new JButton("Done");
         btnBack.setBounds(510, 418, 83, 27);
         add(btnBack);

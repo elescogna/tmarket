@@ -1,9 +1,8 @@
 package use_case.view_item;
 
+import entities.Item;
 import java.io.IOException;
 
-import entities.Item;
-
 public interface ViewItemDataAccessInterface {
-    Item getItem(String id) throws IOException;
+    Item getItem(String idToGet) throws IOException;
 }
