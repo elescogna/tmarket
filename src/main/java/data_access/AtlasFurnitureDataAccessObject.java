@@ -13,9 +13,10 @@ import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.home.HomeDataAccessInterface;
+import use_case.search.SearchDataAccessInterface;
 
-public class AtlasFurnitureDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface {
+public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
+        implements HomeDataAccessInterface, SearchDataAccessInterface {
     private static final String atlasCollectionName = "furniture";
 
     @Override
@@ -78,5 +79,11 @@ public class AtlasFurnitureDataAccessObject
 
             return result;
         }
+    }
+
+    @Override
+    public Item[] getItemsByFilters(String[] filteredAttributes) throws IOException {
+        // TODO: implement this method
+        return new Item[0];
     }
 }
