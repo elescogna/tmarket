@@ -81,7 +81,11 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
     }
 
     @Override
-    public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes) throws IOException {
+    public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes, Student currentStudent)
+            throws IOException {
+
+        // TODO: need to remove radius
+
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
 
@@ -131,16 +135,22 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                         LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
-
                 String brand = itemDocument.getString("brand");
                 String colour = itemDocument.getString("colour");
 
-                SchoolItem newItem =
-                        new SchoolItem(id, name, description, condition, price, age,
-                                soldYet, pickupAddress, radius, owner, type, picture,
-                                creationTime, brand, colour);
+                // This line assumes that calculateDistance is implemented
+                // and that we have access to the current user infomation
+                double distance = calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
+                double maxDistance = Double.parseDouble(filteredAttributes.get("distanceRange"));
 
-                result.add(newItem);
+                if (distance < maxDistance) {
+                    SchoolItem newItem =
+                            new SchoolItem(id, name, description, condition, price, age,
+                                    soldYet, pickupAddress, radius, owner, type, picture,
+                                    creationTime, brand, colour);
+
+                    result.add(newItem);
+                }
             }
 
             return result;

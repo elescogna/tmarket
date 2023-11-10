@@ -1,29 +1,42 @@
 package interface_adapter.search;
 
-import entities.Item;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchState {
-    private ArrayList<Item> currentItems;
-    private String currentItemError;
+    private HashMap<String, String> filterableAttributes;
+    private HashMap<String, String> filterChoices;
+    private String filterableAttributesError;
+    private String filterChoicesError;
 
     public SearchState(SearchState copy) {
-        this.currentItems = copy.currentItems;
-        this.currentItemError = copy.currentItemError;
+        this.filterableAttributes = copy.filterableAttributes;
+        this.filterChoices = copy.filterChoices;
     }
 
     public SearchState() {}
 
-    public ArrayList<Item> getCurrentItem() { return currentItems; }
+    public HashMap<String, String> getFilterableAttributes() { return this.filterableAttributes; }
 
-    public void setCurrentItem(ArrayList<Item> currentItem) {
-        this.currentItems = currentItem;
+    public void setFilterableAttributes(HashMap<String, String> filterableAttributes) {
+        this.filterableAttributes = filterableAttributes; }
+
+    public HashMap<String, String> getFilterChoices() { return this.filterChoices; }
+
+    public void setFilterChoices(HashMap<String, String> filterChoices) { this.filterChoices = filterChoices; }
+
+    public String getFilterableAttributesError() {
+        return filterableAttributesError;
     }
 
-    public String getCurrentItemError() { return currentItemError; }
+    public void setFilterableAttributesError(String filterableAttributesError) {
+        this.filterableAttributesError = filterableAttributesError;
+    }
 
-    public void setCurrentItemError(String currentItemError) {
-        this.currentItemError = currentItemError;
+    public String getFilterChoicesError() {
+        return filterChoicesError;
+    }
+
+    public void setFilterChoicesError(String filterChoicesError) {
+        this.filterChoicesError = filterChoicesError;
     }
 }

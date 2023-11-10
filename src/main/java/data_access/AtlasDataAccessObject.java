@@ -33,4 +33,11 @@ public class AtlasDataAccessObject {
 
             return request;
         }
+
+        protected double calculateDistance(String source, String destination) {
+            // TODO: implement this method
+            // USe the Google Maps API to find the distance between the
+            // two addresses
+            return 0.0;
+        }
 }

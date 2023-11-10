@@ -84,7 +84,11 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     }
 
     @Override
-    public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes) throws IOException {
+    public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes, Student currentStudent)
+            throws IOException {
+
+        // TODO: need to remove radius
+
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
 
@@ -140,12 +144,19 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
                 String size = itemDocument.getString("size");
                 String material = itemDocument.getString("material");
 
-                Clothing newItem =
-                        new Clothing(id, name, description, condition, price, age, soldYet,
-                                pickupAddress, radius, owner, type, picture,
-                                creationTime, brand, colour, size, material);
+                // This line assumes that calculateDistance is implemented
+                // and that we have access to the current user infomation
+                double distance = calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
+                double maxDistance = Double.parseDouble(filteredAttributes.get("distanceRange"));
 
-                result.add(newItem);
+                if (distance <= maxDistance) {
+                    Clothing newItem =
+                            new Clothing(id, name, description, condition, price, age, soldYet,
+                                    pickupAddress, radius, owner, type, picture,
+                                    creationTime, brand, colour, size, material);
+
+                    result.add(newItem);
+                }
             }
 
             return result;
