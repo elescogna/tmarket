@@ -162,7 +162,8 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
         if (error != null) {
             JOptionPane.showMessageDialog(ViewItemView.this, error);
-            viewItemState.setCurrentItemError(null); // the error has been displayed
+            viewItemState.setCurrentItemError(null); // the error has been displayed so we can get rid of it
+            // TODO: exceute home use case
         } else {                                   // display everything as normal
             Item currentItem = viewItemState.getCurrentItem();
             Student currentStudent = viewItemState.getCurrentStudent();
