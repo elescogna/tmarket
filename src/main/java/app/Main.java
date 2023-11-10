@@ -8,7 +8,7 @@ public class Main {
         // TODO: remove, this is just POC
         AtlasTechnologyDataAccessObject obj = new AtlasTechnologyDataAccessObject();
         try {
-            System.out.println(obj.getItem("654dcde2bb63415367a0e75e"));
+            obj.getItem("634dcde2bb63415367a0e75e");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
