@@ -38,11 +38,14 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private JLabel lblCustom4;
     private JButton btnBack;
 
+    private HomeController homeController;
+
     /**
      * Create the panel.
      */
-    public ViewItemView(HomeController homeController,
-            HomeViewModel homeViewModel) {
+    public ViewItemView(HomeController homeController) {
+        this.homeController = homeController;
+
         this.setLayout(null);
 
         lblTitle = new JLabel("View Item");

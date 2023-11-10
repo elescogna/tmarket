@@ -10,17 +10,18 @@ import use_case.home.HomeDataAccessInterface;
 import use_case.home.HomeInputBoundary;
 import use_case.home.HomeInteractor;
 import use_case.home.HomeOutputBoundary;
-import view.HomeView;
+import view.ViewItemView;
 
-public class HomeUseCaseFactory {
+public class ViewItemUseCaseFactory {
 
     /** Prevent instantiation. */
-    private HomeUseCaseFactory() {}
+    private ViewItemUseCaseFactory() {}
 
-    public static HomeView
+    public static ViewItemView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
                 HomeDataAccessInterface clothingDataAccessObject,
                 HomeDataAccessInterface furnitureDataAccessObject,
+                HomeDataAccessInterface orderDataAccessObject,
                 HomeDataAccessInterface schoolItemDataAccessInterface,
                 HomeDataAccessInterface technologyDataAccessInterface) {
 
@@ -29,7 +30,7 @@ public class HomeUseCaseFactory {
                         viewManagerModel, homeViewModel, clothingDataAccessObject,
                         furnitureDataAccessObject, schoolItemDataAccessInterface,
                         technologyDataAccessInterface);
-                return new HomeView(homeViewModel, homeController);
+                return new ViewItemView(homeController);
             } catch (IOException e) {
                 // TODO: what should this actually print out?
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");

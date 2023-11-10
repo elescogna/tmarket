@@ -7,20 +7,17 @@ import java.util.*;
 public class HomeInteractor implements HomeInputBoundary {
     final HomeDataAccessInterface clothingDataAccessObject;
     final HomeDataAccessInterface furnitureDataAccessObject;
-    final HomeDataAccessInterface orderDataAccessObject;
     final HomeDataAccessInterface schoolItemDataAccessObject;
     final HomeDataAccessInterface technologyDataAccessObject;
     final HomeOutputBoundary homePresenter;
 
     public HomeInteractor(HomeDataAccessInterface clothingDataAccessObject,
             HomeDataAccessInterface furnitureDataAccessObject,
-            HomeDataAccessInterface orderDataAccessObject,
             HomeDataAccessInterface schoolItemDataAccessObject,
             HomeDataAccessInterface technologyDataAccessObject,
             HomeOutputBoundary homeOutputBoundary) {
         this.clothingDataAccessObject = clothingDataAccessObject;
         this.furnitureDataAccessObject = furnitureDataAccessObject;
-        this.orderDataAccessObject = orderDataAccessObject;
         this.schoolItemDataAccessObject = schoolItemDataAccessObject;
         this.technologyDataAccessObject = technologyDataAccessObject;
         this.homePresenter = homeOutputBoundary;
@@ -32,7 +29,6 @@ public class HomeInteractor implements HomeInputBoundary {
             ArrayList<Item> items = new ArrayList<>();
             items.addAll(clothingDataAccessObject.getAllItems());
             items.addAll(furnitureDataAccessObject.getAllItems());
-            items.addAll(orderDataAccessObject.getAllItems());
             items.addAll(schoolItemDataAccessObject.getAllItems());
             items.addAll(technologyDataAccessObject.getAllItems());
             items.sort(new Comparator<Item>() {

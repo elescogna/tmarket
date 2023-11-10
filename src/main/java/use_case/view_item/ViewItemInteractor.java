@@ -13,7 +13,6 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
     public ViewItemInteractor(
             ViewItemDataAccessInterface clothingDataAccessObject,
             ViewItemDataAccessInterface furnitureDataAccessObject,
-            ViewItemDataAccessInterface orderDataAccessObject,
             ViewItemDataAccessInterface schoolItemDataAccessObject,
             ViewItemDataAccessInterface technologyDataAccessObject,
             ViewItemOutputBoundary viewItemOutputBoundary) {
