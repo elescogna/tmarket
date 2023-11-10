@@ -35,7 +35,15 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
+            }
+
             JSONObject responseBodyJson = new JSONObject(response.body().string());
+            if (responseBodyJson.isNull("document")) {
+                return null;
+            }
+
             JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
 
             ArrayList<Item> result = new ArrayList<Item>();

@@ -1,14 +1,11 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.home.HomeController;
-import interface_adapter.home.HomeViewModel;
-import interface_adapter.home.HomePresenter;
+import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchPresenter;
 import use_case.home.HomeDataAccessInterface;
-import use_case.home.HomeInputBoundary;
-import use_case.home.HomeInteractor;
-import use_case.home.HomeOutputBoundary;
-
+import use_case.search.SearchInputBoundary;
+import use_case.search.SearchOutputBoundary;
 import javax.swing.*;
 import java.io.IOException;
 
