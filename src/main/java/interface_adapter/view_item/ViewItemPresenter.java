@@ -17,6 +17,7 @@ public class ViewItemPresenter implements ViewItemOutputBoundary {
     public void prepareSuccessView(ViewItemOutputData response) {
         ViewItemState viewItemState = viewItemViewModel.getState();
         viewItemState.setCurrentItem(response.getItemToShow());
+        viewItemState.setCurrentStudent(response.getCurrentStudent());
         this.viewItemViewModel.setState(viewItemState);
 
         viewItemViewModel.firePropertyChanged();
