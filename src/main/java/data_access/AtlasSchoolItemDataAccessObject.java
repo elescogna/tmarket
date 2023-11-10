@@ -35,6 +35,10 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
+            }
+
             JSONObject responseBodyJson = new JSONObject(response.body().string());
             JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
 
@@ -87,15 +91,23 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("database", atlasDatabaseName);
         requestBodyMap.put("collection", atlasCollectionName);
 
-        HashMap<String, String> filter = new HashMap<String, String>();
-        filter.put("_id", idToGet);
+        HashMap<String, Object> filter = new HashMap<String, Object>();
 
+        // getting something by ID takes a bit more work
+        HashMap<String, String> idMap = new HashMap<String, String>();
+        idMap.put("$oid", idToGet);
+
+        filter.put("_id", idMap);
         requestBodyMap.put("filter", filter);
 
         Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
                 requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
+            }
+
             JSONObject responseJson = new JSONObject(response.body().string());
             try {
                 JSONObject itemDocument = responseJson.getJSONObject("document");
