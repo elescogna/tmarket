@@ -4,15 +4,15 @@ import use_case.view_item.ViewItemInputBoundary;
 import use_case.view_item.ViewItemInputData;
 
 public class ViewItemController {
-  final ViewItemInputBoundary viewItemInteractor;
+    final ViewItemInputBoundary viewItemInteractor;
 
-  public ViewItemController(ViewItemInputBoundary viewItemInteractor) {
-    this.viewItemInteractor = viewItemInteractor;
-  }
+    public ViewItemController(ViewItemInputBoundary viewItemInteractor) {
+        this.viewItemInteractor = viewItemInteractor;
+    }
 
-  public void execute(String itemId) {
-    ViewItemInputData viewItemInputData = new ViewItemInputData(itemId);
+    public void execute(String itemId) {
+        ViewItemInputData viewItemInputData = new ViewItemInputData(itemId);
 
-    this.viewItemInteractor.execute(viewItemInputData);
-  }
+        this.viewItemInteractor.execute(viewItemInputData);
+    }
 }
