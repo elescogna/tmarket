@@ -33,6 +33,13 @@ public class HomeInteractor implements HomeInputBoundary {
             items.addAll(orderDataAccessObject.getAllItems());
             items.addAll(schoolItemDataAccessObject.getAllItems());
             items.addAll(technologyDataAccessObject.getAllItems());
+            items.sort(new Comparator<Item>() {
+                @Override
+                public int compare(Item firstItem, Item secondItem) {
+                    return firstItem.getCreationTime().compareTo(secondItem.getCreationTime());
+                }
+            });
+            Collections.reverse(items);
             HomeOutputData homeOutputData = new HomeOutputData(items);
             homePresenter.prepareSuccessView(homeOutputData);
         } catch (IOException e)  {
