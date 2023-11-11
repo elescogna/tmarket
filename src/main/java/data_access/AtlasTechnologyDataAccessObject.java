@@ -12,10 +12,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import use_case.create_order.CreateOrderDataAccessInterface;
 import use_case.home.HomeDataAccessInterface;
 
 public class AtlasTechnologyDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface, CreateOrderDataAccessInterface {
     private static final String atlasCollectionName = "technology";
 
     @Override
@@ -81,5 +82,34 @@ public class AtlasTechnologyDataAccessObject
 
             return result;
         }
+    }
+
+    public boolean existsByEmail(String email) {return true;}
+
+    public void create(String orderId, String buyerEmail, String sellerEmail, Item item,
+                       String address) {}
+
+    public void update(String itemId) {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, String> filterValue = new HashMap<String, String>();
+        filterValue.put("_id", itemId);
+        HashMap<String, Boolean> newValue = new HashMap<String, Boolean>();
+        newValue.put("soldYet", true);
+        HashMap<String, HashMap<String, Boolean>> updateValue = new HashMap<String, HashMap<String, Boolean>>();
+        updateValue.put("$set", newValue);
+
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("filter", filterValue);
+        requestBodyMap.put("update", updateValue);
+
+        Request request = preparePostRequest(atlasCollectionName, "/action/updateOne", requestBodyMap);
+
+        try {
+            client.newCall(request).execute();
+        } catch (IOException e) {}
     }
 }
