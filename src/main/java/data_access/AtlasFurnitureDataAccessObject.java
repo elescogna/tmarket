@@ -51,7 +51,6 @@ public class AtlasFurnitureDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                double radius = itemDocument.getDouble("radius");
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
@@ -70,8 +69,8 @@ public class AtlasFurnitureDataAccessObject
 
                 Furniture newItem =
                     new Furniture(id, name, description, condition, price, age, soldYet,
-                            pickupAddress, radius, owner, type, picture,
-                            creationTime, length, width, height);
+                            pickupAddress, owner, type, picture, creationTime,
+                            length, width, height);
 
                 result.add(newItem);
             }
