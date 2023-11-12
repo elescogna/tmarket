@@ -1,5 +1,7 @@
 package interface_adapter.search;
 
+import entities.Student;
+
 import java.util.HashMap;
 
 public class SearchState {
@@ -7,6 +9,7 @@ public class SearchState {
     private HashMap<String, String> filterChoices;
     private String filterableAttributesError;
     private String filterChoicesError;
+    private Student currentStudent;
 
     public SearchState(SearchState copy) {
         this.filterableAttributes = copy.filterableAttributes;
@@ -38,5 +41,13 @@ public class SearchState {
 
     public void setFilterChoicesError(String filterChoicesError) {
         this.filterChoicesError = filterChoicesError;
+    }
+
+    public Student getCurrentStudent() {
+        return currentStudent;
+    }
+
+    public void setCurrentStudent(Student currentStudent) {
+        this.currentStudent = currentStudent;
     }
 }

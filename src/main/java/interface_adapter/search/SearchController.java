@@ -1,5 +1,6 @@
 package interface_adapter.search;
 
+import entities.Student;
 import use_case.home.HomeInputBoundary;
 import use_case.search.SearchInputBoundary;
 import use_case.search.SearchInputData;
@@ -12,8 +13,8 @@ public class SearchController {
 
     public SearchController(SearchInputBoundary searchInteractor) { this.searchInteractor = searchInteractor; }
 
-    public void execute(HashMap<String, String> filteredAttributes) {
+    public void execute(HashMap<String, String> filteredAttributes, Student currentStudent) {
         SearchInputData searchInputData = new SearchInputData(filteredAttributes);
-        this.searchInteractor.execute(searchInputData);
+        this.searchInteractor.execute(searchInputData, currentStudent);
     }
 }
