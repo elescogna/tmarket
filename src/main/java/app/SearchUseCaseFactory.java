@@ -3,6 +3,7 @@ package app;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
+import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
 import use_case.home.HomeDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
