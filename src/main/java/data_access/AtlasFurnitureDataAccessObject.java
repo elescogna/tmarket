@@ -103,7 +103,26 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("database", atlasDatabaseName);
         requestBodyMap.put("collection", atlasCollectionName);
 
-        requestBodyMap.put("filter", filteredAttributes);
+        // create a deep copy so that you don't mutate the parameter
+        HashMap<String, Object> newFilteredAttributes = new HashMap<>(filteredAttributes.size());
+        for (HashMap.Entry<String, String> entry : filteredAttributes.entrySet()) {
+            newFilteredAttributes.put(new String(entry.getKey()), new String(entry.getValue()));
+        }
+
+        // Now modify all the attributes that need a range to account for a range instead of a single exact value
+        HashMap<String, Object> priceRangeMap = new HashMap<>();
+        priceRangeMap.put("$lte", newFilteredAttributes.get("priceRange"));
+        newFilteredAttributes.put("priceRange", priceRangeMap);
+
+        HashMap<String, Object> ageMap = new HashMap<>();
+        ageMap.put("$lte", newFilteredAttributes.get("age"));
+        newFilteredAttributes.put("age", ageMap);
+
+        HashMap<String, Object> conditionScoreMap = new HashMap<>();
+        conditionScoreMap.put("$tle", newFilteredAttributes.get("conditionScore"));
+        newFilteredAttributes.put("conditionScore", conditionScoreMap);
+
+        requestBodyMap.put("filter", newFilteredAttributes);
 
         Request request = preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
