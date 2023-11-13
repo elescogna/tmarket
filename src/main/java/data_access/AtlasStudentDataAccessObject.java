@@ -1,22 +1,17 @@
 package data_access;
 
-import entities.Item;
-import entities.SchoolItem;
-import entities.Student;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import use_case.create_order.CreateOrderDataAccessInterface;
+import use_case.create_order.CreateOrderDataAccessInterfaceStudent;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterface {
+public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceStudent {
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) {
@@ -45,9 +40,4 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implemen
         } catch (IOException e) {}
         return exists;
     }
-
-    public void create(String orderId, String buyerEmail, String sellerEmail, Item item,
-                       String address) {}
-
-    public void update(String itemId) {}
 }

@@ -3,15 +3,13 @@ package data_access;
 import entities.Item;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import use_case.create_order.CreateOrderDataAccessInterface;
+import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterface {
+public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceOrder {
     private static final String atlasCollectionName = "orders";
-
-    public boolean existsByEmail(String email) {return true;}
 
     public void create(String orderId, String buyerEmail, String sellerEmail, Item item,
                        String address) {
@@ -37,6 +35,4 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements
             client.newCall(request).execute();
         } catch (IOException e) {}
     }
-
-    public void update(String itemId) {}
 }

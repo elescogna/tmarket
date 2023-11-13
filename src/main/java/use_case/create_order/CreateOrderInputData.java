@@ -1,17 +1,18 @@
 package use_case.create_order;
 
 import entities.Item;
+import entities.Student;
 
 public class CreateOrderInputData {
     private Item item;
-    private String sellerEmail = "";
+    private Student student;
     private String buyerEmail = "";
     private String sameAddress = "";
     private String otherAddress = "";
 
-    public CreateOrderInputData(Item item, String sellerEmail, String buyerEmail, String sameAddress, String otherAddress) {
+    public CreateOrderInputData(Item item, Student student, String buyerEmail, String sameAddress, String otherAddress) {
         this.item = item;
-        this.sellerEmail = sellerEmail;
+        this.student = student;
         this.buyerEmail = buyerEmail;
         this.sameAddress = sameAddress;
         this.otherAddress = otherAddress;
@@ -21,8 +22,8 @@ public class CreateOrderInputData {
         return item;
     }
 
-    public String getSellerEmail() {
-        return sellerEmail;
+    public Student getStudent() {
+        return student;
     }
 
     public String getBuyerEmail() {

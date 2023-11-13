@@ -1,9 +1,10 @@
 package interface_adapter.create_order;
 
 import entities.Item;
+import entities.Student;
 
 public class CreateOrderState {
-    private String sellerEmail = "";
+    private Student student;
     private String emailError = null;
     private String buyerEmail = "";
     private String sameAddress = "";
@@ -11,7 +12,7 @@ public class CreateOrderState {
     private Item item;
 
     public CreateOrderState(CreateOrderState copy) {
-        sellerEmail = copy.sellerEmail;
+        student = copy.student;
         emailError = copy.emailError;
         buyerEmail = copy.buyerEmail;
         otherAddress = copy.otherAddress;
@@ -24,12 +25,12 @@ public class CreateOrderState {
     public CreateOrderState() {
     }
 
-    public void setSellerEmail(String sellerEmail) {
-        this.sellerEmail = sellerEmail;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public String getSellerEmail() {
-        return sellerEmail;
+    public Student getStudent() {
+        return student;
     }
 
     public void setEmailError(String emailError) {
@@ -75,7 +76,8 @@ public class CreateOrderState {
     @Override
     public String toString() {
         return "CreateOrderState{" +
-                "buyerEmail='" + buyerEmail + '\'' +
+                "Student name='" + student.getName() + '\'' +
+                ", buyerEmail='" + buyerEmail + '\'' +
                 ", sameAddress='" + sameAddress + '\'' +
                 ", otherAddress='" + otherAddress + '\'' +
                 ", item ID='" + item.getId() + '\'' +

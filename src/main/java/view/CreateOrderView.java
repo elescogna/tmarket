@@ -21,7 +21,6 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
     private CreateOrderController createOrderController;
     private CreateOrderViewModel createOrderViewModel;
     private JButton create;
-    private JTextField sellerEmail;
 
     /**
      * Create the panel.
@@ -101,20 +100,6 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         lblNewLabel_1_3.setBounds(30, 73, 219, 25);
         add(lblNewLabel_1_3);
         
-        sellerEmail = new JTextField();
-        sellerEmail.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-                CreateOrderState currentState = createOrderViewModel.getState();
-                String text = sellerEmail.getText() + e.getKeyChar();
-                currentState.setSellerEmail(text);
-                createOrderViewModel.setState(currentState);
-        	}
-        });
-        sellerEmail.setColumns(10);
-        sellerEmail.setBounds(30, 117, 497, 35);
-        add(sellerEmail);
-        
         create = new JButton("Create New Order");
         create.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -123,7 +108,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
 
                     createOrderController.execute(
                             currentState.getItem(),
-                            currentState.getSellerEmail(),
+                            currentState.getStudent(),
                             currentState.getBuyerEmail(),
                             currentState.getSameAddress(),
                             currentState.getOtherAddress()

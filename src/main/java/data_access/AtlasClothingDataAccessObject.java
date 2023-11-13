@@ -12,11 +12,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import use_case.create_order.CreateOrderDataAccessInterface;
+import use_case.create_order.CreateOrderDataAccessInterfaceItem;
 import use_case.home.HomeDataAccessInterface;
 
 public class AtlasClothingDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, CreateOrderDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface, CreateOrderDataAccessInterfaceItem {
     private static final String atlasCollectionName = "clothing";
 
     @Override
@@ -81,12 +81,7 @@ public class AtlasClothingDataAccessObject
         }
     }
 
-    public boolean existsByEmail(String email) {return true;}
-
-    public void create(String orderId, String buyerEmail, String sellerEmail, Item item,
-                       String address) {}
-
-    public void update(String itemId) {
+    public void updateSoldYet(String itemId) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();

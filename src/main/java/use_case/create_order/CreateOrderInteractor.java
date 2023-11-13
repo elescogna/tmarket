@@ -1,22 +1,32 @@
 package use_case.create_order;
 
-import app.CreateOrderUseCaseFactory;
-
-import java.io.IOException;
+import entities.Clothing;
+import entities.Furniture;
+import entities.SchoolItem;
 
 public class CreateOrderInteractor implements CreateOrderInputBoundary {
-    final CreateOrderDataAccessInterface atlasOrderDataAccessObject;
-    final CreateOrderDataAccessInterface atlasStudentDataAccessObject;
-    final CreateOrderDataAccessInterface atlasItemDataAccessObject;
+    final CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject;
+    final CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessObject;
+    final CreateOrderDataAccessInterfaceItem atlasClothingDataAccessObject;
+    final CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessObject;
+    final CreateOrderDataAccessInterfaceItem atlasSchoolItemDataAccessObject;
+    final CreateOrderDataAccessInterfaceItem atlasTechnologyDataAccessObject;
+
     final CreateOrderOutputBoundary createOrderPresenter;
 
-    public CreateOrderInteractor(CreateOrderDataAccessInterface atlasOrderDataAccessInterface,
-                                 CreateOrderDataAccessInterface atlasStudentDataAccessInterface,
-                                 CreateOrderDataAccessInterface atlasItemDataAccessInterface,
+    public CreateOrderInteractor(CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessInterface,
+                                 CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessInterface,
+                                 CreateOrderDataAccessInterfaceItem atlasClothingDataAccessInterface,
+                                 CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessInterface,
+                                 CreateOrderDataAccessInterfaceItem atlasSchoolItemDataAccessInterface,
+                                 CreateOrderDataAccessInterfaceItem atlasTechnologyDataAccessInterface,
                                  CreateOrderOutputBoundary createOrderOutputBoundary) {
         this.atlasOrderDataAccessObject = atlasOrderDataAccessInterface;
         this.atlasStudentDataAccessObject = atlasStudentDataAccessInterface;
-        this.atlasItemDataAccessObject = atlasItemDataAccessInterface;
+        this.atlasClothingDataAccessObject = atlasClothingDataAccessInterface;
+        this.atlasFurnitureDataAccessObject = atlasFurnitureDataAccessInterface;
+        this.atlasSchoolItemDataAccessObject = atlasSchoolItemDataAccessInterface;
+        this.atlasTechnologyDataAccessObject = atlasTechnologyDataAccessInterface;
         this.createOrderPresenter = createOrderOutputBoundary;
     }
 
@@ -25,21 +35,37 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
         // Create new order & save to database
         // Update item to be sold
 
-        if (!atlasStudentDataAccessObject.existsByEmail(createOrderInputData.getSellerEmail())) {
+        if (!atlasStudentDataAccessObject.existsByEmail(createOrderInputData.getStudent().getUoftEmail())) {
             createOrderPresenter.prepareFailView("Seller e-mail doesn't exist.");
         } else if (!atlasStudentDataAccessObject.existsByEmail(createOrderInputData.getBuyerEmail())) {
             createOrderPresenter.prepareFailView("Buyer e-mail doesn't exist.");
         } else if (createOrderInputData.getSameAddress().equals("Yes")) {
-            String orderId = createOrderInputData.getSellerEmail().substring(0, createOrderInputData.getSellerEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
-            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getSellerEmail(),
+            String orderId = createOrderInputData.getStudent().getUoftEmail().substring(0, createOrderInputData.getStudent().getUoftEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
+            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
                     createOrderInputData.getItem(), createOrderInputData.getItem().getPickupAddress());
-            atlasItemDataAccessObject.update(createOrderInputData.getItem().getId());
+            if (createOrderInputData.getItem() instanceof Clothing) {
+                atlasClothingDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else if (createOrderInputData.getItem() instanceof Furniture) {
+                atlasFurnitureDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else if (createOrderInputData.getItem() instanceof SchoolItem) {
+                atlasSchoolItemDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else {
+                atlasTechnologyDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            }
             createOrderPresenter.prepareSuccessView();
         } else {
-            String orderId = createOrderInputData.getSellerEmail().substring(0, createOrderInputData.getSellerEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
-            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getSellerEmail(),
+            String orderId = createOrderInputData.getStudent().getUoftEmail().substring(0, createOrderInputData.getStudent().getUoftEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
+            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
                     createOrderInputData.getItem(), createOrderInputData.getOtherAddress());
-            atlasItemDataAccessObject.update(createOrderInputData.getItem().getId());
+            if (createOrderInputData.getItem() instanceof Clothing) {
+                atlasClothingDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else if (createOrderInputData.getItem() instanceof Furniture) {
+                atlasFurnitureDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else if (createOrderInputData.getItem() instanceof SchoolItem) {
+                atlasSchoolItemDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            } else {
+                atlasTechnologyDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
+            }
             createOrderPresenter.prepareSuccessView();
         }
     }
