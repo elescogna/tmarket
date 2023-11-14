@@ -1,14 +1,14 @@
 package app;
 
-import data_access.AtlasClothingDataAccessObject;
+import data_access.AtlasTechnologyDataAccessObject;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
         // TODO: remove, this is just POC
-        AtlasClothingDataAccessObject obj = new AtlasClothingDataAccessObject();
+        AtlasTechnologyDataAccessObject obj = new AtlasTechnologyDataAccessObject();
         try {
-            System.out.println(obj.getAllItems());
+            obj.getItem("634dcde2bb63415367a0e75e");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

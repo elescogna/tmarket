@@ -20,13 +20,13 @@ public class AtlasDataAccessObject {
                 HashMap<String, Object> requestBodyMap) {
             RequestBody requestBody =
                 RequestBody.create(new JSONObject(requestBodyMap).toString(),
-                        MediaType.parse("application/json; charset=utf-8"));
+                        MediaType.parse("application/ejson; charset=utf-8"));
 
             Request request =
                 new Request.Builder()
                 .url(atlasApiUrl + endpoint)
                 .method("POST", requestBody)
-                .addHeader("Content-Type", "application/json; charset=utf-8")
+                .addHeader("Content-Type", "application/ejson; charset=utf-8")
                 .addHeader("Accept", "application/json; charset=utf-8")
                 .addHeader("apiKey", atlasApiKey)
                 .build();
