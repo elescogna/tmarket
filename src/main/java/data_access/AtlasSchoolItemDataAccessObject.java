@@ -53,7 +53,6 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                double radius = itemDocument.getDouble("radius");
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
@@ -70,7 +69,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
 
                 SchoolItem newItem =
                     new SchoolItem(id, name, description, condition, price, age,
-                            soldYet, pickupAddress, radius, owner, type, picture,
+                            soldYet, pickupAddress, owner, type, picture,
                             creationTime, brand, colour);
 
                 result.add(newItem);
@@ -83,8 +82,6 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
     @Override
     public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes, Student currentStudent)
             throws IOException {
-
-        // TODO: need to remove radius
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -101,21 +98,26 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
 
         // Now modify all the attributes that need a range to account for a range instead of a single exact value
         HashMap<String, Object> priceRangeMap = new HashMap<>();
-        priceRangeMap.put("$lte", newFilteredAttributes.get("priceRange"));
-        newFilteredAttributes.put("priceRange", priceRangeMap);
+        priceRangeMap.put("$lte", newFilteredAttributes.get("price"));
+        newFilteredAttributes.put("price", priceRangeMap);
 
         HashMap<String, Object> ageMap = new HashMap<>();
         ageMap.put("$lte", newFilteredAttributes.get("age"));
         newFilteredAttributes.put("age", ageMap);
 
         HashMap<String, Object> conditionScoreMap = new HashMap<>();
-        conditionScoreMap.put("$gle", newFilteredAttributes.get("conditionScore"));
+        conditionScoreMap.put("$gte", newFilteredAttributes.get("conditionScore"));
         newFilteredAttributes.put("conditionScore", conditionScoreMap);
 
         // Filter for soldYet
         newFilteredAttributes.put("soldYet", false);
 
         requestBodyMap.put("filter", newFilteredAttributes);
+
+        // sort by creation time
+        requestBodyMap.put("sort", new HashMap<String, Object>() {{
+            put("creationTime", 1); // 1 for ascending, -1 for descending
+        }});
 
         Request request = preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
@@ -145,7 +147,6 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                double radius = itemDocument.getDouble("radius");
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
@@ -168,7 +169,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 if (distance < maxDistance) {
                     SchoolItem newItem =
                             new SchoolItem(id, name, description, condition, price, age,
-                                    soldYet, pickupAddress, radius, owner, type, picture,
+                                    soldYet, pickupAddress, owner, type, picture,
                                     creationTime, brand, colour);
 
                     result.add(newItem);

@@ -14,12 +14,11 @@ public class Technology extends Item {
 
     public Technology(String id, String name, String description,
             String condition, double price, int age, boolean soldYet,
-            String pickupAddress, double radius, Student owner,
-            String type, String picture, LocalDateTime creationTime,
-            String brand, ArrayList<String> capabilities,
-            String colour) {
+            String pickupAddress, Student owner, String type,
+            String picture, LocalDateTime creationTime, String brand,
+            ArrayList<String> capabilities, String colour) {
         super(id, name, description, condition, price, age, soldYet, pickupAddress,
-                radius, owner, type, picture, creationTime);
+                owner, type, picture, creationTime);
         this.brand = brand;
         this.capabilities = capabilities;
         this.colour = colour;

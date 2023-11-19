@@ -311,8 +311,8 @@ public class SearchView extends JFrame {
 		sizeComboBox.setVisible("Clothing".equals(selectedCategory));
 	}
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new SearchView());
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(() -> new SearchView());
+//	}
 
 }
