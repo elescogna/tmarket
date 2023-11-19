@@ -31,6 +31,14 @@ public class SearchView extends JFrame {
 	private JLabel maximumAgeLabel;
 	private JLabel maximumDistanceLabel;
 	private JLabel conditionScoreLabel;
+	private JLabel brandLabel;
+	private JComboBox brandComboBox;
+	private JLabel colourLabel;
+	private JComboBox colourComboBox;
+	private JLabel sizeLabel;
+	private JComboBox sizeComboBox;
+	private JButton submitButton;
+	private JButton backButton;
 	
 
 	/**
@@ -49,61 +57,86 @@ public class SearchView extends JFrame {
 	}
 
 	private void initializeComponents() {
+		// Add the Submit and Back buttons
+		submitButton = new JButton("Submit");
+		submitButton.setBounds(400, 500, 100, 40);
+		backButton = new JButton("Back");
+		backButton.setBounds(100, 500, 100, 40);
+
 		categoryLabel = new JLabel("Category:");
-		categoryLabel.setBounds(10, 10, 80, 14);
+		categoryLabel.setBounds(10, 50, 80, 25);
 		categoryComboBox = new JComboBox<>(new String[]{"Furniture", "Technology", "School Item", "Clothing"});
-		categoryComboBox.setBounds(110, 10, 80, 14);
-		
+		categoryComboBox.setBounds(110, 50, 80, 25);
+
 		typeLabel = new JLabel("Type:");
-		typeLabel.setBounds(10, 78, 80, 14);
+		typeLabel.setBounds(10, 100, 80, 25);
 		typeComboBox = new JComboBox<>();
-		typeComboBox.setBounds(110, 78, 80, 14);
-		
+		typeComboBox.setBounds(110, 100, 80, 25);
+
 		conditionScoreLabel = new JLabel("Condition Score");
-		conditionScoreLabel.setBounds(10, 146, 80, 14);
+		conditionScoreLabel.setBounds(10, 150, 80, 25);
 		conditionComboBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-		conditionComboBox.setBounds(110, 146, 80, 14);
-		
+		conditionComboBox.setBounds(110, 150, 80, 25);
+
 		maximumPriceLabel = new JLabel("Maximum price:");
-		maximumPriceLabel.setBounds(10, 214, 80, 14);
+		maximumPriceLabel.setBounds(10, 200, 80, 25);
 		maximumPriceTextField = new JTextField();
-		maximumPriceTextField.setBounds(110, 214, 80, 14);
-		
+		maximumPriceTextField.setBounds(110, 200, 80, 25);
+
 		maximumAgeLabel = new JLabel("Maximum age (years)");
-		maximumAgeLabel.setBounds(10, 282, 80, 14);
+		maximumAgeLabel.setBounds(10, 250, 80, 25);
 		maximumAgeTextField = new JTextField();
-		maximumAgeTextField.setBounds(110, 282, 80, 14);
-		
+		maximumAgeTextField.setBounds(110, 250, 80, 25);
+
 		maximumDistanceLabel = new JLabel("Maximum Distance");
-		maximumDistanceLabel.setBounds(10, 350, 80, 14);
+		maximumDistanceLabel.setBounds(10, 300, 80, 25);
 		maximumDistanceTextField = new JTextField();
-		maximumDistanceTextField.setBounds(110, 350, 80, 14);
+		maximumDistanceTextField.setBounds(110, 300, 80, 25);
 
 		// Additional furniture fields
 		minLengthLabel = new JLabel("Minimum Length:");
-		minLengthLabel.setBounds(210, 10, 160, 14);
+		minLengthLabel.setBounds(210, 50, 160, 25);
 		minLengthTextField = new JTextField();
-		minLengthTextField.setBounds(350, 10, 80, 14);
+		minLengthTextField.setBounds(350, 50, 80, 25);
 		minWidthLabel = new JLabel("Minimum Width:");
-		minWidthLabel.setBounds(210, 80, 160, 14);
+		minWidthLabel.setBounds(210, 100, 160, 25);
 		minWidthTextField = new JTextField();
-		minWidthTextField.setBounds(350, 80, 80, 14);
+		minWidthTextField.setBounds(350, 100, 80, 25);
 		minHeightLabel = new JLabel("Minimum Height:");
-		minHeightLabel.setBounds(210, 130, 160, 14);
+		minHeightLabel.setBounds(210, 150, 160, 25);
 		minHeightTextField = new JTextField();
-		minHeightTextField.setBounds(350, 130, 80, 14);
+		minHeightTextField.setBounds(350, 150, 80, 25);
 		maxLengthLabel = new JLabel("Maximum Length");
-		maxLengthLabel.setBounds(210, 180, 160, 14);
+		maxLengthLabel.setBounds(210, 200, 160, 25);
 		maxLengthTextField = new JTextField();
-		maxLengthTextField.setBounds(350, 180, 80, 14);
+		maxLengthTextField.setBounds(350, 200, 80, 25);
 		maxWidthLabel = new JLabel("Maximum Width:");
-		maxWidthLabel.setBounds(210, 230, 160, 14);
+		maxWidthLabel.setBounds(210, 250, 160, 25);
 		maxWidthTextField = new JTextField();
-		maxWidthTextField.setBounds(350, 230, 80, 14);
+		maxWidthTextField.setBounds(350, 250, 80, 25);
 		maxHeightLabel = new JLabel("Maximum Height:");
-		maxHeightLabel.setBounds(210, 280, 160, 14);
+		maxHeightLabel.setBounds(210, 300, 160, 25);
 		maxHeightTextField = new JTextField();
-		maxHeightTextField.setBounds(350, 280, 80, 14);
+		maxHeightTextField.setBounds(350, 300, 80, 25);
+
+		// additional technology features:
+		brandLabel = new JLabel("Brand:");
+		brandLabel.setBounds(210, 50, 160, 25);
+		brandComboBox = new JComboBox<>(new String[]{"Apple", "Samsung", "Huawei",
+				"Dell", "HP", "Xiaomi", "Lenovo", "Asus"});
+		brandComboBox.setBounds(350, 50, 80, 25);
+
+		// additional clothing features:
+		colourLabel = new JLabel("Colour:");
+		colourLabel.setBounds(210, 50, 160, 25);
+		colourComboBox = new JComboBox<>(new String[]{"Red", "Black", "Green", "Blue", "Grey", "White",
+				"Orange", "Purple", "Yellow", "Brown", "Beige", "Pink", "Multicolour"});
+		colourComboBox.setBounds(350, 50, 80, 25);
+		sizeLabel = new JLabel("Size:");
+		sizeLabel.setBounds(210, 100, 160, 25);
+		sizeComboBox = new JComboBox<>(new String[]{"XXS", "XS", "S", "M", "L", "XL", "XXL"});
+		sizeComboBox.setBounds(350, 100, 80, 25);
+
 
 		// Initially disable additional fields
 		minLengthTextField.setVisible(false);
@@ -118,9 +151,19 @@ public class SearchView extends JFrame {
 		maxLengthLabel.setVisible(false);
 		maxWidthLabel.setVisible(false);
 		maxHeightLabel.setVisible(false);
+		brandLabel.setVisible(false);
+		brandComboBox.setVisible(false);
+		colourLabel.setVisible(false);
+		colourComboBox.setVisible(false);
+		sizeLabel.setVisible(false);
+		sizeComboBox.setVisible(false);
 	}
 
 	private void addComponents() {
+		// Submit and Back buttons
+		add(submitButton);
+		add(backButton);
+
 		// general filters
 		add(categoryLabel);
 		add(categoryComboBox);
@@ -148,6 +191,16 @@ public class SearchView extends JFrame {
 		add(maxWidthTextField);
 		add(maxHeightLabel);
 		add(maxHeightTextField);
+
+		// technology filters
+		add(brandLabel);
+		add(brandComboBox);
+
+		// clothing filters
+		add(colourLabel);
+		add(colourComboBox);
+		add(sizeLabel);
+		add(sizeComboBox);
 	}
 
 	private void addListeners() {
@@ -193,6 +246,8 @@ public class SearchView extends JFrame {
 		String selectedCategory = (String) categoryComboBox.getSelectedItem();
 
 		// Enable or disable additional fields based on the selected category
+
+		// furniture enable
 		minLengthTextField.setVisible("Furniture".equals(selectedCategory));
 		minWidthTextField.setVisible("Furniture".equals(selectedCategory));
 		minHeightTextField.setVisible("Furniture".equals(selectedCategory));
@@ -205,6 +260,16 @@ public class SearchView extends JFrame {
 		maxLengthLabel.setVisible("Furniture".equals(selectedCategory));
 		maxWidthLabel.setVisible("Furniture".equals(selectedCategory));
 		maxHeightLabel.setVisible("Furniture".equals(selectedCategory));
+
+		// technology enable
+		brandLabel.setVisible("Technology".equals(selectedCategory));
+		brandComboBox.setVisible("Technology".equals(selectedCategory));
+
+		// clothing enable
+		colourLabel.setVisible("Clothing".equals(selectedCategory));
+		colourComboBox.setVisible("Clothing".equals(selectedCategory));
+		sizeLabel.setVisible("Clothing".equals(selectedCategory));
+		sizeComboBox.setVisible("Clothing".equals(selectedCategory));
 	}
 
 	public static void main(String[] args) {
