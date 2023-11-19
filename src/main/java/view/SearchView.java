@@ -1,11 +1,18 @@
 package view;
 
+import entities.Student;
+import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchState;
+import interface_adapter.search.SearchViewModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class SearchView extends JFrame {
-
+	private final SearchViewModel searchViewModel;
+	private final SearchController searchController;
 	private static final long serialVersionUID = 1L;
 	private JTextField maximumPriceTextField;
 	private JTextField maximumDistanceTextField;
@@ -39,12 +46,11 @@ public class SearchView extends JFrame {
 	private JComboBox sizeComboBox;
 	private JButton submitButton;
 	private JButton backButton;
-	
 
 	/**
 	 * Create the panel.
 	 */
-	public SearchView() {
+	public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
 		setTitle("Search View");
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +60,9 @@ public class SearchView extends JFrame {
 		addListeners();
 
 		setVisible(true);
+
+		this.searchViewModel = searchViewModel;
+		this.searchController = searchController;
 	}
 
 	private void initializeComponents() {
@@ -204,11 +213,41 @@ public class SearchView extends JFrame {
 	}
 
 	private void addListeners() {
+
+		// make view dynamic depending on category chosen
 		categoryComboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				updateTypeComboBox();
 				updateAdditionalFields();
+			}
+		});
+
+		// implement the submit button
+		submitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				if (evt.getSource().equals(submitButton)) {
+					SearchState currentState = searchViewModel.getState();
+					HashMap<String, String> filteredAttributes = currentState.getFilterChoices();
+					Student currentStudent = currentState.getCurrentStudent();
+
+					searchController.execute(filteredAttributes, currentStudent);
+				}
+			}
+		});
+
+		// implement the back button
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				if (evt.getSource().equals(backButton)) {
+					SearchState currentState = searchViewModel.getState();
+					HashMap<String, String> filteredAttributes = currentState.getFilterChoices();
+					Student currentStudent = currentState.getCurrentStudent();
+
+					searchController.execute(filteredAttributes, currentStudent);
+				}
 			}
 		});
 	}

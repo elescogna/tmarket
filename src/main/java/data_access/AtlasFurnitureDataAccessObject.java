@@ -119,8 +119,27 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         newFilteredAttributes.put("age", ageMap);
 
         HashMap<String, Object> conditionScoreMap = new HashMap<>();
-        conditionScoreMap.put("$tle", newFilteredAttributes.get("conditionScore"));
+        conditionScoreMap.put("$gle", newFilteredAttributes.get("conditionScore"));
         newFilteredAttributes.put("conditionScore", conditionScoreMap);
+
+        // Filter for soldYet
+        newFilteredAttributes.put("soldYet", false);
+
+        // Furniture-specific filters
+        HashMap<String, Object> lengthRangeMap = new HashMap<>();
+        lengthRangeMap.put("$lte", newFilteredAttributes.get("maxLength"));
+        lengthRangeMap.put("$gte", newFilteredAttributes.get("minLength"));
+        newFilteredAttributes.put("length", lengthRangeMap);
+
+        HashMap<String, Object> widthRangeMap = new HashMap<>();
+        widthRangeMap.put("$lte", newFilteredAttributes.get("maxWidth"));
+        widthRangeMap.put("$gte", newFilteredAttributes.get("minWidth"));
+        newFilteredAttributes.put("width", widthRangeMap);
+
+        HashMap<String, Object> heightRangeMap = new HashMap<>();
+        heightRangeMap.put("$lte", newFilteredAttributes.get("maxHeight"));
+        heightRangeMap.put("$gte", newFilteredAttributes.get("minHeight"));
+        newFilteredAttributes.put("height", heightRangeMap);
 
         requestBodyMap.put("filter", newFilteredAttributes);
 

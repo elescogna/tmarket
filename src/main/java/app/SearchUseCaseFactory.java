@@ -10,6 +10,8 @@ import use_case.search.SearchDataAccessInterface;
 import use_case.search.SearchInputBoundary;
 import use_case.search.SearchInteractor;
 import use_case.search.SearchOutputBoundary;
+import view.SearchView;
+
 import javax.swing.*;
 import java.io.IOException;
 
@@ -33,7 +35,7 @@ public class SearchUseCaseFactory {
                     viewManagerModel, searchViewModel, searchResultViewModel, clothingDataAccessObject,
                     furnitureDataAccessObject, schoolItemDataAccessInterface,
                     technologyDataAccessInterface);
-            return new SearchView(searchController);
+            return new SearchView(searchViewModel, searchController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
         }

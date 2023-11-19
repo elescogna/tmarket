@@ -112,9 +112,11 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         newFilteredAttributes.put("age", ageMap);
 
         HashMap<String, Object> conditionScoreMap = new HashMap<>();
-        conditionScoreMap.put("$tle", newFilteredAttributes.get("conditionScore"));
+        conditionScoreMap.put("$gle", newFilteredAttributes.get("conditionScore"));
         newFilteredAttributes.put("conditionScore", conditionScoreMap);
 
+        // Filter for soldYet
+        newFilteredAttributes.put("soldYet", false);
 
         requestBodyMap.put("filter", newFilteredAttributes);
 
