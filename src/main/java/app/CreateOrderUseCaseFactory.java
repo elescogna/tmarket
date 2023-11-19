@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.create_order.CreateOrderController;
 import interface_adapter.create_order.CreateOrderPresenter;
 import interface_adapter.create_order.CreateOrderViewModel;
+import interface_adapter.view_item.ViewItemViewModel;
 import use_case.create_order.*;
 import view.CreateOrderView;
 
