@@ -1,8 +1,11 @@
 package use_case.create_order;
 
 import entities.Item;
+import entities.Order;
+
+import java.io.IOException;
 
 public interface CreateOrderDataAccessInterfaceOrder {
-    public void create(String orderId, String buyerEmail, String sellerEmail, Item item,
-        String address);
+    public Order create (String buyerEmail, String sellerEmail, Item item,
+                        String address) throws IOException;
 }

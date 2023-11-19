@@ -2,7 +2,10 @@ package use_case.create_order;
 
 import entities.Clothing;
 import entities.Furniture;
+import entities.Order;
 import entities.SchoolItem;
+
+import java.io.IOException;
 
 public class CreateOrderInteractor implements CreateOrderInputBoundary {
     final CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject;
@@ -40,9 +43,13 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
         } else if (!atlasStudentDataAccessObject.existsByEmail(createOrderInputData.getBuyerEmail())) {
             createOrderPresenter.prepareFailView("Buyer e-mail doesn't exist.");
         } else if (createOrderInputData.getSameAddress().equals("Yes")) {
-            String orderId = createOrderInputData.getStudent().getUoftEmail().substring(0, createOrderInputData.getStudent().getUoftEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
-            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
-                    createOrderInputData.getItem(), createOrderInputData.getItem().getPickupAddress());
+            try {
+                Order order = atlasOrderDataAccessObject.create(createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
+                        createOrderInputData.getItem(), createOrderInputData.getItem().getPickupAddress());
+                atlasStudentDataAccessObject.updateOrders(createOrderInputData.getBuyerEmail(), order);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             if (createOrderInputData.getItem() instanceof Clothing) {
                 atlasClothingDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
             } else if (createOrderInputData.getItem() instanceof Furniture) {
@@ -54,9 +61,13 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             }
             createOrderPresenter.prepareSuccessView();
         } else {
-            String orderId = createOrderInputData.getStudent().getUoftEmail().substring(0, createOrderInputData.getStudent().getUoftEmail().indexOf('@')).concat(createOrderInputData.getBuyerEmail().substring(0, 1));
-            atlasOrderDataAccessObject.create(orderId, createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
-                    createOrderInputData.getItem(), createOrderInputData.getOtherAddress());
+            try {
+                Order order = atlasOrderDataAccessObject.create(createOrderInputData.getBuyerEmail(), createOrderInputData.getStudent().getUoftEmail(),
+                        createOrderInputData.getItem(), createOrderInputData.getOtherAddress());
+                atlasStudentDataAccessObject.updateOrders(createOrderInputData.getBuyerEmail(), order);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             if (createOrderInputData.getItem() instanceof Clothing) {
                 atlasClothingDataAccessObject.updateSoldYet(createOrderInputData.getItem().getId());
             } else if (createOrderInputData.getItem() instanceof Furniture) {
