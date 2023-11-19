@@ -6,7 +6,8 @@ import java.util.HashMap;
 
 public class Technology extends Item {
     // TODO: fill these in
-    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
+    private static final HashMap<String, ArrayList<String>> filterableAttributes =
+        new HashMap<>();
 
     private String brand;
     private ArrayList<String> capabilities;
