@@ -105,6 +105,8 @@ public class AtlasTechnologyDataAccessObject
 
         try {
             client.newCall(request).execute();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            System.out.println("Attribute not updated!");
+        }
     }
 }

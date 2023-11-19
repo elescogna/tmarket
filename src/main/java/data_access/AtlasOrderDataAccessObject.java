@@ -33,6 +33,8 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements
 
         try {
             client.newCall(request).execute();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            System.out.println("Could not create order!");
+        }
     }
 }

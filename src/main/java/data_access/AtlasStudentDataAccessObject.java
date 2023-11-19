@@ -37,7 +37,9 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implemen
             } catch (JSONException j) {
                 exists = false;
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            System.out.println("Cannot ");
+        }
         return exists;
     }
 }
