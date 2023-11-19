@@ -5,8 +5,8 @@ import entities.Student;
 import java.util.HashMap;
 
 public class SearchState {
-    private HashMap<String, String> filterableAttributes;
-    private HashMap<String, String> filterChoices;
+    private HashMap<String, Object> filterableAttributes;
+    private HashMap<String, Object> filterChoices;
     private String filterableAttributesError;
     private String filterChoicesError;
     private Student currentStudent;
@@ -18,14 +18,14 @@ public class SearchState {
 
     public SearchState() {}
 
-    public HashMap<String, String> getFilterableAttributes() { return this.filterableAttributes; }
+    public HashMap<String, Object> getFilterableAttributes() { return this.filterableAttributes; }
 
-    public void setFilterableAttributes(HashMap<String, String> filterableAttributes) {
+    public void setFilterableAttributes(HashMap<String, Object> filterableAttributes) {
         this.filterableAttributes = filterableAttributes; }
 
-    public HashMap<String, String> getFilterChoices() { return this.filterChoices; }
+    public HashMap<String, Object> getFilterChoices() { return this.filterChoices; }
 
-    public void setFilterChoices(HashMap<String, String> filterChoices) { this.filterChoices = filterChoices; }
+    public void setFilterChoices(HashMap<String, Object> filterChoices) { this.filterChoices = filterChoices; }
 
     public String getFilterableAttributesError() {
         return filterableAttributesError;

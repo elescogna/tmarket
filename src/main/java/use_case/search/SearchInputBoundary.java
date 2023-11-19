@@ -4,5 +4,5 @@ import entities.Student;
 
 public interface SearchInputBoundary {
 
-    void execute(SearchInputData searchInputData, Student currentStudent);
+    void execute(SearchInputData searchInputData);
 }

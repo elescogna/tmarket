@@ -13,8 +13,8 @@ public class SearchController {
 
     public SearchController(SearchInputBoundary searchInteractor) { this.searchInteractor = searchInteractor; }
 
-    public void execute(HashMap<String, String> filteredAttributes, Student currentStudent) {
-        SearchInputData searchInputData = new SearchInputData(filteredAttributes);
-        this.searchInteractor.execute(searchInputData, currentStudent);
+    public void execute(HashMap<String, Object> filteredAttributes, Student currentStudent) {
+        SearchInputData searchInputData = new SearchInputData(filteredAttributes, currentStudent);
+        this.searchInteractor.execute(searchInputData);
     }
 }

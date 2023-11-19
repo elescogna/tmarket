@@ -8,6 +8,8 @@ import interface_adapter.search.SearchViewModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 public class SearchView extends JFrame {
@@ -63,6 +65,291 @@ public class SearchView extends JFrame {
 
 		this.searchViewModel = searchViewModel;
 		this.searchController = searchController;
+
+		categoryComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(categoryComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = categoryComboBox.getSelectedItem();
+						currentFilters.put("category", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
+
+		typeComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(typeComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = typeComboBox.getSelectedItem();
+						currentFilters.put("type", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
+
+		maximumPriceTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maximumPriceTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("price", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		maximumDistanceTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maximumDistanceTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("distanceRange", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		maximumAgeTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maximumAgeTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("age", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		conditionComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(conditionComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = conditionComboBox.getSelectedItem();
+						currentFilters.put("condition", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
+
+		minLengthTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = minLengthTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("minLength", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		maxLengthTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maxLengthTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("maxLength", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		minWidthTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = minWidthTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("minWidth", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		maxWidthTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maxWidthTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("maxWidth", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		minHeightTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = minHeightTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("minHeight", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		maxHeightTextField.addKeyListener(
+			new KeyListener() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					SearchState currentState = searchViewModel.getState();
+					String text = maxHeightTextField.getText() + e.getKeyChar();
+					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					currentFilters.put("maxHeight", text);
+					currentState.setFilterChoices(currentFilters);
+					searchViewModel.setState(currentState);
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+
+		brandComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(brandComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = brandComboBox.getSelectedItem();
+						currentFilters.put("brand", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
+
+		colourComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(colourComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = colourComboBox.getSelectedItem();
+						currentFilters.put("colour", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
+
+		sizeComboBox.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getSource().equals(sizeComboBox)){
+						SearchState currentState = searchViewModel.getState();
+						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						Object selectedItem = sizeComboBox.getSelectedItem();
+						currentFilters.put("size", selectedItem);
+						currentState.setFilterChoices(currentFilters);
+						searchViewModel.setState(currentState);
+					}
+				}
+			}
+		);
 	}
 
 	private void initializeComponents() {
@@ -229,7 +516,7 @@ public class SearchView extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getSource().equals(submitButton)) {
 					SearchState currentState = searchViewModel.getState();
-					HashMap<String, String> filteredAttributes = currentState.getFilterChoices();
+					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
 					Student currentStudent = currentState.getCurrentStudent();
 
 					searchController.execute(filteredAttributes, currentStudent);
@@ -238,12 +525,13 @@ public class SearchView extends JFrame {
 		});
 
 		// implement the back button
+		// TODO: this is not doing the right thing
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getSource().equals(backButton)) {
 					SearchState currentState = searchViewModel.getState();
-					HashMap<String, String> filteredAttributes = currentState.getFilterChoices();
+					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
 					Student currentStudent = currentState.getCurrentStudent();
 
 					searchController.execute(filteredAttributes, currentStudent);

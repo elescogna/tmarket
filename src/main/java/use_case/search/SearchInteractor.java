@@ -1,6 +1,5 @@
 package use_case.search;
 
-import data_access.AtlasFurnitureDataAccessObject;
 import entities.Item;
 import entities.Student;
 
@@ -27,14 +26,14 @@ public class SearchInteractor implements SearchInputBoundary{
         this.searchPresenter = searchOutputBoundary;
     }
     @Override
-    public void execute(SearchInputData searchInputData,
-                        Student currentStudent) {
+    public void execute(SearchInputData searchInputData) {
         try {
             ArrayList<Item> itemsFound;
-            HashMap<String, String> filteredAttributes = searchInputData.getFilteredAttributes();
+            HashMap<String, Object> filteredAttributes = searchInputData.getFilteredAttributes();
+            Student currentStudent = searchInputData.getCurrentStudent();
 
             // TODO: this does not seem like the best CA practice but I am not sure what else to do
-            String category = filteredAttributes.get("category");
+            Object category = filteredAttributes.get("category");
             if (category.equals("furniture")) {
                 itemsFound = this.furnitureDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
             } else if (category.equals("clothing")) {

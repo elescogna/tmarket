@@ -8,5 +8,5 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface SearchDataAccessInterface {
-    ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes, Student currentStudent) throws IOException;
+    ArrayList<Item> getItemsByFilters(HashMap<String, Object> filteredAttributes, Student currentStudent) throws IOException;
 }

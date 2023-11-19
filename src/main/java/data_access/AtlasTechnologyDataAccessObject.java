@@ -86,7 +86,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
     }
 
     @Override
-    public ArrayList<Item> getItemsByFilters(HashMap<String, String> filteredAttributes, Student currentStudent)
+    public ArrayList<Item> getItemsByFilters(HashMap<String, Object> filteredAttributes, Student currentStudent)
             throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -98,8 +98,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
 
         // create a deep copy so that you don't mutate the parameter
         HashMap<String, Object> newFilteredAttributes = new HashMap<>(filteredAttributes.size());
-        for (HashMap.Entry<String, String> entry : filteredAttributes.entrySet()) {
-            newFilteredAttributes.put(new String(entry.getKey()), new String(entry.getValue()));
+        for (HashMap.Entry<String, Object> entry : filteredAttributes.entrySet()) {
+            newFilteredAttributes.put(new String(entry.getKey()), new String(String.valueOf(entry.getValue())));
         }
 
         // Now modify all the attributes that need a range to account for a range instead of a single exact value
@@ -177,7 +177,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 // This line assumes that calculateDistance is implemented
                 // and that we have access to the current user infomation
                 double distance = calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
-                double maxDistance = Double.parseDouble(filteredAttributes.get("distanceRange"));
+                double maxDistance = Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
                     Technology newItem =
