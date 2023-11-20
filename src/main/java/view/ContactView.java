@@ -1,5 +1,9 @@
 package view;
 
+import interface_adapter.contact.ContactController;
+import interface_adapter.contact.ContactState;
+import interface_adapter.contact.ContactViewModel;
+import interface_adapter.go_home.GoHomeController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +18,7 @@ import javax.swing.JTextField;
 public class ContactView extends JPanel {
 
     private static final long serialVersionUID = 1L;
+
     private JTextField textFieldSubject;
     private JLabel lblTitle;
     private JLabel lblSubject;
@@ -24,11 +29,21 @@ public class ContactView extends JPanel {
     private JButton btnBack;
     private JButton btnSend;
 
+    private ContactViewModel contactViewModel;
+    private ContactController contactController;
+    private GoHomeController goHomeController;
+
     /**
      * Create the panel.
      */
-    public ContactView() {
+    public ContactView(ContactViewModel contactViewModel,
+            ContactController contactController,
+            GoHomeController goHomeController) {
         this.setLayout(null);
+
+        this.contactViewModel = contactViewModel;
+        this.contactController = contactController;
+        this.goHomeController = goHomeController;
 
         lblTitle = new JLabel("Contact");
         lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -43,7 +58,10 @@ public class ContactView extends JPanel {
         textFieldSubject.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                // TODO
+                ContactState currentState =
+                    ContactView.this.contactViewModel.getState();
+                currentState.setSubjectText(textFieldSubject.getText() +
+                        e.getKeyChar());
             }
         });
         textFieldSubject.setBounds(65, 89, 373, 21);
@@ -58,7 +76,9 @@ public class ContactView extends JPanel {
         textAreaBody.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                // TODO
+                ContactState currentState =
+                    ContactView.this.contactViewModel.getState();
+                currentState.setBodyText(textAreaBody.getText() + e.getKeyChar());
             }
         });
         textAreaBody.setBounds(12, 144, 426, 105);
@@ -75,7 +95,7 @@ public class ContactView extends JPanel {
         btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                ContactView.this.goHomeController.execute();
             }
         });
         btnBack.setBounds(113, 261, 105, 27);
@@ -84,7 +104,12 @@ public class ContactView extends JPanel {
         btnSend = new JButton("Send");
         btnSend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                ContactState currentState =
+                    ContactView.this.contactViewModel.getState();
+
+                ContactView.this.contactController.execute(
+                        currentState.getCurrentItem(), currentState.getSubjectText(),
+                        currentState.getBodyText());
             }
         });
         btnSend.setBounds(226, 261, 105, 27);

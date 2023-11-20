@@ -42,7 +42,8 @@ public class ContactInteractor implements ContactInputBoundary {
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(contactInputData.getDestinationAddress()));
+                    InternetAddress.parse(
+                        contactInputData.getItemToSell().getOwner().getUoftEmail()));
             message.setSubject(contactInputData.getSubject());
             message.setText(contactInputData.getBody());
 

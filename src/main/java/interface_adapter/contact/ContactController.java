@@ -11,10 +11,9 @@ public class ContactController {
         this.contactUseCaseInteractor = contactUseCaseInteractor;
     }
 
-    public void execute(Item itemToSell, String subject, String body,
-            String destinationAddress) {
+    public void execute(Item itemToSell, String subject, String body) {
         ContactInputData contactInputData =
-            new ContactInputData(itemToSell, subject, body, destinationAddress);
+            new ContactInputData(itemToSell, subject, body);
 
         contactUseCaseInteractor.execute(contactInputData);
     }
