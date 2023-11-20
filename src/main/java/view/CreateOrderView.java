@@ -3,6 +3,7 @@ package view;
 import interface_adapter.create_order.CreateOrderController;
 import interface_adapter.create_order.CreateOrderState;
 import interface_adapter.create_order.CreateOrderViewModel;
+import interface_adapter.go_home.GoHomeController;
 
 import javax.swing.*;
 import java.awt.Font;
@@ -21,15 +22,17 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
     private CreateOrderController createOrderController;
     private CreateOrderViewModel createOrderViewModel;
     private JButton create;
+    private GoHomeController goHomeController;
 
     /**
      * Create the panel.
      */
-    public CreateOrderView(CreateOrderController createOrderController, CreateOrderViewModel createOrderViewModel) {
+    public CreateOrderView(CreateOrderController createOrderController, CreateOrderViewModel createOrderViewModel, GoHomeController goHomeController) {
         this.setLayout(null);
 
         this.createOrderController = createOrderController;
         this.createOrderViewModel = createOrderViewModel;
+        this.goHomeController = goHomeController;
 
         JLabel lblNewLabel = new JLabel("Create New Order");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -117,8 +120,18 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
             }
         });
         create.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        create.setBounds(328, 485, 255, 65);
+        create.setBounds(30, 490, 255, 65);
         add(create);
+        
+        JButton btnBackToHome = new JButton("Back To Home");
+        btnBackToHome.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                goHomeController.execute();
+        	}
+        });
+        btnBackToHome.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnBackToHome.setBounds(600, 490, 255, 65);
+        add(btnBackToHome);
     }
 
     public void actionPerformed(ActionEvent evt) {}
