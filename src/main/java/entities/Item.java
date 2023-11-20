@@ -6,7 +6,7 @@ public abstract class Item {
     private String id;
     private String name;
     private String description;
-    private String condition;
+    private int condition;
     private double price;
     private int age;
     private boolean soldYet;
@@ -16,11 +16,27 @@ public abstract class Item {
     private String picture;
     private LocalDateTime creationTime;
 
-    public Item(String id, String name, String description, String condition,
-            double price, int age, boolean soldYet, String pickupAddress,
-            Student owner, String type, String picture,
+    public Item(String id, String name, String description, int condition,
+            int price, int age, boolean soldYet, String pickupAddress,
+             Student owner, String type, String picture,
             LocalDateTime creationTime) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.condition = condition;
+        this.price = price;
+        this.age = age;
+        this.soldYet = soldYet;
+        this.pickupAddress = pickupAddress;
+        this.owner = owner;
+        this.type = type;
+        this.picture = picture;
+        this.creationTime = creationTime;
+    }
+    public Item(String name, String description, int condition,
+                int price, int age, boolean soldYet, String pickupAddress,
+                Student owner, String type, String picture,
+                LocalDateTime creationTime) {
         this.name = name;
         this.description = description;
         this.condition = condition;
@@ -44,13 +60,13 @@ public abstract class Item {
         this.description = description;
     }
 
-    public String getCondition() { return condition; }
+    public int getCondition() { return condition; }
 
-    public void setCondition(String condition) { this.condition = condition; }
+    public void setCondition(int condition) { this.condition = condition; }
 
     public double getPrice() { return price; }
 
-    public void setPrice(double price) { this.price = price; }
+    public void setPrice(int price) { this.price = price; }
 
     public int getAge() { return age; }
 
