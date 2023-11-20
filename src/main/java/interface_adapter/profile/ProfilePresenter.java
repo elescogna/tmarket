@@ -1,11 +1,8 @@
 package interface_adapter.profile;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.home.HomeState;
-import interface_adapter.profile.ProfileViewModel;
 import use_case.profile.ProfileOutputBoundary;
 import use_case.profile.ProfileOutputData;
-import view.HomeView;
 
 public class ProfilePresenter implements ProfileOutputBoundary {
     private final ProfileViewModel profileViewModel;
@@ -25,7 +22,6 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         profileState.setOrders(response.getOrders());
         profileState.setHomeAddress(response.getHomeAddress());
         profileState.setPostedItems(response.getPostedItems());
-        profileState.setContact(response.getContact());
         profileState.setName(response.getName());
 
 

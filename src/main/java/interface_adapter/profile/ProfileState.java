@@ -10,7 +10,6 @@ public class ProfileState {
     private String password;
     private String uoftEmail;
     private String homeAddress;
-    private int contact;
     private ArrayList<Order> orders;
     private ArrayList<Item> postedItems;
     private String studentNotFoundError;
@@ -28,10 +27,7 @@ public class ProfileState {
     public void setHomeAddress(String homeAddress) {
         this.homeAddress = homeAddress;
     }
-    public void setContact(int contact) {
-        this.contact = contact;
-    }
-   public void setOrders(ArrayList<Order> orders) {
+    public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
     public void setPostedItems(ArrayList<Item> postedItems) {
