@@ -15,8 +15,8 @@ public class ViewingItemPresenter implements ViewingItemOutputBoundary {
     }
 
     @Override
-    public void prepareViewItemView(ViewingItemOutputData viewItemOutputData) {
-        viewItemViewModel.getState().setNextItemId(viewItemOutputData.getItemId());
+    public void prepareViewItemView(ViewingItemOutputData viewingItemOutputData) {
+        viewItemViewModel.getState().setNextItemId(viewingItemOutputData.getItemId());
         viewItemViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(viewItemViewModel.getViewName());
