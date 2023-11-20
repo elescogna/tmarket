@@ -13,13 +13,13 @@ public class Clothing extends Item {
     private String size;
     private String material;
 
-    public Clothing(String id, String name, String description, String condition,
-            double price, int age, boolean soldYet, String pickupAddress,
-            double radius, Student owner, String type, String picture,
+    public Clothing(String name, String description, int condition,
+            int price, int age, boolean soldYet, String pickupAddress,
+             Student owner, String type, String picture,
             LocalDateTime creationTime, String brand, String colour,
             String size, String material) {
-        super(id, name, description, condition, price, age, soldYet, pickupAddress,
-                radius, owner, type, picture, creationTime);
+        super(name, description, condition, price, age, soldYet, pickupAddress,
+                owner, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;
         this.size = size;
