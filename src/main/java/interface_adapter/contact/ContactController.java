@@ -7,8 +7,8 @@ import use_case.contact.ContactInputData;
 public class ContactController {
     final ContactInputBoundary contactUseCaseInteractor;
 
-    public ContactController(ContactInputBoundary contactUseCaseInteractor) {
-        this.contactUseCaseInteractor = contactUseCaseInteractor;
+    public ContactController(ContactInputBoundary contactInteractor) {
+        this.contactUseCaseInteractor = contactInteractor;
     }
 
     public void execute(Item itemToSell, String subject, String body) {

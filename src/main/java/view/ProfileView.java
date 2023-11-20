@@ -10,7 +10,7 @@ import java.awt.Color;
 public class ProfileView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-k
+
 	public ProfileView(ProfileController profileController, ProfileViewModel
 					   profileViewModel) {
 		this.setLayout(null);

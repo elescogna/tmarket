@@ -8,6 +8,14 @@ public class ContactPresenter implements ContactOutputBoundary {
     private ViewManagerModel viewManagerModel;
     private HomeViewModel homeViewModel;
 
+    public ContactPresenter(ContactViewModel contactViewModel,
+            ViewManagerModel viewManagerModel,
+            HomeViewModel homeViewModel) {
+        this.contactViewModel = contactViewModel;
+        this.viewManagerModel = viewManagerModel;
+        this.homeViewModel = homeViewModel;
+    }
+
     @Override
     public void prepareSuccessView() {
         contactViewModel.getState().setError(""); // explicitly set error to none

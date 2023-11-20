@@ -12,7 +12,8 @@ public class ContactingController {
     }
 
     public void execute(Item itemToSell) {
-        ContactingInputData contactingInputData = new ContactingInputData(itemToSell);
+        ContactingInputData contactingInputData =
+            new ContactingInputData(itemToSell);
 
         this.contactingInteractor.execute(contactingInputData);
     }

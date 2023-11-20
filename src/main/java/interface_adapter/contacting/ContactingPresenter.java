@@ -5,22 +5,22 @@ import use_case.contacting.ContactingOutputBoundary;
 import use_case.contacting.ContactingOutputData;
 
 public class ContactingPresenter implements ContactingOutputBoundary {
-  private final ContactViewModel contactViewModel;
-  private ViewManagerModel viewManagerModel;
+    private final ContactViewModel contactViewModel;
+    private ViewManagerModel viewManagerModel;
 
-  public ContactingPresenter(ContactViewModel viewItemViewModel,
-                             ViewManagerModel viewManagerModel) {
-    this.contactViewModel = viewItemViewModel;
-    this.viewManagerModel = viewManagerModel;
-  }
+    public ContactingPresenter(ContactViewModel viewItemViewModel,
+            ViewManagerModel viewManagerModel) {
+        this.contactViewModel = viewItemViewModel;
+        this.viewManagerModel = viewManagerModel;
+    }
 
-  @Override
-  public void prepareContactView(ContactingOutputData viewItemOutputData) {
-    contactViewModel.getState().setCurrentItem(
-        viewItemOutputData.getItemToSell());
-    // not firing state change because nothing needs to be done
+    @Override
+    public void prepareContactView(ContactingOutputData viewItemOutputData) {
+        contactViewModel.getState().setCurrentItem(
+                viewItemOutputData.getItemToSell());
+        // not firing state change because nothing needs to be done
 
-    viewManagerModel.setActiveView(contactViewModel.getViewName());
-    viewManagerModel.firePropertyChanged();
-  }
+        viewManagerModel.setActiveView(contactViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
 }
