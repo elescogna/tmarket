@@ -10,6 +10,8 @@ import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
+
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,6 +59,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         this.goHomeController = goHomeController;
 
         this.setLayout(null);
+        this.setSize(new Dimension(650, 482));
 
         lblTitle = new JLabel("View Item");
         lblTitle.setBounds(256, 28, 133, 26);

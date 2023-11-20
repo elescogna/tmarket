@@ -45,8 +45,9 @@ public class ViewItemUseCaseFactory {
                         furnitureHomeDataAccessObject, schoolItemHomeDataAccessObject,
                         technologyHomeDataAccessObject);
                 ViewItemController viewItemController = createViewItemUseCase(
-                        viewManagerModel, viewItemViewModel, clothingViewItemDataAccessObject,
-                        furnitureViewItemDataAccessObject, schoolItemViewItemDataAccessObject,
+                        viewManagerModel, viewItemViewModel, homeViewModel,
+                        clothingViewItemDataAccessObject, furnitureViewItemDataAccessObject,
+                        schoolItemViewItemDataAccessObject,
                         technologyViewItemDataAccessObject);
                 return new ViewItemView(homeController, viewItemController,
                         goHomeController);
@@ -80,6 +81,7 @@ public class ViewItemUseCaseFactory {
     private static ViewItemController
         createViewItemUseCase(ViewManagerModel viewManagerModel,
                 ViewItemViewModel viewItemViewModel,
+                HomeViewModel homeViewModel,
                 ViewItemDataAccessInterface clothingDataAccessObject,
                 ViewItemDataAccessInterface furnitureDataAccessObject,
                 ViewItemDataAccessInterface schoolItemDataAccessObject,
@@ -87,8 +89,8 @@ public class ViewItemUseCaseFactory {
             throws IOException {
 
             // Pass this method's parameters to the Presenter.
-            ViewItemOutputBoundary viewItemOutputBoundary =
-                new ViewItemPresenter(viewManagerModel, viewItemViewModel);
+            ViewItemOutputBoundary viewItemOutputBoundary = new ViewItemPresenter(
+                    viewItemViewModel, viewManagerModel, homeViewModel);
 
             ViewItemInputBoundary viewItemInteractor = new ViewItemInteractor(
                     clothingDataAccessObject, furnitureDataAccessObject,
