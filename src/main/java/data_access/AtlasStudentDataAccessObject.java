@@ -8,12 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceStudent;
+import use_case.login.LoginDataAccessInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceStudent {
+public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface {
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) {
@@ -23,6 +24,35 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject implemen
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
         HashMap<String, String> filterValue = new HashMap<String, String>();
         filterValue.put("uoftEmail", email);
+
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("filter", filterValue);
+
+        Request request =
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+
+        try (Response response = client.newCall(request).execute()) {
+            JSONObject responseBodyJson = new JSONObject(response.body().string());
+            try {
+                JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
+            } catch (JSONException j) {
+                exists = false;
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot check whether the student exists or not.");
+        }
+        return exists;
+    }
+
+    public boolean existsByPassword(String password) {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        boolean exists = true;
+
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, String> filterValue = new HashMap<String, String>();
+        filterValue.put("password", password);
 
         requestBodyMap.put("dataSource", atlasDataSourceName);
         requestBodyMap.put("database", atlasDatabaseName);
