@@ -120,12 +120,11 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         DefaultListModel<String> listItemsModel = new DefaultListModel<String>();
 
         for (Item item : items) {
-            listItemsModel.addElement(String.format("%s %d", item.getName(),
-                    String.valueOf(item.getPrice())));
+            listItemsModel.addElement(String.format("%s %s", item.getName(),
+                    item.getPrice()));
         }
 
         this.listItems.setModel(listItemsModel);
-        this.listItems.setSelectedIndex(0);
     }
 
     @Override
