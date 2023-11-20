@@ -1,11 +1,9 @@
 package use_case.viewing_item;
 
-import interface_adapter.viewing_item.ViewingItemPresenter;
-
 public class ViewingItemInteractor implements ViewingItemInputBoundary {
     ViewingItemOutputBoundary viewingItemPresenter;
 
-    public ViewingItemInteractor(ViewingItemPresenter viewingItemPresenter) {
+    public ViewingItemInteractor(ViewingItemOutputBoundary viewingItemPresenter) {
         this.viewingItemPresenter = viewingItemPresenter;
     }
 
