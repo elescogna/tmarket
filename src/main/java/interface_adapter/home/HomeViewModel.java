@@ -1,20 +1,15 @@
 package interface_adapter.home;
 
+import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import interface_adapter.ViewModel;
-
-public class HomeViewModel extends ViewModel{
+public class HomeViewModel extends ViewModel {
     private HomeState state = new HomeState();
 
-    public HomeViewModel() {
-        super("use_case/home");
-    }
+    public HomeViewModel() { super("use_case/home"); }
 
-    public void setState(HomeState state) {
-        this.state = state;
-    }
+    public void setState(HomeState state) { this.state = state; }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -26,7 +21,5 @@ public class HomeViewModel extends ViewModel{
         support.addPropertyChangeListener(listener);
     }
 
-    public HomeState getState() {
-        return state;
-    }
+    public HomeState getState() { return state; }
 }

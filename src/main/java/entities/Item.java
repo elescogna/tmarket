@@ -11,7 +11,6 @@ public abstract class Item {
     private int age;
     private boolean soldYet;
     private String pickupAddress;
-    private double radius;
     private Student owner;
     private String type;
     private String picture;
@@ -19,7 +18,7 @@ public abstract class Item {
 
     public Item(String id, String name, String description, String condition,
             double price, int age, boolean soldYet, String pickupAddress,
-            double radius, Student owner, String type, String picture,
+            Student owner, String type, String picture,
             LocalDateTime creationTime) {
         this.id = id;
         this.name = name;
@@ -29,7 +28,6 @@ public abstract class Item {
         this.age = age;
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
-        this.radius = radius;
         this.owner = owner;
         this.type = type;
         this.picture = picture;
@@ -67,10 +65,6 @@ public abstract class Item {
     public void setPickupAddress(String pickupAddress) {
         this.pickupAddress = pickupAddress;
     }
-
-    public double getRadius() { return radius; }
-
-    public void setRadius(double radius) { this.radius = radius; }
 
     public Student getOwner() { return owner; }
 
