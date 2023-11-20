@@ -9,13 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class ContactView extends JPanel {
+public class ContactView extends JPanel implements PropertyChangeListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -114,5 +117,18 @@ public class ContactView extends JPanel {
         });
         btnSend.setBounds(226, 261, 105, 27);
         add(btnSend);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent e) {
+        // two situations: error is null (flash success message) or error is not
+        // (flash error message)
+        ContactState currentState = (ContactState)e.getNewValue();
+
+        if (currentState.getError() == null) {
+            JOptionPane.showMessageDialog(this, "Message sent successfully.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to send message.");
+        }
     }
 }
