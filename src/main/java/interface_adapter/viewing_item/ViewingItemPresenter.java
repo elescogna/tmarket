@@ -19,7 +19,7 @@ public class ViewingItemPresenter implements ViewingItemOutputBoundary {
         viewItemViewModel.getState().setNextItemId(viewItemOutputData.getItemId());
         viewItemViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView("view_item");
+        viewManagerModel.setActiveView(viewItemViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }
