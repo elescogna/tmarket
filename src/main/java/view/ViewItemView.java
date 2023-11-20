@@ -6,6 +6,7 @@ import entities.Item;
 import entities.SchoolItem;
 import entities.Student;
 import entities.Technology;
+import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
@@ -41,6 +42,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
     private HomeController homeController;
     private ViewItemController viewItemController;
+    private GoHomeController goHomeController;
     private JButton btnContactSeller;
     private JButton btnFulfillOrder;
 
@@ -48,9 +50,11 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      * Create the panel.
      */
     public ViewItemView(HomeController homeController,
-            ViewItemController viewItemController) {
+            ViewItemController viewItemController,
+            GoHomeController goHomeController) {
         this.homeController = homeController;
         this.viewItemController = viewItemController;
+        this.goHomeController = goHomeController;
 
         this.setLayout(null);
 
@@ -132,7 +136,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ViewItemView.this.homeController.execute();
+                ViewItemView.this.goHomeController.execute();
             }
         });
 
