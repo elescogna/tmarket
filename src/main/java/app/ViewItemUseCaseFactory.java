@@ -1,6 +1,7 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomePresenter;
 import interface_adapter.home.HomeViewModel;
@@ -26,7 +27,7 @@ public class ViewItemUseCaseFactory {
 
     public static ViewItemView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
-                ViewItemViewModel viewItemViewModel,
+                ViewItemViewModel viewItemViewModel, GoHomeController goHomeController,
                 HomeDataAccessInterface clothingHomeDataAccessObject,
                 HomeDataAccessInterface furnitureHomeDataAccessObject,
                 HomeDataAccessInterface orderHomeDataAccessObject,
@@ -47,7 +48,8 @@ public class ViewItemUseCaseFactory {
                         viewManagerModel, viewItemViewModel, clothingViewItemDataAccessObject,
                         furnitureViewItemDataAccessObject, schoolItemViewItemDataAccessObject,
                         technologyViewItemDataAccessObject);
-                return new ViewItemView(homeController, viewItemController);
+                return new ViewItemView(homeController, viewItemController,
+                        goHomeController);
             } catch (IOException e) {
                 // TODO: what should this actually print out?
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
