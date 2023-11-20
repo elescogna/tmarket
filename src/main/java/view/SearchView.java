@@ -59,7 +59,7 @@ public class SearchView extends JFrame {
 		this.setLayout(null);
 		initializeComponents();
 		addComponents();
-		addListeners();
+		addButtonListeners();
 
 		setVisible(true);
 
@@ -499,7 +499,7 @@ public class SearchView extends JFrame {
 		add(sizeComboBox);
 	}
 
-	private void addListeners() {
+	private void addButtonListeners() {
 
 		// make view dynamic depending on category chosen
 		categoryComboBox.addActionListener(new ActionListener() {
