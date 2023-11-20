@@ -11,7 +11,6 @@ public abstract class Item {
     private int age;
     private boolean soldYet;
     private String pickupAddress;
-
     private Student owner;
     private String type;
     private String picture;
@@ -29,7 +28,6 @@ public abstract class Item {
         this.age = age;
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
-        //this.radius = radius;
         this.owner = owner;
         this.type = type;
         this.picture = picture;
@@ -46,7 +44,6 @@ public abstract class Item {
         this.age = age;
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
-        //this.radius = radius;
         this.owner = owner;
         this.type = type;
         this.picture = picture;
@@ -84,10 +81,6 @@ public abstract class Item {
     public void setPickupAddress(String pickupAddress) {
         this.pickupAddress = pickupAddress;
     }
-
-    //public double getRadius() { return radius; }
-
-    //public void setRadius(double radius) { this.radius = radius; }
 
     public Student getOwner() { return owner; }
 

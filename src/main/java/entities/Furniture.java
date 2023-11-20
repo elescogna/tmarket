@@ -6,7 +6,8 @@ import java.util.HashMap;
 
 public class Furniture extends Item {
     // TODO: fill these in
-    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
+    private static final HashMap<String, ArrayList<String>> filterableAttributes =
+        new HashMap<>();
 
     private double length;
     private double width;
