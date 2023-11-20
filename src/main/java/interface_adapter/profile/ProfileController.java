@@ -13,6 +13,7 @@ public class ProfileController {
    }
    public void execute(Student student){
        ProfileInputData  profileInputData = new ProfileInputData(student);
+
        this.profileInteractor.execute(profileInputData);
    }
 

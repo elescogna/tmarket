@@ -14,7 +14,6 @@ public class ProfileState {
     private ArrayList<Item> postedItems;
     private String studentNotFoundError;
 
-
     public void setName(String name) {
         this.name = name;
     }

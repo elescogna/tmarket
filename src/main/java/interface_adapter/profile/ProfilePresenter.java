@@ -15,6 +15,7 @@ public class ProfilePresenter implements ProfileOutputBoundary {
 
     @Override
     public void prepareSuccessView(ProfileOutputData response) {
+
         ProfileState profileState = new ProfileState();
 
         profileState.setUoftEmail(response.getUoftEmail());
