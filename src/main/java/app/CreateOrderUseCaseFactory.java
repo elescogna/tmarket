@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.create_order.CreateOrderController;
 import interface_adapter.create_order.CreateOrderPresenter;
 import interface_adapter.create_order.CreateOrderViewModel;
+import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemViewModel;
 import use_case.create_order.*;
 import view.CreateOrderView;
@@ -16,7 +17,7 @@ public class CreateOrderUseCaseFactory {
 
     public static CreateOrderView create(
             ViewManagerModel viewManagerModel, ViewItemViewModel viewItemViewModel,
-            CreateOrderViewModel createOrderViewModel, CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject,
+            CreateOrderViewModel createOrderViewModel, GoHomeController goHomeController, CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject,
             CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessObject, CreateOrderDataAccessInterfaceItem atlasClothingDataAccessObject,
             CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessObject, CreateOrderDataAccessInterfaceItem atlasSchoolItemDataAccessObject,
             CreateOrderDataAccessInterfaceItem atlasTechnologyDataAccessObject) {
@@ -25,7 +26,7 @@ public class CreateOrderUseCaseFactory {
             CreateOrderController createOrderController = createCreateOrderUseCase(viewManagerModel, createOrderViewModel,
                     viewItemViewModel, atlasOrderDataAccessObject, atlasStudentDataAccessObject, atlasClothingDataAccessObject,
                     atlasFurnitureDataAccessObject, atlasSchoolItemDataAccessObject, atlasTechnologyDataAccessObject);
-            return new CreateOrderView(createOrderController, createOrderViewModel);
+            return new CreateOrderView(createOrderController, createOrderViewModel, goHomeController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open database.");
         }
