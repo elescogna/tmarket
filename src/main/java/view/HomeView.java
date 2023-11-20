@@ -3,9 +3,12 @@ package view;
 import entities.Item;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomeViewModel;
+import interface_adapter.viewing_item.ViewingItemController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -19,7 +22,6 @@ import javax.swing.SwingConstants;
 
 public class HomeView extends JPanel implements PropertyChangeListener {
     private static final long serialVersionUID = 1L;
-    private JButton btn;
     private JButton btnPost;
     private JButton btnProfile;
     private JButton btnSearch;
@@ -27,36 +29,33 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private JScrollPane scrollPaneItemsScrollPane;
     private JList<String> listItems;
     private HomeController homeController;
+    private ViewingItemController viewingItemController;
     private HomeViewModel homeViewModel;
+    private JButton btnRefresh;
 
     /**
      * Create the panel.
      */
-    public HomeView(HomeViewModel homeViewModel, HomeController homeController) {
+    public HomeView(HomeViewModel homeViewModel, HomeController homeController,
+            ViewingItemController viewingItemController) {
         this.setLayout(null);
 
         this.homeController = homeController;
         this.homeViewModel = homeViewModel;
 
-        btn = new JButton("New button");
-        btn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {}
-        });
-        add(btn);
-
         btnPost = new JButton("Post");
         btnPost.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {}
         });
-        btnPost.setBounds(316, 97, 124, 47);
+        btnPost.setBounds(318, 67, 124, 47);
         add(btnPost);
 
         btnProfile = new JButton("Profile");
-        btnProfile.setBounds(316, 213, 124, 47);
+        btnProfile.setBounds(318, 183, 124, 47);
         add(btnProfile);
 
         btnSearch = new JButton("Search");
-        btnSearch.setBounds(316, 155, 124, 47);
+        btnSearch.setBounds(318, 125, 124, 47);
         add(btnSearch);
 
         lblTitle = new JLabel("TmarkeT");
@@ -67,9 +66,45 @@ public class HomeView extends JPanel implements PropertyChangeListener {
 
         listItems = new JList<String>();
 
+        listItems.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int index = listItems.locationToIndex(e.getPoint());
+                    String itemId = HomeView.this.homeViewModel.getState()
+                        .getWantedPosts()
+                        .get(index)
+                        .getId();
+
+                    HomeView.this.viewingItemController.execute(itemId);
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent arg0) {}
+
+            @Override
+            public void mouseExited(MouseEvent arg0) {}
+
+            @Override
+            public void mousePressed(MouseEvent arg0) {}
+
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}
+        });
+
         scrollPaneItemsScrollPane = new JScrollPane(listItems);
         scrollPaneItemsScrollPane.setBounds(21, 70, 285, 219);
         add(scrollPaneItemsScrollPane);
+
+        btnRefresh = new JButton("Refresh");
+        btnRefresh.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                HomeView.this.homeController.execute();
+            }
+        });
+        btnRefresh.setBounds(318, 242, 124, 47);
+        add(btnRefresh);
 
         // updating the list right away
         homeController.execute();

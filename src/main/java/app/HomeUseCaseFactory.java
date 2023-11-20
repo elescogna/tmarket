@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomePresenter;
 import interface_adapter.home.HomeViewModel;
+import interface_adapter.viewing_item.ViewingItemController;
 import java.io.IOException;
 import javax.swing.*;
 import use_case.home.HomeDataAccessInterface;
@@ -19,6 +20,7 @@ public class HomeUseCaseFactory {
 
     public static HomeView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
+                ViewingItemController viewingItemController,
                 HomeDataAccessInterface clothingDataAccessObject,
                 HomeDataAccessInterface furnitureDataAccessObject,
                 HomeDataAccessInterface schoolItemDataAccessInterface,
@@ -29,7 +31,7 @@ public class HomeUseCaseFactory {
                         viewManagerModel, homeViewModel, clothingDataAccessObject,
                         furnitureDataAccessObject, schoolItemDataAccessInterface,
                         technologyDataAccessInterface);
-                return new HomeView(homeViewModel, homeController);
+                return new HomeView(homeViewModel, homeController, viewingItemController);
             } catch (IOException e) {
                 // TODO: what should this actually print out?
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
