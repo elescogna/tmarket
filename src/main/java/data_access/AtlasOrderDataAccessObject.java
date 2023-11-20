@@ -1,5 +1,41 @@
 package data_access;
 
-public class AtlasOrderDataAccessObject extends AtlasDataAccessObject {
+import entities.Item;
+import entities.Order;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONObject;
+import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceOrder {
     private static final String atlasCollectionName = "orders";
+
+    public Order create (String buyerEmail, String sellerEmail, Item item,
+                       String address) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, Object> documentValue = new HashMap<String, Object>();
+
+        documentValue.put("buyerEmail", buyerEmail);
+        documentValue.put("sellerEmail", sellerEmail);
+        documentValue.put("itemId", item.getId());
+        documentValue.put("pickupLocation", address);
+
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("document", documentValue);
+
+        Request request = preparePostRequest(atlasCollectionName, "/action/insertOne", requestBodyMap);
+
+        Response response = client.newCall(request).execute();
+        JSONObject responseBodyJson = new JSONObject(response.body().string());
+        String id = responseBodyJson.getString("insertedId");
+        return new Order(id, buyerEmail, sellerEmail, item, address);
+    }
 }

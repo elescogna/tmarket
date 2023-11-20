@@ -1,6 +1,5 @@
 package data_access;
 
-import entities.Furniture;
 import entities.Item;
 import entities.Student;
 import entities.Technology;
@@ -13,13 +12,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import use_case.create_order.CreateOrderDataAccessInterfaceItem;
 import use_case.home.HomeDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
-public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
-        implements HomeDataAccessInterface, SearchDataAccessInterface, ViewItemDataAccessInterface {
-
+public class AtlasTechnologyDataAccessObject
+    extends AtlasDataAccessObject implements HomeDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
     private static final String atlasCollectionName = "technology";
 
     @Override
@@ -90,7 +89,29 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             return result;
         }
     }
+    public void updateSoldYet(String itemId) {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
 
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, String> filterValue = new HashMap<String, String>();
+        filterValue.put("_id", itemId);
+        HashMap<String, Boolean> newValue = new HashMap<String, Boolean>();
+        newValue.put("soldYet", true);
+        HashMap<String, HashMap<String, Boolean>> updateValue = new HashMap<String, HashMap<String, Boolean>>();
+        updateValue.put("$set", newValue);
+
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("filter", filterValue);
+        requestBodyMap.put("update", updateValue);
+
+        Request request = preparePostRequest(atlasCollectionName, "/action/updateOne", requestBodyMap);
+
+        try {
+            client.newCall(request).execute();
+        } catch (IOException e) {}
+    }
     @Override
     public Item getItem(String idToGet) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -143,7 +164,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
-                LocalDateTime.parse(itemDocument.getString("creationTime"));
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
 
             // Item-specific attributes
 
@@ -154,7 +175,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             for (Object capability :
                     itemDocument.getJSONArray("capabilities").toList()) {
                 capabilities.add((String)capability);
-                    }
+            }
 
             Technology newItem = new Technology(
                     id, name, description, condition, price, age, soldYet, pickupAddress,
