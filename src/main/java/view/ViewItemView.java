@@ -1,26 +1,28 @@
 package view;
 
-import entities.Clothing;
-import entities.Furniture;
-import entities.Item;
-import entities.SchoolItem;
-import entities.Student;
-import entities.Technology;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeController;
-import interface_adapter.view_item.ViewItemController;
-import interface_adapter.view_item.ViewItemState;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import entities.Clothing;
+import entities.Furniture;
+import entities.Item;
+import entities.SchoolItem;
+import entities.Student;
+import entities.Technology;
+import interface_adapter.contacting.ContactingController;
+import interface_adapter.go_home.GoHomeController;
+import interface_adapter.view_item.ViewItemController;
+import interface_adapter.view_item.ViewItemState;
+import interface_adapter.view_item.ViewItemViewModel;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -41,22 +43,25 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private JLabel lblCustom1;
     private JLabel lblCustom4;
     private JButton btnBack;
-
-    private HomeController homeController;
-    private ViewItemController viewItemController;
-    private GoHomeController goHomeController;
     private JButton btnContactSeller;
     private JButton btnFulfillOrder;
+
+    private ViewItemViewModel viewItemViewModel;
+    private ViewItemController viewItemController;
+    private GoHomeController goHomeController;
+    private ContactingController contactingController;
 
     /**
      * Create the panel.
      */
-    public ViewItemView(HomeController homeController,
+    public ViewItemView(ViewItemViewModel viewItemViewModel,
             ViewItemController viewItemController,
-            GoHomeController goHomeController) {
-        this.homeController = homeController;
+            GoHomeController goHomeController,
+            ContactingController contactingController) {
+        this.viewItemViewModel = viewItemViewModel;
         this.viewItemController = viewItemController;
         this.goHomeController = goHomeController;
+        this.contactingController = contactingController;
 
         this.setLayout(null);
         this.setSize(new Dimension(650, 482));
@@ -149,7 +154,11 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         btnContactSeller = new JButton("Contact Seller");
         btnContactSeller.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: execute Contact
+                ViewItemState currentState =
+                    ViewItemView.this.viewItemViewModel.getState();
+
+                ViewItemView.this.contactingController.execute(
+                        currentState.getCurrentItem());
             }
         });
         btnContactSeller.setBounds(418, 443, 123, 27);
@@ -180,8 +189,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             JOptionPane.showMessageDialog(ViewItemView.this, error);
             viewItemState.setCurrentItemError(
                     null); // the error has been displayed so we can get rid of it
-            homeController.execute(); // TODO: fill this in
-        } else {                    // display everything as normal
+        } else {     // display everything as normal
             Item currentItem = viewItemState.getCurrentItem();
             Student currentStudent = viewItemState.getCurrentStudent();
 

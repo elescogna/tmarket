@@ -1,19 +1,22 @@
 package app;
 
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import interface_adapter.ViewManagerModel;
+import interface_adapter.contact.ContactViewModel;
+import interface_adapter.contacting.ContactingController;
+import interface_adapter.contacting.ContactingPresenter;
 import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeController;
-import interface_adapter.home.HomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemPresenter;
 import interface_adapter.view_item.ViewItemViewModel;
-import java.io.IOException;
-import javax.swing.*;
+import use_case.contacting.ContactingInputBoundary;
+import use_case.contacting.ContactingInteractor;
+import use_case.contacting.ContactingOutputBoundary;
 import use_case.home.HomeDataAccessInterface;
-import use_case.home.HomeInputBoundary;
-import use_case.home.HomeInteractor;
-import use_case.home.HomeOutputBoundary;
 import use_case.view_item.ViewItemDataAccessInterface;
 import use_case.view_item.ViewItemInputBoundary;
 import use_case.view_item.ViewItemInteractor;
@@ -28,6 +31,7 @@ public class ViewItemUseCaseFactory {
     public static ViewItemView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
                 ViewItemViewModel viewItemViewModel, GoHomeController goHomeController,
+                ContactViewModel contactViewModel,
                 HomeDataAccessInterface clothingHomeDataAccessObject,
                 HomeDataAccessInterface furnitureHomeDataAccessObject,
                 HomeDataAccessInterface orderHomeDataAccessObject,
@@ -40,17 +44,16 @@ public class ViewItemUseCaseFactory {
                 ViewItemDataAccessInterface technologyViewItemDataAccessObject) {
 
             try {
-                HomeController homeController = createHomeUseCase(
-                        viewManagerModel, homeViewModel, clothingHomeDataAccessObject,
-                        furnitureHomeDataAccessObject, schoolItemHomeDataAccessObject,
-                        technologyHomeDataAccessObject);
                 ViewItemController viewItemController = createViewItemUseCase(
                         viewManagerModel, viewItemViewModel, homeViewModel,
                         clothingViewItemDataAccessObject, furnitureViewItemDataAccessObject,
                         schoolItemViewItemDataAccessObject,
                         technologyViewItemDataAccessObject);
-                return new ViewItemView(homeController, viewItemController,
-                        goHomeController);
+                ContactingController contactingController =
+                    createContactingUseCase(contactViewModel, viewManagerModel);
+                return new ViewItemView(viewItemViewModel, viewItemController,
+                        goHomeController, contactingController);
+
             } catch (IOException e) {
                 // TODO: what should this actually print out?
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
@@ -59,24 +62,17 @@ public class ViewItemUseCaseFactory {
             return null;
         }
 
-    private static HomeController createHomeUseCase(
-            ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
-            HomeDataAccessInterface clothingDataAccessObject,
-            HomeDataAccessInterface furnitureDataAccessObject,
-            HomeDataAccessInterface schoolItemDataAccessObject,
-            HomeDataAccessInterface technologyDataAccessObject) throws IOException {
+    private static ContactingController
+        createContactingUseCase(ContactViewModel contactViewModel,
+                ViewManagerModel viewManagerModel) {
+            ContactingOutputBoundary contactingOutputBoundary =
+                new ContactingPresenter(contactViewModel, viewManagerModel);
 
-        // Pass this method's parameters to the Presenter.
-        HomeOutputBoundary homeOutputBoundary =
-            new HomePresenter(viewManagerModel, homeViewModel);
+            ContactingInputBoundary contactingInteractor =
+                new ContactingInteractor(contactingOutputBoundary);
 
-        HomeInputBoundary homeInteractor =
-            new HomeInteractor(clothingDataAccessObject, furnitureDataAccessObject,
-                    schoolItemDataAccessObject,
-                    technologyDataAccessObject, homeOutputBoundary);
-
-        return new HomeController(homeInteractor);
-            }
+            return new ContactingController(contactingInteractor);
+        }
 
     private static ViewItemController
         createViewItemUseCase(ViewManagerModel viewManagerModel,

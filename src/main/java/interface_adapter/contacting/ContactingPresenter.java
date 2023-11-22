@@ -8,9 +8,9 @@ public class ContactingPresenter implements ContactingOutputBoundary {
     private final ContactViewModel contactViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public ContactingPresenter(ContactViewModel viewItemViewModel,
+    public ContactingPresenter(ContactViewModel contactViewModel,
             ViewManagerModel viewManagerModel) {
-        this.contactViewModel = viewItemViewModel;
+        this.contactViewModel = contactViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
