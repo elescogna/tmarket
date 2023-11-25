@@ -7,15 +7,12 @@ import use_case.post.PostOutputBoundary;
 import use_case.post.PostOutputData;
 
 public class PostPresenter implements PostOutputBoundary {
-    private final PostViewModel postViewModel;
     private final HomeViewModel homeViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public PostPresenter(ViewManagerModel viewManagerModel,
-                         PostViewModel postViewModel,
-                         HomeViewModel homeViewModel) {
+    public PostPresenter(ViewManagerModel viewManagerModel, HomeViewModel
+            homeViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.postViewModel = postViewModel;
         this.homeViewModel = homeViewModel;
     }
 

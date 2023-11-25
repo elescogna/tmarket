@@ -1,5 +1,6 @@
 package interface_adapter.login;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeState;
 import interface_adapter.home.HomeViewModel;
@@ -10,21 +11,22 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private LoginViewModel loginViewModel;
     private HomeViewModel homeViewModel;
-    private GoHomeController goHomeController;
+    private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(HomeViewModel homeViewModel,
-                          LoginViewModel loginViewModel,
-                          GoHomeController goHomeController) {
-        this.goHomeController = goHomeController;
+                          LoginViewModel loginViewModel, ViewManagerModel viewManagerModel) {
         this.homeViewModel = homeViewModel;
         this.loginViewModel = loginViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         HomeState homeState = homeViewModel.getState();
         homeState.setUser(response.getStudent());
-        this.goHomeController.execute();
+
+        this.viewManagerModel.setActiveView("home");
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override

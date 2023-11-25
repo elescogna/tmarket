@@ -22,7 +22,9 @@ import use_case.view_item.ViewItemDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 
 public class AtlasClothingDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface,
+            CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+            SearchDataAccessInterface {
 
     private static final String atlasCollectionName = "clothing";
 
@@ -135,6 +137,8 @@ public class AtlasClothingDataAccessObject
                 System.out.println("Failed to add item to the collection. HTTP status code: " + response.code());
                 // You might want to log more details or throw an exception based on your requirements
             }
+        }
+    }
           
     public void updateSoldYet(String itemId) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();

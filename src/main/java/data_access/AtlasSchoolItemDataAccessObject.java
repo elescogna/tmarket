@@ -4,12 +4,11 @@ import entities.Furniture;
 import entities.Item;
 import entities.SchoolItem;
 import entities.Student;
+import entities.Technology;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import entities.Technology;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -21,8 +20,10 @@ import use_case.post.SchoolItemPostDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
-public class AtlasSchoolItemDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, SchoolItemPostDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
+public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
+    implements HomeDataAccessInterface, SchoolItemPostDataAccessInterface,
+               CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+               SearchDataAccessInterface {
 
     private static final String atlasCollectionName = "school-items";
 
@@ -77,10 +78,9 @@ public class AtlasSchoolItemDataAccessObject
                 String brand = itemDocument.getString("brand");
                 String colour = itemDocument.getString("colour");
 
-                SchoolItem newItem =
-                    new SchoolItem(name, description, condition, price, age,
-                            soldYet, pickupAddress, owner, type, picture,
-                            creationTime, brand, colour);
+                SchoolItem newItem = new SchoolItem(
+                        name, description, condition, price, age, soldYet, pickupAddress,
+                        owner, type, picture, creationTime, brand, colour);
 
                 result.add(newItem);
             }
@@ -98,7 +98,10 @@ public class AtlasSchoolItemDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put("ownerId", item.getOwner().getId()); // You might need to change this based on how the owner is identified in your system
+        document.put(
+                "ownerId",
+                item.getOwner().getId()); // You might need to change this based on how
+                                          // the owner is identified in your system
         document.put("type", item.getType());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
@@ -108,32 +111,35 @@ public class AtlasSchoolItemDataAccessObject
         return document;
     }
 
-    public void addItemToSchoolItemCollection(SchoolItem newItem) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+    public void addItemToSchoolItemCollection(SchoolItem newItem)
+            throws IOException {
+            OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-        HashMap<String, Object> requestBodyMap = new HashMap<>();
-        requestBodyMap.put("dataSource", atlasDataSourceName);
-        requestBodyMap.put("database", atlasDatabaseName);
-        requestBodyMap.put("collection", atlasCollectionName);
-        requestBodyMap.put("document", itemToDocument(newItem));
+            HashMap<String, Object> requestBodyMap = new HashMap<>();
+            requestBodyMap.put("dataSource", atlasDataSourceName);
+            requestBodyMap.put("database", atlasDatabaseName);
+            requestBodyMap.put("collection", atlasCollectionName);
+            requestBodyMap.put("document", itemToDocument(newItem));
 
-        Request request = preparePostRequest(atlasCollectionName, "/action/insert", requestBodyMap);
+            Request request = preparePostRequest(atlasCollectionName, "/action/insert",
+                    requestBodyMap);
 
+            try (okhttp3.Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful()) {
+                    // Handle a successful response
+                    System.out.println("Item added successfully to the collection!");
+                }
 
-        try (okhttp3.Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                // Handle a successful response
-                System.out.println("Item added successfully to the collection!");
+                else {
+                    // Handle an unsuccessful response
+                    System.out.println(
+                            "Failed to add item to the collection. HTTP status code: " +
+                            response.code());
+                    // You might want to log more details or throw an exception based on
+                    // your requirements
+                }
             }
-
-            else {
-                // Handle an unsuccessful response
-                System.out.println("Failed to add item to the collection. HTTP status code: " + response.code());
-                // You might want to log more details or throw an exception based on your requirements
-            }
-        }
     }
-}
 
     public void updateSoldYet(String itemId) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -143,7 +149,8 @@ public class AtlasSchoolItemDataAccessObject
         filterValue.put("_id", itemId);
         HashMap<String, Boolean> newValue = new HashMap<String, Boolean>();
         newValue.put("soldYet", true);
-        HashMap<String, HashMap<String, Boolean>> updateValue = new HashMap<String, HashMap<String, Boolean>>();
+        HashMap<String, HashMap<String, Boolean>> updateValue =
+            new HashMap<String, HashMap<String, Boolean>>();
         updateValue.put("$set", newValue);
 
         requestBodyMap.put("dataSource", atlasDataSourceName);
@@ -152,11 +159,13 @@ public class AtlasSchoolItemDataAccessObject
         requestBodyMap.put("filter", filterValue);
         requestBodyMap.put("update", updateValue);
 
-        Request request = preparePostRequest(atlasCollectionName, "/action/updateOne", requestBodyMap);
+        Request request = preparePostRequest(atlasCollectionName,
+                "/action/updateOne", requestBodyMap);
 
         try {
             client.newCall(request).execute();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
     @Override
     public Item getItem(String idToGet) throws IOException {
@@ -209,7 +218,7 @@ public class AtlasSchoolItemDataAccessObject
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
-                    LocalDateTime.parse(itemDocument.getString("creationTime"));
+                LocalDateTime.parse(itemDocument.getString("creationTime"));
 
             // Item-specific attributes
             String brand = itemDocument.getString("brand");
@@ -222,10 +231,11 @@ public class AtlasSchoolItemDataAccessObject
             return newItem;
         }
     }
-    
+
     @Override
-    public ArrayList<Item> getItemsByFilters(HashMap<String, Object> filteredAttributes, Student currentStudent)
-            throws IOException {
+    public ArrayList<Item>
+    getItemsByFilters(HashMap<String, Object> filteredAttributes,
+            Student currentStudent) throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -235,12 +245,15 @@ public class AtlasSchoolItemDataAccessObject
         requestBodyMap.put("collection", atlasCollectionName);
 
         // create a deep copy so that you don't mutate the parameter
-        HashMap<String, Object> newFilteredAttributes = new HashMap<>(filteredAttributes.size());
+        HashMap<String, Object> newFilteredAttributes =
+            new HashMap<>(filteredAttributes.size());
         for (HashMap.Entry<String, Object> entry : filteredAttributes.entrySet()) {
-            newFilteredAttributes.put(new String(entry.getKey()), new String(String.valueOf(entry.getValue())));
+            newFilteredAttributes.put(new String(entry.getKey()),
+                    new String(String.valueOf(entry.getValue())));
         }
 
-        // Now modify all the attributes that need a range to account for a range instead of a single exact value
+        // Now modify all the attributes that need a range to account for a range
+        // instead of a single exact value
         HashMap<String, Object> priceRangeMap = new HashMap<>();
         priceRangeMap.put("$lte", newFilteredAttributes.get("price"));
         newFilteredAttributes.put("price", priceRangeMap);
@@ -259,11 +272,14 @@ public class AtlasSchoolItemDataAccessObject
         requestBodyMap.put("filter", newFilteredAttributes);
 
         // sort by creation time
-        requestBodyMap.put("sort", new HashMap<String, Object>() {{
-            put("creationTime", 1); // 1 for ascending, -1 for descending
-        }});
+        requestBodyMap.put("sort", new HashMap<String, Object>() {
+            {
+                put("creationTime", 1); // 1 for ascending, -1 for descending
+            }
+        });
 
-        Request request = preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+        Request request =
+            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200) {
@@ -299,7 +315,7 @@ public class AtlasSchoolItemDataAccessObject
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
-                        LocalDateTime.parse(itemDocument.getString("creationTime"));
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
                 String brand = itemDocument.getString("brand");
@@ -307,14 +323,15 @@ public class AtlasSchoolItemDataAccessObject
 
                 // This line assumes that calculateDistance is implemented
                 // and that we have access to the current user infomation
-                double distance = calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
-                double maxDistance = Double.parseDouble((String)filteredAttributes.get("distanceRange"));
+                double distance =
+                    calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
+                double maxDistance =
+                    Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
-                    SchoolItem newItem =
-                            new SchoolItem(id, name, description, condition, price, age,
-                                    soldYet, pickupAddress, owner, type, picture,
-                                    creationTime, brand, colour);
+                    SchoolItem newItem = new SchoolItem(
+                            id, name, description, condition, price, age, soldYet,
+                            pickupAddress, owner, type, picture, creationTime, brand, colour);
 
                     result.add(newItem);
                 }

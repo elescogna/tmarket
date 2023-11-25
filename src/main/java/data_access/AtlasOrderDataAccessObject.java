@@ -10,7 +10,8 @@ import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class AtlasOrderDataAccessObject extends AtlasDataAccessObject implements CreateOrderDataAccessInterfaceOrder {
+public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
+    implements CreateOrderDataAccessInterfaceOrder {
 
     private static final String atlasCollectionName = "orders";
 
