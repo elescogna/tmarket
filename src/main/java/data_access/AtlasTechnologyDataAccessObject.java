@@ -131,6 +131,9 @@ public class AtlasTechnologyDataAccessObject
                 System.out.println("Failed to add item to the collection. HTTP status code: " + response.code());
                 // You might want to log more details or throw an exception based on your requirements
             }
+        }
+    }
+
           
     public void updateSoldYet(String itemId) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();

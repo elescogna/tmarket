@@ -85,7 +85,7 @@ public class Main {
                 viewManagerModel, searchViewModel, searchResultViewModel,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
-        views.add(searchResultView);
+        views.add(searchUseCaseFactory);
 
         ViewItemView viewItemView = ViewItemUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, contactViewModel,
@@ -93,7 +93,7 @@ public class Main {
                 schoolItemDataAccessObject, technologyDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
-        views.add(searchResultView);
+        views.add(viewItemView);
 
         ContactView contactView = ContactUseCaseFactory.create(
                 contactViewModel, viewManagerModel, homeViewModel);
