@@ -73,12 +73,7 @@ public class AtlasTechnologyDataAccessObject
 
                 String brand = itemDocument.getString("brand");
                 String colour = itemDocument.getString("colour");
-                ArrayList<String> capabilities = new ArrayList<>();
-
-                for (Object capability :
-                        itemDocument.getJSONArray("capabilities").toList()) {
-                    capabilities.add((String)capability);
-                        }
+                String capabilities = itemDocument.getString("capabilities");
 
                 Technology newItem =
                     new Technology(name, description, condition, price, age,
@@ -223,7 +218,7 @@ public class AtlasTechnologyDataAccessObject
             }
 
             Technology newItem = new Technology(
-                    id, name, description, condition, price, age, soldYet, pickupAddress,
+                    name, description, condition, price, age, soldYet, pickupAddress,
                     owner, type, picture, creationTime, brand, capabilities, colour);
             return newItem;
         }

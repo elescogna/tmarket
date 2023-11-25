@@ -40,7 +40,7 @@ public class PostInteractor implements PostInputBoundary{
             //ID and image
             Furniture newFurniture = new Furniture(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
                     postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
-                    postInputData.getType(),now, postInputData.getLength(), postInputData.getWidth(), postInputData.getHeight());
+                    postInputData.getType(), "", now, postInputData.getLength(), postInputData.getWidth(), postInputData.getHeight());
             try {
                 furnitureDataAccessObject.addItemToFurnitureCollection(newFurniture);
                 studentDataAccessObject.addPostedItemToStudent(postInputData.getStudent().getUoftEmail(), newFurniture);
@@ -57,7 +57,7 @@ public class PostInteractor implements PostInputBoundary{
             //ID and image
             Technology newTechnology = new Technology(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
                     postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
-                    postInputData.getType(),now, postInputData.getBrand(), postInputData.getCapabilities(), postInputData.getColour());
+                    postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getCapabilities(), postInputData.getColour());
             try {
                 technologyDataAccessObject.addItemToTechnologyCollection(newTechnology);
                 studentDataAccessObject.addPostedItemToStudent(postInputData.getStudent().getUoftEmail(), newTechnology);
@@ -73,7 +73,7 @@ public class PostInteractor implements PostInputBoundary{
             //ID and image
             Clothing newClothing = new Clothing(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
                     postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
-                    postInputData.getType(),now, postInputData.getBrand(), postInputData.getColour(), postInputData.getSize(), postInputData.getMaterial());
+                    postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour(), postInputData.getSize(), postInputData.getMaterial());
             try {
                 clothingDataAccessObject.addItemToClothingCollection(newClothing);
                 studentDataAccessObject.addPostedItemToStudent(postInputData.getStudent().getUoftEmail(), newClothing);
@@ -89,7 +89,7 @@ public class PostInteractor implements PostInputBoundary{
             //ID and image
             SchoolItem newSchoolItem = new SchoolItem(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
                     postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
-                    postInputData.getType(),now, postInputData.getBrand(), postInputData.getColour());
+                    postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour());
             try {
                 schoolItemDataAccessObject.addItemToSchoolItemCollection(newSchoolItem);
                 studentDataAccessObject.addPostedItemToStudent(postInputData.getStudent().getUoftEmail(), newSchoolItem);

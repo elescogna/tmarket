@@ -2,8 +2,7 @@ package view;
 
 import entities.Student;
 import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeController;
-import interface_adapter.post.PostContoller;
+import interface_adapter.post.PostController;
 import interface_adapter.post.PostState;
 import interface_adapter.post.PostViewModel;
 import interface_adapter.posting.PostingState;
@@ -15,10 +14,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class PostingView extends JFrame {
+public class PostView extends JFrame {
 
     private final GoHomeController goHomeController;
-    private final PostContoller postContoller;
+    private final PostController postController;
     private final PostViewModel postViewModel;
     private JLabel categoryLabel;
     private JLabel typeLabel;
@@ -64,9 +63,9 @@ public class PostingView extends JFrame {
     private JButton postButton;
     private JButton backButton;
 
-    public PostingView(GoHomeController goHomeController, PostContoller postContoller, PostViewModel postViewModel) {
+    public PostView(GoHomeController goHomeController, PostController postController, PostViewModel postViewModel) {
         this.goHomeController = goHomeController;
-        this.postContoller = postContoller;
+        this.postController = postController;
         this.postViewModel = postViewModel;
         getContentPane().setBackground(new Color(214, 186, 250));
         setTitle("Posting View");
@@ -86,25 +85,25 @@ public class PostingView extends JFrame {
                     PostState currentState = postViewModel.getState();
                     Student student = postingState.getStudent();
                     if ("Furniture".equals(currentState.getCategory())) {
-                        postContoller.execute(student, currentState.getCategory(), currentState.getType(),
+                        postController.execute(student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(), currentState.getPickupAddress(), currentState.getConditionScore(),
                                 currentState.getAge(), currentState.getPrice(),
                                 currentState.getLength(), currentState.getWidth(), currentState.getHeight());
                     }
                     else if ("Technology".equals(currentState.getCategory())) {
-                        postContoller.execute(student, currentState.getCategory(), currentState.getType(),
+                        postController.execute(student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(), currentState.getPickupAddress(), currentState.getConditionScore(),
                                 currentState.getAge(), currentState.getPrice(),
                                 currentState.getBrand(), currentState.getCapabilities(), currentState.getColour());
                     }
                     else if ("School Item".equals(currentState.getCategory())) {
-                        postContoller.execute(student, currentState.getCategory(), currentState.getType(),
+                        postController.execute(student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(), currentState.getPickupAddress(), currentState.getConditionScore(),
                                 currentState.getAge(), currentState.getPrice(),
                                 currentState.getBrand(), currentState.getColour());
                     }
                     else if ("Clothing".equals(currentState.getCategory())) {
-                        postContoller.execute(student, currentState.getCategory(), currentState.getType(),
+                        postController.execute(student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(), currentState.getPickupAddress(), currentState.getConditionScore(),
                                 currentState.getAge(), currentState.getPrice(),
                                 currentState.getBrand(), currentState.getColour(), currentState.getSize(), currentState.getMaterial());
