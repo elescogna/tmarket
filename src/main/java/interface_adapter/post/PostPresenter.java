@@ -22,7 +22,7 @@ public class PostPresenter implements PostOutputBoundary {
     @Override
     public void prepareSuccessView(PostOutputData postOutputData) {
         HomeState homeState = homeViewModel.getState();
-        homeState.setStudent(postOutputData.getStudent());
+        homeState.setUser(postOutputData.getStudent());
         this.homeViewModel.setState(homeState);
         homeViewModel.firePropertyChanged();
 

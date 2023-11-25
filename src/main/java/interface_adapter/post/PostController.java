@@ -4,9 +4,9 @@ import entities.Student;
 import use_case.post.PostInputBoundary;
 import use_case.post.PostInputData;
 
-public class PostContoller {
+public class PostController {
     final PostInputBoundary postUseCaseInteractor;
-    public PostContoller (PostInputBoundary postUseCaseInteractor){
+    public PostController(PostInputBoundary postUseCaseInteractor){
         this.postUseCaseInteractor = postUseCaseInteractor;
     }
 

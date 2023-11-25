@@ -9,14 +9,14 @@ public class Technology extends Item {
     private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
 
     private String brand;
-    private ArrayList<String> capabilities;
+    private String capabilities;
     private String colour;
 
     public Technology(String name, String description,
             int condition, int price, int age, boolean soldYet,
             String pickupAddress, Student owner,
             String type, String picture, LocalDateTime creationTime,
-            String brand, ArrayList<String> capabilities,
+            String brand, String capabilities,
             String colour) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
                  owner, type, picture, creationTime);
@@ -27,13 +27,13 @@ public class Technology extends Item {
 
     public String getBrand() { return brand; }
 
-    public ArrayList<String> getCapabilities() { return capabilities; }
+    public String getCapabilities() { return capabilities; }
 
     public String getColour() { return colour; }
 
     public void setBrand(String brand) { this.brand = brand; }
 
-    public void setCapabilities(ArrayList<String> capabilities) {
+    public void setCapabilities(String capabilities) {
         this.capabilities = capabilities;
     }
 
