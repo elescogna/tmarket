@@ -17,7 +17,6 @@ import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import java.awt.CardLayout;
-import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -116,6 +115,11 @@ public class Main {
             LoginUseCaseFactory.create(loginViewModel, homeViewModel,
                     studentDataAccessObject, viewManagerModel);
         views.add(loginView);
+
+        SignupView signupView =
+            SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
+                    signupViewModel, studentDataAccessObject);
+        views.add(signupView);
 
         // viewManagerModel.setActiveView(signupView.viewName);
         // viewManagerModel.firePropertyChanged();
