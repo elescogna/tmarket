@@ -64,9 +64,9 @@ public class PostView extends JFrame {
     private JButton backButton;
 
     public PostView(GoHomeController goHomeController, PostController postController, PostViewModel postViewModel) {
-        this.goHomeController = goHomeController;
         this.postController = postController;
         this.postViewModel = postViewModel;
+        this.goHomeController = goHomeController;
         getContentPane().setBackground(new Color(214, 186, 250));
         setTitle("Posting View");
         setSize(600, 600);
@@ -119,8 +119,6 @@ public class PostView extends JFrame {
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource().equals(backButton)){
-                    PostingState postingState = new PostingState();
-                    Student student = postingState.getStudent();
                     goHomeController.execute();
                 }
             }

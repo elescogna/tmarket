@@ -106,7 +106,6 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(btnPost)){
                     postingController.execute();
-                    // TODO: switch views
                 }
             }
         });
@@ -117,7 +116,6 @@ public class HomeView extends JPanel implements PropertyChangeListener {
                     HomeState state = homeViewModel.getState();
                     Student student = state.getUser();
                     profileController.execute(student);
-                    // TODO: switch views
                 }
             }
         });
