@@ -22,7 +22,10 @@ import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasSchoolItemDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, SchoolItemPostDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface,
+            SchoolItemPostDataAccessInterface,
+            CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+            SearchDataAccessInterface {
 
     private static final String atlasCollectionName = "school-items";
 

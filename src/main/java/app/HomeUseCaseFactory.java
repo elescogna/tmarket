@@ -28,14 +28,14 @@ public class HomeUseCaseFactory {
          ViewItemViewModel viewItemViewModel,
          HomeDataAccessInterface clothingDataAccessObject,
          HomeDataAccessInterface furnitureDataAccessObject,
-         HomeDataAccessInterface schoolItemDataAccessInterface,
-         HomeDataAccessInterface technologyDataAccessInterface) {
+         HomeDataAccessInterface schoolItemDataAccessOrder,
+         HomeDataAccessInterface technologyDataAccessOrder) {
 
     try {
       HomeController homeController = createHomeUseCase(
           viewManagerModel, homeViewModel, clothingDataAccessObject,
-          furnitureDataAccessObject, schoolItemDataAccessInterface,
-          technologyDataAccessInterface);
+          furnitureDataAccessObject, schoolItemDataAccessOrder,
+          technologyDataAccessOrder);
 
       ViewingItemController viewingItemController =
           createViewingItemUseCase(viewItemViewModel, viewManagerModel);

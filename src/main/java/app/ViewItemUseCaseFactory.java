@@ -1,21 +1,23 @@
 package app;
 
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
 import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
 import interface_adapter.contacting.ContactingController;
 import interface_adapter.contacting.ContactingPresenter;
 import interface_adapter.go_home.GoHomeController;
+import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemPresenter;
 import interface_adapter.view_item.ViewItemViewModel;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import use_case.contacting.ContactingInputBoundary;
 import use_case.contacting.ContactingInteractor;
 import use_case.contacting.ContactingOutputBoundary;
+import use_case.go_home.GoHomeInputBoundary;
+import use_case.go_home.GoHomeInteractor;
+import use_case.go_home.GoHomeOutputBoundary;
 import use_case.home.HomeDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 import use_case.view_item.ViewItemInputBoundary;
@@ -30,16 +32,13 @@ public class ViewItemUseCaseFactory {
 
     public static ViewItemView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
-                ViewItemViewModel viewItemViewModel, GoHomeController goHomeController,
-                ContactViewModel contactViewModel,
+                ViewItemViewModel viewItemViewModel, ContactViewModel contactViewModel,
                 HomeDataAccessInterface clothingHomeDataAccessObject,
                 HomeDataAccessInterface furnitureHomeDataAccessObject,
-                HomeDataAccessInterface orderHomeDataAccessObject,
                 HomeDataAccessInterface schoolItemHomeDataAccessObject,
                 HomeDataAccessInterface technologyHomeDataAccessObject,
                 ViewItemDataAccessInterface clothingViewItemDataAccessObject,
                 ViewItemDataAccessInterface furnitureViewItemDataAccessObject,
-                ViewItemDataAccessInterface orderViewItemDataAccessObject,
                 ViewItemDataAccessInterface schoolItemViewItemDataAccessObject,
                 ViewItemDataAccessInterface technologyViewItemDataAccessObject) {
 
@@ -51,6 +50,9 @@ public class ViewItemUseCaseFactory {
                         technologyViewItemDataAccessObject);
                 ContactingController contactingController =
                     createContactingUseCase(contactViewModel, viewManagerModel);
+                GoHomeController goHomeController =
+                    createGoHomeUseCase(viewManagerModel, homeViewModel);
+
                 return new ViewItemView(viewItemViewModel, viewItemController,
                         goHomeController, contactingController);
 
@@ -94,5 +96,16 @@ public class ViewItemUseCaseFactory {
                     viewItemOutputBoundary);
 
             return new ViewItemController(viewItemInteractor);
+        }
+    private static GoHomeController
+        createGoHomeUseCase(ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel) {
+            GoHomeOutputBoundary goHomeOutputBoundary =
+                new GoHomePresenter(viewManagerModel, homeViewModel);
+
+            GoHomeInputBoundary goHomeInteractor =
+                new GoHomeInteractor(goHomeOutputBoundary);
+
+            return new GoHomeController(goHomeInteractor);
         }
 }

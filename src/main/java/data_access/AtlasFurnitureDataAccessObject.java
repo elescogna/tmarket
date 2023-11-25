@@ -21,7 +21,10 @@ import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasFurnitureDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, FurniturePostDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface,
+            FurniturePostDataAccessInterface,
+            CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+            SearchDataAccessInterface {
 
     private static final String atlasCollectionName = "furniture";
 

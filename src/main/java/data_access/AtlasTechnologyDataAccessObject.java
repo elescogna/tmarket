@@ -20,7 +20,10 @@ import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasTechnologyDataAccessObject
-    extends AtlasDataAccessObject implements HomeDataAccessInterface, TechnologyPostDataAccessInterface, CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface, SearchDataAccessInterface {
+    extends AtlasDataAccessObject implements HomeDataAccessInterface,
+            TechnologyPostDataAccessInterface,
+            CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+            SearchDataAccessInterface {
     private static final String atlasCollectionName = "technology";
 
     @Override

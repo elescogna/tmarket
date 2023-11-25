@@ -27,14 +27,14 @@ public class SearchUseCaseFactory {
            SearchResultViewModel searchResultViewModel,
            SearchDataAccessInterface clothingDataAccessObject,
            SearchDataAccessInterface furnitureDataAccessObject,
-           SearchDataAccessInterface schoolItemDataAccessInterface,
-           SearchDataAccessInterface technologyDataAccessInterface) {
+           SearchDataAccessInterface schoolItemDataAccessObject,
+           SearchDataAccessInterface technologyDataAccessObject) {
 
         try {
             SearchController searchController = createSearchUseCase(
                     viewManagerModel, searchViewModel, searchResultViewModel, clothingDataAccessObject,
-                    furnitureDataAccessObject, schoolItemDataAccessInterface,
-                    technologyDataAccessInterface);
+                    furnitureDataAccessObject, schoolItemDataAccessObject,
+                    technologyDataAccessObject);
             return new SearchView(searchViewModel, searchController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
