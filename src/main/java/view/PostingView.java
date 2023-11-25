@@ -1,6 +1,7 @@
 package view;
 
 import entities.Student;
+import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeController;
 import interface_adapter.post.PostContoller;
 import interface_adapter.post.PostState;
@@ -16,7 +17,7 @@ import javax.swing.*;
 
 public class PostingView extends JFrame {
 
-    private final HomeController homeController;
+    private final GoHomeController goHomeController;
     private final PostContoller postContoller;
     private final PostViewModel postViewModel;
     private JLabel categoryLabel;
@@ -63,8 +64,8 @@ public class PostingView extends JFrame {
     private JButton postButton;
     private JButton backButton;
 
-    public PostingView(HomeController homeController, PostContoller postContoller, PostViewModel postViewModel) {
-        this.homeController = homeController;
+    public PostingView(GoHomeController goHomeController, PostContoller postContoller, PostViewModel postViewModel) {
+        this.goHomeController = goHomeController;
         this.postContoller = postContoller;
         this.postViewModel = postViewModel;
         getContentPane().setBackground(new Color(214, 186, 250));
@@ -121,7 +122,7 @@ public class PostingView extends JFrame {
                 if(e.getSource().equals(backButton)){
                     PostingState postingState = new PostingState();
                     Student student = postingState.getStudent();
-                    homeController.execute(student);
+                    goHomeController.execute();
                 }
             }
         });
