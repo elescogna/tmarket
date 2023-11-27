@@ -10,7 +10,7 @@ public class CreateOrderViewModel extends ViewModel {
     private CreateOrderState state = new CreateOrderState();
 
     public CreateOrderViewModel() {
-        super("create order");
+        super("create_order");
     }
 
     public void setState(CreateOrderState state) {

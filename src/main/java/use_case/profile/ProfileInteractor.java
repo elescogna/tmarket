@@ -26,9 +26,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
             String password = student.getPassword();
             String uoftEmail = student.getUoftEmail();
             String homeAddress = student.getHomeAddress();
-            ArrayList<Order> orders = student.getOrders();
-            ArrayList<Item> postedItems = student.getPostedItems();
-            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress, orders, postedItems);
+            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress);
             profilePresenter.prepareSuccessView(profileOutputData);
         }
         catch(IOException error){

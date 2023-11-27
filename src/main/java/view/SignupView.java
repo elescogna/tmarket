@@ -31,7 +31,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
-        signupViewModel.addPropertyChangeListener(this);
+
+        this.signupViewModel.addPropertyChangeListener(this);
+
         setBackground(new Color(197, 159, 247));
         this.setLayout(null);
 

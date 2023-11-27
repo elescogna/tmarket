@@ -13,7 +13,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class SearchResultView extends JPanel {
-
 	private static final long serialVersionUID = 1L;
 	private final JList list;
 	private JScrollPane listScrollPane;

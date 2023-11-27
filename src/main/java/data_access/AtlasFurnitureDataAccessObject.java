@@ -46,10 +46,6 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             }
 
             JSONObject responseBodyJson = new JSONObject(response.body().string());
-            if (responseBodyJson.isNull("document")) {
-                return null;
-            }
-
             JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
 
             ArrayList<Item> result = new ArrayList<Item>();
@@ -70,8 +66,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = new Student("id", "test", "test", "test", "test",
-                        new ArrayList<>(), new ArrayList<>());
+                Student owner = null;
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =

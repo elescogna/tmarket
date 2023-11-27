@@ -82,13 +82,13 @@ public class Main {
         SearchResultView searchResultView = SearchResultUseCaseFactory.create(
                 viewManagerModel, homeViewModel, searchResultViewModel,
                 viewItemViewModel);
-        views.add(searchResultView);
+        views.add(searchResultView, searchResultViewModel.getViewName());
 
-        SearchView searchUseCaseFactory = SearchUseCaseFactory.create(
+        SearchView searchView = SearchUseCaseFactory.create(
                 viewManagerModel, searchViewModel, searchResultViewModel,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
-        views.add(searchUseCaseFactory);
+        views.add(searchView, searchViewModel.getViewName());
 
         ViewItemView viewItemView = ViewItemUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, contactViewModel,
@@ -96,18 +96,18 @@ public class Main {
                 schoolItemDataAccessObject, technologyDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
-        views.add(viewItemView);
+        views.add(viewItemView, viewItemViewModel.getViewName());
 
         ContactView contactView = ContactUseCaseFactory.create(
                 contactViewModel, viewManagerModel, homeViewModel);
-        views.add(contactView);
+        views.add(contactView, contactViewModel.getViewName());
 
         CreateOrderView createOrderView = CreateOrderUseCaseFactory.create(
                 viewManagerModel, viewItemViewModel, createOrderViewModel,
                 homeViewModel, orderDataAccessObject, studentDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
-        views.add(createOrderView);
+        views.add(createOrderView, createOrderViewModel.getViewName());
 
         HomeView homeView = HomeUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, searchViewModel,
@@ -115,20 +115,20 @@ public class Main {
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject,
                 studentDataAccessObject);
-        views.add(homeView);
+        views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =
             LoginUseCaseFactory.create(loginViewModel, homeViewModel,
                     studentDataAccessObject, viewManagerModel);
-        views.add(loginView);
+        views.add(loginView, loginViewModel.getViewName());
 
         SignupView signupView =
             SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
                     signupViewModel, studentDataAccessObject);
-        views.add(signupView);
+        views.add(signupView, signupViewModel.getViewName());
 
-        // viewManagerModel.setActiveView(signupView.viewName);
-        // viewManagerModel.firePropertyChanged();
+        viewManagerModel.setActiveView(signupViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);

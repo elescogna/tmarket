@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class SearchResultState {
 
-    private ArrayList<Item> filteredItems;
-    private String filteredItemsError;
+    private ArrayList<Item> filteredItems = new ArrayList<>();
+    private String filteredItemsError = "";
 
     public SearchResultState(SearchResultState copy) {
         this.filteredItems = copy.filteredItems;

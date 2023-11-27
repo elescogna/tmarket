@@ -5,7 +5,7 @@ import entities.Student;
 import java.io.IOException;
 
 public interface SignupUserDataAccessInterface {
-    boolean existsByEmail(String uoftEmail);
+    boolean existsByEmail(String uoftEmail) throws IOException;
 
     void addStudent(Student user) throws IOException;
 }
