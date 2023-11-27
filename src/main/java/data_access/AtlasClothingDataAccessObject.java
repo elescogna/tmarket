@@ -64,8 +64,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         // TODO: when we get around to this, we have to get a student based on
         // the owner ID that is provided here like:
         // Student.get(jsonDocument.getString("ownerId"));
-        Student owner = new Student("test", "test", "test", "test",
-                                    new ArrayList<>(), new ArrayList<>());
+        Student owner = null;
         String type = itemDocument.getString("type");
         String picture = itemDocument.getString("picture");
         LocalDateTime creationTime =
@@ -215,7 +214,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
       // TODO: when we get around to this, we have to get a student based on
       // the owner ID that is provided here like:
       // Student.get(jsonDocument.getString("ownerId"));
-      Student owner = new Student("", "", "", "", null, null);
+      Student owner = null;
       String type = itemDocument.getString("type");
       String picture = itemDocument.getString("picture");
       LocalDateTime creationTime =
@@ -312,7 +311,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         // TODO: when we get around to this, we have to get a student based on
         // the owner ID that is provided here like:
         // Student.get(jsonDocument.getString("ownerId"));
-        Student owner = new Student("", "", "", "", result, null);
+        Student owner = null;
         String type = itemDocument.getString("type");
         String picture = itemDocument.getString("picture");
         LocalDateTime creationTime =

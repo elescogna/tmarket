@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 
-public class SearchView extends JFrame {
+public class SearchView extends JPanel {
 	private final SearchViewModel searchViewModel;
 	private final SearchController searchController;
 	private static final long serialVersionUID = 1L;
@@ -53,9 +53,6 @@ public class SearchView extends JFrame {
 	 * Create the panel.
 	 */
 	public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
-		setTitle("Search View");
-		setSize(600, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		initializeComponents();
 		addComponents();

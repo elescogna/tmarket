@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 public class HomeViewModel extends ViewModel {
     private HomeState state = new HomeState();
 
-    public HomeViewModel() { super("use_case/home"); }
+    public HomeViewModel() { super("home"); }
 
     public void setState(HomeState state) { this.state = state; }
 

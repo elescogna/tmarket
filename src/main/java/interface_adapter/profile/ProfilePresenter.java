@@ -20,9 +20,7 @@ public class ProfilePresenter implements ProfileOutputBoundary {
 
         profileState.setUoftEmail(response.getUoftEmail());
         profileState.setPassword(response.getPassword());
-        profileState.setOrders(response.getOrders());
         profileState.setHomeAddress(response.getHomeAddress());
-        profileState.setPostedItems(response.getPostedItems());
         profileState.setName(response.getName());
 
 

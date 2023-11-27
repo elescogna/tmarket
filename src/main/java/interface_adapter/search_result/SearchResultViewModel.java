@@ -12,7 +12,7 @@ public class SearchResultViewModel extends ViewModel {
     private Student currentStudent;
 
     public SearchResultViewModel() {
-        super("logged in");
+        super("search_result");
     }
 
     public void setState(SearchResultState state) {

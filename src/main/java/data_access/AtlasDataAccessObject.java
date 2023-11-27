@@ -1,6 +1,7 @@
 package data_access;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import okhttp3.*;
@@ -20,15 +21,15 @@ public class AtlasDataAccessObject {
         preparePostRequest(String atlasCollectionName, String endpoint,
                 HashMap<String, Object> requestBodyMap) {
             RequestBody requestBody =
-                RequestBody.create(new JSONObject(requestBodyMap).toString(),
-                        MediaType.parse("application/ejson; charset=utf-8"));
+                RequestBody.create(new
+                        JSONObject(requestBodyMap).toString().getBytes(StandardCharsets.UTF_8));
 
             Request request =
                 new Request.Builder()
                 .url(atlasApiUrl + endpoint)
                 .method("POST", requestBody)
-                .addHeader("Content-Type", "application/ejson; charset=utf-8")
-                .addHeader("Accept", "application/json; charset=utf-8")
+                .addHeader("Content-Type", "application/ejson")
+                .addHeader("Accept", "application/json")
                 .addHeader("apiKey", atlasApiKey)
                 .build();
 

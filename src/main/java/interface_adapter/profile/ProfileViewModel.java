@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 public class ProfileViewModel extends ViewModel {
     private ProfileState state = new ProfileState();
     public ProfileViewModel() {
-        super("use_case/profile");
+        super("profile");
     }
     public void setState(ProfileState profileState) { this.state = profileState; }
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);

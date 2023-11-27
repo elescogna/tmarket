@@ -67,8 +67,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
-                Student owner = new Student("id", "test", "test", "test", "test",
-                        new ArrayList<>(), new ArrayList<>());
+                Student owner = null;
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =

@@ -1,8 +1,5 @@
 package entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class CommonStudentFactory implements StudentFactory {
     /**
      * Requires: password is valid.
@@ -13,7 +10,7 @@ public class CommonStudentFactory implements StudentFactory {
 
     @Override
     public Student create(String name, String password, String uoftEmail, String homeAddress) {
-        return new Student(name, password, homeAddress, uoftEmail, new ArrayList<>(), new ArrayList<>());
+        return new Student(name, password, homeAddress, uoftEmail);
     }
 
 }

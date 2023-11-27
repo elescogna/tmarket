@@ -10,7 +10,7 @@ public class LoginViewModel extends ViewModel {
     private LoginState state = new LoginState();
 
     public LoginViewModel() {
-        super("log in");
+        super("log_in");
     }
 
     public void setState(LoginState state) {
