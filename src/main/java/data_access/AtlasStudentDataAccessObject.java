@@ -246,24 +246,11 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
             }
 
             JSONObject studentDocument = studentDocuments.getJSONObject(0);
-
-            String id = studentDocument.getString("id");
+            String id = studentDocument.getString("_id");
             String name = studentDocument.getString("name");
             String password = studentDocument.getString("password");
             String uoftEmail = studentDocument.getString("uoftEmail");
             String homeAddress = studentDocument.getString("homeAddress");
-            JSONArray orders = studentDocument.getJSONArray("orders");
-            ArrayList<Order> arrayOrders = new ArrayList<>();
-            for (int i = 0; i < orders.length(); i++) {
-                Object element = orders.get(i);
-                arrayOrders.add((Order)element);
-            }
-            JSONArray postedItems = studentDocument.getJSONArray("postedItems");
-            ArrayList<Item> arrayPosted = new ArrayList<>();
-            for (int i = 0; i < postedItems.length(); i++) {
-                Object element = postedItems.get(i);
-                arrayPosted.add((Item)element);
-            }
 
             return new Student(id, name, password, homeAddress, uoftEmail);
         }
