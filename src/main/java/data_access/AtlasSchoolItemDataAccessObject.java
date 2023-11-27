@@ -205,16 +205,15 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             String id = itemDocument.getString("_id");
             String name = itemDocument.getString("name");
             String description = itemDocument.getString("description");
-            String condition = itemDocument.getString("condition");
-            double price = itemDocument.getDouble("price");
+            int condition = itemDocument.getInt("condition");
+            int price = itemDocument.getInt("price");
             int age = itemDocument.getInt("age");
             boolean soldYet = itemDocument.getBoolean("soldYet");
             String pickupAddress = itemDocument.getString("pickupAddress");
             // TODO: when we get around to this, we have to get a student based on
             // the owner ID that is provided here like:
             // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
-            Student owner = new Student("id", "test", "test", "test", "test", false,
-                    new ArrayList<>());
+            Student owner = null;
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
@@ -224,9 +223,9 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             String brand = itemDocument.getString("brand");
             String colour = itemDocument.getString("colour");
 
-            SchoolItem newItem = new SchoolItem(
-                    id, name, description, condition, price, age, soldYet, pickupAddress,
-                    owner, type, picture, creationTime, brand, colour);
+            SchoolItem newItem = new SchoolItem(name, description, condition,
+                    price, age, soldYet, pickupAddress, owner, type, picture,
+                    creationTime, brand, colour);
 
             return newItem;
         }
@@ -302,16 +301,15 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 String id = itemDocument.getString("_id");
                 String name = itemDocument.getString("name");
                 String description = itemDocument.getString("description");
-                String condition = itemDocument.getString("condition");
-                double price = itemDocument.getDouble("price");
+                int condition = itemDocument.getInt("condition");
+                int price = itemDocument.getInt("price");
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
                 // TODO: when we get around to this, we have to get a student based on
                 // the owner ID that is provided here like:
                 // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = new Student("id", "test", "test", "test", "test", false,
-                        new ArrayList<>());
+                Student owner = null;
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
@@ -329,9 +327,9 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                     Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
-                    SchoolItem newItem = new SchoolItem(
-                            id, name, description, condition, price, age, soldYet,
-                            pickupAddress, owner, type, picture, creationTime, brand, colour);
+                    SchoolItem newItem = new SchoolItem(name, description,
+                            condition, price, age, soldYet, pickupAddress,
+                            owner, type, picture, creationTime, brand, colour);
 
                     result.add(newItem);
                 }

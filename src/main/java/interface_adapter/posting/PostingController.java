@@ -6,6 +6,7 @@ public class PostingController {
 
     final PostingInputBoundary postingInteractor;
     public PostingController(PostingInputBoundary postingInteractor) {this.postingInteractor = postingInteractor;}
+
     public void execute(){
         this.postingInteractor.execute();
     }

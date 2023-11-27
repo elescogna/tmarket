@@ -1,9 +1,21 @@
 package app;
 
+import data_access.AtlasStudentDataAccessObject;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomePresenter;
 import interface_adapter.home.HomeViewModel;
+import interface_adapter.post.PostViewModel;
+import interface_adapter.posting.PostingController;
+import interface_adapter.posting.PostingPresenter;
+import interface_adapter.posting.PostingViewModel;
+import interface_adapter.profile.ProfileController;
+import interface_adapter.profile.ProfilePresenter;
+import interface_adapter.profile.ProfileViewModel;
+import interface_adapter.search.SearchViewModel;
+import interface_adapter.searching.SearchingController;
+import interface_adapter.searching.SearchingPresenter;
+import interface_adapter.searching.SearchingViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import interface_adapter.viewing_item.ViewingItemController;
 import interface_adapter.viewing_item.ViewingItemPresenter;
@@ -13,6 +25,13 @@ import use_case.home.HomeDataAccessInterface;
 import use_case.home.HomeInputBoundary;
 import use_case.home.HomeInteractor;
 import use_case.home.HomeOutputBoundary;
+import use_case.posting.PostingInteractor;
+import use_case.posting.PostingOutputBoundary;
+import use_case.profile.ProfileDataAccessInterface;
+import use_case.profile.ProfileInteractor;
+import use_case.profile.ProfileOutputBoundary;
+import use_case.searching.SearchingInteractor;
+import use_case.searching.SearchingOutputBoundary;
 import use_case.viewing_item.ViewingItemInputBoundary;
 import use_case.viewing_item.ViewingItemInteractor;
 import use_case.viewing_item.ViewingItemOutputBoundary;
@@ -25,22 +44,33 @@ public class HomeUseCaseFactory {
 
   public static HomeView
   create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
-         ViewItemViewModel viewItemViewModel,
+         ViewItemViewModel viewItemViewModel, SearchViewModel searchViewModel,
+         ProfileViewModel profileViewModel, PostingViewModel postingViewModel,
+         PostViewModel postViewModel,
          HomeDataAccessInterface clothingDataAccessObject,
          HomeDataAccessInterface furnitureDataAccessObject,
-         HomeDataAccessInterface schoolItemDataAccessOrder,
-         HomeDataAccessInterface technologyDataAccessOrder) {
+         HomeDataAccessInterface schoolItemDataAccessObject,
+         HomeDataAccessInterface technologyDataAccessObject,
+         ProfileDataAccessInterface studentDataAccessObject) {
 
     try {
       HomeController homeController = createHomeUseCase(
           viewManagerModel, homeViewModel, clothingDataAccessObject,
-          furnitureDataAccessObject, schoolItemDataAccessOrder,
-          technologyDataAccessOrder);
+          furnitureDataAccessObject, schoolItemDataAccessObject,
+          technologyDataAccessObject);
 
       ViewingItemController viewingItemController =
           createViewingItemUseCase(viewItemViewModel, viewManagerModel);
+      SearchingController searchingController =
+          createSearchingUseCase(searchViewModel, viewManagerModel);
+      ProfileController profileController = createProfileUseCase(
+          profileViewModel, viewManagerModel, studentDataAccessObject);
+      PostingController postingController =
+          createPostingUseCase(postingViewModel, viewManagerModel, postViewModel);
 
-      return new HomeView(homeViewModel, homeController, viewingItemController);
+      return new HomeView(homeViewModel, homeController, viewingItemController,
+                          postingController, profileController,
+                          searchingController);
     } catch (IOException e) {
       // TODO: what should this actually print out?
       JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
@@ -80,5 +110,42 @@ public class HomeUseCaseFactory {
         new ViewingItemInteractor(viewingItemOutputBoundary);
 
     return new ViewingItemController(viewingItemInteractor);
+  }
+
+  private static SearchingController
+  createSearchingUseCase(SearchViewModel searchViewModel,
+                         ViewManagerModel viewManagerModel) {
+    SearchingOutputBoundary searchingOutputBoundary =
+        new SearchingPresenter(searchViewModel, viewManagerModel);
+
+    SearchingInteractor searchingInteractor =
+        new SearchingInteractor(searchingOutputBoundary);
+
+    return new SearchingController(searchingInteractor);
+  }
+
+  private static ProfileController
+  createProfileUseCase(ProfileViewModel profileViewModel,
+                       ViewManagerModel viewManagerModel,
+                       ProfileDataAccessInterface studentDataAccessObject) {
+    ProfileOutputBoundary profilePresenter =
+        new ProfilePresenter(viewManagerModel, profileViewModel);
+
+    ProfileInteractor profileInteractor =
+        new ProfileInteractor(studentDataAccessObject, profilePresenter);
+
+    return new ProfileController(profileInteractor);
+  }
+  private static PostingController
+  createPostingUseCase(PostingViewModel postingViewModel,
+                       ViewManagerModel viewManagerModel,
+                       PostViewModel postViewModel) {
+    PostingOutputBoundary postingOutputBoundary =
+        new PostingPresenter(viewManagerModel, postViewModel, postingViewModel);
+
+    PostingInteractor postingInteractor =
+        new PostingInteractor(postingOutputBoundary);
+
+    return new PostingController(postingInteractor);
   }
 }
