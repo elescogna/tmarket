@@ -12,6 +12,8 @@ import interface_adapter.create_order.CreateOrderViewModel;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.post.PostViewModel;
+import interface_adapter.posting.PostingViewModel;
+import interface_adapter.profile.ProfileViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -59,6 +61,8 @@ public class Main {
         ContactViewModel contactViewModel = new ContactViewModel();
         ViewItemViewModel viewItemViewModel = new ViewItemViewModel();
         CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
+        PostingViewModel postingViewModel = new PostingViewModel();
+        ProfileViewModel profileViewModel = new ProfileViewModel();
 
         // create all DAOs
         AtlasOrderDataAccessObject orderDataAccessObject;
@@ -106,9 +110,11 @@ public class Main {
         views.add(createOrderView);
 
         HomeView homeView = HomeUseCaseFactory.create(
-                viewManagerModel, homeViewModel, viewItemViewModel,
+                viewManagerModel, homeViewModel, viewItemViewModel, searchViewModel,
+                profileViewModel, postingViewModel, postViewModel,
                 clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject);
+                schoolItemDataAccessObject, technologyDataAccessObject,
+                studentDataAccessObject);
         views.add(homeView);
 
         LoginView loginView =
