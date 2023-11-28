@@ -9,7 +9,7 @@ public class CommonStudentFactory implements StudentFactory {
      */
 
     @Override
-    public Student create(String name, String password, String uoftEmail, String homeAddress) {
+    public Student create(String name, String password, String homeAddress, String uoftEmail) {
         return new Student(name, password, homeAddress, uoftEmail);
     }
 

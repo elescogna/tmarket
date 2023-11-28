@@ -246,7 +246,6 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
             }
 
             JSONObject studentDocument = studentDocuments.getJSONObject(0);
-
             String id = studentDocument.getString("_id");
             String name = studentDocument.getString("name");
             String password = studentDocument.getString("password");

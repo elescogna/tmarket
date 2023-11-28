@@ -91,7 +91,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        String text = nameTextField.getText() + e.getKeyChar();
+                        String text = uoftEmailTextField.getText() + e.getKeyChar();
                         currentState.setUoftEmail(text);
                         signupViewModel.setState(currentState);
                     }
@@ -115,7 +115,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        String text = nameTextField.getText() + e.getKeyChar();
+                        String text = pickupAddressTextField.getText() + e.getKeyChar();
                         currentState.setPickupAddress(text);
                         signupViewModel.setState(currentState);
                     }
@@ -139,7 +139,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        String text = nameTextField.getText() + e.getKeyChar();
+                        String text = passwordTextField.getText() + e.getKeyChar();
                         currentState.setPassword(text);
                         signupViewModel.setState(currentState);
                     }
@@ -163,7 +163,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        String text = nameTextField.getText() + e.getKeyChar();
+                        String text = repeatPasswordTextField.getText() + e.getKeyChar();
                         currentState.setRepeatPassword(text);
                         signupViewModel.setState(currentState);
                     }
