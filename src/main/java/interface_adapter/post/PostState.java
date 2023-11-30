@@ -3,28 +3,28 @@ package interface_adapter.post;
 import entities.Student;
 
 public class PostState {
-    private Student student;
-    private String name;
-    private String description;
-    private String pickupAddress;
-    private int age;
-    private int price;
-    private double length;
-    private double height;
-    private double width;
-    private String category;
-    private String type;
+    private Student student = null;
+    private String name = "";
+    private String description = "";
+    private String pickupAddress = "";
+    private int age = 0;
+    private int price = 0;
+    private double length = 0.0;
+    private double height = 0.0;
+    private double width = 0.0;
+    private String category = "";
+    private String type = "";
     private int conditionScore;
-    private String brand;
-    private String capabilities;
-    private String colour;
-    private String size;
-    private String material;
+    private String brand = "";
+    private String capabilities = "";
+    private String colour = "";
+    private String size = "";
+    private String material = "";
 
     public PostState() {
     }
 
-    public void setStudent(Student text){
+    public void setStudent(Student student){
         this.student = student;
     }
     public void setName(String text) {

@@ -11,14 +11,14 @@ public abstract class Item {
     private int age;
     private boolean soldYet;
     private String pickupAddress;
-    private Student owner;
+    private String ownerId;
     private String type;
     private String picture;
     private LocalDateTime creationTime;
 
     public Item(String id, String name, String description, int condition,
             int price, int age, boolean soldYet, String pickupAddress,
-             Student owner, String type, String picture,
+            String ownerId, String type, String picture,
             LocalDateTime creationTime) {
         this.id = id;
         this.name = name;
@@ -28,15 +28,14 @@ public abstract class Item {
         this.age = age;
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
-        this.owner = owner;
+        this.ownerId = ownerId;
         this.type = type;
         this.picture = picture;
         this.creationTime = creationTime;
     }
-    public Item(String name, String description, int condition,
-                int price, int age, boolean soldYet, String pickupAddress,
-                Student owner, String type, String picture,
-                LocalDateTime creationTime) {
+    public Item(String name, String description, int condition, int price,
+            int age, boolean soldYet, String pickupAddress, String ownerId,
+            String type, String picture, LocalDateTime creationTime) {
         this.name = name;
         this.description = description;
         this.condition = condition;
@@ -44,7 +43,7 @@ public abstract class Item {
         this.age = age;
         this.soldYet = soldYet;
         this.pickupAddress = pickupAddress;
-        this.owner = owner;
+        this.ownerId = ownerId;
         this.type = type;
         this.picture = picture;
         this.creationTime = creationTime;
@@ -82,10 +81,6 @@ public abstract class Item {
         this.pickupAddress = pickupAddress;
     }
 
-    public Student getOwner() { return owner; }
-
-    public void setOwner(Student owner) { this.owner = owner; }
-
     public String getType() { return type; }
 
     public void setType(String type) { this.type = type; }
@@ -103,4 +98,6 @@ public abstract class Item {
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
+
+    public String getOwnerId() { return ownerId; }
 }

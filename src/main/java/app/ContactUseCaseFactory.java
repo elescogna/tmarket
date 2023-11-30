@@ -7,6 +7,7 @@ import interface_adapter.contact.ContactViewModel;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
+import use_case.contact.ContactDataAccessInterface;
 import use_case.contact.ContactInputBoundary;
 import use_case.contact.ContactInteractor;
 import use_case.contact.ContactOutputBoundary;
@@ -20,28 +21,31 @@ public class ContactUseCaseFactory {
     /** Prevent instantiation. */
     private ContactUseCaseFactory() {}
 
-    public static ContactView create(ContactViewModel contactViewModel,
-            ViewManagerModel viewManagerModel,
-            HomeViewModel homeViewModel) {
+    public static ContactView
+        create(ContactViewModel contactViewModel, ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel,
+                ContactDataAccessInterface studentDataAccessObject) {
 
-        ContactController contactController =
-            createContactUseCase(contactViewModel, viewManagerModel, homeViewModel);
-        GoHomeController goHomeController =
-            createGoHomeUseCase(viewManagerModel, homeViewModel);
+            ContactController contactController =
+                createContactUseCase(contactViewModel, viewManagerModel, homeViewModel,
+                        studentDataAccessObject);
+            GoHomeController goHomeController =
+                createGoHomeUseCase(viewManagerModel, homeViewModel);
 
-        return new ContactView(contactViewModel, contactController,
-                goHomeController);
-    }
+            return new ContactView(contactViewModel, contactController,
+                    goHomeController);
+        }
 
     private static ContactController
         createContactUseCase(ContactViewModel contactViewModel,
                 ViewManagerModel viewManagerModel,
-                HomeViewModel homeViewModel) {
+                HomeViewModel homeViewModel,
+                ContactDataAccessInterface studentDataAccessObject) {
             ContactOutputBoundary contactOutputBoundary =
                 new ContactPresenter(contactViewModel, viewManagerModel, homeViewModel);
 
             ContactInputBoundary contactInteractor =
-                new ContactInteractor(contactOutputBoundary);
+                new ContactInteractor(contactOutputBoundary, studentDataAccessObject);
 
             return new ContactController(contactInteractor);
         }

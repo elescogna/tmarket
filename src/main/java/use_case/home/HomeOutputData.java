@@ -8,5 +8,5 @@ public class HomeOutputData {
     public HomeOutputData(ArrayList<Item> wantedPosts) {
         this.wantedPosts = wantedPosts;
     }
-    public ArrayList<Item> getWantedPosts() { return wantedPosts; }
+    public ArrayList<Item> getAllPosts() { return wantedPosts; }
 }

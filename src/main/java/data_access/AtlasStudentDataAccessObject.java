@@ -9,17 +9,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+import use_case.contact.ContactDataAccessInterface;
 import use_case.create_order.CreateOrderDataAccessInterfaceStudent;
 import use_case.login.LoginDataAccessInterface;
-import use_case.post.StudentPostDataAccessInterface;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
     implements ProfileDataAccessInterface, SignupUserDataAccessInterface,
-               CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface, StudentPostDataAccessInterface {
+               CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface,
+               ContactDataAccessInterface {
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) throws IOException {
@@ -166,7 +166,8 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
                 String uoftEmail = itemDocument.getString("uoftEmail");
                 String homeAddress = itemDocument.getString("homeAddress");
 
-                Student student = new Student(id, name, password, homeAddress, uoftEmail);
+                Student student =
+                    new Student(id, name, password, homeAddress, uoftEmail);
 
                 result.add(student);
             }
@@ -256,52 +257,7 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
             return new Student(id, name, password, homeAddress, uoftEmail);
         }
     }
-    public void addPostedItemToStudent(String studentEmail, Item newItem)
-            throws IOException {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-            // Fetch the existing student document
-            Student existingStudent = getStudentByEmail(studentEmail);
-
-            if (existingStudent == null) {
-                // Handle the case where the student with the given ID doesn't exist
-                System.out.println("Student not found with ID: " + studentEmail);
-                return;
-            }
-
-            // Update the student document in the database
-            updateStudent(existingStudent);
-    }
-
-    // Add this method to update the student document with the modified
-    // "postedItems" array
-    private void updateStudent(Student updatedStudent) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-        HashMap<String, Object> requestBodyMap = new HashMap<>();
-        requestBodyMap.put("dataSource", atlasDataSourceName);
-        requestBodyMap.put("database", atlasDatabaseName);
-        requestBodyMap.put("collection", atlasCollectionName);
-        requestBodyMap.put("filter", new HashMap<String, String>());
-        requestBodyMap.put("update", itemToDocument(updatedStudent));
-
-        Request request = preparePostRequest(atlasCollectionName, "/action/update",
-                requestBodyMap);
-
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                // Handle a successful response
-                System.out.println("Student document updated successfully!");
-            } else {
-                // Handle an unsuccessful response
-                System.out.println(
-                        "Failed to update student document. HTTP status code: " +
-                        response.code());
-                // You might want to log more details or throw an exception based on
-                // your requirements
-            }
-        }
-    }
     private HashMap<String, Object> itemToDocument(Student student) {
         HashMap<String, Object> document = new HashMap<>();
 
@@ -321,9 +277,8 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("collection", atlasCollectionName);
         requestBodyMap.put("document", itemToDocument(newStudent));
 
-        Request request =
-            AtlasStudentDataAccessObject.preparePostRequest(atlasCollectionName,
-                    "/action/insertOne", requestBodyMap);
+        Request request = AtlasStudentDataAccessObject.preparePostRequest(
+                atlasCollectionName, "/action/insertOne", requestBodyMap);
 
         try (okhttp3.Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {

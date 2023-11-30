@@ -62,10 +62,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         int age = itemDocument.getInt("age");
         boolean soldYet = itemDocument.getBoolean("soldYet");
         String pickupAddress = itemDocument.getString("pickupAddress");
-        // TODO: when we get around to this, we have to get a student based on
-        // the owner ID that is provided here like:
-        // Student.get(jsonDocument.getString("ownerId"));
-        Student owner = null;
+        String ownerId = itemDocument.getString("ownerId");
         String type = itemDocument.getString("type");
         String picture = itemDocument.getString("picture");
         LocalDateTime creationTime =
@@ -78,9 +75,10 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         String size = itemDocument.getString("size");
         String material = itemDocument.getString("material");
 
-        Clothing newItem = new Clothing(
-            name, description, condition, price, age, soldYet, pickupAddress,
-            owner, type, picture, creationTime, brand, colour, size, material);
+        Clothing newItem =
+            new Clothing(name, description, condition, price, age, soldYet,
+                         pickupAddress, ownerId, type, picture, creationTime,
+                         brand, colour, size, material);
         result.add(newItem);
       }
 
@@ -101,8 +99,8 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     // LOOK AT THIS
     document.put(
         "ownerId",
-        item.getOwner().getId()); // You might need to change this based on how
-                                  // the owner is identified in your system
+        item.getOwnerId()); // You might need to change this based on how the
+                            // owner is identified in your system
     document.put("type", item.getType());
     document.put("picture", item.getPicture());
     document.put("creationTime", item.getCreationTime().toString());
@@ -123,8 +121,8 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     requestBodyMap.put("collection", atlasCollectionName);
     requestBodyMap.put("document", itemToDocument(newItem));
 
-    Request request = preparePostRequest(atlasCollectionName, "/action/insert",
-                                         requestBodyMap);
+    Request request = preparePostRequest(atlasCollectionName,
+                                         "/action/insertOne", requestBodyMap);
 
     try (okhttp3.Response response = client.newCall(request).execute()) {
       if (response.isSuccessful()) {
@@ -212,10 +210,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
       int age = itemDocument.getInt("age");
       boolean soldYet = itemDocument.getBoolean("soldYet");
       String pickupAddress = itemDocument.getString("pickupAddress");
-      // TODO: when we get around to this, we have to get a student based on
-      // the owner ID that is provided here like:
-      // Student.get(jsonDocument.getString("ownerId"));
-      Student owner = null;
+      String ownerId = itemDocument.getString("ownerId");
       String type = itemDocument.getString("type");
       String picture = itemDocument.getString("picture");
       LocalDateTime creationTime =
@@ -230,7 +225,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
 
       Clothing newItem = new Clothing(
           name, description, condition, price, age, soldYet, pickupAddress,
-          owner, type, picture, creationTime, brand, colour, size, material);
+          ownerId, type, picture, creationTime, brand, colour, size, material);
       return newItem;
     }
   }
@@ -309,10 +304,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         int age = itemDocument.getInt("age");
         boolean soldYet = itemDocument.getBoolean("soldYet");
         String pickupAddress = itemDocument.getString("pickupAddress");
-        // TODO: when we get around to this, we have to get a student based on
-        // the owner ID that is provided here like:
-        // Student.get(jsonDocument.getString("ownerId"));
-        Student owner = null;
+        String ownerId = itemDocument.getString("ownerId");
         String type = itemDocument.getString("type");
         String picture = itemDocument.getString("picture");
         LocalDateTime creationTime =
@@ -335,7 +327,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         if (distance <= maxDistance) {
           Clothing newItem =
               new Clothing(name, description, condition, price, age, soldYet,
-                           pickupAddress, owner, type, picture, creationTime,
+                           pickupAddress, ownerId, type, picture, creationTime,
                            brand, colour, size, material);
 
           result.add(newItem);

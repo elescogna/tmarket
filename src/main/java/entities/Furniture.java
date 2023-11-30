@@ -15,11 +15,11 @@ public class Furniture extends Item {
 
     public Furniture(String name, String description, int condition,
                      int price, int age, boolean soldYet, String pickupAddress,
-                     Student owner, String type, String picture,
+                     String ownerId, String type, String picture,
                      LocalDateTime creationTime, double length, double width,
                      double height) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
-                owner, type, picture, creationTime);
+                ownerId, type, picture, creationTime);
         this.length = length;
         this.width = width;
         this.height = height;

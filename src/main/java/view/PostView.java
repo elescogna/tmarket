@@ -77,47 +77,46 @@ public class PostView extends JPanel {
 
         postButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(postButton)) {
-                    PostingState postingState = new PostingState();
-                    PostState currentState = PostView.this.postViewModel.getState();
-                    Student student = postingState.getStudent();
-                    if ("Furniture".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getLength(),
-                                currentState.getWidth(), currentState.getHeight());
-                    } else if ("Technology".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getCapabilities(), currentState.getColour());
-                    } else if ("School Item".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getColour());
-                    } else if ("Clothing".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getColour(), currentState.getSize(),
-                                currentState.getMaterial());
-                    } else {
-                        System.out.println(
-                                "Invalid category selected or all fields have not been filled");
-                    }
+                PostState currentState = PostView.this.postViewModel.getState();
+                System.out.println(currentState.getCategory());
+                if ("Furniture".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getLength(),
+                            currentState.getWidth(), currentState.getHeight());
+                } else if ("Technology".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getCapabilities(), currentState.getColour());
+                } else if ("School Item".equals(currentState.getCategory())) {
+                    // __AUTO_GENERATED_PRINTF_START__
+                    System.out.println("PostView#actionPerformed#if#if#if 1"); // __AUTO_GENERATED_PRINTF_END__
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getColour());
+                } else if ("Clothing".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getColour(), currentState.getSize(),
+                            currentState.getMaterial());
+                } else {
+                    System.out.println(
+                            "Invalid category selected or all fields have not been filled");
                 }
             }
         });
@@ -439,6 +438,7 @@ public class PostView extends JPanel {
         categoryComboBox = new JComboBox<>(
                 new String[] {"Furniture", "Technology", "School Item", "Clothing"});
         categoryComboBox.setBounds(94, 78, 98, 14);
+        categoryComboBox.setSelectedIndex(0);
 
         typeLabel = new JLabel("Type:");
         typeLabel.setBounds(10, 104, 87, 14);
@@ -460,7 +460,8 @@ public class PostView extends JPanel {
         conditionScoreLabel = new JLabel("Condition:");
         conditionScoreLabel.setBounds(10, 182, 109, 14);
         conditionScoreComboBox = new JComboBox<>(new Integer[] {1, 2, 3, 4, 5});
-        // conditionScoreComboBox.setBounds(354, 71, 98, 14);
+        conditionScoreComboBox.setBounds(94, 182, 100, 14);
+        conditionScoreComboBox.setSelectedIndex(0);
 
         pickupAddressLabel = new JLabel("Pickup Address:");
         pickupAddressLabel.setBounds(10, 208, 87, 14);
@@ -508,7 +509,7 @@ public class PostView extends JPanel {
                 "xiaomi", "huawei", "lenovo", "asus"});
         technologyBrandComboBox.setSize(100, 14);
         technologyBrandComboBox.setLocation(340, 78);
-        conditionScoreComboBox.setBounds(94, 182, 100, 14);
+        technologyBrandComboBox.setSelectedIndex(0);
 
         capabilitiesLabel = new JLabel("Capabilities:");
         capabilitiesLabel.setBounds(232, 104, 87, 14);
@@ -546,12 +547,14 @@ public class PostView extends JPanel {
             "red", "black", "blue", "green", "grey", "white", "purple", "orange",
                 "yellow", "brown", "beige", "pink", "multicolour"});
         clothingColourComboBox.setBounds(340, 104, 100, 14);
+        clothingColourComboBox.setSelectedIndex(0);
 
         sizeLabel = new JLabel("Size:");
         sizeLabel.setBounds(232, 130, 87, 14);
         sizeComboBox =
             new JComboBox<>(new String[] {"XXS", "XS", "S", "M", "L", "XL", "XXL"});
         sizeComboBox.setBounds(340, 130, 100, 14);
+        sizeComboBox.setSelectedIndex(0);
 
         materialLabel = new JLabel("Material:");
         materialLabel.setBounds(232, 156, 87, 14);
@@ -677,7 +680,7 @@ public class PostView extends JPanel {
                 types = new String[] {"Shirt",  "Pants",  "Dress",       "Jeans", "Tops",
                     "Formal", "Jacket", "Winter Gear", "Hoodie"};
                 break;
-            case "School Items":
+            case "School Item":
                 types = new String[] {"Textbook", "Notebook", "Stationery",
                     "Pens",     "Bag",      "Calculator"};
                 break;
@@ -686,6 +689,7 @@ public class PostView extends JPanel {
                 break;
         }
         typeComboBox.setModel(new DefaultComboBoxModel<>(types));
+        typeComboBox.setSelectedIndex(0);
     }
 
     private void updateAdditionalFields() {
