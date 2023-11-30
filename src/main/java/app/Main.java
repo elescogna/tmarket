@@ -85,7 +85,7 @@ public class Main {
         views.add(searchResultView, searchResultViewModel.getViewName());
 
         SearchView searchView = SearchUseCaseFactory.create(
-                viewManagerModel, searchViewModel, searchResultViewModel,
+                viewManagerModel, searchViewModel, homeViewModel, searchResultViewModel,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
         views.add(searchView, searchViewModel.getViewName());

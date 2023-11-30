@@ -1,6 +1,7 @@
 package view;
 
 import entities.Student;
+import interface_adapter.go_home.GoHomeController;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -49,10 +50,12 @@ public class SearchView extends JPanel {
 	private JButton submitButton;
 	private JButton backButton;
 
+	private GoHomeController goHomeController;
+
 	/**
 	 * Create the panel.
 	 */
-	public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
+	public SearchView(SearchViewModel searchViewModel, SearchController searchController, GoHomeController goHomeController) {
 		this.setLayout(null);
 		initializeComponents();
 		addComponents();
@@ -62,6 +65,7 @@ public class SearchView extends JPanel {
 
 		this.searchViewModel = searchViewModel;
 		this.searchController = searchController;
+		this.goHomeController = goHomeController;
 
 		categoryComboBox.addActionListener(
 			new ActionListener() {
@@ -527,11 +531,12 @@ public class SearchView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getSource().equals(backButton)) {
-					SearchState currentState = searchViewModel.getState();
-					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
-					Student currentStudent = currentState.getCurrentStudent();
-
-					searchController.execute(filteredAttributes, currentStudent);
+					goHomeController.execute();
+//					SearchState currentState = searchViewModel.getState();
+//					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
+//					Student currentStudent = currentState.getCurrentStudent();
+//
+//					searchController.execute(filteredAttributes, currentStudent);
 				}
 			}
 		});

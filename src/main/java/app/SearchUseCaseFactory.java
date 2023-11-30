@@ -1,10 +1,16 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.go_home.GoHomeController;
+import interface_adapter.go_home.GoHomePresenter;
+import interface_adapter.home.HomeViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
+import use_case.go_home.GoHomeInputBoundary;
+import use_case.go_home.GoHomeInteractor;
+import use_case.go_home.GoHomeOutputBoundary;
 import use_case.home.HomeDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import use_case.search.SearchInputBoundary;
@@ -24,6 +30,7 @@ public class SearchUseCaseFactory {
 
     public static SearchView
     create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel,
+           HomeViewModel homeViewModel,
            SearchResultViewModel searchResultViewModel,
            SearchDataAccessInterface clothingDataAccessObject,
            SearchDataAccessInterface furnitureDataAccessObject,
@@ -35,7 +42,9 @@ public class SearchUseCaseFactory {
                     viewManagerModel, searchViewModel, searchResultViewModel, clothingDataAccessObject,
                     furnitureDataAccessObject, schoolItemDataAccessObject,
                     technologyDataAccessObject);
-            return new SearchView(searchViewModel, searchController);
+            GoHomeController goHomeController =
+                    createGoHomeUseCase(viewManagerModel, homeViewModel);
+            return new SearchView(searchViewModel, searchController, goHomeController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
         }
@@ -62,5 +71,17 @@ public class SearchUseCaseFactory {
                         technologyDataAccessInterface, searchOutputBoundary);
 
         return new SearchController(searchInteractor);
+    }
+
+    private static GoHomeController
+    createGoHomeUseCase(ViewManagerModel viewManagerModel,
+                        HomeViewModel homeViewModel) {
+        GoHomeOutputBoundary goHomeOutputBoundary =
+                new GoHomePresenter(viewManagerModel, homeViewModel);
+
+        GoHomeInputBoundary goHomeInteractor =
+                new GoHomeInteractor(goHomeOutputBoundary);
+
+        return new GoHomeController(goHomeInteractor);
     }
 }
