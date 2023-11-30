@@ -18,18 +18,16 @@ public class LoginInteractor implements LoginInputBoundary {
         String username = loginInputData.getUsername();
         String password = loginInputData.getPassword();
 
-        boolean emailCheck;
         boolean passwordCheck;
 
         try {
-            emailCheck = studentDataAccessObject.existsByEmail(username);
             passwordCheck = studentDataAccessObject.checkPassword(username, password);
         } catch (IOException e) {
             this.loginPresenter.prepareFailView("Cannot access Atlas database.");
             return;
         }
 
-        if (!emailCheck || !passwordCheck) {
+        if (!passwordCheck) {
             loginPresenter.prepareFailView("Invalid username or password!");
         } else {
             try {

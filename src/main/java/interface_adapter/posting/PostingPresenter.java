@@ -4,8 +4,6 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.post.PostViewModel;
 import use_case.posting.PostingOutputBoundary;
 
-import javax.crypto.spec.PSource;
-
 public class PostingPresenter implements PostingOutputBoundary {
     private final PostViewModel postViewModel;
     private final PostingViewModel postingViewModel;

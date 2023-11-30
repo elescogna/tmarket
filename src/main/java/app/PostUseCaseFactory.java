@@ -21,17 +21,17 @@ public class PostUseCaseFactory {
     public static PostView
         create(PostViewModel postViewModel, ViewManagerModel viewManagerModel,
                 HomeViewModel homeViewModel,
-                FurniturePostDataAccessInterface furniturePostDataAccessInterface,
-                ClothingPostDataAccessInterface clothingPostDataAccessInterface,
-                TechnologyPostDataAccessInterface technologyPostDataAccessInterface,
-                SchoolItemPostDataAccessInterface schoolItemPostDataAccessInterface,
-                StudentDataAccessInterface studentDataAccessInterface) {
+                FurniturePostDataAccessInterface furniturePostDataAccessObject,
+                ClothingPostDataAccessInterface clothingPostDataAccessObject,
+                TechnologyPostDataAccessInterface technologyPostDataAccessObject,
+                SchoolItemPostDataAccessInterface schoolItemPostDataAccessObject,
+                StudentPostDataAccessInterface studentDataAccessObject) {
             try {
                 PostController postController = createPostUseCase(
                         viewManagerModel, postViewModel, homeViewModel,
-                        furniturePostDataAccessInterface, clothingPostDataAccessInterface,
-                        schoolItemPostDataAccessInterface, technologyPostDataAccessInterface,
-                        studentDataAccessInterface);
+                        furniturePostDataAccessObject, clothingPostDataAccessObject,
+                        schoolItemPostDataAccessObject, technologyPostDataAccessObject,
+                        studentDataAccessObject);
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
 
@@ -62,7 +62,7 @@ public class PostUseCaseFactory {
             ClothingPostDataAccessInterface clothingPostDataAccessInterface,
             SchoolItemPostDataAccessInterface schoolItemPostDataAccessInterface,
             TechnologyPostDataAccessInterface technologyPostDataAccessInterface,
-            StudentDataAccessInterface studentDataAccessInterface)
+            StudentPostDataAccessInterface studentDataAccessInterface)
 
             throws IOException {
             PostOutputBoundary postOutputBoundary =

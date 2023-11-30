@@ -26,6 +26,7 @@ import view.ContactView;
 import view.CreateOrderView;
 import view.HomeView;
 import view.LoginView;
+import view.PostView;
 import view.SearchResultView;
 import view.SearchView;
 import view.SignupView;
@@ -127,7 +128,14 @@ public class Main {
                     signupViewModel, studentDataAccessObject);
         views.add(signupView, signupViewModel.getViewName());
 
-        viewManagerModel.setActiveView(signupViewModel.getViewName());
+        PostView postView = PostUseCaseFactory.create(
+                postViewModel, viewManagerModel, homeViewModel,
+                furnitureDataAccessObject, clothingDataAccessObject,
+                technologyDataAccessObject, schoolItemDataAccessObject,
+                studentDataAccessObject);
+        views.add(postView, postViewModel.getViewName());
+
+        viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
         application.pack();
