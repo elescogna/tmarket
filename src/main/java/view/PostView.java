@@ -60,6 +60,7 @@ public class PostView extends JPanel {
     private JTextField clothingBrandTextField;
     private JButton postButton;
     private JButton backButton;
+    private JLabel lblTitle;
 
     public PostView(GoHomeController goHomeController,
             PostController postController, PostViewModel postViewModel) {
@@ -78,10 +79,10 @@ public class PostView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(postButton)) {
                     PostingState postingState = new PostingState();
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Student student = postingState.getStudent();
                     if ("Furniture".equals(currentState.getCategory())) {
-                        postController.execute(
+                        PostView.this.postController.execute(
                                 student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(),
                                 currentState.getPickupAddress(),
@@ -89,7 +90,7 @@ public class PostView extends JPanel {
                                 currentState.getPrice(), currentState.getLength(),
                                 currentState.getWidth(), currentState.getHeight());
                     } else if ("Technology".equals(currentState.getCategory())) {
-                        postController.execute(
+                        PostView.this.postController.execute(
                                 student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(),
                                 currentState.getPickupAddress(),
@@ -97,7 +98,7 @@ public class PostView extends JPanel {
                                 currentState.getPrice(), currentState.getBrand(),
                                 currentState.getCapabilities(), currentState.getColour());
                     } else if ("School Item".equals(currentState.getCategory())) {
-                        postController.execute(
+                        PostView.this.postController.execute(
                                 student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(),
                                 currentState.getPickupAddress(),
@@ -105,7 +106,7 @@ public class PostView extends JPanel {
                                 currentState.getPrice(), currentState.getBrand(),
                                 currentState.getColour());
                     } else if ("Clothing".equals(currentState.getCategory())) {
-                        postController.execute(
+                        PostView.this.postController.execute(
                                 student, currentState.getCategory(), currentState.getType(),
                                 currentState.getName(), currentState.getDescription(),
                                 currentState.getPickupAddress(),
@@ -124,7 +125,7 @@ public class PostView extends JPanel {
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(backButton)) {
-                    goHomeController.execute();
+                    PostView.this.goHomeController.execute();
                 }
             }
         });
@@ -133,10 +134,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(categoryComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = categoryComboBox.getSelectedItem();
                     currentState.setCategory((String)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -145,10 +146,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(typeComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = typeComboBox.getSelectedItem();
                     currentState.setType((String)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -156,10 +157,10 @@ public class PostView extends JPanel {
         nameTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = nameTextField.getText() + e.getKeyChar();
                 currentState.setName(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -172,10 +173,10 @@ public class PostView extends JPanel {
         descriptionTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = descriptionTextField.getText() + e.getKeyChar();
                 currentState.setDescription(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -189,10 +190,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(conditionScoreComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = conditionScoreComboBox.getSelectedItem();
                     currentState.setConditionScore((int)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -200,10 +201,10 @@ public class PostView extends JPanel {
         pickupAddressTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = pickupAddressTextField.getText() + e.getKeyChar();
                 currentState.setPickupAddress(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -216,10 +217,10 @@ public class PostView extends JPanel {
         ageTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (ageTextField.getText()) + e.getKeyChar();
                 currentState.setAge(Integer.parseInt(text));
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -232,10 +233,10 @@ public class PostView extends JPanel {
         priceTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (priceTextField.getText()) + e.getKeyChar();
                 currentState.setPrice(Integer.parseInt(text));
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -248,10 +249,10 @@ public class PostView extends JPanel {
         lengthTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (lengthTextField.getText()) + e.getKeyChar();
                 currentState.setLength(Double.parseDouble(text));
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -264,10 +265,10 @@ public class PostView extends JPanel {
         widthTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (widthTextField.getText()) + e.getKeyChar();
                 currentState.setWidth(Double.parseDouble(text));
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -280,10 +281,10 @@ public class PostView extends JPanel {
         heightTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (heightTextField.getText()) + e.getKeyChar();
                 currentState.setHeight(Double.parseDouble(text));
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -297,10 +298,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(technologyBrandComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = technologyBrandComboBox.getSelectedItem();
                     currentState.setBrand((String)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -308,10 +309,10 @@ public class PostView extends JPanel {
         capabilitiesTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (capabilitiesTextField.getText()) + e.getKeyChar();
                 currentState.setCapabilities(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -324,10 +325,10 @@ public class PostView extends JPanel {
         technologyColourTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (technologyColourTextField.getText()) + e.getKeyChar();
                 currentState.setColour(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -340,10 +341,10 @@ public class PostView extends JPanel {
         schoolItemBrandTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (schoolItemBrandTextField.getText()) + e.getKeyChar();
                 currentState.setBrand(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -356,10 +357,10 @@ public class PostView extends JPanel {
         schoolItemColourTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (schoolItemColourTextField.getText()) + e.getKeyChar();
                 currentState.setColour(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -372,10 +373,10 @@ public class PostView extends JPanel {
         clothingBrandTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (clothingBrandTextField.getText()) + e.getKeyChar();
                 currentState.setBrand(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -389,10 +390,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(clothingColourComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = clothingColourComboBox.getSelectedItem();
                     currentState.setColour((String)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -401,10 +402,10 @@ public class PostView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(sizeComboBox)) {
-                    PostState currentState = postViewModel.getState();
+                    PostState currentState = PostView.this.postViewModel.getState();
                     Object item = sizeComboBox.getSelectedItem();
                     currentState.setSize((String)item);
-                    postViewModel.setState(currentState);
+                    PostView.this.postViewModel.setState(currentState);
                 }
             }
         });
@@ -412,10 +413,10 @@ public class PostView extends JPanel {
         materialTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                PostState currentState = postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 String text = (materialTextField.getText()) + e.getKeyChar();
                 currentState.setMaterial(text);
-                postViewModel.setState(currentState);
+                PostView.this.postViewModel.setState(currentState);
             }
 
             @Override
@@ -434,127 +435,128 @@ public class PostView extends JPanel {
         backButton.setBounds(61, 329, 89, 23);
 
         categoryLabel = new JLabel("Category:");
-        categoryLabel.setBounds(10, 46, 87, 14);
+        categoryLabel.setBounds(10, 78, 87, 14);
         categoryComboBox = new JComboBox<>(
                 new String[] {"Furniture", "Technology", "School Item", "Clothing"});
-        categoryComboBox.setBounds(94, 46, 98, 14);
+        categoryComboBox.setBounds(94, 78, 98, 14);
 
         typeLabel = new JLabel("Type:");
-        typeLabel.setBounds(10, 71, 87, 14);
+        typeLabel.setBounds(10, 104, 87, 14);
         typeComboBox = new JComboBox<>();
-        typeComboBox.setBounds(94, 71, 98, 14);
+        typeComboBox.setBounds(94, 104, 98, 14);
 
         nameLabel = new JLabel("Name:");
-        nameLabel.setBounds(10, 96, 87, 14);
+        nameLabel.setBounds(10, 130, 87, 14);
         nameTextField = new JTextField();
-        nameTextField.setBounds(94, 96, 100, 14);
+        nameTextField.setBounds(94, 130, 100, 14);
         nameTextField.setColumns(10);
 
         descriptionLabel = new JLabel("Description:");
-        descriptionLabel.setBounds(10, 121, 87, 14);
+        descriptionLabel.setBounds(10, 156, 87, 14);
         descriptionTextField = new JTextField();
-        descriptionTextField.setBounds(94, 121, 100, 14);
+        descriptionTextField.setBounds(94, 156, 100, 14);
         descriptionTextField.setColumns(10);
 
-        conditionScoreLabel = new JLabel("Condition Score:");
-        conditionScoreLabel.setBounds(10, 148, 87, 14);
+        conditionScoreLabel = new JLabel("Condition:");
+        conditionScoreLabel.setBounds(10, 182, 109, 14);
         conditionScoreComboBox = new JComboBox<>(new Integer[] {1, 2, 3, 4, 5});
-        conditionScoreComboBox.setBounds(94, 148, 98, 14);
+        // conditionScoreComboBox.setBounds(354, 71, 98, 14);
 
         pickupAddressLabel = new JLabel("Pickup Address:");
-        pickupAddressLabel.setBounds(10, 172, 87, 14);
+        pickupAddressLabel.setBounds(10, 208, 87, 14);
         pickupAddressTextField = new JTextField();
-        pickupAddressTextField.setBounds(94, 172, 100, 14);
+        pickupAddressTextField.setBounds(94, 208, 100, 14);
         pickupAddressTextField.setColumns(10);
 
         ageLabel = new JLabel("Age:");
-        ageLabel.setBounds(10, 197, 87, 14);
+        ageLabel.setBounds(10, 234, 87, 14);
         ageTextField = new JTextField();
-        ageTextField.setBounds(94, 197, 100, 14);
+        ageTextField.setBounds(94, 234, 100, 14);
         ageTextField.setColumns(10);
 
         priceLabel = new JLabel("Price:");
-        priceLabel.setBounds(10, 219, 87, 14);
+        priceLabel.setBounds(10, 260, 87, 14);
         priceTextField = new JTextField();
-        priceTextField.setBounds(94, 219, 100, 14);
+        priceTextField.setBounds(92, 260, 100, 14);
         priceTextField.setColumns(10);
 
         imageLabel = new JLabel("Image:");
-        imageLabel.setBounds(94, 244, 100, 14);
-        // PRANAV HELP
+        imageLabel.setBounds(10, 286, 100, 14);
 
         lengthLabel = new JLabel("Length:");
-        lengthLabel.setBounds(232, 11, 87, 14);
+        lengthLabel.setBounds(232, 78, 87, 14);
         lengthTextField = new JTextField();
-        lengthTextField.setBounds(340, 11, 100, 14);
+        lengthTextField.setBounds(340, 78, 100, 14);
         lengthTextField.setColumns(10);
 
         widthLabel = new JLabel("Width:");
-        widthLabel.setBounds(232, 33, 87, 14);
+        widthLabel.setBounds(232, 104, 87, 14);
         widthTextField = new JTextField();
-        widthTextField.setBounds(340, 33, 100, 14);
+        widthTextField.setBounds(340, 104, 100, 14);
         widthTextField.setColumns(10);
 
         heightLabel = new JLabel("Height:");
-        heightLabel.setBounds(232, 55, 87, 14);
+        heightLabel.setBounds(232, 130, 87, 14);
         heightTextField = new JTextField();
-        heightTextField.setBounds(340, 55, 100, 14);
+        heightTextField.setBounds(340, 130, 100, 14);
         heightTextField.setColumns(10);
 
         technologyBrandLabel = new JLabel("Brand:");
-        technologyBrandLabel.setBounds(232, 11, 87, 14);
+        technologyBrandLabel.setBounds(232, 78, 87, 14);
         technologyBrandComboBox =
             new JComboBox<>(new String[] {"apple", "samsung", "dell", "hp",
                 "xiaomi", "huawei", "lenovo", "asus"});
-        conditionScoreComboBox.setBounds(340, 11, 100, 14);
+        technologyBrandComboBox.setSize(100, 14);
+        technologyBrandComboBox.setLocation(340, 78);
+        conditionScoreComboBox.setBounds(94, 182, 100, 14);
 
         capabilitiesLabel = new JLabel("Capabilities:");
-        capabilitiesLabel.setBounds(232, 33, 87, 14);
+        capabilitiesLabel.setBounds(232, 104, 87, 14);
         capabilitiesTextField = new JTextField();
-        capabilitiesTextField.setBounds(340, 33, 100, 14);
+        capabilitiesTextField.setBounds(340, 104, 100, 14);
         capabilitiesTextField.setColumns(10);
 
         technologyColourLabel = new JLabel("Colour:");
-        technologyColourLabel.setBounds(232, 55, 87, 14);
+        technologyColourLabel.setBounds(232, 130, 87, 14);
         technologyColourTextField = new JTextField();
-        technologyColourTextField.setBounds(340, 55, 100, 14);
+        technologyColourTextField.setBounds(340, 130, 100, 14);
         technologyColourTextField.setColumns(10);
 
         schoolItemBrandLabel = new JLabel("Brand:");
-        schoolItemBrandLabel.setBounds(232, 11, 87, 14);
+        schoolItemBrandLabel.setBounds(232, 78, 87, 14);
         schoolItemBrandTextField = new JTextField();
-        schoolItemBrandTextField.setBounds(340, 11, 100, 14);
+        schoolItemBrandTextField.setBounds(340, 78, 100, 14);
         schoolItemBrandTextField.setColumns(10);
 
         schoolItemColourLabel = new JLabel("Colour:");
-        schoolItemColourLabel.setBounds(232, 33, 87, 14);
+        schoolItemColourLabel.setBounds(232, 104, 87, 14);
         schoolItemColourTextField = new JTextField();
-        schoolItemColourTextField.setBounds(340, 33, 100, 14);
+        schoolItemColourTextField.setBounds(340, 104, 100, 14);
         schoolItemColourTextField.setColumns(10);
 
         clothingBrandLabel = new JLabel("Brand:");
-        clothingBrandLabel.setBounds(232, 11, 87, 14);
+        clothingBrandLabel.setBounds(232, 78, 87, 14);
         clothingBrandTextField = new JTextField();
-        clothingBrandTextField.setBounds(340, 11, 100, 14);
+        clothingBrandTextField.setBounds(340, 78, 100, 14);
         clothingBrandTextField.setColumns(10);
 
         clothingColourLabel = new JLabel("Colour:");
-        clothingColourLabel.setBounds(232, 33, 87, 14);
+        clothingColourLabel.setBounds(232, 104, 87, 14);
         clothingColourComboBox = new JComboBox<>(new String[] {
             "red", "black", "blue", "green", "grey", "white", "purple", "orange",
                 "yellow", "brown", "beige", "pink", "multicolour"});
-        clothingColourComboBox.setBounds(340, 33, 100, 14);
+        clothingColourComboBox.setBounds(340, 104, 100, 14);
 
         sizeLabel = new JLabel("Size:");
-        sizeLabel.setBounds(232, 55, 87, 14);
+        sizeLabel.setBounds(232, 130, 87, 14);
         sizeComboBox =
             new JComboBox<>(new String[] {"XXS", "XS", "S", "M", "L", "XL", "XXL"});
-        sizeComboBox.setBounds(340, 55, 100, 14);
+        sizeComboBox.setBounds(340, 130, 100, 14);
 
         materialLabel = new JLabel("Material:");
-        materialLabel.setBounds(232, 77, 87, 14);
+        materialLabel.setBounds(232, 156, 87, 14);
         materialTextField = new JTextField();
-        materialTextField.setBounds(340, 77, 100, 14);
+        materialTextField.setBounds(340, 156, 100, 14);
         materialTextField.setColumns(10);
 
         // Initially disable additional fields
@@ -639,6 +641,11 @@ public class PostView extends JPanel {
         this.add(sizeComboBox);
         this.add(materialLabel);
         this.add(materialTextField);
+
+        lblTitle = new JLabel("Post Item");
+        lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
+        lblTitle.setBounds(186, 35, 122, 26);
+        add(lblTitle);
     }
 
     private void addListeners() {
