@@ -6,7 +6,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class PostViewModel extends ViewModel {
-
     private PostState state = new PostState();
 
     public PostViewModel() {
@@ -14,7 +13,7 @@ public class PostViewModel extends ViewModel {
     }
 
     public PostState getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(PostState currentState) {

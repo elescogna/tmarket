@@ -23,7 +23,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         HomeState homeState = homeViewModel.getState();
-        homeState.setUser(response.getStudent());
+        homeState.setCurrentStudent(response.getStudent());
 
         this.viewManagerModel.setActiveView("home");
         this.viewManagerModel.firePropertyChanged();

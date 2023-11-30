@@ -26,8 +26,6 @@ public class PostController {
         PostInputData postInputData = new PostInputData(student, category, type, name, description, pickupAddress,
                 conditionScore, age, price, brand, capabilities, colour);
         postUseCaseInteractor.execute(postInputData);
-
-
     }
 
     //school item

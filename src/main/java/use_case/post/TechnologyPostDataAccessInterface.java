@@ -1,5 +1,6 @@
 package use_case.post;
 
+import entities.Student;
 import entities.Technology;
 
 import java.io.IOException;

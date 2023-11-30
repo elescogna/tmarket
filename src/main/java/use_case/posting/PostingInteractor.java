@@ -8,7 +8,9 @@ public class PostingInteractor implements PostingInputBoundary {
     public PostingInteractor(PostingOutputBoundary postingPresenter) {
         this.postingPresenter = postingPresenter;
     }
-    public void execute(){
-      postingPresenter.prepareSuccessView();
+
+    @Override
+    public void execute(PostingInputData inputData) {
+        this.postingPresenter.prepareSuccessView(new PostingOutputData(inputData.getCurrentStudent()));
     }
 }

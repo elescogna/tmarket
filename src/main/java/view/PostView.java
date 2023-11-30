@@ -77,47 +77,44 @@ public class PostView extends JPanel {
 
         postButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(postButton)) {
-                    PostingState postingState = new PostingState();
-                    PostState currentState = PostView.this.postViewModel.getState();
-                    Student student = postingState.getStudent();
-                    if ("Furniture".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getLength(),
-                                currentState.getWidth(), currentState.getHeight());
-                    } else if ("Technology".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getCapabilities(), currentState.getColour());
-                    } else if ("School Item".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getColour());
-                    } else if ("Clothing".equals(currentState.getCategory())) {
-                        PostView.this.postController.execute(
-                                student, currentState.getCategory(), currentState.getType(),
-                                currentState.getName(), currentState.getDescription(),
-                                currentState.getPickupAddress(),
-                                currentState.getConditionScore(), currentState.getAge(),
-                                currentState.getPrice(), currentState.getBrand(),
-                                currentState.getColour(), currentState.getSize(),
-                                currentState.getMaterial());
-                    } else {
-                        System.out.println(
-                                "Invalid category selected or all fields have not been filled");
-                    }
+                PostState currentState =
+                    PostView.this.postViewModel.getState();
+                if ("Furniture".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getLength(),
+                            currentState.getWidth(), currentState.getHeight());
+                } else if ("Technology".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getCapabilities(), currentState.getColour());
+                } else if ("School Item".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getColour());
+                } else if ("Clothing".equals(currentState.getCategory())) {
+                    PostView.this.postController.execute(
+                            currentState.getStudent(), currentState.getCategory(),
+                            currentState.getType(), currentState.getName(),
+                            currentState.getDescription(), currentState.getPickupAddress(),
+                            currentState.getConditionScore(), currentState.getAge(),
+                            currentState.getPrice(), currentState.getBrand(),
+                            currentState.getColour(), currentState.getSize(),
+                            currentState.getMaterial());
+                } else {
+                    System.out.println(
+                            "Invalid category selected or all fields have not been filled");
                 }
             }
         });

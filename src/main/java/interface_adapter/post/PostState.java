@@ -24,7 +24,7 @@ public class PostState {
     public PostState() {
     }
 
-    public void setStudent(Student text){
+    public void setStudent(Student student){
         this.student = student;
     }
     public void setName(String text) {

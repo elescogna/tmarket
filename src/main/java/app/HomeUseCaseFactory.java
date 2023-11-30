@@ -39,113 +39,110 @@ import view.HomeView;
 
 public class HomeUseCaseFactory {
 
-  /** Prevent instantiation. */
-  private HomeUseCaseFactory() {}
+    /** Prevent instantiation. */
+    private HomeUseCaseFactory() {}
 
-  public static HomeView
-  create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
-         ViewItemViewModel viewItemViewModel, SearchViewModel searchViewModel,
-         ProfileViewModel profileViewModel, PostingViewModel postingViewModel,
-         PostViewModel postViewModel,
-         HomeDataAccessInterface clothingDataAccessObject,
-         HomeDataAccessInterface furnitureDataAccessObject,
-         HomeDataAccessInterface schoolItemDataAccessObject,
-         HomeDataAccessInterface technologyDataAccessObject,
-         ProfileDataAccessInterface studentDataAccessObject) {
+    public static HomeView
+        create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
+                ViewItemViewModel viewItemViewModel, SearchViewModel searchViewModel,
+                ProfileViewModel profileViewModel, PostViewModel postViewModel,
+                HomeDataAccessInterface clothingDataAccessObject,
+                HomeDataAccessInterface furnitureDataAccessObject,
+                HomeDataAccessInterface schoolItemDataAccessObject,
+                HomeDataAccessInterface technologyDataAccessObject,
+                ProfileDataAccessInterface studentDataAccessObject) {
 
-    try {
-      HomeController homeController = createHomeUseCase(
-          viewManagerModel, homeViewModel, clothingDataAccessObject,
-          furnitureDataAccessObject, schoolItemDataAccessObject,
-          technologyDataAccessObject);
+            try {
+                HomeController homeController = createHomeUseCase(
+                        viewManagerModel, homeViewModel, clothingDataAccessObject,
+                        furnitureDataAccessObject, schoolItemDataAccessObject,
+                        technologyDataAccessObject);
 
-      ViewingItemController viewingItemController =
-          createViewingItemUseCase(viewItemViewModel, viewManagerModel);
-      SearchingController searchingController =
-          createSearchingUseCase(searchViewModel, viewManagerModel);
-      ProfileController profileController = createProfileUseCase(
-          profileViewModel, viewManagerModel, studentDataAccessObject);
-      PostingController postingController =
-          createPostingUseCase(postingViewModel, viewManagerModel, postViewModel);
+                ViewingItemController viewingItemController =
+                    createViewingItemUseCase(viewItemViewModel, viewManagerModel);
+                SearchingController searchingController =
+                    createSearchingUseCase(searchViewModel, viewManagerModel);
+                ProfileController profileController = createProfileUseCase(
+                        profileViewModel, viewManagerModel, studentDataAccessObject);
+                PostingController postingController = createPostingUseCase(viewManagerModel, postViewModel);
 
-      return new HomeView(homeViewModel, homeController, viewingItemController,
-                          postingController, profileController,
-                          searchingController);
-    } catch (IOException e) {
-      // TODO: what should this actually print out?
-      JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
-    }
+                return new HomeView(homeViewModel, homeController, viewingItemController,
+                        postingController, profileController,
+                        searchingController);
+            } catch (IOException e) {
+                // TODO: what should this actually print out?
+                JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
+            }
 
-    return null;
-  }
+            return null;
+        }
 
-  private static HomeController
-  createHomeUseCase(ViewManagerModel viewManagerModel,
-                    HomeViewModel homeViewModel,
-                    HomeDataAccessInterface clothingDataAccessObject,
-                    HomeDataAccessInterface furnitureDataAccessObject,
-                    HomeDataAccessInterface schoolItemDataAccessInterface,
-                    HomeDataAccessInterface technologyDataAccessInterface)
-      throws IOException {
+    private static HomeController
+        createHomeUseCase(ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel,
+                HomeDataAccessInterface clothingDataAccessObject,
+                HomeDataAccessInterface furnitureDataAccessObject,
+                HomeDataAccessInterface schoolItemDataAccessInterface,
+                HomeDataAccessInterface technologyDataAccessInterface)
+            throws IOException {
 
-    // Pass this method's parameters to the Presenter.
-    HomeOutputBoundary homeOutputBoundary =
-        new HomePresenter(viewManagerModel, homeViewModel);
+            // Pass this method's parameters to the Presenter.
+            HomeOutputBoundary homeOutputBoundary =
+                new HomePresenter(viewManagerModel, homeViewModel);
 
-    HomeInputBoundary homeInteractor =
-        new HomeInteractor(clothingDataAccessObject, furnitureDataAccessObject,
-                           schoolItemDataAccessInterface,
-                           technologyDataAccessInterface, homeOutputBoundary);
+            HomeInputBoundary homeInteractor =
+                new HomeInteractor(clothingDataAccessObject, furnitureDataAccessObject,
+                        schoolItemDataAccessInterface,
+                        technologyDataAccessInterface, homeOutputBoundary);
 
-    return new HomeController(homeInteractor);
-  }
+            return new HomeController(homeInteractor);
+        }
 
-  private static ViewingItemController
-  createViewingItemUseCase(ViewItemViewModel viewingItemViewModel,
-                           ViewManagerModel viewManagerModel) {
-    ViewingItemOutputBoundary viewingItemOutputBoundary =
-        new ViewingItemPresenter(viewingItemViewModel, viewManagerModel);
+    private static ViewingItemController
+        createViewingItemUseCase(ViewItemViewModel viewingItemViewModel,
+                ViewManagerModel viewManagerModel) {
+            ViewingItemOutputBoundary viewingItemOutputBoundary =
+                new ViewingItemPresenter(viewingItemViewModel, viewManagerModel);
 
-    ViewingItemInputBoundary viewingItemInteractor =
-        new ViewingItemInteractor(viewingItemOutputBoundary);
+            ViewingItemInputBoundary viewingItemInteractor =
+                new ViewingItemInteractor(viewingItemOutputBoundary);
 
-    return new ViewingItemController(viewingItemInteractor);
-  }
+            return new ViewingItemController(viewingItemInteractor);
+        }
 
-  private static SearchingController
-  createSearchingUseCase(SearchViewModel searchViewModel,
-                         ViewManagerModel viewManagerModel) {
-    SearchingOutputBoundary searchingOutputBoundary =
-        new SearchingPresenter(searchViewModel, viewManagerModel);
+    private static SearchingController
+        createSearchingUseCase(SearchViewModel searchViewModel,
+                ViewManagerModel viewManagerModel) {
+            SearchingOutputBoundary searchingOutputBoundary =
+                new SearchingPresenter(searchViewModel, viewManagerModel);
 
-    SearchingInteractor searchingInteractor =
-        new SearchingInteractor(searchingOutputBoundary);
+            SearchingInteractor searchingInteractor =
+                new SearchingInteractor(searchingOutputBoundary);
 
-    return new SearchingController(searchingInteractor);
-  }
+            return new SearchingController(searchingInteractor);
+        }
 
-  private static ProfileController
-  createProfileUseCase(ProfileViewModel profileViewModel,
-                       ViewManagerModel viewManagerModel,
-                       ProfileDataAccessInterface studentDataAccessObject) {
-    ProfileOutputBoundary profilePresenter =
-        new ProfilePresenter(viewManagerModel, profileViewModel);
+    private static ProfileController
+        createProfileUseCase(ProfileViewModel profileViewModel,
+                ViewManagerModel viewManagerModel,
+                ProfileDataAccessInterface studentDataAccessObject) {
+            ProfileOutputBoundary profilePresenter =
+                new ProfilePresenter(viewManagerModel, profileViewModel);
 
-    ProfileInteractor profileInteractor =
-        new ProfileInteractor(studentDataAccessObject, profilePresenter);
+            ProfileInteractor profileInteractor =
+                new ProfileInteractor(studentDataAccessObject, profilePresenter);
 
-    return new ProfileController(profileInteractor);
-  }
-  private static PostingController
-  createPostingUseCase(PostingViewModel postingViewModel,
-                       ViewManagerModel viewManagerModel,
-                       PostViewModel postViewModel) {
-    PostingOutputBoundary postingOutputBoundary =
-        new PostingPresenter(viewManagerModel, postViewModel, postingViewModel);
+            return new ProfileController(profileInteractor);
+        }
+    private static PostingController
+        createPostingUseCase(ViewManagerModel viewManagerModel,
+                PostViewModel postViewModel) {
+            PostingOutputBoundary postingOutputBoundary =
+                new PostingPresenter(viewManagerModel, postViewModel);
 
-    PostingInteractor postingInteractor =
-        new PostingInteractor(postingOutputBoundary);
+            PostingInteractor postingInteractor =
+                new PostingInteractor(postingOutputBoundary);
 
-    return new PostingController(postingInteractor);
-  }
+            return new PostingController(postingInteractor);
+        }
 }

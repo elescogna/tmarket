@@ -62,7 +62,6 @@ public class Main {
         ContactViewModel contactViewModel = new ContactViewModel();
         ViewItemViewModel viewItemViewModel = new ViewItemViewModel();
         CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
-        PostingViewModel postingViewModel = new PostingViewModel();
         ProfileViewModel profileViewModel = new ProfileViewModel();
 
         // create all DAOs
@@ -112,10 +111,9 @@ public class Main {
 
         HomeView homeView = HomeUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, searchViewModel,
-                profileViewModel, postingViewModel, postViewModel,
-                clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject,
-                studentDataAccessObject);
+                profileViewModel, postViewModel, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject, studentDataAccessObject);
         views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =
@@ -131,8 +129,7 @@ public class Main {
         PostView postView = PostUseCaseFactory.create(
                 postViewModel, viewManagerModel, homeViewModel,
                 furnitureDataAccessObject, clothingDataAccessObject,
-                technologyDataAccessObject, schoolItemDataAccessObject,
-                studentDataAccessObject);
+                technologyDataAccessObject, schoolItemDataAccessObject);
         views.add(postView, postViewModel.getViewName());
 
         viewManagerModel.setActiveView(loginViewModel.getViewName());

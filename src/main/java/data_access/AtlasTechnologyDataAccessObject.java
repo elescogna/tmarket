@@ -96,11 +96,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
     document.put("age", item.getAge());
     document.put("soldYet", item.isSoldYet());
     document.put("pickupAddress", item.getPickupAddress());
-    document.put(
-        "ownerId",
-        item.getOwner().getId()); // You might need to change this based on how
-                                  // the owner is identified in your system
-    document.put("type", item.getType());
+    document.put("ownerId", item.getOwner().getId());
     document.put("picture", item.getPicture());
     document.put("creationTime", item.getCreationTime().toString());
     document.put("brand", item.getBrand());
@@ -120,7 +116,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
     requestBodyMap.put("collection", atlasCollectionName);
     requestBodyMap.put("document", itemToDocument(newItem));
 
-    Request request = preparePostRequest(atlasCollectionName, "/action/insert",
+    Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
                                          requestBodyMap);
 
     try (okhttp3.Response response = client.newCall(request).execute()) {
@@ -318,7 +314,6 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         String brand = itemDocument.getString("brand");
         String colour = itemDocument.getString("colour");
         String capabilities = itemDocument.getString("capabilities");
-
 
         // This line assumes that calculateDistance is implemented
         // and that we have access to the current user infomation

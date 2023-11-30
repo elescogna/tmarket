@@ -24,14 +24,12 @@ public class PostUseCaseFactory {
                 FurniturePostDataAccessInterface furniturePostDataAccessObject,
                 ClothingPostDataAccessInterface clothingPostDataAccessObject,
                 TechnologyPostDataAccessInterface technologyPostDataAccessObject,
-                SchoolItemPostDataAccessInterface schoolItemPostDataAccessObject,
-                StudentPostDataAccessInterface studentDataAccessObject) {
+                SchoolItemPostDataAccessInterface schoolItemPostDataAccessObject) {
             try {
                 PostController postController = createPostUseCase(
                         viewManagerModel, postViewModel, homeViewModel,
                         furniturePostDataAccessObject, clothingPostDataAccessObject,
-                        schoolItemPostDataAccessObject, technologyPostDataAccessObject,
-                        studentDataAccessObject);
+                        schoolItemPostDataAccessObject, technologyPostDataAccessObject);
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
 
@@ -61,16 +59,15 @@ public class PostUseCaseFactory {
             FurniturePostDataAccessInterface furniturePostDataAccessInterface,
             ClothingPostDataAccessInterface clothingPostDataAccessInterface,
             SchoolItemPostDataAccessInterface schoolItemPostDataAccessInterface,
-            TechnologyPostDataAccessInterface technologyPostDataAccessInterface,
-            StudentPostDataAccessInterface studentDataAccessInterface)
+            TechnologyPostDataAccessInterface technologyPostDataAccessInterface)
 
             throws IOException {
             PostOutputBoundary postOutputBoundary =
                 new PostPresenter(viewManagerModel, homeViewModel);
             PostInputBoundary postInteractor = new PostInteractor(
                     clothingPostDataAccessInterface, furniturePostDataAccessInterface,
-                    schoolItemPostDataAccessInterface, technologyPostDataAccessInterface,
-                    studentDataAccessInterface, postOutputBoundary);
+                    schoolItemPostDataAccessInterface,
+                    technologyPostDataAccessInterface, postOutputBoundary);
 
             return new PostController(postInteractor);
             }

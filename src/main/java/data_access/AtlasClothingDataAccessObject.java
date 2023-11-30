@@ -123,7 +123,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     requestBodyMap.put("collection", atlasCollectionName);
     requestBodyMap.put("document", itemToDocument(newItem));
 
-    Request request = preparePostRequest(atlasCollectionName, "/action/insert",
+    Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
                                          requestBodyMap);
 
     try (okhttp3.Response response = client.newCall(request).execute()) {
