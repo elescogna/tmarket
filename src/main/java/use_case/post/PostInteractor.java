@@ -15,13 +15,13 @@ public class PostInteractor implements PostInputBoundary{
     final FurniturePostDataAccessInterface furnitureDataAccessObject;
     final SchoolItemPostDataAccessInterface schoolItemDataAccessObject;
     final TechnologyPostDataAccessInterface technologyDataAccessObject;
-    final StudentDataAccessInterface studentDataAccessObject;
+    final StudentPostDataAccessInterface studentDataAccessObject;
 
     public PostInteractor(ClothingPostDataAccessInterface clothingDataAccessObject,
                             FurniturePostDataAccessInterface furnitureDataAccessObject,
                             SchoolItemPostDataAccessInterface schoolItemDataAccessObject,
                             TechnologyPostDataAccessInterface technologyDataAccessObject,
-                            StudentDataAccessInterface studentDataAccessObject,
+                            StudentPostDataAccessInterface studentDataAccessObject,
                             PostOutputBoundary postPresenter) {
         this.clothingDataAccessObject = clothingDataAccessObject;
         this.furnitureDataAccessObject = furnitureDataAccessObject;

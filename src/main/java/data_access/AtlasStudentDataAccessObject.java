@@ -13,12 +13,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceStudent;
 import use_case.login.LoginDataAccessInterface;
+import use_case.post.StudentPostDataAccessInterface;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
     implements ProfileDataAccessInterface, SignupUserDataAccessInterface,
-               CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface {
+               CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface, StudentPostDataAccessInterface {
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) throws IOException {

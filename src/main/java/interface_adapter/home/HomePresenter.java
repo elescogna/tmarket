@@ -15,7 +15,7 @@ public class HomePresenter implements HomeOutputBoundary {
     @Override
     public void prepareSuccessView(HomeOutputData response) {
         HomeState homeState = new HomeState();
-        homeState.setWantedPosts(response.getWantedPosts());
+        homeState.setAllPosts(response.getWantedPosts());
         this.homeViewModel.setState(homeState);
         homeViewModel.firePropertyChanged();
     }

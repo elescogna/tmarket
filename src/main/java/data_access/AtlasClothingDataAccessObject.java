@@ -22,7 +22,8 @@ import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     implements HomeDataAccessInterface, CreateOrderDataAccessInterfaceItem,
-               ViewItemDataAccessInterface, SearchDataAccessInterface {
+               ViewItemDataAccessInterface, SearchDataAccessInterface,
+               ClothingPostDataAccessInterface {
 
   private static final String atlasCollectionName = "clothing";
 
