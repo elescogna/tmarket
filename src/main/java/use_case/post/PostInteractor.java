@@ -78,7 +78,7 @@ public class PostInteractor implements PostInputBoundary{
                 postPresenter.prepareFailView("Failed to post the clothing item.");
             }
         }
-        else if (postInputData.getCategory().equals("SchoolItem")){
+        else if (postInputData.getCategory().equals("School Item")){
             LocalDateTime now = LocalDateTime.now();
             //ID and image
             SchoolItem newSchoolItem = new SchoolItem(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),

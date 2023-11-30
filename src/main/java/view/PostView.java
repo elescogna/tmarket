@@ -78,6 +78,7 @@ public class PostView extends JPanel {
         postButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 PostState currentState = PostView.this.postViewModel.getState();
+                System.out.println(currentState.getCategory());
                 if ("Furniture".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
@@ -95,6 +96,8 @@ public class PostView extends JPanel {
                             currentState.getPrice(), currentState.getBrand(),
                             currentState.getCapabilities(), currentState.getColour());
                 } else if ("School Item".equals(currentState.getCategory())) {
+                    // __AUTO_GENERATED_PRINTF_START__
+                    System.out.println("PostView#actionPerformed#if#if#if 1"); // __AUTO_GENERATED_PRINTF_END__
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
                             currentState.getType(), currentState.getName(),
@@ -544,12 +547,14 @@ public class PostView extends JPanel {
             "red", "black", "blue", "green", "grey", "white", "purple", "orange",
                 "yellow", "brown", "beige", "pink", "multicolour"});
         clothingColourComboBox.setBounds(340, 104, 100, 14);
+        clothingColourComboBox.setSelectedIndex(0);
 
         sizeLabel = new JLabel("Size:");
         sizeLabel.setBounds(232, 130, 87, 14);
         sizeComboBox =
             new JComboBox<>(new String[] {"XXS", "XS", "S", "M", "L", "XL", "XXL"});
         sizeComboBox.setBounds(340, 130, 100, 14);
+        sizeComboBox.setSelectedIndex(0);
 
         materialLabel = new JLabel("Material:");
         materialLabel.setBounds(232, 156, 87, 14);
@@ -675,7 +680,7 @@ public class PostView extends JPanel {
                 types = new String[] {"Shirt",  "Pants",  "Dress",       "Jeans", "Tops",
                     "Formal", "Jacket", "Winter Gear", "Hoodie"};
                 break;
-            case "School Items":
+            case "School Item":
                 types = new String[] {"Textbook", "Notebook", "Stationery",
                     "Pens",     "Bag",      "Calculator"};
                 break;
