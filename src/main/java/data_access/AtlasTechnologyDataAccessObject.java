@@ -61,10 +61,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                // TODO: when we get around to this, we have to get a student based on
-                // the owner ID that is provided here like:
-                // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = null;
+                String ownerId = itemDocument.getString("ownerId");
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
@@ -78,7 +75,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
 
                 Technology newItem = new Technology(
                         name, description, condition, price, age, soldYet, pickupAddress,
-                        owner, type, picture, creationTime, brand, capabilities, colour);
+                        ownerId, type, picture, creationTime, brand, capabilities, colour);
 
                 result.add(newItem);
             }
@@ -96,7 +93,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put("ownerId", item.getOwner().getId());
+        document.put("ownerId", item.getOwnerId());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
         document.put("brand", item.getBrand());
@@ -204,10 +201,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             int age = itemDocument.getInt("age");
             boolean soldYet = itemDocument.getBoolean("soldYet");
             String pickupAddress = itemDocument.getString("pickupAddress");
-            // TODO: when we get around to this, we have to get a student based
-            // on the owner ID that is provided here like:
-            // Student.get(jsonDocument.getString("ownerId"));
-            Student owner = null;
+            String ownerId = itemDocument.getString("ownerId");
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
@@ -221,7 +215,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
 
             Technology newItem = new Technology(
                     name, description, condition, price, age, soldYet, pickupAddress,
-                    owner, type, picture, creationTime, brand, capabilities, colour);
+                    ownerId, type, picture, creationTime, brand, capabilities, colour);
             return newItem;
         }
     }
@@ -301,10 +295,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                // TODO: when we get around to this, we have to get a student based on
-                // the owner ID that is provided here like:
-                // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = null;
+                String ownerId = itemDocument.getString("ownerId");
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
@@ -326,7 +317,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 if (distance < maxDistance) {
                     Technology newItem = new Technology(
                             name, description, condition, price, age, soldYet, pickupAddress,
-                            owner, type, picture, creationTime, brand, capabilities, colour);
+                            ownerId, type, picture, creationTime, brand, capabilities, colour);
 
                     result.add(newItem);
                 }

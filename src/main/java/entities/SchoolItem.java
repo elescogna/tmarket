@@ -13,11 +13,11 @@ public class SchoolItem extends Item {
 
     public SchoolItem(String name, String description,
             int condition, int price, int age, boolean soldYet,
-            String pickupAddress, Student owner,
+            String pickupAddress, String ownerId,
             String type, String picture, LocalDateTime creationTime,
             String brand, String colour) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
-                owner, type, picture, creationTime);
+                ownerId, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;
     }

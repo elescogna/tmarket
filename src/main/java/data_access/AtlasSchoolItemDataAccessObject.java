@@ -64,10 +64,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                // TODO: when we get around to this, we have to get a student based on
-                // the owner ID that is provided here like:
-                // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
-                Student owner = null;
+                String ownerId = itemDocument.getString("ownerId");
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
@@ -79,7 +76,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
 
                 SchoolItem newItem = new SchoolItem(
                         name, description, condition, price, age, soldYet, pickupAddress,
-                        owner, type, picture, creationTime, brand, colour);
+                        ownerId, type, picture, creationTime, brand, colour);
 
                 result.add(newItem);
             }
@@ -97,10 +94,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put(
-                "ownerId",
-                item.getOwner().getId()); // You might need to change this based on how
-                                          // the owner is identified in your system
+        document.put( "ownerId", item.getOwnerId()); // You might need to change this based on how the owner is identified in your system
         document.put("type", item.getType());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
@@ -209,10 +203,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             int age = itemDocument.getInt("age");
             boolean soldYet = itemDocument.getBoolean("soldYet");
             String pickupAddress = itemDocument.getString("pickupAddress");
-            // TODO: when we get around to this, we have to get a student based on
-            // the owner ID that is provided here like:
-            // studentDataAccessObject.get(jsonDocument.getString("ownerId"));
-            Student owner = null;
+            String ownerId = itemDocument.getString("ownerId");
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
@@ -223,7 +214,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             String colour = itemDocument.getString("colour");
 
             SchoolItem newItem = new SchoolItem(name, description, condition,
-                    price, age, soldYet, pickupAddress, owner, type, picture,
+                    price, age, soldYet, pickupAddress, ownerId, type, picture,
                     creationTime, brand, colour);
 
             return newItem;
@@ -305,10 +296,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 int age = itemDocument.getInt("age");
                 boolean soldYet = itemDocument.getBoolean("soldYet");
                 String pickupAddress = itemDocument.getString("pickupAddress");
-                // TODO: when we get around to this, we have to get a student based on
-                // the owner ID that is provided here like:
-                // Student.get(jsonDocument.getString("ownerId"));
-                Student owner = null;
+                String ownerId = itemDocument.getString("ownerId");
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
@@ -328,7 +316,7 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 if (distance < maxDistance) {
                     SchoolItem newItem = new SchoolItem(name, description,
                             condition, price, age, soldYet, pickupAddress,
-                            owner, type, picture, creationTime, brand, colour);
+                            ownerId, type, picture, creationTime, brand, colour);
 
                     result.add(newItem);
                 }

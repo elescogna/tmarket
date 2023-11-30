@@ -98,8 +98,9 @@ public class Main {
                 schoolItemDataAccessObject, technologyDataAccessObject);
         views.add(viewItemView, viewItemViewModel.getViewName());
 
-        ContactView contactView = ContactUseCaseFactory.create(
-                contactViewModel, viewManagerModel, homeViewModel);
+        ContactView contactView =
+            ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
+                    homeViewModel, studentDataAccessObject);
         views.add(contactView, contactViewModel.getViewName());
 
         CreateOrderView createOrderView = CreateOrderUseCaseFactory.create(

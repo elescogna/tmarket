@@ -36,7 +36,7 @@ public class PostInteractor implements PostInputBoundary{
             LocalDateTime now = LocalDateTime.now();
             //ID and image
             Furniture newFurniture = new Furniture(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
-                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
+                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent().getId(),
                     postInputData.getType(), "", now, postInputData.getLength(), postInputData.getWidth(), postInputData.getHeight());
             try {
                 furnitureDataAccessObject.addItemToFurnitureCollection(newFurniture);
@@ -52,7 +52,7 @@ public class PostInteractor implements PostInputBoundary{
             LocalDateTime now = LocalDateTime.now();
             //ID and image
             Technology newTechnology = new Technology(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
-                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
+                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent().getId(),
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getCapabilities(), postInputData.getColour());
             try {
                 technologyDataAccessObject.addItemToTechnologyCollection(newTechnology);
@@ -67,7 +67,7 @@ public class PostInteractor implements PostInputBoundary{
             LocalDateTime now = LocalDateTime.now();
             //ID and image
             Clothing newClothing = new Clothing(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
-                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
+                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent().getId(),
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour(), postInputData.getSize(), postInputData.getMaterial());
             try {
                 clothingDataAccessObject.addItemToClothingCollection(newClothing);
@@ -82,7 +82,7 @@ public class PostInteractor implements PostInputBoundary{
             LocalDateTime now = LocalDateTime.now();
             //ID and image
             SchoolItem newSchoolItem = new SchoolItem(postInputData.getName(), postInputData.getDescription(),postInputData.getConditionScore(),
-                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent(),
+                    postInputData.getPrice(), postInputData.getAge(), false, postInputData.getPickupAddress(), postInputData.getStudent().getId(),
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour());
             try {
                 schoolItemDataAccessObject.addItemToSchoolItemCollection(newSchoolItem);
