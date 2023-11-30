@@ -77,8 +77,7 @@ public class PostView extends JPanel {
 
         postButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PostState currentState =
-                    PostView.this.postViewModel.getState();
+                PostState currentState = PostView.this.postViewModel.getState();
                 if ("Furniture".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
@@ -436,6 +435,7 @@ public class PostView extends JPanel {
         categoryComboBox = new JComboBox<>(
                 new String[] {"Furniture", "Technology", "School Item", "Clothing"});
         categoryComboBox.setBounds(94, 78, 98, 14);
+        categoryComboBox.setSelectedIndex(0);
 
         typeLabel = new JLabel("Type:");
         typeLabel.setBounds(10, 104, 87, 14);
@@ -457,7 +457,8 @@ public class PostView extends JPanel {
         conditionScoreLabel = new JLabel("Condition:");
         conditionScoreLabel.setBounds(10, 182, 109, 14);
         conditionScoreComboBox = new JComboBox<>(new Integer[] {1, 2, 3, 4, 5});
-        // conditionScoreComboBox.setBounds(354, 71, 98, 14);
+        conditionScoreComboBox.setBounds(94, 182, 100, 14);
+        conditionScoreComboBox.setSelectedIndex(0);
 
         pickupAddressLabel = new JLabel("Pickup Address:");
         pickupAddressLabel.setBounds(10, 208, 87, 14);
@@ -505,7 +506,7 @@ public class PostView extends JPanel {
                 "xiaomi", "huawei", "lenovo", "asus"});
         technologyBrandComboBox.setSize(100, 14);
         technologyBrandComboBox.setLocation(340, 78);
-        conditionScoreComboBox.setBounds(94, 182, 100, 14);
+        technologyBrandComboBox.setSelectedIndex(0);
 
         capabilitiesLabel = new JLabel("Capabilities:");
         capabilitiesLabel.setBounds(232, 104, 87, 14);
@@ -683,6 +684,7 @@ public class PostView extends JPanel {
                 break;
         }
         typeComboBox.setModel(new DefaultComboBoxModel<>(types));
+        typeComboBox.setSelectedIndex(0);
     }
 
     private void updateAdditionalFields() {
