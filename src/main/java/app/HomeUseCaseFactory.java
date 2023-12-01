@@ -96,7 +96,7 @@ public class HomeUseCaseFactory {
 
             // Pass this method's parameters to the Presenter.
             HomeOutputBoundary homeOutputBoundary =
-                new HomePresenter(viewManagerModel, homeViewModel);
+                new HomePresenter(homeViewModel);
 
             HomeInputBoundary homeInteractor =
                 new HomeInteractor(clothingDataAccessObject, furnitureDataAccessObject,
@@ -158,5 +158,5 @@ public class HomeUseCaseFactory {
                 viewItemOutputBoundary);
 
         return new ViewItemController(viewItemInteractor);
-    }
+            }
 }

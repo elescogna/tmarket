@@ -42,11 +42,11 @@ public class SearchView extends JPanel {
 	private JLabel maximumDistanceLabel;
 	private JLabel conditionScoreLabel;
 	private JLabel brandLabel;
-	private JComboBox brandComboBox;
+	private JComboBox<String> brandComboBox;
 	private JLabel colourLabel;
-	private JComboBox colourComboBox;
+	private JComboBox<String> colourComboBox;
 	private JLabel sizeLabel;
-	private JComboBox sizeComboBox;
+	private JComboBox<String> sizeComboBox;
 	private JButton submitButton;
 	private JButton backButton;
 

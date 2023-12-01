@@ -43,7 +43,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		usernameInputField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				LoginState currentState = loginViewModel.getState();
+				LoginState currentState = LoginView.this.loginViewModel.getState();
 				currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
 				loginViewModel.setState(currentState);
 			}

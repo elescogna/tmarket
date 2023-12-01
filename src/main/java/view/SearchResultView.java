@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class SearchResultView extends JPanel {
     private static final long serialVersionUID = 1L;
-    private final JList list;
+    private final JList<String> list;
     private JScrollPane listScrollPane;
     private JButton homeButton;
     private GoHomeController goHomeController;
@@ -31,7 +31,7 @@ public class SearchResultView extends JPanel {
         this.searchResultViewModel = searchResultViewModel;
         this.viewItemController = viewItemController;
 
-        list = new JList();
+        list = new JList<String>();
 
         listScrollPane = new JScrollPane(list);
         listScrollPane.setBounds(36, 33, 379, 199);

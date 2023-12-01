@@ -44,10 +44,10 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         otherAddress.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                CreateOrderState currentState = createOrderViewModel.getState();
+                CreateOrderState currentState = CreateOrderView.this.createOrderViewModel.getState();
                 String text = otherAddress.getText() + e.getKeyChar();
                 currentState.setOtherAddress(text);
-                createOrderViewModel.setState(currentState);
+                CreateOrderView.this.createOrderViewModel.setState(currentState);
             }
         });
         otherAddress.setColumns(10);
@@ -64,7 +64,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         lblNewLabel_1_1.setBounds(30, 270, 858, 25);
         add(lblNewLabel_1_1);
 
-        JComboBox sameAddress = new JComboBox();
+        JComboBox<String> sameAddress = new JComboBox<String>();
         sameAddress.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CreateOrderState currentState = createOrderViewModel.getState();
@@ -74,7 +74,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
             }
         });
         sameAddress.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        sameAddress.setModel(new DefaultComboBoxModel(new String[] {"Yes", "No"}));
+        sameAddress.setModel(new DefaultComboBoxModel<String>(new String[] {"Yes", "No"}));
         sameAddress.setEditable(true);
         sameAddress.setBounds(30, 320, 149, 35);
         add(sameAddress);
@@ -109,7 +109,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
                 if (e.getSource().equals(create)) {
                     CreateOrderState currentState = createOrderViewModel.getState();
 
-                    createOrderController.execute(
+                    CreateOrderView.this.createOrderController.execute(
                             currentState.getItem(),
                             currentState.getStudent(),
                             currentState.getBuyerEmail(),
@@ -126,7 +126,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         JButton btnBackToHome = new JButton("Back To Home");
         btnBackToHome.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-                goHomeController.execute();
+                CreateOrderView.this.goHomeController.execute();
         	}
         });
         btnBackToHome.setFont(new Font("Tahoma", Font.PLAIN, 20));
