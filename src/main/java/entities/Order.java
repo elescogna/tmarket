@@ -4,15 +4,15 @@ public class Order {
     private String id;
     private String buyerEmail;
     private String sellerEmail;
-    private Item item;
+    private String itemId;
     private String pickupLocation;
 
-    public Order(String id, String buyerEmail, String sellerEmail, Item item,
+    public Order(String id, String buyerEmail, String sellerEmail, String itemId,
             String pickupLocation) {
         this.id = id;
         this.buyerEmail = buyerEmail;
         this.sellerEmail = sellerEmail;
-        this.item = item;
+        this.itemId = itemId;
         this.pickupLocation = pickupLocation;
     }
 
@@ -26,10 +26,6 @@ public class Order {
 
     public String getSellerEmail() { return sellerEmail; }
 
-    public void setItem(Item item) { this.item = item; }
-
-    public Item getItem() { return item; }
-
     public void setPickupLocation(String pickupLocation) {
         this.pickupLocation = pickupLocation;
     }
@@ -39,4 +35,8 @@ public class Order {
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
+
+    public String getItemId() { return itemId; }
+
+    public void setItemId(String itemId) { this.itemId = itemId; }
 }
