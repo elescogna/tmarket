@@ -24,6 +24,9 @@ public class ViewItemPresenter implements ViewItemOutputBoundary {
 
         this.viewItemViewModel.setState(viewItemState);
         viewItemViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(viewItemViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
