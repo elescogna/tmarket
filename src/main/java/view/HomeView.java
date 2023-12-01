@@ -162,6 +162,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         btnRefresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 HomeView.this.homeController.execute();
+                HomeView.this.updateItemsList();
             }
         });
     }
