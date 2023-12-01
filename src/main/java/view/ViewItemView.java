@@ -73,68 +73,68 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         add(lblPhoto);
 
         lblName = new JLabel("Name:");
-        lblName.setBounds(256, 66, 83, 17);
+        lblName.setBounds(256, 66, 380, 17);
         lblName.setFont(new Font("Modern No. 20", Font.BOLD, 15));
         add(lblName);
 
         lblDescription = new JLabel("Description:");
         lblDescription.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblDescription.setBounds(256, 95, 96, 17);
+        lblDescription.setBounds(256, 95, 380, 17);
         add(lblDescription);
 
         lblCondition = new JLabel("Condition:");
         lblCondition.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCondition.setBounds(256, 124, 83, 17);
+        lblCondition.setBounds(256, 124, 380, 17);
         add(lblCondition);
 
         lblSoldYet = new JLabel("Sold Yet:");
         lblSoldYet.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblSoldYet.setBounds(256, 211, 75, 17);
+        lblSoldYet.setBounds(256, 211, 380, 17);
         add(lblSoldYet);
 
         lblAge = new JLabel("Age:");
         lblAge.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblAge.setBounds(256, 182, 50, 17);
+        lblAge.setBounds(256, 182, 380, 17);
         add(lblAge);
 
         lblPrice = new JLabel("Price:");
         lblPrice.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblPrice.setBounds(256, 153, 50, 17);
+        lblPrice.setBounds(256, 153, 380, 17);
         add(lblPrice);
 
         lblPostedAt = new JLabel("Posted at:");
         lblPostedAt.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblPostedAt.setBounds(256, 298, 83, 17);
+        lblPostedAt.setBounds(256, 298, 380, 17);
         add(lblPostedAt);
 
         lblType = new JLabel("Type:");
         lblType.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblType.setBounds(256, 269, 41, 17);
+        lblType.setBounds(256, 269, 380, 17);
         add(lblType);
 
         lblOwnerName = new JLabel("Owner Name:");
         lblOwnerName.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblOwnerName.setBounds(256, 240, 113, 17);
+        lblOwnerName.setBounds(256, 240, 380, 17);
         add(lblOwnerName);
 
         lblCustom3 = new JLabel("Custom 3");
         lblCustom3.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom3.setBounds(256, 385, 83, 17);
+        lblCustom3.setBounds(256, 385, 380, 17);
         add(lblCustom3);
 
         lblCustom2 = new JLabel("Custom 2");
         lblCustom2.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom2.setBounds(256, 356, 83, 17);
+        lblCustom2.setBounds(256, 356, 380, 17);
         add(lblCustom2);
 
         lblCustom1 = new JLabel("Custom 1");
         lblCustom1.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom1.setBounds(256, 327, 83, 17);
+        lblCustom1.setBounds(256, 327, 380, 17);
         add(lblCustom1);
 
         lblCustom4 = new JLabel("Custom 4");
         lblCustom4.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom4.setBounds(256, 414, 83, 17);
+        lblCustom4.setBounds(256, 414, 380, 17);
         add(lblCustom4);
 
         btnBack = new JButton("Done");
@@ -209,7 +209,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
                 lblCustom1.setText("Brand: " + ((Clothing)currentItem).getBrand());
                 lblCustom2.setText("Colour: " + ((Clothing)currentItem).getColour());
                 lblCustom3.setText("Size: " + ((Clothing)currentItem).getSize());
-                lblCustom3.setText("Material: " +
+                lblCustom4.setText("Material: " +
                         ((Clothing)currentItem).getMaterial());
 
                 lblCustom1.setVisible(true);
@@ -240,7 +240,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             } else { // currentItem instanceof Furniture
                 lblCustom1.setText("Length: " + ((Furniture)currentItem).getLength());
                 lblCustom2.setText("Width: " + ((Furniture)currentItem).getWidth());
-                lblCustom2.setText("Height: " + ((Furniture)currentItem).getHeight());
+                lblCustom3.setText("Height: " + ((Furniture)currentItem).getHeight());
 
                 lblCustom1.setVisible(true);
                 lblCustom2.setVisible(true);
