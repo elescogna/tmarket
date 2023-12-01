@@ -93,7 +93,7 @@ public class Main {
 
         ViewItemView viewItemView = ViewItemUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, contactViewModel,
-                clothingDataAccessObject, furnitureDataAccessObject,
+                createOrderViewModel, clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);

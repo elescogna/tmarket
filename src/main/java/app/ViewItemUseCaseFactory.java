@@ -4,6 +4,9 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
 import interface_adapter.contacting.ContactingController;
 import interface_adapter.contacting.ContactingPresenter;
+import interface_adapter.create_order.CreateOrderViewModel;
+import interface_adapter.go_create_order.GoCreateOrderController;
+import interface_adapter.go_create_order.GoCreateOrderPresenter;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
@@ -15,6 +18,9 @@ import javax.swing.JOptionPane;
 import use_case.contacting.ContactingInputBoundary;
 import use_case.contacting.ContactingInteractor;
 import use_case.contacting.ContactingOutputBoundary;
+import use_case.go_create_order.GoCreateOrderInputBoundary;
+import use_case.go_create_order.GoCreateOrderInteractor;
+import use_case.go_create_order.GoCreateOrderOutputBoundary;
 import use_case.go_home.GoHomeInputBoundary;
 import use_case.go_home.GoHomeInteractor;
 import use_case.go_home.GoHomeOutputBoundary;
@@ -33,6 +39,7 @@ public class ViewItemUseCaseFactory {
     public static ViewItemView
         create(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel,
                 ViewItemViewModel viewItemViewModel, ContactViewModel contactViewModel,
+                CreateOrderViewModel createOrderViewModel,
                 HomeDataAccessInterface clothingHomeDataAccessObject,
                 HomeDataAccessInterface furnitureHomeDataAccessObject,
                 HomeDataAccessInterface schoolItemHomeDataAccessObject,
@@ -47,9 +54,11 @@ public class ViewItemUseCaseFactory {
                     createContactingUseCase(contactViewModel, viewManagerModel);
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
+                GoCreateOrderController goCreateOrderController =
+                        createGoCreateOrderUseCase(createOrderViewModel, viewManagerModel);
 
                 return new ViewItemView(viewItemViewModel, goHomeController,
-                        contactingController);
+                        contactingController, goCreateOrderController);
 
             } catch (IOException e) {
                 // TODO: what should this actually print out?
@@ -83,4 +92,16 @@ public class ViewItemUseCaseFactory {
 
             return new GoHomeController(goHomeInteractor);
         }
+
+    private static GoCreateOrderController
+    createGoCreateOrderUseCase(CreateOrderViewModel createOrderViewModel,
+                               ViewManagerModel viewManagerModel) throws IOException {
+        GoCreateOrderOutputBoundary goCreateOrderOutputBoundary =
+                new GoCreateOrderPresenter(createOrderViewModel, viewManagerModel);
+
+        GoCreateOrderInputBoundary goCreateOrderInteractor =
+                new GoCreateOrderInteractor(goCreateOrderOutputBoundary);
+
+        return new GoCreateOrderController(goCreateOrderInteractor);
+    }
 }
