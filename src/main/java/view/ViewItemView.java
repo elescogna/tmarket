@@ -7,6 +7,7 @@ import entities.SchoolItem;
 import entities.Student;
 import entities.Technology;
 import interface_adapter.contacting.ContactingController;
+import interface_adapter.go_create_order.GoCreateOrderController;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
@@ -47,16 +48,18 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private ViewItemViewModel viewItemViewModel;
     private GoHomeController goHomeController;
     private ContactingController contactingController;
+    private GoCreateOrderController goCreateOrderController;
 
     /**
      * Create the panel.
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
-            ContactingController contactingController) {
+            ContactingController contactingController, GoCreateOrderController goCreateOrderController) {
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
         this.contactingController = contactingController;
+        this.goCreateOrderController = goCreateOrderController;
 
         this.viewItemViewModel.addPropertyChangeListener(this);
 
@@ -165,6 +168,10 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         btnFulfillOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: execute CreateOrder
+                ViewItemState state = viewItemViewModel.getState();
+                Student currentStudent = state.getCurrentStudent();
+                Item item = state.getCurrentItem();
+                goCreateOrderController.execute(currentStudent, item);
             }
         });
         btnFulfillOrder.setBounds(418, 443, 123, 27);
