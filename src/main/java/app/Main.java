@@ -114,7 +114,9 @@ public class Main {
                 viewManagerModel, homeViewModel, viewItemViewModel, searchViewModel,
                 profileViewModel, postViewModel, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
-                technologyDataAccessObject, studentDataAccessObject);
+                technologyDataAccessObject, studentDataAccessObject,
+                clothingDataAccessObject, furnitureDataAccessObject,
+                schoolItemDataAccessObject, technologyDataAccessObject);
         views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =
