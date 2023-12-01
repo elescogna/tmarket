@@ -1,7 +1,6 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewModel;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -9,13 +8,9 @@ public class LoginViewModel extends ViewModel {
 
     private LoginState state = new LoginState();
 
-    public LoginViewModel() {
-        super("log_in");
-    }
+    public LoginViewModel() { super("log_in"); }
 
-    public void setState(LoginState state) {
-        this.state = state;
-    }
+    public void setState(LoginState state) { this.state = state; }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -27,7 +22,5 @@ public class LoginViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public LoginState getState() {
-        return state;
-    }
+    public LoginState getState() { return state; }
 }

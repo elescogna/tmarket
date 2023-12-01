@@ -6,33 +6,32 @@ import java.util.HashMap;
 
 public class Technology extends Item {
     // TODO: fill these in
-    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
+    private static final HashMap<String, ArrayList<String>> filterableAttributes =
+        new HashMap<>();
 
     private String brand;
     private String capabilities;
     private String colour;
 
-    public Technology(String id, String name, String description,
-            int condition, int price, int age, boolean soldYet,
-            String pickupAddress, String ownerId,
-            String type, String picture, LocalDateTime creationTime,
-            String brand, String capabilities,
-            String colour) {
+    public Technology(String id, String name, String description, int condition,
+            int price, int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, String brand,
+            String capabilities, String colour) {
         super(id, name, description, condition, price, age, soldYet, pickupAddress,
-                 ownerId, type, picture, creationTime);
+                ownerId, type, picture, creationTime);
         this.brand = brand;
         this.capabilities = capabilities;
         this.colour = colour;
     }
 
-    public Technology(String name, String description,
-            int condition, int price, int age, boolean soldYet,
-            String pickupAddress, String ownerId,
-            String type, String picture, LocalDateTime creationTime,
-            String brand, String capabilities,
-            String colour) {
+    public Technology(String name, String description, int condition, int price,
+            int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, String brand,
+            String capabilities, String colour) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
-                 ownerId, type, picture, creationTime);
+                ownerId, type, picture, creationTime);
         this.brand = brand;
         this.capabilities = capabilities;
         this.colour = colour;

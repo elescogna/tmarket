@@ -21,140 +21,71 @@ public class PostState {
     private String size = "";
     private String material = "";
 
-    public PostState() {
-    }
+    public PostState() {}
 
-    public void setStudent(Student student){
-        this.student = student;
-    }
-    public void setName(String text) {
-        this.name = text;
-    }
+    public void setStudent(Student student) { this.student = student; }
+    public void setName(String text) { this.name = text; }
 
-    public void setDescription(String text) {
-        this.description = text;
-    }
+    public void setDescription(String text) { this.description = text; }
 
-    public void setPickupAddress(String text) {
-        this.pickupAddress = text;
-    }
+    public void setPickupAddress(String text) { this.pickupAddress = text; }
 
-    public void setAge(int text) {
-        this.age = text;
-    }
+    public void setAge(int text) { this.age = text; }
 
-    public void setPrice(int i) {
-        this.price = i;
-    }
+    public void setPrice(int i) { this.price = i; }
 
-    public void setLength(double v) {
-        this.length = v;
-    }
+    public void setLength(double v) { this.length = v; }
 
-    public void setCategory(String item) {
-        this.category = item;
-    }
+    public void setCategory(String item) { this.category = item; }
 
-    public void setType(String item) {
-        this.type = item;
-    }
+    public void setType(String item) { this.type = item; }
 
-    public void setConditionScore(int item) {
-        this.conditionScore = item;
-    }
+    public void setConditionScore(int item) { this.conditionScore = item; }
 
-    public void setWidth(double v) {
-        this.width = v;
-    }
+    public void setWidth(double v) { this.width = v; }
 
-    public void setHeight(double v) {
-        this.height = v;
-    }
+    public void setHeight(double v) { this.height = v; }
 
-    public void setBrand(String text){
-        this.brand = text;
-    }
+    public void setBrand(String text) { this.brand = text; }
 
-    public void setCapabilities(String text){
-        this.capabilities = text;
-    }
+    public void setCapabilities(String text) { this.capabilities = text; }
 
-    public void setColour(String text){
-        this.colour = text;
-    }
+    public void setColour(String text) { this.colour = text; }
 
-    public void setSize(String text){
-        this.size= text;
-    }
+    public void setSize(String text) { this.size = text; }
 
-    public void setMaterial(String text){
-        this.material = text;
-    }
+    public void setMaterial(String text) { this.material = text; }
 
-    public Student getStudent(){
-        return student;
-    }
-    public String getCategory() {
-        return category;
-    }
+    public Student getStudent() { return student; }
+    public String getCategory() { return category; }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public String getPickupAddress(){
-        return pickupAddress;
-    }
+    public String getPickupAddress() { return pickupAddress; }
 
-    public int getConditionScore() {
-        return conditionScore;
-    }
+    public int getConditionScore() { return conditionScore; }
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() { return age; }
 
-    public int getPrice() {
-        return price;
-    }
+    public int getPrice() { return price; }
 
-    public double getLength() {
-        return length;
-    }
+    public double getLength() { return length; }
 
-    public double getWidth() {
-        return width;
-    }
+    public double getWidth() { return width; }
 
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
-    public String getBrand() {
-        return brand;
-    }
+    public String getBrand() { return brand; }
 
-    public String getCapabilities() {
-        return capabilities;
-    }
+    public String getCapabilities() { return capabilities; }
 
-    public String getColour() {
-        return colour;
-    }
+    public String getColour() { return colour; }
 
-    public String getSize() {
-        return size;
-    }
+    public String getSize() { return size; }
 
-    public String getMaterial() {
-        return material;
-    }
+    public String getMaterial() { return material; }
 }

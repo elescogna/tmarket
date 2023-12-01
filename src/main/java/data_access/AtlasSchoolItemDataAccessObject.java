@@ -74,9 +74,9 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                 String brand = itemDocument.getString("brand");
                 String colour = itemDocument.getString("colour");
 
-                SchoolItem newItem = new SchoolItem(id,
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        ownerId, type, picture, creationTime, brand, colour);
+                SchoolItem newItem = new SchoolItem(
+                        id, name, description, condition, price, age, soldYet,
+                        pickupAddress, ownerId, type, picture, creationTime, brand, colour);
 
                 result.add(newItem);
             }
@@ -94,7 +94,10 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put( "ownerId", item.getOwnerId()); // You might need to change this based on how the owner is identified in your system
+        document.put(
+                "ownerId",
+                item.getOwnerId()); // You might need to change this based on how the
+                                    // owner is identified in your system
         document.put("type", item.getType());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
@@ -114,8 +117,8 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             requestBodyMap.put("collection", atlasCollectionName);
             requestBodyMap.put("document", itemToDocument(newItem));
 
-            Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
-                    requestBodyMap);
+            Request request = preparePostRequest(atlasCollectionName,
+                    "/action/insertOne", requestBodyMap);
 
             try (okhttp3.Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
@@ -213,9 +216,9 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
             String brand = itemDocument.getString("brand");
             String colour = itemDocument.getString("colour");
 
-            SchoolItem newItem = new SchoolItem(id, name, description,
-                    condition, price, age, soldYet, pickupAddress, ownerId,
-                    type, picture, creationTime, brand, colour);
+            SchoolItem newItem = new SchoolItem(
+                    id, name, description, condition, price, age, soldYet, pickupAddress,
+                    ownerId, type, picture, creationTime, brand, colour);
 
             return newItem;
         }
@@ -314,9 +317,10 @@ public class AtlasSchoolItemDataAccessObject extends AtlasDataAccessObject
                     Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
-                    SchoolItem newItem = new SchoolItem(id, name, description,
-                            condition, price, age, soldYet, pickupAddress,
-                            ownerId, type, picture, creationTime, brand, colour);
+                    SchoolItem newItem =
+                        new SchoolItem(id, name, description, condition, price, age,
+                                soldYet, pickupAddress, ownerId, type, picture,
+                                creationTime, brand, colour);
 
                     result.add(newItem);
                 }

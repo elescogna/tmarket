@@ -10,8 +10,8 @@ public class PostPresenter implements PostOutputBoundary {
     private final HomeViewModel homeViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public PostPresenter(ViewManagerModel viewManagerModel, HomeViewModel
-            homeViewModel) {
+    public PostPresenter(ViewManagerModel viewManagerModel,
+            HomeViewModel homeViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.homeViewModel = homeViewModel;
     }

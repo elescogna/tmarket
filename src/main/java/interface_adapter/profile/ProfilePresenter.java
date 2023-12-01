@@ -8,7 +8,8 @@ public class ProfilePresenter implements ProfileOutputBoundary {
     private final ProfileViewModel profileViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public ProfilePresenter(ViewManagerModel viewManagerModel, ProfileViewModel profileViewModel) {
+    public ProfilePresenter(ViewManagerModel viewManagerModel,
+            ProfileViewModel profileViewModel) {
         this.profileViewModel = profileViewModel;
         this.viewManagerModel = viewManagerModel;
     }
@@ -23,7 +24,6 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         profileState.setHomeAddress(response.getHomeAddress());
         profileState.setName(response.getName());
 
-
         this.profileViewModel.setState(profileState);
         profileViewModel.firePropertyChanged();
         viewManagerModel.setActiveView(profileViewModel.getViewName());
@@ -36,5 +36,4 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         profileState.setStudentNotFoundError(error);
         profileViewModel.firePropertyChanged();
     }
-
 }

@@ -14,10 +14,10 @@ public class Furniture extends Item {
     private double height;
 
     public Furniture(String id, String name, String description, int condition,
-                     int price, int age, boolean soldYet, String pickupAddress,
-                     String ownerId, String type, String picture,
-                     LocalDateTime creationTime, double length, double width,
-                     double height) {
+            int price, int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, double length, double width,
+            double height) {
         super(id, name, description, condition, price, age, soldYet, pickupAddress,
                 ownerId, type, picture, creationTime);
         this.length = length;
@@ -25,11 +25,11 @@ public class Furniture extends Item {
         this.height = height;
     }
 
-    public Furniture(String name, String description, int condition,
-                     int price, int age, boolean soldYet, String pickupAddress,
-                     String ownerId, String type, String picture,
-                     LocalDateTime creationTime, double length, double width,
-                     double height) {
+    public Furniture(String name, String description, int condition, int price,
+            int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, double length, double width,
+            double height) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
                 ownerId, type, picture, creationTime);
         this.length = length;

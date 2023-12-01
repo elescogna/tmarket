@@ -6,27 +6,26 @@ import java.util.HashMap;
 
 public class SchoolItem extends Item {
     // TODO: fill these in
-    private static final HashMap<String, ArrayList<String>> filterableAttributes = new HashMap<>();
+    private static final HashMap<String, ArrayList<String>> filterableAttributes =
+        new HashMap<>();
 
     private String brand;
     private String colour;
 
-    public SchoolItem(String id, String name, String description,
-            int condition, int price, int age, boolean soldYet,
-            String pickupAddress, String ownerId,
-            String type, String picture, LocalDateTime creationTime,
-            String brand, String colour) {
+    public SchoolItem(String id, String name, String description, int condition,
+            int price, int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, String brand, String colour) {
         super(id, name, description, condition, price, age, soldYet, pickupAddress,
                 ownerId, type, picture, creationTime);
         this.brand = brand;
         this.colour = colour;
     }
 
-    public SchoolItem(String name, String description,
-            int condition, int price, int age, boolean soldYet,
-            String pickupAddress, String ownerId,
-            String type, String picture, LocalDateTime creationTime,
-            String brand, String colour) {
+    public SchoolItem(String name, String description, int condition, int price,
+            int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, String brand, String colour) {
         super(name, description, condition, price, age, soldYet, pickupAddress,
                 ownerId, type, picture, creationTime);
         this.brand = brand;

@@ -95,8 +95,7 @@ public class HomeUseCaseFactory {
             throws IOException {
 
             // Pass this method's parameters to the Presenter.
-            HomeOutputBoundary homeOutputBoundary =
-                new HomePresenter(homeViewModel);
+            HomeOutputBoundary homeOutputBoundary = new HomePresenter(homeViewModel);
 
             HomeInputBoundary homeInteractor =
                 new HomeInteractor(clothingDataAccessObject, furnitureDataAccessObject,

@@ -1,0 +1,18 @@
+diff a/src/main/java/interface_adapter/profile/ProfileViewModel.java b/src/main/java/interface_adapter/profile/ProfileViewModel.java	(rejected hunks)
+@@ -1,15 +1,12 @@
+ package interface_adapter.profile;
+ 
+ import interface_adapter.ViewModel;
+-
+ import java.beans.PropertyChangeListener;
+ import java.beans.PropertyChangeSupport;
+ 
+ public class ProfileViewModel extends ViewModel {
+     private ProfileState state = new ProfileState();
+-    public ProfileViewModel() {
+-        super("profile");
+-    }
++    public ProfileViewModel() { super("profile"); }
+     public void setState(ProfileState profileState) { this.state = profileState; }
+     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+     public void firePropertyChanged() {

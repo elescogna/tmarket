@@ -10,13 +10,15 @@ public class GoCreateOrderPresenter implements GoCreateOrderOutputBoundary {
     private CreateOrderViewModel createOrderViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public GoCreateOrderPresenter(CreateOrderViewModel createOrderViewModel, ViewManagerModel viewManagerModel) {
+    public GoCreateOrderPresenter(CreateOrderViewModel createOrderViewModel,
+            ViewManagerModel viewManagerModel) {
         this.createOrderViewModel = createOrderViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
     @Override
-    public void prepareSuccessView(GoCreateOrderOutputData goCreateOrderOutputData) {
+    public void
+    prepareSuccessView(GoCreateOrderOutputData goCreateOrderOutputData) {
         CreateOrderState createOrderState = createOrderViewModel.getState();
         createOrderState.setStudent(goCreateOrderOutputData.getUser());
         createOrderState.setItem(goCreateOrderOutputData.getItem());

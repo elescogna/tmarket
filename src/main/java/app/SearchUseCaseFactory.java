@@ -8,6 +8,8 @@ import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
+import java.io.IOException;
+import javax.swing.*;
 import use_case.go_home.GoHomeInputBoundary;
 import use_case.go_home.GoHomeInteractor;
 import use_case.go_home.GoHomeOutputBoundary;
@@ -18,70 +20,67 @@ import use_case.search.SearchInteractor;
 import use_case.search.SearchOutputBoundary;
 import view.SearchView;
 
-import javax.swing.*;
-import java.io.IOException;
-
 public class SearchUseCaseFactory {
-
-
 
     /** Prevent instantiation. */
     private SearchUseCaseFactory() {}
 
     public static SearchView
-    create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel,
-           HomeViewModel homeViewModel,
-           SearchResultViewModel searchResultViewModel,
-           SearchDataAccessInterface clothingDataAccessObject,
-           SearchDataAccessInterface furnitureDataAccessObject,
-           SearchDataAccessInterface schoolItemDataAccessObject,
-           SearchDataAccessInterface technologyDataAccessObject) {
+        create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel,
+                HomeViewModel homeViewModel,
+                SearchResultViewModel searchResultViewModel,
+                SearchDataAccessInterface clothingDataAccessObject,
+                SearchDataAccessInterface furnitureDataAccessObject,
+                SearchDataAccessInterface schoolItemDataAccessObject,
+                SearchDataAccessInterface technologyDataAccessObject) {
 
-        try {
-            SearchController searchController = createSearchUseCase(
-                    viewManagerModel, searchViewModel, searchResultViewModel, clothingDataAccessObject,
-                    furnitureDataAccessObject, schoolItemDataAccessObject,
-                    technologyDataAccessObject);
-            GoHomeController goHomeController =
+            try {
+                SearchController searchController = createSearchUseCase(
+                        viewManagerModel, searchViewModel, searchResultViewModel,
+                        clothingDataAccessObject, furnitureDataAccessObject,
+                        schoolItemDataAccessObject, technologyDataAccessObject);
+                GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
-            return new SearchView(searchViewModel, searchController, goHomeController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
+                return new SearchView(searchViewModel, searchController,
+                        goHomeController);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
+            }
+
+            return null;
         }
 
-        return null;
-    }
-
-    private static SearchController createSearchUseCase(ViewManagerModel viewManagerModel,
-                      SearchViewModel searchViewModel,
-                      SearchResultViewModel searchResultViewModel,
-                      SearchDataAccessInterface clothingDataAccessObject,
-                      SearchDataAccessInterface furnitureDataAccessObject,
-                      SearchDataAccessInterface schoolItemDataAccessInterface,
-                      SearchDataAccessInterface technologyDataAccessInterface)
+    private static SearchController
+        createSearchUseCase(ViewManagerModel viewManagerModel,
+                SearchViewModel searchViewModel,
+                SearchResultViewModel searchResultViewModel,
+                SearchDataAccessInterface clothingDataAccessObject,
+                SearchDataAccessInterface furnitureDataAccessObject,
+                SearchDataAccessInterface schoolItemDataAccessInterface,
+                SearchDataAccessInterface technologyDataAccessInterface)
             throws IOException {
 
-        // Pass this method's parameters to the Presenter.
-        SearchOutputBoundary searchOutputBoundary =
-                new SearchPresenter(viewManagerModel, searchViewModel, searchResultViewModel);
+            // Pass this method's parameters to the Presenter.
+            SearchOutputBoundary searchOutputBoundary = new SearchPresenter(
+                    viewManagerModel, searchViewModel, searchResultViewModel);
 
-        SearchInputBoundary searchInteractor =
-                new SearchInteractor(clothingDataAccessObject, furnitureDataAccessObject,
-                        schoolItemDataAccessInterface,
-                        technologyDataAccessInterface, searchOutputBoundary);
+            SearchInputBoundary searchInteractor = new SearchInteractor(
+                    clothingDataAccessObject, furnitureDataAccessObject,
+                    schoolItemDataAccessInterface, technologyDataAccessInterface,
+                    searchOutputBoundary);
 
-        return new SearchController(searchInteractor);
-    }
+            return new SearchController(searchInteractor);
+        }
 
     private static GoHomeController
-    createGoHomeUseCase(ViewManagerModel viewManagerModel,
-                        HomeViewModel homeViewModel) {
-        GoHomeOutputBoundary goHomeOutputBoundary =
+        createGoHomeUseCase(ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel) {
+            GoHomeOutputBoundary goHomeOutputBoundary =
                 new GoHomePresenter(viewManagerModel, homeViewModel);
 
-        GoHomeInputBoundary goHomeInteractor =
+            GoHomeInputBoundary goHomeInteractor =
                 new GoHomeInteractor(goHomeOutputBoundary);
 
-        return new GoHomeController(goHomeInteractor);
-    }
+            return new GoHomeController(goHomeInteractor);
+        }
 }

@@ -8,7 +8,7 @@ public class Student {
     private String homeAddress;
 
     public Student(String id, String name, String password, String homeAddress,
-                   String uoftEmail) {
+            String uoftEmail) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -16,7 +16,7 @@ public class Student {
         this.uoftEmail = uoftEmail;
     }
     public Student(String name, String password, String homeAddress,
-                   String uoftEmail) {
+            String uoftEmail) {
         this.name = name;
         this.password = password;
         this.homeAddress = homeAddress;

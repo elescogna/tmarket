@@ -1,0 +1,9 @@
+diff a/src/main/java/interface_adapter/signup/SignupPresenter.java b/src/main/java/interface_adapter/signup/SignupPresenter.java	(rejected hunks)
+@@ -6,7 +6,6 @@ import interface_adapter.login.LoginViewModel;
+ import use_case.signup.SignupOutputBoundary;
+ import use_case.signup.SignupOutputData;
+ 
+-
+ public class SignupPresenter implements SignupOutputBoundary {
+ 
+     private final SignupViewModel signupViewModel;

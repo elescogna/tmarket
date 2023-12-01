@@ -1,0 +1,19 @@
+diff a/src/main/java/interface_adapter/search/SearchPresenter.java b/src/main/java/interface_adapter/search/SearchPresenter.java	(rejected hunks)
+@@ -6,15 +6,14 @@ import interface_adapter.search_result.SearchResultViewModel;
+ import use_case.search.SearchOutputBoundary;
+ import use_case.search.SearchOutputData;
+ 
+-
+ public class SearchPresenter implements SearchOutputBoundary {
+     private final SearchViewModel searchViewModel;
+     private final SearchResultViewModel searchResultViewModel;
+     private ViewManagerModel viewManagerModel;
+ 
+     public SearchPresenter(ViewManagerModel viewManagerModel,
+-                           SearchViewModel searchViewModel,
+-                           SearchResultViewModel searchResultViewModel) {
++            SearchViewModel searchViewModel,
++            SearchResultViewModel searchResultViewModel) {
+         this.searchViewModel = searchViewModel;
+         this.viewManagerModel = viewManagerModel;
+         this.searchResultViewModel = searchResultViewModel;

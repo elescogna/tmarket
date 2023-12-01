@@ -1,7 +1,6 @@
 package interface_adapter.search_result;
 
 import entities.Item;
-
 import java.util.ArrayList;
 
 public class SearchResultState {
@@ -18,9 +17,13 @@ public class SearchResultState {
 
     public ArrayList<Item> getFilteredItems() { return filteredItems; }
 
-    public void setFilteredItems(ArrayList<Item> filteredItems) { this.filteredItems = filteredItems; }
+    public void setFilteredItems(ArrayList<Item> filteredItems) {
+        this.filteredItems = filteredItems;
+    }
 
     public String getFilteredItemsError() { return filteredItemsError; }
 
-    public void setFilteredItemsError(String filteredItemsError) { this.filteredItemsError = filteredItemsError; }
+    public void setFilteredItemsError(String filteredItemsError) {
+        this.filteredItemsError = filteredItemsError;
+    }
 }

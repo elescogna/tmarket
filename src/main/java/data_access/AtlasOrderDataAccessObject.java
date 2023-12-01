@@ -1,22 +1,21 @@
 package data_access;
 import entities.Item;
 import entities.Order;
+import java.io.IOException;
+import java.util.HashMap;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     implements CreateOrderDataAccessInterfaceOrder {
 
     private static final String atlasCollectionName = "orders";
 
-    public Order create (String buyerEmail, String sellerEmail, Item item,
-                       String address) throws IOException {
+    public Order create(String buyerEmail, String sellerEmail, Item item,
+            String address) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -32,7 +31,8 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("collection", atlasCollectionName);
         requestBodyMap.put("document", documentValue);
 
-        Request request = preparePostRequest(atlasCollectionName, "/action/insertOne", requestBodyMap);
+        Request request = preparePostRequest(atlasCollectionName,
+                "/action/insertOne", requestBodyMap);
 
         Response response = client.newCall(request).execute();
         JSONObject responseBodyJson = new JSONObject(response.body().string());

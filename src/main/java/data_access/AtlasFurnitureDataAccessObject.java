@@ -75,9 +75,10 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 double width = itemDocument.getDouble("width");
                 double height = itemDocument.getDouble("height");
 
-                Furniture newItem = new Furniture(id,
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        ownerId, type, picture, creationTime, length, width, height);
+                Furniture newItem =
+                    new Furniture(id, name, description, condition, price, age, soldYet,
+                            pickupAddress, ownerId, type, picture, creationTime,
+                            length, width, height);
                 result.add(newItem);
             }
 
@@ -94,7 +95,10 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put( "ownerId", item.getOwnerId()); // You might need to change this based on how the owner is identified in your system
+        document.put(
+                "ownerId",
+                item.getOwnerId()); // You might need to change this based on how the
+                                    // owner is identified in your system
         document.put("type", item.getType());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
@@ -115,8 +119,8 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             requestBodyMap.put("collection", atlasCollectionName);
             requestBodyMap.put("document", itemToDocument(newItem));
 
-            Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
-                    requestBodyMap);
+            Request request = preparePostRequest(atlasCollectionName,
+                    "/action/insertOne", requestBodyMap);
 
             try (okhttp3.Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
@@ -216,9 +220,9 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             double width = itemDocument.getDouble("width");
             double height = itemDocument.getDouble("height");
 
-            Furniture newItem = new Furniture(id, name, description, condition,
-                    price, age, soldYet, pickupAddress, ownerId, type, picture,
-                    creationTime, length, width, height);
+            Furniture newItem = new Furniture(
+                    id, name, description, condition, price, age, soldYet, pickupAddress,
+                    ownerId, type, picture, creationTime, length, width, height);
 
             return newItem;
         }

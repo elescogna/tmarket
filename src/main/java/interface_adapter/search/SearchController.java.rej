@@ -1,0 +1,28 @@
+diff a/src/main/java/interface_adapter/search/SearchController.java b/src/main/java/interface_adapter/search/SearchController.java	(rejected hunks)
+@@ -1,18 +1,21 @@
+ package interface_adapter.search;
+ 
+ import entities.Student;
++import java.util.HashMap;
+ import use_case.search.SearchInputBoundary;
+ import use_case.search.SearchInputData;
+ 
+-import java.util.HashMap;
+-
+ public class SearchController {
+     final SearchInputBoundary searchInteractor;
+ 
+-    public SearchController(SearchInputBoundary searchInteractor) { this.searchInteractor = searchInteractor; }
++    public SearchController(SearchInputBoundary searchInteractor) {
++        this.searchInteractor = searchInteractor;
++    }
+ 
+-    public void execute(HashMap<String, Object> filteredAttributes, Student currentStudent) {
+-        SearchInputData searchInputData = new SearchInputData(filteredAttributes, currentStudent);
++    public void execute(HashMap<String, Object> filteredAttributes,
++            Student currentStudent) {
++        SearchInputData searchInputData =
++            new SearchInputData(filteredAttributes, currentStudent);
+         this.searchInteractor.execute(searchInputData);
+     }
+ }

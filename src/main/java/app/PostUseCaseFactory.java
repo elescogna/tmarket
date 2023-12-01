@@ -66,8 +66,8 @@ public class PostUseCaseFactory {
                 new PostPresenter(viewManagerModel, homeViewModel);
             PostInputBoundary postInteractor = new PostInteractor(
                     clothingPostDataAccessInterface, furniturePostDataAccessInterface,
-                    schoolItemPostDataAccessInterface,
-                    technologyPostDataAccessInterface, postOutputBoundary);
+                    schoolItemPostDataAccessInterface, technologyPostDataAccessInterface,
+                    postOutputBoundary);
 
             return new PostController(postInteractor);
             }

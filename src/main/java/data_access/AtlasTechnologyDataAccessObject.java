@@ -73,9 +73,10 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String colour = itemDocument.getString("colour");
                 String capabilities = itemDocument.getString("capabilities");
 
-                Technology newItem = new Technology(id,
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        ownerId, type, picture, creationTime, brand, capabilities, colour);
+                Technology newItem =
+                    new Technology(id, name, description, condition, price, age,
+                            soldYet, pickupAddress, ownerId, type, picture,
+                            creationTime, brand, capabilities, colour);
 
                 result.add(newItem);
             }
@@ -114,8 +115,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             requestBodyMap.put("collection", atlasCollectionName);
             requestBodyMap.put("document", itemToDocument(newItem));
 
-            Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
-                    requestBodyMap);
+            Request request = preparePostRequest(atlasCollectionName,
+                    "/action/insertOne", requestBodyMap);
 
             try (okhttp3.Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
@@ -213,8 +214,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             String colour = itemDocument.getString("colour");
             String capabilities = itemDocument.getString("capabilities");
 
-            Technology newItem = new Technology(id,
-                    name, description, condition, price, age, soldYet, pickupAddress,
+            Technology newItem = new Technology(
+                    id, name, description, condition, price, age, soldYet, pickupAddress,
                     ownerId, type, picture, creationTime, brand, capabilities, colour);
             return newItem;
         }
@@ -315,9 +316,10 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                     Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
-                    Technology newItem = new Technology(id,
-                            name, description, condition, price, age, soldYet, pickupAddress,
-                            ownerId, type, picture, creationTime, brand, capabilities, colour);
+                    Technology newItem =
+                        new Technology(id, name, description, condition, price, age,
+                                soldYet, pickupAddress, ownerId, type, picture,
+                                creationTime, brand, capabilities, colour);
 
                     result.add(newItem);
                 }

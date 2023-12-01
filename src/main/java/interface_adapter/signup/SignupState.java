@@ -19,45 +19,29 @@ public class SignupState {
         repeatPasswordError = copy.repeatPasswordError;
     }
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
-    public SignupState() {
-    }
+    // Because of the previous copy constructor, the default constructor must be
+    // explicit.
+    public SignupState() {}
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
-    public String getUsernameError() {
-        return usernameError;
-    }
+    public String getUsernameError() { return usernameError; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public String getPasswordError() {
-        return passwordError;
-    }
+    public String getPasswordError() { return passwordError; }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
+    public String getRepeatPassword() { return repeatPassword; }
 
-    public String getRepeatPasswordError() {
-        return repeatPasswordError;
-    }
+    public String getRepeatPasswordError() { return repeatPasswordError; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
     public void setUsernameError(String usernameError) {
         this.usernameError = usernameError;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
     public void setPasswordError(String passwordError) {
         this.passwordError = passwordError;
@@ -70,24 +54,15 @@ public class SignupState {
     public void setRepeatPasswordError(String repeatPasswordError) {
         this.repeatPasswordError = repeatPasswordError;
     }
-    public String getPickupAddress(){
-        return pickupAddress;
-    }
-    public void setPickupAddress(String text) {
-        this.pickupAddress = text;
-    }
-    public String getUoftEmail() { return  uoftEmail;}
+    public String getPickupAddress() { return pickupAddress; }
+    public void setPickupAddress(String text) { this.pickupAddress = text; }
+    public String getUoftEmail() { return uoftEmail; }
     public void setUoftEmail(String uoftEmail) { this.uoftEmail = uoftEmail; }
 
     @Override
     public String toString() {
-        return "SignupState{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", repeatPassword='" + repeatPassword + '\'' +
-                '}';
+        return "SignupState{"
+            + "username='" + username + '\'' + ", password='" + password + '\'' +
+            ", repeatPassword='" + repeatPassword + '\'' + '}';
     }
-
-
-
 }

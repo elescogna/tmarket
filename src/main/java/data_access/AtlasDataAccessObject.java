@@ -3,7 +3,6 @@ package data_access;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,11 +20,11 @@ public class AtlasDataAccessObject {
         preparePostRequest(String atlasCollectionName, String endpoint,
                 HashMap<String, Object> requestBodyMap) {
             RequestBody requestBody =
-                RequestBody.create(new
-                        JSONObject(requestBodyMap).toString().getBytes(StandardCharsets.UTF_8));
+                RequestBody.create(new JSONObject(requestBodyMap)
+                        .toString()
+                        .getBytes(StandardCharsets.UTF_8));
 
-            Request request =
-                new Request.Builder()
+            Request request = new Request.Builder()
                 .url(atlasApiUrl + endpoint)
                 .method("POST", requestBody)
                 .addHeader("Content-Type", "application/ejson")
@@ -36,39 +35,40 @@ public class AtlasDataAccessObject {
             return request;
         }
 
-    protected double calculateDistance (String source, String destination) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        final String API_KEY = System.getenv("GOOGLE_MAPS_API_KEY");
-        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
-        HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-        httpBuilder.addQueryParameter("destinations", destination);
-        httpBuilder.addQueryParameter("origins", source);
-        httpBuilder.addQueryParameter("key", API_KEY);
+    protected double calculateDistance(String source, String destination)
+            throws IOException {
+            OkHttpClient client = new OkHttpClient().newBuilder().build();
+            final String API_KEY = System.getenv("GOOGLE_MAPS_API_KEY");
+            String url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+            HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+            httpBuilder.addQueryParameter("destinations", destination);
+            httpBuilder.addQueryParameter("origins", source);
+            httpBuilder.addQueryParameter("key", API_KEY);
 
-        Request request =
-                new Request.Builder()
-                        .url(httpBuilder.build().toString())
-                        .method("GET", null)
-                        .addHeader("Content-Type", "application/json")
-                        .build();
+            Request request = new Request.Builder()
+                .url(httpBuilder.build().toString())
+                .method("GET", null)
+                .addHeader("Content-Type", "application/json")
+                .build();
 
-        double distanceValue = 0;
-        try (Response response = client.newCall(request).execute()) {
-            JSONObject responseBodyJson = new JSONObject(response.body().string());
-            JSONArray rows = responseBodyJson.getJSONArray("rows");
+            double distanceValue = 0;
+            try (Response response = client.newCall(request).execute()) {
+                JSONObject responseBodyJson = new JSONObject(response.body().string());
+                JSONArray rows = responseBodyJson.getJSONArray("rows");
 
-            for (Object row : rows) {
-                JSONObject rowItem = (JSONObject) row;
-                JSONArray elements = rowItem.getJSONArray("elements");
-                for (Object element : elements) {
-                    JSONObject elementItem = (JSONObject) element;
-                    JSONObject distanceInformation = elementItem.getJSONObject("distance");
-                    // String distance = distanceInformation.getString("text"); // string value in miles
-                    distanceValue = distanceInformation.getInt("value");
+                for (Object row : rows) {
+                    JSONObject rowItem = (JSONObject)row;
+                    JSONArray elements = rowItem.getJSONArray("elements");
+                    for (Object element : elements) {
+                        JSONObject elementItem = (JSONObject)element;
+                        JSONObject distanceInformation =
+                            elementItem.getJSONObject("distance");
+                        // String distance = distanceInformation.getString("text"); // string
+                        // value in miles
+                        distanceValue = distanceInformation.getInt("value");
+                    }
                 }
             }
-
-        }
-        return distanceValue;
+            return distanceValue;
     }
 }

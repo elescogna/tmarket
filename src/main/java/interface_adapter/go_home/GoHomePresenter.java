@@ -9,7 +9,7 @@ public class GoHomePresenter implements GoHomeOutputBoundary {
     private final ViewManagerModel viewManagerModel;
 
     public GoHomePresenter(ViewManagerModel viewManagerModel,
-                           HomeViewModel homeViewModel) {
+            HomeViewModel homeViewModel) {
         this.homeViewModel = homeViewModel;
         this.viewManagerModel = viewManagerModel;
     }

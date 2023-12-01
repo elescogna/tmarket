@@ -21,8 +21,5 @@ public class ProfileViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public ProfileState getState() {
-        return state;
-    }
-
+    public ProfileState getState() { return state; }
 }

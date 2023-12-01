@@ -14,7 +14,7 @@ public class SearchingPresenter implements SearchingOutputBoundary {
     private ViewManagerModel viewManagerModel;
 
     public SearchingPresenter(SearchViewModel searchViewModel,
-                              ViewManagerModel viewManagerModel) {
+            ViewManagerModel viewManagerModel) {
         this.searchViewModel = searchViewModel;
         this.viewManagerModel = viewManagerModel;
     }

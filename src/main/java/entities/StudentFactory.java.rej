@@ -1,0 +1,12 @@
+diff a/src/main/java/entities/StudentFactory.java b/src/main/java/entities/StudentFactory.java	(rejected hunks)
+@@ -1,8 +1,7 @@
+ package entities;
+ 
+-
+ public interface StudentFactory {
+     /** Requires: password is valid. */
+-    Student create(String name, String password, String homeAddress, String uoftEmail);
+-
++    Student create(String name, String password, String homeAddress,
++            String uoftEmail);
+ }

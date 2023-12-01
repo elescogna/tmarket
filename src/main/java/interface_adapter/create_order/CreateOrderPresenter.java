@@ -11,8 +11,8 @@ public class CreateOrderPresenter implements CreateOrderOutputBoundary {
     private ViewManagerModel viewManagerModel;
 
     public CreateOrderPresenter(ViewManagerModel viewManagerModel,
-                                 CreateOrderViewModel createOrderViewModel,
-                                 ViewItemViewModel viewItemViewModel) {
+            CreateOrderViewModel createOrderViewModel,
+            ViewItemViewModel viewItemViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.createOrderViewModel = createOrderViewModel;
         this.viewItemViewModel = viewItemViewModel;
