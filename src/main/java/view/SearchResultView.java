@@ -3,6 +3,7 @@ package view;
 import entities.Item;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.search_result.SearchResultViewModel;
+import interface_adapter.view_item.ViewItemController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,14 +19,18 @@ public class SearchResultView extends JPanel {
 	private JButton homeButton;
 	private GoHomeController goHomeController;
 	private SearchResultViewModel searchResultViewModel;
+	private ViewItemController viewItemController;
 
 	/**
 	 * Create the panel.
 	 */
-	public SearchResultView(GoHomeController goHomeController, SearchResultViewModel searchResultViewModel) {
+    public SearchResultView(GoHomeController goHomeController,
+            SearchResultViewModel searchResultViewModel, ViewItemController
+            viewItemController) {
 		this.setLayout(null);
 		this.goHomeController = goHomeController;
 		this.searchResultViewModel = searchResultViewModel;
+		this.viewItemController = viewItemController;
 
 		list = new JList();
 		
