@@ -15,9 +15,22 @@ public class Clothing extends Item {
     private String size;
     private String material;
 
-    public Clothing(String name, String description, int condition,
+    public Clothing(String id, String name, String description, int condition,
             int price, int age, boolean soldYet, String pickupAddress,
-             String ownerId, String type, String picture,
+            String ownerId, String type, String picture,
+            LocalDateTime creationTime, String brand, String colour,
+            String size, String material) {
+        super(id, name, description, condition, price, age, soldYet, pickupAddress,
+                ownerId, type, picture, creationTime);
+        this.brand = brand;
+        this.colour = colour;
+        this.size = size;
+        this.material = material;
+    }
+
+    public Clothing(String name, String description, int condition, int price,
+            int age, boolean soldYet, String pickupAddress,
+            String ownerId, String type, String picture,
             LocalDateTime creationTime, String brand, String colour,
             String size, String material) {
         super(name, description, condition, price, age, soldYet, pickupAddress,

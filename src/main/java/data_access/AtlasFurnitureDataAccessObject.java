@@ -75,7 +75,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 double width = itemDocument.getDouble("width");
                 double height = itemDocument.getDouble("height");
 
-                Furniture newItem = new Furniture(
+                Furniture newItem = new Furniture(id,
                         name, description, condition, price, age, soldYet, pickupAddress,
                         ownerId, type, picture, creationTime, length, width, height);
                 result.add(newItem);
@@ -216,7 +216,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             double width = itemDocument.getDouble("width");
             double height = itemDocument.getDouble("height");
 
-            Furniture newItem = new Furniture(name, description, condition,
+            Furniture newItem = new Furniture(id, name, description, condition,
                     price, age, soldYet, pickupAddress, ownerId, type, picture,
                     creationTime, length, width, height);
 
@@ -329,7 +329,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
 
                 if (distance <= maxDistance) {
                     Furniture newItem =
-                        new Furniture(name, description, condition, price, age,
+                        new Furniture(id, name, description, condition, price, age,
                                 soldYet, pickupAddress, ownerId, type, picture,
                                 creationTime, length, width, height);
 

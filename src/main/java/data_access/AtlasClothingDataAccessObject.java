@@ -55,6 +55,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         JSONObject itemDocument = (JSONObject)document;
 
         // General item attributes
+        String id = itemDocument.getString("_id");
         String name = itemDocument.getString("name");
         String description = itemDocument.getString("description");
         int condition = itemDocument.getInt("condition");
@@ -76,7 +77,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
         String material = itemDocument.getString("material");
 
         Clothing newItem =
-            new Clothing(name, description, condition, price, age, soldYet,
+            new Clothing(id, name, description, condition, price, age, soldYet,
                          pickupAddress, ownerId, type, picture, creationTime,
                          brand, colour, size, material);
         result.add(newItem);
@@ -223,7 +224,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
       String size = itemDocument.getString("size");
       String material = itemDocument.getString("material");
 
-      Clothing newItem = new Clothing(
+      Clothing newItem = new Clothing(id,
           name, description, condition, price, age, soldYet, pickupAddress,
           ownerId, type, picture, creationTime, brand, colour, size, material);
       return newItem;
@@ -326,7 +327,7 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
 
         if (distance <= maxDistance) {
           Clothing newItem =
-              new Clothing(name, description, condition, price, age, soldYet,
+              new Clothing(id, name, description, condition, price, age, soldYet,
                            pickupAddress, ownerId, type, picture, creationTime,
                            brand, colour, size, material);
 
