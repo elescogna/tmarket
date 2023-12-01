@@ -1,17 +1,5 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import entities.Clothing;
 import entities.Furniture;
 import entities.Item;
@@ -23,6 +11,16 @@ import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -47,7 +45,6 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private JButton btnFulfillOrder;
 
     private ViewItemViewModel viewItemViewModel;
-    private ViewItemController viewItemController;
     private GoHomeController goHomeController;
     private ContactingController contactingController;
 
@@ -55,13 +52,13 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      * Create the panel.
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
-            ViewItemController viewItemController,
             GoHomeController goHomeController,
             ContactingController contactingController) {
         this.viewItemViewModel = viewItemViewModel;
-        this.viewItemController = viewItemController;
         this.goHomeController = goHomeController;
         this.contactingController = contactingController;
+
+        this.viewItemViewModel.addPropertyChangeListener(this);
 
         this.setLayout(null);
         this.setSize(new Dimension(650, 482));
@@ -179,9 +176,6 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         // someone outside of this will have updated the state and caused this
         // property listener to fire
         ViewItemState viewItemState = (ViewItemState)evt.getNewValue();
-        ViewItemView.this.viewItemController.execute(viewItemState.getNextItemId());
-
-        // now the state has been updated with the current item or an error
 
         String error = viewItemState.getCurrentItemError();
 

@@ -1,11 +1,23 @@
 package use_case.view_item;
 
-public class ViewItemInputData {
-    String itemId;
+import entities.Student;
 
-    public ViewItemInputData(String itemId) { this.itemId = itemId; }
+public class ViewItemInputData {
+    private String itemId;
+    private Student currentStudent;
+
+    public ViewItemInputData(String itemId, Student currentStudent) {
+        this.itemId = itemId;
+        this.currentStudent = currentStudent;
+    }
 
     public String getItemId() { return itemId; }
 
     public void setItemId(String itemId) { this.itemId = itemId; }
+
+    public Student getCurrentStudent() { return currentStudent; }
+
+    public void setCurrentStudent(Student currentStudent) {
+        this.currentStudent = currentStudent;
+    }
 }
