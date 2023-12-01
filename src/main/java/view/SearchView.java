@@ -63,6 +63,8 @@ public class SearchView extends JPanel {
 
 		setVisible(true);
 
+		HashMap<String, Object> currentFilters = new HashMap<>();
+
 		this.searchViewModel = searchViewModel;
 		this.searchController = searchController;
 		this.goHomeController = goHomeController;
@@ -73,11 +75,13 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(categoryComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = categoryComboBox.getSelectedItem();
 						currentFilters.put("category", selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
+						updateTypeComboBox();
+						updateAdditionalFields();
 					}
 				}
 			}
@@ -89,7 +93,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(typeComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = typeComboBox.getSelectedItem();
 						currentFilters.put("type", selectedItem);
 						currentState.setFilterChoices(currentFilters);
@@ -105,7 +109,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumPriceTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("price", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -126,7 +130,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumDistanceTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+					// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("distanceRange", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -147,7 +151,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumAgeTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("age", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -168,7 +172,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(conditionComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = conditionComboBox.getSelectedItem();
 						currentFilters.put("condition", selectedItem);
 						currentState.setFilterChoices(currentFilters);
@@ -184,7 +188,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = minLengthTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("minLength", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -205,7 +209,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxLengthTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("maxLength", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -226,7 +230,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = minWidthTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("minWidth", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -247,7 +251,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxWidthTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("maxWidth", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -268,7 +272,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = minHeightTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("minHeight", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -289,7 +293,7 @@ public class SearchView extends JPanel {
 				public void keyTyped(KeyEvent e) {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxHeightTextField.getText() + e.getKeyChar();
-					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 					currentFilters.put("maxHeight", text);
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
@@ -310,7 +314,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(brandComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = brandComboBox.getSelectedItem();
 						currentFilters.put("brand", selectedItem);
 						currentState.setFilterChoices(currentFilters);
@@ -326,7 +330,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(colourComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = colourComboBox.getSelectedItem();
 						currentFilters.put("colour", selectedItem);
 						currentState.setFilterChoices(currentFilters);
@@ -342,7 +346,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(sizeComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
+//						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = sizeComboBox.getSelectedItem();
 						currentFilters.put("size", selectedItem);
 						currentState.setFilterChoices(currentFilters);
@@ -502,15 +506,6 @@ public class SearchView extends JPanel {
 
 	private void addButtonListeners() {
 
-		// make view dynamic depending on category chosen
-		categoryComboBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				updateTypeComboBox();
-				updateAdditionalFields();
-			}
-		});
-
 		// implement the submit button
 		submitButton.addActionListener(new ActionListener() {
 			@Override
@@ -519,24 +514,19 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
 					Student currentStudent = currentState.getCurrentStudent();
+					System.out.println("Search View" + currentStudent);
 
 					searchController.execute(filteredAttributes, currentStudent);
+					System.out.println(filteredAttributes);
 				}
 			}
 		});
 
-		// implement the back button
-		// TODO: this is not doing the right thing
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getSource().equals(backButton)) {
 					goHomeController.execute();
-//					SearchState currentState = searchViewModel.getState();
-//					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
-//					Student currentStudent = currentState.getCurrentStudent();
-//
-//					searchController.execute(filteredAttributes, currentStudent);
 				}
 			}
 		});
@@ -567,10 +557,9 @@ public class SearchView extends JPanel {
 				types = new String[0]; // Default to an empty array
 				break;
 		}
-
 		typeComboBox.setModel(new DefaultComboBoxModel<>(types));
+		typeComboBox.setSelectedIndex(0);
 	}
-
 	private void updateAdditionalFields() {
 		String selectedCategory = (String) categoryComboBox.getSelectedItem();
 

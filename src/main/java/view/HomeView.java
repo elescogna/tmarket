@@ -126,6 +126,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(btnSearch)) {
                     Student currentStudent = homeViewModel.getState().getStudent();
+                    System.out.println("Home view" + currentStudent);
                     searchingController.execute(currentStudent);
                 }
             }

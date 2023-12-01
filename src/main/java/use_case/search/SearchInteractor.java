@@ -34,18 +34,20 @@ public class SearchInteractor implements SearchInputBoundary{
 
             // TODO: this does not seem like the best CA practice but I am not sure what else to do
             Object category = filteredAttributes.get("category");
-            if (category.equals("furniture")) {
+            if (category.equals("Furniture")) {
                 itemsFound = this.furnitureDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
-            } else if (category.equals("clothing")) {
+            } else if (category.equals("Clothing")) {
                 itemsFound = this.clothingDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
-            } else if (category.equals("schoolItem")) {
+            } else if (category.equals("SchoolItem")) {
                 itemsFound = this.schoolItemDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
-            } else if (category.equals("technology")) {
+            } else if (category.equals("Technology")) {
                 itemsFound = this.technologyDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
             } else {
                 throw new IOException("The chosen category is invalid.");
             }
+            System.out.println("Search has not called Search Presenter");
             searchPresenter.prepareSuccessView(new SearchOutputData(itemsFound));
+            System.out.println("Search has called Search Presenter");
 
         } catch (IOException e){
             searchPresenter.prepareFailView("There was an error in searching through the database.");

@@ -9,6 +9,7 @@ public class SearchingInteractor implements SearchingInputBoundary {
 
     @Override
     public void execute(SearchingInputData searchingInputData) {
+        System.out.println("Searching Interactor" + searchingInputData.getCurrentStudent());
         searchingPresenter.prepareSearchView(searchingInputData);
     }
 }
