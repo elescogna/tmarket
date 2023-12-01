@@ -52,10 +52,10 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             createOrderPresenter.prepareFailView("Buyer e-mail doesn't exist.");
         } else if (createOrderInputData.getSameAddress().equals("Yes")) {
             try {
-                Order order = atlasOrderDataAccessObject.create(
+                Order order = atlasOrderDataAccessObject.createOrder(
                         createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(),
-                        createOrderInputData.getItem(),
+                        createOrderInputData.getItem().getId(),
                         createOrderInputData.getItem().getPickupAddress());
                 atlasStudentDataAccessObject.updateOrders(
                         createOrderInputData.getBuyerEmail(), order);
@@ -78,10 +78,10 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             createOrderPresenter.prepareSuccessView();
         } else {
             try {
-                Order order = atlasOrderDataAccessObject.create(
+                Order order = atlasOrderDataAccessObject.createOrder(
                         createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(),
-                        createOrderInputData.getItem(),
+                        createOrderInputData.getItem().getId(),
                         createOrderInputData.getOtherAddress());
                 atlasStudentDataAccessObject.updateOrders(
                         createOrderInputData.getBuyerEmail(), order);
