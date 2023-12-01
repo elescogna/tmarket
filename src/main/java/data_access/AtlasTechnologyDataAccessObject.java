@@ -73,7 +73,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String colour = itemDocument.getString("colour");
                 String capabilities = itemDocument.getString("capabilities");
 
-                Technology newItem = new Technology(
+                Technology newItem = new Technology(id,
                         name, description, condition, price, age, soldYet, pickupAddress,
                         ownerId, type, picture, creationTime, brand, capabilities, colour);
 
@@ -213,7 +213,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             String colour = itemDocument.getString("colour");
             String capabilities = itemDocument.getString("capabilities");
 
-            Technology newItem = new Technology(
+            Technology newItem = new Technology(id,
                     name, description, condition, price, age, soldYet, pickupAddress,
                     ownerId, type, picture, creationTime, brand, capabilities, colour);
             return newItem;
@@ -315,7 +315,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                     Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance < maxDistance) {
-                    Technology newItem = new Technology(
+                    Technology newItem = new Technology(id,
                             name, description, condition, price, age, soldYet, pickupAddress,
                             ownerId, type, picture, creationTime, brand, capabilities, colour);
 

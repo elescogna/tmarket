@@ -13,7 +13,7 @@ import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.searching.SearchingController;
-import interface_adapter.viewing_item.ViewingItemController;
+import interface_adapter.view_item.ViewItemController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,21 +40,21 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private JScrollPane scrollPaneItemsScrollPane;
     private JList<String> listItems;
     private HomeController homeController;
-    private ViewingItemController viewingItemController;
     private HomeViewModel homeViewModel;
     private JButton btnRefresh;
     private PostingController postingController;
     private ProfileController profileController;
     private SearchingController searchingController;
+    private ViewItemController viewItemController;
 
     /**
      * Create the panel.
      */
     public HomeView(HomeViewModel homeViewModel, HomeController homeController,
-            ViewingItemController viewingItemController,
             PostingController postingController,
             ProfileController profileController,
-            SearchingController searchingController) {
+            SearchingController searchingController,
+            ViewItemController viewItemController) {
         this.setLayout(null);
         homeViewModel.addPropertyChangeListener(this);
 
@@ -63,6 +63,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         this.postingController = postingController;
         this.profileController = profileController;
         this.searchingController = searchingController;
+        this.viewItemController = viewItemController;
 
         initializeComponents();
         addComponents();
@@ -135,12 +136,13 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = listItems.locationToIndex(e.getPoint());
-                    String itemId = HomeView.this.homeViewModel.getState()
-                        .getAllPosts()
-                        .get(index)
-                        .getId();
 
-                    HomeView.this.viewingItemController.execute(itemId);
+                    HomeState homeState = HomeView.this.homeViewModel.getState();
+
+                    String itemId = homeState.getAllPosts().get(index).getId();
+                    Student currentStudent = homeState.getStudent();
+
+                    HomeView.this.viewItemController.execute(itemId, currentStudent);
                 }
             }
 

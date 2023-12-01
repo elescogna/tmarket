@@ -96,8 +96,6 @@ public class PostView extends JPanel {
                             currentState.getPrice(), currentState.getBrand(),
                             currentState.getCapabilities(), currentState.getColour());
                 } else if ("School Item".equals(currentState.getCategory())) {
-                    // __AUTO_GENERATED_PRINTF_START__
-                    System.out.println("PostView#actionPerformed#if#if#if 1"); // __AUTO_GENERATED_PRINTF_END__
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
                             currentState.getType(), currentState.getName(),

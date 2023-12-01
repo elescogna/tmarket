@@ -81,7 +81,8 @@ public class Main {
 
         SearchResultView searchResultView = SearchResultUseCaseFactory.create(
                 viewManagerModel, homeViewModel, searchResultViewModel,
-                viewItemViewModel);
+                viewItemViewModel, clothingDataAccessObject, furnitureDataAccessObject,
+                schoolItemDataAccessObject, technologyDataAccessObject);
         views.add(searchResultView, searchResultViewModel.getViewName());
 
         SearchView searchView = SearchUseCaseFactory.create(
@@ -114,7 +115,9 @@ public class Main {
                 viewManagerModel, homeViewModel, viewItemViewModel, searchViewModel,
                 profileViewModel, postViewModel, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
-                technologyDataAccessObject, studentDataAccessObject);
+                technologyDataAccessObject, studentDataAccessObject,
+                clothingDataAccessObject, furnitureDataAccessObject,
+                schoolItemDataAccessObject, technologyDataAccessObject);
         views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =

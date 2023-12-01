@@ -43,18 +43,13 @@ public class ViewItemUseCaseFactory {
                 ViewItemDataAccessInterface technologyViewItemDataAccessObject) {
 
             try {
-                ViewItemController viewItemController = createViewItemUseCase(
-                        viewManagerModel, viewItemViewModel, homeViewModel,
-                        clothingViewItemDataAccessObject, furnitureViewItemDataAccessObject,
-                        schoolItemViewItemDataAccessObject,
-                        technologyViewItemDataAccessObject);
                 ContactingController contactingController =
                     createContactingUseCase(contactViewModel, viewManagerModel);
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
 
-                return new ViewItemView(viewItemViewModel, viewItemController,
-                        goHomeController, contactingController);
+                return new ViewItemView(viewItemViewModel, goHomeController,
+                        contactingController);
 
             } catch (IOException e) {
                 // TODO: what should this actually print out?
@@ -66,7 +61,8 @@ public class ViewItemUseCaseFactory {
 
     private static ContactingController
         createContactingUseCase(ContactViewModel contactViewModel,
-                ViewManagerModel viewManagerModel) {
+                ViewManagerModel viewManagerModel)
+            throws IOException {
             ContactingOutputBoundary contactingOutputBoundary =
                 new ContactingPresenter(contactViewModel, viewManagerModel);
 
@@ -76,30 +72,9 @@ public class ViewItemUseCaseFactory {
             return new ContactingController(contactingInteractor);
         }
 
-    private static ViewItemController
-        createViewItemUseCase(ViewManagerModel viewManagerModel,
-                ViewItemViewModel viewItemViewModel,
-                HomeViewModel homeViewModel,
-                ViewItemDataAccessInterface clothingDataAccessObject,
-                ViewItemDataAccessInterface furnitureDataAccessObject,
-                ViewItemDataAccessInterface schoolItemDataAccessObject,
-                ViewItemDataAccessInterface technologyDataAccessObject)
-            throws IOException {
-
-            // Pass this method's parameters to the Presenter.
-            ViewItemOutputBoundary viewItemOutputBoundary = new ViewItemPresenter(
-                    viewItemViewModel, viewManagerModel, homeViewModel);
-
-            ViewItemInputBoundary viewItemInteractor = new ViewItemInteractor(
-                    clothingDataAccessObject, furnitureDataAccessObject,
-                    schoolItemDataAccessObject, technologyDataAccessObject,
-                    viewItemOutputBoundary);
-
-            return new ViewItemController(viewItemInteractor);
-        }
     private static GoHomeController
         createGoHomeUseCase(ViewManagerModel viewManagerModel,
-                HomeViewModel homeViewModel) {
+                HomeViewModel homeViewModel) throws IOException {
             GoHomeOutputBoundary goHomeOutputBoundary =
                 new GoHomePresenter(viewManagerModel, homeViewModel);
 
