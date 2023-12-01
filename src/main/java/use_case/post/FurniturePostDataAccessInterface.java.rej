@@ -1,0 +1,9 @@
+diff a/src/main/java/use_case/post/FurniturePostDataAccessInterface.java b/src/main/java/use_case/post/FurniturePostDataAccessInterface.java	(rejected hunks)
+@@ -1,7 +1,6 @@
+ package use_case.post;
+ 
+ import entities.Furniture;
+-
+ import java.io.IOException;
+ 
+ public interface FurniturePostDataAccessInterface {

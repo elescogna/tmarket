@@ -39,8 +39,8 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
                     null ||
                     (itemToDisplay = technologyDataAccessObject.getItem(itemIdToGet)) !=
                     null) {
-                viewItemPresenter.prepareSuccessView(
-                        new ViewItemOutputData(itemToDisplay, viewItemData.getCurrentStudent()));
+                viewItemPresenter.prepareSuccessView(new ViewItemOutputData(
+                            itemToDisplay, viewItemData.getCurrentStudent()));
             } else { // if the item wasn't found in any collection
                 throw new IOException("Item with the given ID not found in database.");
             }

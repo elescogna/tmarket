@@ -26,12 +26,12 @@ public class ProfileInteractor implements ProfileInputBoundary{
             String password = student.getPassword();
             String uoftEmail = student.getUoftEmail();
             String homeAddress = student.getHomeAddress();
-            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress);
+            ProfileOutputData profileOutputData =
+                new ProfileOutputData(name, password, uoftEmail, homeAddress);
             profilePresenter.prepareSuccessView(profileOutputData);
-        }
-        catch(IOException error){
-            //come up with better error message
-            // throw new RuntimeException(error);
+        } catch (IOException error) {
+            // come up with better error message
+            //  throw new RuntimeException(error);
             profilePresenter.prepareFailView("Student not found");
         }
     }

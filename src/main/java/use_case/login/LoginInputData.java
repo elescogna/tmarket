@@ -10,12 +10,7 @@ public class LoginInputData {
         this.password = password;
     }
 
-    String getUsername() {
-        return username;
-    }
+    String getUsername() { return username; }
 
-    String getPassword() {
-        return password;
-    }
-
+    String getPassword() { return password; }
 }

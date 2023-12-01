@@ -1,0 +1,13 @@
+diff a/src/main/java/use_case/post/TechnologyPostDataAccessInterface.java b/src/main/java/use_case/post/TechnologyPostDataAccessInterface.java	(rejected hunks)
+@@ -1,9 +1,9 @@
+ package use_case.post;
+ 
+ import entities.Technology;
+-
+ import java.io.IOException;
+ 
+ public interface TechnologyPostDataAccessInterface {
+-    void addItemToTechnologyCollection(Technology newTechnology) throws IOException;
++    void addItemToTechnologyCollection(Technology newTechnology)
++            throws IOException;
+ }

@@ -12,7 +12,8 @@ public class ViewItemController {
     }
 
     public void execute(String itemId, Student currentStudent) {
-        ViewItemInputData viewItemInputData = new ViewItemInputData(itemId, currentStudent);
+        ViewItemInputData viewItemInputData =
+            new ViewItemInputData(itemId, currentStudent);
 
         this.viewItemInteractor.execute(viewItemInputData);
     }

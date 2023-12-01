@@ -1,0 +1,9 @@
+diff a/src/main/java/use_case/profile/ProfileDataAccessInterface.java b/src/main/java/use_case/profile/ProfileDataAccessInterface.java	(rejected hunks)
+@@ -1,7 +1,6 @@
+ package use_case.profile;
+ 
+ import entities.Student;
+-
+ import java.io.IOException;
+ 
+ public interface ProfileDataAccessInterface {

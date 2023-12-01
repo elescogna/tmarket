@@ -1,0 +1,8 @@
+diff a/src/main/java/use_case/search/SearchInputBoundary.java b/src/main/java/use_case/search/SearchInputBoundary.java	(rejected hunks)
+@@ -1,6 +1,5 @@
+ package use_case.search;
+ 
+-
+ public interface SearchInputBoundary {
+ 
+     void execute(SearchInputData searchInputData);

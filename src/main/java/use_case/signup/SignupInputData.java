@@ -8,7 +8,9 @@ public class SignupInputData {
     final private String homeAddress;
     final private String uoftEmail;
 
-    public SignupInputData(String username, String password, String repeatPassword, String homeAddress, String uoftEmail) {
+    public SignupInputData(String username, String password,
+            String repeatPassword, String homeAddress,
+            String uoftEmail) {
         this.username = username;
         this.password = password;
         this.repeatPassword = repeatPassword;
@@ -16,23 +18,13 @@ public class SignupInputData {
         this.uoftEmail = uoftEmail;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
+    public String getRepeatPassword() { return repeatPassword; }
 
-    public String getHomeAddress() {
-        return homeAddress;
-    }
+    public String getHomeAddress() { return homeAddress; }
 
-    public String getUoftEmail() {
-        return uoftEmail;
-    }
+    public String getUoftEmail() { return uoftEmail; }
 }

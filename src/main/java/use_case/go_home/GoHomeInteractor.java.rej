@@ -1,0 +1,8 @@
+diff a/src/main/java/use_case/go_home/GoHomeInteractor.java b/src/main/java/use_case/go_home/GoHomeInteractor.java	(rejected hunks)
+@@ -1,6 +1,5 @@
+ package use_case.go_home;
+ 
+-
+ public class GoHomeInteractor implements GoHomeInputBoundary {
+     final GoHomeOutputBoundary goHomePresenter;
+ 

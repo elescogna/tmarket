@@ -34,7 +34,8 @@ public class HomeInteractor implements HomeInputBoundary {
             items.sort(new Comparator<Item>() {
                 @Override
                 public int compare(Item firstItem, Item secondItem) {
-                    return firstItem.getCreationTime().compareTo(secondItem.getCreationTime());
+                    return firstItem.getCreationTime().compareTo(
+                            secondItem.getCreationTime());
                 }
             });
             Collections.reverse(items);

@@ -1,0 +1,9 @@
+diff a/src/main/java/use_case/post/PostInputBoundary.java b/src/main/java/use_case/post/PostInputBoundary.java	(rejected hunks)
+@@ -1,6 +1,5 @@
+ package use_case.post;
+ 
+-
+ public interface PostInputBoundary {
+-    void execute (PostInputData postInputData);
++    void execute(PostInputData postInputData);
+ }

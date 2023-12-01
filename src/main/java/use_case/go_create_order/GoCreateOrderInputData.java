@@ -12,11 +12,7 @@ public class GoCreateOrderInputData {
         this.item = item;
     }
 
-    public Student getUser() {
-        return user;
-    }
+    public Student getUser() { return user; }
 
-    public Item getItem() {
-        return item;
-    }
+    public Item getItem() { return item; }
 }

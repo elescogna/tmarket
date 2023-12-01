@@ -20,9 +20,10 @@ public class PostInputData {
     private String colour;
     private String size;
     private String material;
-    public PostInputData(Student student, String category, String type, String name, String description,
-                         String pickupAddress, int conditionScore, int age, int price, double length,
-                         double width, double height) {
+    public PostInputData(Student student, String category, String type,
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, double length,
+            double width, double height) {
         this.student = student;
         this.category = category;
         this.type = type;
@@ -37,8 +38,9 @@ public class PostInputData {
         this.width = width;
     }
     public PostInputData(Student student, String category, String type,
-                         String name, String description, String pickupAddress, int conditionScore,
-                         int age, int price, String brand, String capabilities, String colour){
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String capabilities, String colour) {
         this.student = student;
         this.category = category;
         this.type = type;
@@ -51,11 +53,11 @@ public class PostInputData {
         this.brand = brand;
         this.capabilities = capabilities;
         this.colour = colour;
-
     }
     public PostInputData(Student student, String category, String type,
-                         String name, String description, String pickupAddress, int conditionScore,
-                         int age, int price, String brand, String colour){
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String colour) {
         this.student = student;
         this.category = category;
         this.type = type;
@@ -67,13 +69,12 @@ public class PostInputData {
         this.price = price;
         this.brand = brand;
         this.colour = colour;
-
-
     }
 
-    public  PostInputData(Student student, String category, String type,
-                          String name, String description, String pickupAddress, int conditionScore,
-                          int age, int price, String brand, String colour, String size, String material){
+    public PostInputData(Student student, String category, String type,
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String colour, String size, String material) {
         this.student = student;
         this.category = category;
         this.type = type;
@@ -89,55 +90,21 @@ public class PostInputData {
         this.material = material;
     }
 
-    public Student getStudent(){
-        return student;
-    }
-    public String getCategory() {
-        return category;
-    }
-    public String getType() {
-        return type;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getPickupAddress(){
-        return pickupAddress;
-    }
-    public int getConditionScore() {
-        return conditionScore;
-    }
-    public int getAge() {
-        return age;
-    }
-    public int getPrice() {
-        return price;
-    }
-    public double getLength() {
-        return length;
-    }
-    public double getWidth() {
-        return width;
-    }
-    public double getHeight() {
-        return height;
-    }
-    public String getBrand() {
-        return brand;
-    }
-    public String getCapabilities() {
-        return capabilities;
-    }
-    public String getColour() {
-        return colour;
-    }
-    public String getSize() {
-        return size;
-    }
-    public String getMaterial() {
-        return material;
-    }
+    public Student getStudent() { return student; }
+    public String getCategory() { return category; }
+    public String getType() { return type; }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+    public String getPickupAddress() { return pickupAddress; }
+    public int getConditionScore() { return conditionScore; }
+    public int getAge() { return age; }
+    public int getPrice() { return price; }
+    public double getLength() { return length; }
+    public double getWidth() { return width; }
+    public double getHeight() { return height; }
+    public String getBrand() { return brand; }
+    public String getCapabilities() { return capabilities; }
+    public String getColour() { return colour; }
+    public String getSize() { return size; }
+    public String getMaterial() { return material; }
 }

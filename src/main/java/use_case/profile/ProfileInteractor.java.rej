@@ -1,0 +1,29 @@
+diff a/src/main/java/use_case/profile/ProfileInteractor.java b/src/main/java/use_case/profile/ProfileInteractor.java	(rejected hunks)
+@@ -1,21 +1,22 @@
+ package use_case.profile;
+ import entities.Student;
+-
+ import java.io.IOException;
+ 
+-public class ProfileInteractor implements ProfileInputBoundary{
++public class ProfileInteractor implements ProfileInputBoundary {
+ 
+     final ProfileDataAccessInterface studentDataAccessObject;
+     final ProfileOutputBoundary profilePresenter;
+ 
+-    public ProfileInteractor(ProfileDataAccessInterface studentDataAccessObject, ProfileOutputBoundary profilePresenter){
++    public ProfileInteractor(ProfileDataAccessInterface studentDataAccessObject,
++            ProfileOutputBoundary profilePresenter) {
+         this.studentDataAccessObject = studentDataAccessObject;
+         this.profilePresenter = profilePresenter;
+     }
+     @Override
+     public void execute(ProfileInputData profileInputData) {
+-        try{
+-            Student student = studentDataAccessObject.getStudentByEmail(profileInputData.getStudent().getUoftEmail());
++        try {
++            Student student = studentDataAccessObject.getStudentByEmail(
++                    profileInputData.getStudent().getUoftEmail());
+             if (student == null) {
+                 profilePresenter.prepareFailView("Student not found");
+             }

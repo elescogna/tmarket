@@ -8,6 +8,8 @@ public class SearchingInputData {
 
     public SearchingInputData(Student currentStudent) {}
 
-    public void setCurrentStudent(Student currentStudent) { this.currentStudent = currentStudent; }
-    public Student getCurrentStudent() {return this.currentStudent; }
+    public void setCurrentStudent(Student currentStudent) {
+        this.currentStudent = currentStudent;
+    }
+    public Student getCurrentStudent() { return this.currentStudent; }
 }

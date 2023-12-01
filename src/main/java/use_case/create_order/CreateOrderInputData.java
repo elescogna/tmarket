@@ -10,7 +10,8 @@ public class CreateOrderInputData {
     private String sameAddress = "";
     private String otherAddress = "";
 
-    public CreateOrderInputData(Item item, Student student, String buyerEmail, String sameAddress, String otherAddress) {
+    public CreateOrderInputData(Item item, Student student, String buyerEmail,
+            String sameAddress, String otherAddress) {
         this.item = item;
         this.student = student;
         this.buyerEmail = buyerEmail;
@@ -18,23 +19,13 @@ public class CreateOrderInputData {
         this.otherAddress = otherAddress;
     }
 
-    public Item getItem() {
-        return item;
-    }
+    public Item getItem() { return item; }
 
-    public Student getStudent() {
-        return student;
-    }
+    public Student getStudent() { return student; }
 
-    public String getBuyerEmail() {
-        return buyerEmail;
-    }
+    public String getBuyerEmail() { return buyerEmail; }
 
-    public String getSameAddress() {
-        return sameAddress;
-    }
+    public String getSameAddress() { return sameAddress; }
 
-    public String getOtherAddress() {
-        return otherAddress;
-    }
+    public String getOtherAddress() { return otherAddress; }
 }

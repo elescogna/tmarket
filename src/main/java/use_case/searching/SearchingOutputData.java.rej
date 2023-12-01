@@ -1,0 +1,8 @@
+diff a/src/main/java/use_case/searching/SearchingOutputData.java b/src/main/java/use_case/searching/SearchingOutputData.java	(rejected hunks)
+@@ -1,6 +1,5 @@
+ package use_case.searching;
+ 
+-
+ public class SearchingOutputData {
+     public SearchingOutputData() {}
+ }

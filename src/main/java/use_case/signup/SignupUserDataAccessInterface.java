@@ -1,7 +1,6 @@
 package use_case.signup;
 
 import entities.Student;
-
 import java.io.IOException;
 
 public interface SignupUserDataAccessInterface {
