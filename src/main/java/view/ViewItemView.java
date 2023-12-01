@@ -190,8 +190,8 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             boolean currentStudentIsOwner =
                 currentStudent.getId().equals(currentItem.getOwnerId());
 
-            this.btnContactSeller.setVisible(currentStudentIsOwner);
-            this.btnFulfillOrder.setVisible(!currentStudentIsOwner);
+            this.btnContactSeller.setVisible(!currentStudentIsOwner);
+            this.btnFulfillOrder.setVisible(currentStudentIsOwner);
 
             this.lblName.setText("Name: " + currentItem.getName());
             this.lblDescription.setText("Description: " +
