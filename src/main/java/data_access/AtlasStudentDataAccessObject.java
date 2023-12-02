@@ -17,9 +17,9 @@ import use_case.profile.ProfileDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
-    implements ProfileDataAccessInterface, SignupUserDataAccessInterface,
-               CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface,
-               ContactDataAccessInterface {
+        implements ProfileDataAccessInterface, SignupUserDataAccessInterface,
+        CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface,
+        ContactDataAccessInterface {
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) throws IOException {
@@ -54,34 +54,34 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
 
     public boolean checkPassword(String uoftEmail, String password)
             throws IOException {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-            HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
-            HashMap<String, String> filterValue = new HashMap<String, String>();
-            filterValue.put("uoftEmail", uoftEmail);
-            filterValue.put("password", password);
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, String> filterValue = new HashMap<String, String>();
+        filterValue.put("uoftEmail", uoftEmail);
+        filterValue.put("password", password);
 
-            requestBodyMap.put("dataSource", atlasDataSourceName);
-            requestBodyMap.put("database", atlasDatabaseName);
-            requestBodyMap.put("collection", atlasCollectionName);
-            requestBodyMap.put("filter", filterValue);
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("filter", filterValue);
 
-            Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
-                    requestBodyMap);
+        Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
+                requestBodyMap);
 
-            try (Response response = client.newCall(request).execute()) {
-                if (response.code() != 200) {
-                    throw new IOException("Bad request made to Atlas Data API");
-                }
-
-                JSONObject responseBodyJson = new JSONObject(response.body().string());
-
-                if (responseBodyJson.isNull("document")) {
-                    return false;
-                }
-
-                return true;
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
             }
+
+            JSONObject responseBodyJson = new JSONObject(response.body().string());
+
+            if (responseBodyJson.isNull("document")) {
+                return false;
+            }
+
+            return true;
+        }
     }
 
     // haven't used it, kept in case someone else needs it. If you are using it,
@@ -99,7 +99,7 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("filter", new HashMap<String, String>());
 
         Request request =
-            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             JSONObject responseBodyJson = new JSONObject(response.body().string());
@@ -119,7 +119,7 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
                 String homeAddress = itemDocument.getString("homeAddress");
 
                 Student student =
-                    new Student(id, name, password, homeAddress, uoftEmail);
+                        new Student(id, name, password, homeAddress, uoftEmail);
 
                 result.add(student);
             }
@@ -141,7 +141,7 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("filter", filter);
 
         Request request =
-            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             JSONObject responseBodyJson = new JSONObject(response.body().string());
@@ -188,7 +188,7 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("filter", filter);
 
         Request request =
-            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             JSONObject responseBodyJson = new JSONObject(response.body().string());
@@ -240,10 +240,20 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
                 // Handle an unsuccessful response
                 System.out.println(
                         "Failed to add item to the collection. HTTP status code: " +
-                        response.code());
+                                response.code());
                 // You might want to log more details or throw an exception based on
                 // your requirements
             }
         }
+    }
+
+    @Override
+    public ArrayList<Item> getAllItemsByOwnerID(String ownerId) throws IOException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Order> getAllOrdersBySellerEmail(String sellerEmail) throws IOException {
+        return null;
     }
 }
