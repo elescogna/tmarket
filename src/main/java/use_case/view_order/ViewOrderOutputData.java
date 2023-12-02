@@ -1,13 +1,24 @@
 package use_case.view_order;
 
 import entities.Order;
+import entities.Student;
 
 public class ViewOrderOutputData {
-    Order itemToShow;
+    Order orderToShow;
+    Student currentStudent;
 
-    public ViewOrderOutputData(Order itemToShow) { this.itemToShow = itemToShow; }
+    public ViewOrderOutputData(Order orderToShow, Student currentStudent) {
+        this.orderToShow = orderToShow;
+        this.currentStudent = currentStudent;
+    }
 
-    public Order getItemToShow() { return itemToShow; }
+    public Order getOrderToShow() { return orderToShow; }
 
-    public void setItemToShow(Order itemToShow) { this.itemToShow = itemToShow; }
+    public void setOrderToShow(Order orderToShow) { this.orderToShow = orderToShow; }
+
+    public Student getCurrentStudent() { return currentStudent; }
+
+    public void setCurrentStudent(Student currentStudent) {
+        this.currentStudent = currentStudent;
+    }
 }

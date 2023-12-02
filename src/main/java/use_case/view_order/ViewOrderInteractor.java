@@ -23,7 +23,7 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
             if ((ordertoDisplay = orderDataAccessObject.getOrder(orderIdToGet)) !=
                     null) {
                 viewOrderPresenter.prepareSuccessView(
-                        new ViewOrderOutputData(ordertoDisplay));
+                        new ViewOrderOutputData(ordertoDisplay, viewOrderInputData.getCurrentStudent()));
             } else { // if the item wasn't found in any collection
                 throw new IOException("Order with the given ID not found in database.");
             }
