@@ -2,6 +2,7 @@ package view;
 
 import entities.Student;
 import interface_adapter.go_home.GoHomeController;
+import interface_adapter.home.HomeController;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 public class SearchView extends JPanel {
 	private final SearchViewModel searchViewModel;
@@ -22,7 +24,7 @@ public class SearchView extends JPanel {
 	private JTextField maximumAgeTextField;
 	private JComboBox<String> categoryComboBox;
 	private JComboBox<String> typeComboBox;
-	private JComboBox<Integer> conditionComboBox;
+	private JComboBox<Integer> conditionScoreComboBox;
 	private JTextField minLengthTextField;
 	private JTextField minWidthTextField;
 	private JTextField minHeightTextField;
@@ -77,7 +79,7 @@ public class SearchView extends JPanel {
 						SearchState currentState = searchViewModel.getState();
 						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = categoryComboBox.getSelectedItem();
-						currentFilters.put("category", selectedItem);
+						currentFilters.put("category", (String) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 						updateTypeComboBox();
@@ -95,7 +97,7 @@ public class SearchView extends JPanel {
 						SearchState currentState = searchViewModel.getState();
 						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = typeComboBox.getSelectedItem();
-						currentFilters.put("type", selectedItem);
+						currentFilters.put("type", (String) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 					}
@@ -110,7 +112,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumPriceTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("price", text);
+					currentFilters.put("price", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -131,7 +133,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumDistanceTextField.getText() + e.getKeyChar();
 					// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("distanceRange", text);
+					currentFilters.put("distanceRange", Double.parseDouble(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -152,7 +154,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maximumAgeTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("age", text);
+					currentFilters.put("age", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -166,15 +168,15 @@ public class SearchView extends JPanel {
 				}
 			});
 
-		conditionComboBox.addActionListener(
+		conditionScoreComboBox.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (e.getSource().equals(conditionComboBox)){
+					if (e.getSource().equals(conditionScoreComboBox)){
 						SearchState currentState = searchViewModel.getState();
 //						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-						Object selectedItem = conditionComboBox.getSelectedItem();
-						currentFilters.put("condition", selectedItem);
+						Object selectedItem = conditionScoreComboBox.getSelectedItem();
+						currentFilters.put("conditionScore", (Integer) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 					}
@@ -189,7 +191,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = minLengthTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("minLength", text);
+					currentFilters.put("minLength", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -210,7 +212,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxLengthTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("maxLength", text);
+					currentFilters.put("maxLength", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -231,7 +233,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = minWidthTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("minWidth", text);
+					currentFilters.put("minWidth", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -252,7 +254,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxWidthTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("maxWidth", text);
+					currentFilters.put("maxWidth", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -273,7 +275,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = minHeightTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("minHeight", text);
+					currentFilters.put("minHeight", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -294,7 +296,7 @@ public class SearchView extends JPanel {
 					SearchState currentState = searchViewModel.getState();
 					String text = maxHeightTextField.getText() + e.getKeyChar();
 //					HashMap<String, Object> currentFilters = currentState.getFilterChoices();
-					currentFilters.put("maxHeight", text);
+					currentFilters.put("maxHeight", Integer.parseInt(text));
 					currentState.setFilterChoices(currentFilters);
 					searchViewModel.setState(currentState);
 				}
@@ -316,7 +318,7 @@ public class SearchView extends JPanel {
 						SearchState currentState = searchViewModel.getState();
 //						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = brandComboBox.getSelectedItem();
-						currentFilters.put("brand", selectedItem);
+						currentFilters.put("brand", (String) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 					}
@@ -332,7 +334,7 @@ public class SearchView extends JPanel {
 						SearchState currentState = searchViewModel.getState();
 //						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = colourComboBox.getSelectedItem();
-						currentFilters.put("colour", selectedItem);
+						currentFilters.put("colour", (String) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 					}
@@ -348,7 +350,7 @@ public class SearchView extends JPanel {
 						SearchState currentState = searchViewModel.getState();
 //						HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = sizeComboBox.getSelectedItem();
-						currentFilters.put("size", selectedItem);
+						currentFilters.put("size", (String) selectedItem);
 						currentState.setFilterChoices(currentFilters);
 						searchViewModel.setState(currentState);
 					}
@@ -366,7 +368,7 @@ public class SearchView extends JPanel {
 
 		categoryLabel = new JLabel("Category:");
 		categoryLabel.setBounds(10, 50, 80, 25);
-		categoryComboBox = new JComboBox<>(new String[]{"Furniture", "Technology", "School Item", "Clothing"});
+		categoryComboBox = new JComboBox<>(new String[]{"Furniture", "Technology", "SchoolItem", "Clothing"});
 		categoryComboBox.setBounds(110, 50, 80, 25);
 
 		typeLabel = new JLabel("Type:");
@@ -376,8 +378,8 @@ public class SearchView extends JPanel {
 
 		conditionScoreLabel = new JLabel("Condition Score");
 		conditionScoreLabel.setBounds(10, 150, 80, 25);
-		conditionComboBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-		conditionComboBox.setBounds(110, 150, 80, 25);
+		conditionScoreComboBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
+		conditionScoreComboBox.setBounds(110, 150, 80, 25);
 
 		maximumPriceLabel = new JLabel("Maximum price:");
 		maximumPriceLabel.setBounds(10, 200, 80, 25);
@@ -471,7 +473,7 @@ public class SearchView extends JPanel {
 		add(typeLabel);
 		add(typeComboBox);
 		add(conditionScoreLabel);
-		add(conditionComboBox);
+		add(conditionScoreComboBox);
 		add(maximumAgeLabel);
 		add(maximumAgeTextField);
 		add(maximumPriceLabel);
@@ -550,7 +552,7 @@ public class SearchView extends JPanel {
 				types = new String[]{"Shirt", "Pants", "Dress", "Jeans", "Tops", "Formal",
 				"Jacket", "Winter Gear", "Hoodie"};
 				break;
-			case "School Item":
+			case "SchoolItem":
 				types = new String[]{"Textbook", "Notebook", "Stationery", "Pens", "Bag", "Calculator"};
 				break;
 			default:

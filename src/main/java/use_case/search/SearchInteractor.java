@@ -45,9 +45,8 @@ public class SearchInteractor implements SearchInputBoundary{
             } else {
                 throw new IOException("The chosen category is invalid.");
             }
-            System.out.println("Search has not called Search Presenter");
+
             searchPresenter.prepareSuccessView(new SearchOutputData(itemsFound));
-            System.out.println("Search has called Search Presenter");
 
         } catch (IOException e){
             searchPresenter.prepareFailView("There was an error in searching through the database.");

@@ -4,8 +4,10 @@ import entities.Furniture;
 import entities.Item;
 import entities.Student;
 import java.io.IOException;
+import okio.Buffer;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -94,7 +96,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         document.put("age", item.getAge());
         document.put("soldYet", item.isSoldYet());
         document.put("pickupAddress", item.getPickupAddress());
-        document.put( "ownerId", item.getOwnerId()); // You might need to change this based on how the owner is identified in your system
+        document.put( "ownerId", item.getOwnerId());
         document.put("type", item.getType());
         document.put("picture", item.getPicture());
         document.put("creationTime", item.getCreationTime().toString());
@@ -129,8 +131,6 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                     System.out.println(
                             "Failed to add item to the collection. HTTP status code: " +
                             response.code());
-                    // You might want to log more details or throw an exception based on
-                    // your requirements
                 }
             }
     }
@@ -236,45 +236,47 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("database", atlasDatabaseName);
         requestBodyMap.put("collection", atlasCollectionName);
 
-        // create a deep copy so that you don't mutate the parameter
-        HashMap<String, Object> newFilteredAttributes =
-            new HashMap<>(filteredAttributes.size());
-        for (HashMap.Entry<String, Object> entry : filteredAttributes.entrySet()) {
-            newFilteredAttributes.put(new String(entry.getKey()),
-                    new String(String.valueOf(entry.getValue())));
+        System.out.println(filteredAttributes);
+
+        HashMap<String, Object> newFilteredAttributes = new HashMap<>();
+
+        // List of keys to include
+        ArrayList<String> keysToInclude = new ArrayList<>(Arrays.asList("soldYet", "type"));
+
+        for (String key : keysToInclude) {
+            if (filteredAttributes.containsKey(key)) {
+                newFilteredAttributes.put(key, filteredAttributes.get(key));
+            }
         }
 
         // Now modify all the attributes that need a range to account for a range
         // instead of a single exact value
         HashMap<String, Object> priceRangeMap = new HashMap<>();
-        priceRangeMap.put("$lte", newFilteredAttributes.get("price"));
+        priceRangeMap.put("$lte", filteredAttributes.get("price"));
         newFilteredAttributes.put("price", priceRangeMap);
 
         HashMap<String, Object> ageMap = new HashMap<>();
-        ageMap.put("$lte", newFilteredAttributes.get("age"));
+        ageMap.put("$lte", filteredAttributes.get("age"));
         newFilteredAttributes.put("age", ageMap);
 
         HashMap<String, Object> conditionScoreMap = new HashMap<>();
-        conditionScoreMap.put("$gte", newFilteredAttributes.get("conditionScore"));
-        newFilteredAttributes.put("conditionScore", conditionScoreMap);
-
-        // Filter for soldYet
-        newFilteredAttributes.put("soldYet", false);
+        conditionScoreMap.put("$gte", filteredAttributes.get("conditionScore"));
+        newFilteredAttributes.put("condition", conditionScoreMap);
 
         // Furniture-specific filters
         HashMap<String, Object> lengthRangeMap = new HashMap<>();
-        lengthRangeMap.put("$lte", newFilteredAttributes.get("maxLength"));
-        lengthRangeMap.put("$gte", newFilteredAttributes.get("minLength"));
+        lengthRangeMap.put("$lte", filteredAttributes.get("maxLength"));
+        lengthRangeMap.put("$gte", filteredAttributes.get("minLength"));
         newFilteredAttributes.put("length", lengthRangeMap);
 
         HashMap<String, Object> widthRangeMap = new HashMap<>();
-        widthRangeMap.put("$lte", newFilteredAttributes.get("maxWidth"));
-        widthRangeMap.put("$gte", newFilteredAttributes.get("minWidth"));
+        widthRangeMap.put("$lte", filteredAttributes.get("maxWidth"));
+        widthRangeMap.put("$gte", filteredAttributes.get("minWidth"));
         newFilteredAttributes.put("width", widthRangeMap);
 
         HashMap<String, Object> heightRangeMap = new HashMap<>();
-        heightRangeMap.put("$lte", newFilteredAttributes.get("maxHeight"));
-        heightRangeMap.put("$gte", newFilteredAttributes.get("minHeight"));
+        heightRangeMap.put("$lte", filteredAttributes.get("maxHeight"));
+        heightRangeMap.put("$gte", filteredAttributes.get("minHeight"));
         newFilteredAttributes.put("height", heightRangeMap);
 
         requestBodyMap.put("filter", newFilteredAttributes);
@@ -282,15 +284,26 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         // sort by creation time
         requestBodyMap.put("sort", new HashMap<String, Object>() {
             {
-                put("creationTime", 1); // 1 for ascending, -1 for descending
+                put("creationTime", -1); // 1 for ascending, -1 for descending
             }
         });
 
+        System.out.println(requestBodyMap);
+
         Request request =
             preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
-
+        final Buffer buffer = new Buffer();
+        request.body().writeTo(buffer);
+        System.out.println(buffer.readUtf8());
         try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
+            }
+            System.out.println("In Try");
             JSONObject responseBodyJson = new JSONObject(response.body().string());
+            if (responseBodyJson.isNull("documents")) {
+                return null;
+            }
             JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
 
             ArrayList<Item> result = new ArrayList<Item>();
@@ -321,11 +334,10 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 double height = itemDocument.getDouble("height");
 
                 // This line assumes that calculateDistance is implemented
-                // and that we have access to the current user infomation
+                // and that we have access to the current user information
                 double distance =
                     calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
-                double maxDistance =
-                    Double.parseDouble((String)filteredAttributes.get("distanceRange"));
+                double maxDistance = (double) filteredAttributes.get("distanceRange");
 
                 if (distance <= maxDistance) {
                     Furniture newItem =
