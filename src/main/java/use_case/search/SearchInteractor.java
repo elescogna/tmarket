@@ -32,7 +32,6 @@ public class SearchInteractor implements SearchInputBoundary{
             HashMap<String, Object> filteredAttributes = searchInputData.getFilteredAttributes();
             Student currentStudent = searchInputData.getCurrentStudent();
 
-            // TODO: this does not seem like the best CA practice but I am not sure what else to do
             Object category = filteredAttributes.get("category");
             if (category.equals("Furniture")) {
                 itemsFound = this.furnitureDataAccessObject.getItemsByFilters(filteredAttributes, currentStudent);
@@ -46,7 +45,7 @@ public class SearchInteractor implements SearchInputBoundary{
                 throw new IOException("The chosen category is invalid.");
             }
 
-            searchPresenter.prepareSuccessView(new SearchOutputData(itemsFound));
+            searchPresenter.prepareSuccessView(new SearchOutputData(itemsFound, currentStudent));
 
         } catch (IOException e){
             searchPresenter.prepareFailView("There was an error in searching through the database.");

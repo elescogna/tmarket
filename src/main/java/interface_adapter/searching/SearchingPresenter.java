@@ -2,12 +2,9 @@ package interface_adapter.searching;
 
 import entities.Student;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.contact.ContactViewModel;
 import interface_adapter.search.SearchViewModel;
-import use_case.contacting.ContactingOutputData;
-import use_case.searching.SearchingInputData;
 import use_case.searching.SearchingOutputBoundary;
-import view.SearchView;
+import use_case.searching.SearchingOutputData;
 
 public class SearchingPresenter implements SearchingOutputBoundary {
     private final SearchViewModel searchViewModel;
@@ -20,12 +17,10 @@ public class SearchingPresenter implements SearchingOutputBoundary {
     }
 
     @Override
-    public void prepareSearchView(SearchingInputData searchingInputData) {
-        Student currentStudent = searchingInputData.getCurrentStudent();
-        System.out.println("Searching Presenter" + currentStudent);
+        public void prepareSearchView(SearchingOutputData searchingOutputData) {
+        Student currentStudent = searchingOutputData.getStudent();
         searchViewModel.getState().setCurrentStudent(currentStudent);
-        System.out.println("Search ViewModel" + searchViewModel.getState().getCurrentStudent());
-        // not firing state change because nothing needs to be done
+        searchViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(searchViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
