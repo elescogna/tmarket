@@ -12,7 +12,6 @@ import interface_adapter.create_order.CreateOrderViewModel;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.post.PostViewModel;
-import interface_adapter.posting.PostingViewModel;
 import interface_adapter.profile.ProfileViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
@@ -20,6 +19,7 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import interface_adapter.view_order.ViewOrderViewModel;
 import java.awt.CardLayout;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -43,6 +43,7 @@ public class Main {
 
         // The main application window.
         JFrame application = new JFrame("TMarkeT");
+        application.setResizable(false);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -87,12 +88,14 @@ public class Main {
                 viewManagerModel, homeViewModel, searchResultViewModel,
                 viewItemViewModel, clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
+        searchResultView.setPreferredSize(new Dimension(1000, 800));
         views.add(searchResultView, searchResultViewModel.getViewName());
 
         SearchView searchView = SearchUseCaseFactory.create(
                 viewManagerModel, searchViewModel, homeViewModel, searchResultViewModel,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
+        searchView.setPreferredSize(new Dimension(1000, 800));
         views.add(searchView, searchViewModel.getViewName());
 
         ViewItemView viewItemView = ViewItemUseCaseFactory.create(
@@ -102,11 +105,13 @@ public class Main {
                 technologyDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject);
+        viewItemView.setPreferredSize(new Dimension(1000,800));
         views.add(viewItemView, viewItemViewModel.getViewName());
 
         ContactView contactView =
-            ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
-                    homeViewModel, studentDataAccessObject);
+                ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
+                        homeViewModel, studentDataAccessObject);
+        contactView.setPreferredSize(new Dimension(1000, 800));
         views.add(contactView, contactViewModel.getViewName());
 
         CreateOrderView createOrderView = CreateOrderUseCaseFactory.create(
@@ -114,6 +119,7 @@ public class Main {
                 homeViewModel, orderDataAccessObject, studentDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
                 schoolItemDataAccessObject, technologyDataAccessObject);
+        createOrderView.setPreferredSize(new Dimension(1000, 800));
         views.add(createOrderView, createOrderViewModel.getViewName());
 
         HomeView homeView = HomeUseCaseFactory.create(
@@ -126,6 +132,7 @@ public class Main {
                 orderDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject);
+        homeView.setPreferredSize(new Dimension(1000,800));
         views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =
@@ -136,12 +143,14 @@ public class Main {
         SignupView signupView =
             SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
                     signupViewModel, studentDataAccessObject);
-        views.add(signupView, signupViewModel.getViewName());
+        signupView.setPreferredSize(new Dimension(1000, 800));
+        views.add(signupView, homeViewModel.getViewName());
 
         PostView postView = PostUseCaseFactory.create(
                 postViewModel, viewManagerModel, homeViewModel,
                 furnitureDataAccessObject, clothingDataAccessObject,
                 technologyDataAccessObject, schoolItemDataAccessObject);
+        postView.setPreferredSize(new Dimension(1000, 800));
         views.add(postView, postViewModel.getViewName());
 
         ProfileView profileView = ProfileUseCaseFactory.create(
@@ -150,6 +159,7 @@ public class Main {
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject, orderDataAccessObject,
                 orderDataAccessObject);
+        profileView.setPreferredSize(new Dimension(1000,800));
         views.add(profileView, profileViewModel.getViewName());
 
         ViewOrderView viewOrderView = ViewOrderUseCaseFactory.create(
