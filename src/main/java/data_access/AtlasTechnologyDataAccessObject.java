@@ -5,10 +5,12 @@ import entities.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okio.Buffer;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceItem;
@@ -234,39 +236,40 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("database", atlasDatabaseName);
         requestBodyMap.put("collection", atlasCollectionName);
 
-        // create a deep copy so that you don't mutate the parameter
-        HashMap<String, Object> newFilteredAttributes =
-                new HashMap<>(filteredAttributes.size());
-        for (HashMap.Entry<String, Object> entry : filteredAttributes.entrySet()) {
-            newFilteredAttributes.put(new String(entry.getKey()),
-                    new String(String.valueOf(entry.getValue())));
+        HashMap<String, Object> newFilteredAttributes = new HashMap<>();
+
+        // List of keys to include
+        ArrayList<String> keysToInclude = new ArrayList<>(Arrays.asList("soldYet", "type", "brand"));
+
+        for (String key : keysToInclude) {
+            if (filteredAttributes.containsKey(key)) {
+                newFilteredAttributes.put(key, filteredAttributes.get(key));
+            }
         }
 
         // Now modify all the attributes that need a range to account for a range
         // instead of a single exact value
         HashMap<String, Object> priceRangeMap = new HashMap<>();
-        priceRangeMap.put("$lte", newFilteredAttributes.get("price"));
+        priceRangeMap.put("$lte", filteredAttributes.get("price"));
         newFilteredAttributes.put("price", priceRangeMap);
 
         HashMap<String, Object> ageMap = new HashMap<>();
-        ageMap.put("$lte", newFilteredAttributes.get("age"));
+        ageMap.put("$lte", filteredAttributes.get("age"));
         newFilteredAttributes.put("age", ageMap);
 
         HashMap<String, Object> conditionScoreMap = new HashMap<>();
-        conditionScoreMap.put("$gte", newFilteredAttributes.get("conditionScore"));
-        newFilteredAttributes.put("conditionScore", conditionScoreMap);
-
-        // Filter for soldYet
-        newFilteredAttributes.put("soldYet", false);
+        conditionScoreMap.put("$gte", filteredAttributes.get("conditionScore"));
+        newFilteredAttributes.put("condition", conditionScoreMap);
 
         // sort by creation time
         requestBodyMap.put("sort", new HashMap<String, Object>() {
             {
-                put("creationTime", 1); // 1 for ascending, -1 for descending
+                put("creationTime", -1); // 1 for ascending, -1 for descending
             }
         });
 
         requestBodyMap.put("filter", newFilteredAttributes);
+        System.out.println(requestBodyMap);
 
         Request request =
                 preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
@@ -277,7 +280,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             }
 
             JSONObject responseBodyJson = new JSONObject(response.body().string());
-            if (responseBodyJson.isNull("document")) {
+            if (responseBodyJson.isNull("documents")) {
                 return null;
             }
             JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
@@ -310,11 +313,10 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String capabilities = itemDocument.getString("capabilities");
 
                 // This line assumes that calculateDistance is implemented
-                // and that we have access to the current user infomation
+                // and that we have access to the current user information
                 double distance =
-                        calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
-                double maxDistance =
-                        Double.parseDouble((String)filteredAttributes.get("distanceRange"));
+                    calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
+                double maxDistance = (double) filteredAttributes.get("distanceRange");
 
                 if (distance < maxDistance) {
                     Technology newItem = new Technology(id,

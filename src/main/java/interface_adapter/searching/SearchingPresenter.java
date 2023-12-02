@@ -22,7 +22,9 @@ public class SearchingPresenter implements SearchingOutputBoundary {
     @Override
     public void prepareSearchView(SearchingInputData searchingInputData) {
         Student currentStudent = searchingInputData.getCurrentStudent();
+        System.out.println("Searching Presenter" + currentStudent);
         searchViewModel.getState().setCurrentStudent(currentStudent);
+        System.out.println("Search ViewModel" + searchViewModel.getState().getCurrentStudent());
         // not firing state change because nothing needs to be done
 
         viewManagerModel.setActiveView(searchViewModel.getViewName());

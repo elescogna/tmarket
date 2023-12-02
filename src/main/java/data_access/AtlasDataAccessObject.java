@@ -63,7 +63,7 @@ public class AtlasDataAccessObject {
                 for (Object element : elements) {
                     JSONObject elementItem = (JSONObject) element;
                     JSONObject distanceInformation = elementItem.getJSONObject("distance");
-                    String distance = distanceInformation.getString("text"); // string value in miles
+                    // String distance = distanceInformation.getString("text"); // string value in miles
                     distanceValue = distanceInformation.getInt("value");
                 }
             }

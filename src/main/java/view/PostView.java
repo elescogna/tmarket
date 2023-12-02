@@ -96,7 +96,7 @@ public class PostView extends JPanel {
                             currentState.getConditionScore(), currentState.getAge(),
                             currentState.getPrice(), currentState.getBrand(),
                             currentState.getCapabilities(), currentState.getColour());
-                } else if ("School Item".equals(currentState.getCategory())) {
+                } else if ("SchoolItem".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
                             currentState.getType(), currentState.getName(),
@@ -437,7 +437,7 @@ public class PostView extends JPanel {
         categoryLabel.setForeground(new Color(255, 255, 255));
         categoryLabel.setBounds(76, 156, 87, 14);
         categoryComboBox = new JComboBox<>(
-                new String[] {"Furniture", "Technology", "School Item", "Clothing"});
+                new String[] {"Furniture", "Technology", "SchoolItem", "Clothing"});
         categoryComboBox.setBounds(211, 158, 98, 14);
         categoryComboBox.setSelectedIndex(0);
 
@@ -530,8 +530,8 @@ public class PostView extends JPanel {
         technologyBrandLabel.setForeground(new Color(255, 255, 255));
         technologyBrandLabel.setBounds(608, 351, 87, 14);
         technologyBrandComboBox =
-            new JComboBox<>(new String[] {"apple", "samsung", "dell", "hp",
-                "xiaomi", "huawei", "lenovo", "asus"});
+            new JComboBox<>(new String[] {"Apple", "Samsung", "Dell", "HP",
+                "Xiaomi", "Huawei", "Lenovo", "Asus"});
         technologyBrandComboBox.setSize(100, 14);
         technologyBrandComboBox.setLocation(744, 353);
         technologyBrandComboBox.setSelectedIndex(0);
@@ -581,8 +581,8 @@ public class PostView extends JPanel {
         clothingColourLabel.setForeground(new Color(255, 255, 255));
         clothingColourLabel.setBounds(608, 404, 87, 14);
         clothingColourComboBox = new JComboBox<>(new String[] {
-            "red", "black", "blue", "green", "grey", "white", "purple", "orange",
-                "yellow", "brown", "beige", "pink", "multicolour"});
+            "Red", "Black", "Blue", "Green", "Grey", "White", "Purple", "Orange",
+                "Yellow", "Brown", "Beige", "Pink", "Multicolour"});
         clothingColourComboBox.setBounds(744, 406, 100, 14);
         clothingColourComboBox.setSelectedIndex(0);
 
@@ -722,7 +722,7 @@ public class PostView extends JPanel {
                 types = new String[] {"Shirt",  "Pants",  "Dress",       "Jeans", "Tops",
                     "Formal", "Jacket", "Winter Gear", "Hoodie"};
                 break;
-            case "School Item":
+            case "SchoolItem":
                 types = new String[] {"Textbook", "Notebook", "Stationery",
                     "Pens",     "Bag",      "Calculator"};
                 break;
