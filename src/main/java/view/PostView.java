@@ -64,6 +64,7 @@ public class PostView extends JPanel {
 
     public PostView(GoHomeController goHomeController,
             PostController postController, PostViewModel postViewModel) {
+    	setBackground(new Color(0, 0, 0));
         this.postController = postController;
         this.postViewModel = postViewModel;
         this.goHomeController = goHomeController;
@@ -426,138 +427,180 @@ public class PostView extends JPanel {
 
     private void initializeComponents() {
         postButton = new JButton("Post");
-        postButton.setBounds(340, 329, 89, 23);
+        postButton.setBounds(640, 672, 89, 23);
 
         backButton = new JButton("Back");
-        backButton.setBounds(61, 329, 89, 23);
+        backButton.setBounds(211, 672, 89, 23);
 
         categoryLabel = new JLabel("Category:");
-        categoryLabel.setBounds(10, 78, 87, 14);
+        categoryLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        categoryLabel.setForeground(new Color(255, 255, 255));
+        categoryLabel.setBounds(76, 156, 87, 14);
         categoryComboBox = new JComboBox<>(
                 new String[] {"Furniture", "Technology", "School Item", "Clothing"});
-        categoryComboBox.setBounds(94, 78, 98, 14);
+        categoryComboBox.setBounds(211, 158, 98, 14);
         categoryComboBox.setSelectedIndex(0);
 
         typeLabel = new JLabel("Type:");
-        typeLabel.setBounds(10, 104, 87, 14);
+        typeLabel.setForeground(new Color(255, 255, 255));
+        typeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        typeLabel.setBounds(76, 202, 87, 14);
         typeComboBox = new JComboBox<>();
-        typeComboBox.setBounds(94, 104, 98, 14);
+        typeComboBox.setBounds(211, 204, 98, 14);
 
         nameLabel = new JLabel("Name:");
-        nameLabel.setBounds(10, 130, 87, 14);
+        nameLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        nameLabel.setForeground(new Color(255, 255, 255));
+        nameLabel.setBounds(76, 248, 87, 14);
         nameTextField = new JTextField();
-        nameTextField.setBounds(94, 130, 100, 14);
+        nameTextField.setBounds(211, 250, 100, 14);
         nameTextField.setColumns(10);
 
         descriptionLabel = new JLabel("Description:");
-        descriptionLabel.setBounds(10, 156, 87, 14);
+        descriptionLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        descriptionLabel.setForeground(new Color(255, 255, 255));
+        descriptionLabel.setBounds(76, 296, 87, 14);
         descriptionTextField = new JTextField();
-        descriptionTextField.setBounds(94, 156, 100, 14);
+        descriptionTextField.setBounds(211, 298, 100, 14);
         descriptionTextField.setColumns(10);
 
         conditionScoreLabel = new JLabel("Condition:");
-        conditionScoreLabel.setBounds(10, 182, 109, 14);
+        conditionScoreLabel.setForeground(new Color(255, 255, 255));
+        conditionScoreLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        conditionScoreLabel.setBounds(76, 351, 109, 14);
         conditionScoreComboBox = new JComboBox<>(new Integer[] {1, 2, 3, 4, 5});
-        conditionScoreComboBox.setBounds(94, 182, 100, 14);
+        conditionScoreComboBox.setBounds(211, 353, 100, 14);
         conditionScoreComboBox.setSelectedIndex(0);
 
         pickupAddressLabel = new JLabel("Pickup Address:");
-        pickupAddressLabel.setBounds(10, 208, 87, 14);
+        pickupAddressLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        pickupAddressLabel.setForeground(new Color(255, 255, 255));
+        pickupAddressLabel.setBounds(76, 404, 120, 14);
         pickupAddressTextField = new JTextField();
-        pickupAddressTextField.setBounds(94, 208, 100, 14);
+        pickupAddressTextField.setBounds(211, 406, 100, 14);
         pickupAddressTextField.setColumns(10);
 
         ageLabel = new JLabel("Age:");
-        ageLabel.setBounds(10, 234, 87, 14);
+        ageLabel.setForeground(new Color(255, 255, 255));
+        ageLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        ageLabel.setBounds(76, 451, 87, 14);
         ageTextField = new JTextField();
-        ageTextField.setBounds(94, 234, 100, 14);
+        ageTextField.setBounds(211, 453, 100, 14);
         ageTextField.setColumns(10);
 
         priceLabel = new JLabel("Price:");
-        priceLabel.setBounds(10, 260, 87, 14);
+        priceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        priceLabel.setForeground(new Color(255, 255, 255));
+        priceLabel.setBounds(76, 502, 87, 14);
         priceTextField = new JTextField();
-        priceTextField.setBounds(92, 260, 100, 14);
+        priceTextField.setBounds(211, 504, 100, 14);
         priceTextField.setColumns(10);
 
         imageLabel = new JLabel("Image:");
-        imageLabel.setBounds(10, 286, 100, 14);
+        imageLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        imageLabel.setForeground(new Color(255, 255, 255));
+        imageLabel.setBounds(76, 545, 100, 14);
 
         lengthLabel = new JLabel("Length:");
-        lengthLabel.setBounds(232, 78, 87, 14);
+        lengthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lengthLabel.setForeground(new Color(255, 255, 255));
+        lengthLabel.setBounds(608, 351, 87, 14);
         lengthTextField = new JTextField();
-        lengthTextField.setBounds(340, 78, 100, 14);
+        lengthTextField.setBounds(744, 353, 100, 14);
         lengthTextField.setColumns(10);
 
         widthLabel = new JLabel("Width:");
-        widthLabel.setBounds(232, 104, 87, 14);
+        widthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        widthLabel.setForeground(new Color(255, 255, 255));
+        widthLabel.setBounds(608, 404, 87, 14);
         widthTextField = new JTextField();
-        widthTextField.setBounds(340, 104, 100, 14);
+        widthTextField.setBounds(744, 406, 100, 14);
         widthTextField.setColumns(10);
 
         heightLabel = new JLabel("Height:");
-        heightLabel.setBounds(232, 130, 87, 14);
+        heightLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        heightLabel.setForeground(new Color(255, 255, 255));
+        heightLabel.setBounds(608, 451, 87, 14);
         heightTextField = new JTextField();
-        heightTextField.setBounds(340, 130, 100, 14);
+        heightTextField.setBounds(744, 453, 100, 14);
         heightTextField.setColumns(10);
 
         technologyBrandLabel = new JLabel("Brand:");
-        technologyBrandLabel.setBounds(232, 78, 87, 14);
+        technologyBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        technologyBrandLabel.setForeground(new Color(255, 255, 255));
+        technologyBrandLabel.setBounds(608, 351, 87, 14);
         technologyBrandComboBox =
             new JComboBox<>(new String[] {"apple", "samsung", "dell", "hp",
                 "xiaomi", "huawei", "lenovo", "asus"});
         technologyBrandComboBox.setSize(100, 14);
-        technologyBrandComboBox.setLocation(340, 78);
+        technologyBrandComboBox.setLocation(744, 353);
         technologyBrandComboBox.setSelectedIndex(0);
 
         capabilitiesLabel = new JLabel("Capabilities:");
-        capabilitiesLabel.setBounds(232, 104, 87, 14);
+        capabilitiesLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        capabilitiesLabel.setForeground(new Color(255, 255, 255));
+        capabilitiesLabel.setBounds(608, 404, 87, 14);
         capabilitiesTextField = new JTextField();
-        capabilitiesTextField.setBounds(340, 104, 100, 14);
+        capabilitiesTextField.setBounds(744, 406, 100, 14);
         capabilitiesTextField.setColumns(10);
 
         technologyColourLabel = new JLabel("Colour:");
-        technologyColourLabel.setBounds(232, 130, 87, 14);
+        technologyColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        technologyColourLabel.setForeground(new Color(255, 255, 255));
+        technologyColourLabel.setBounds(608, 451, 87, 14);
         technologyColourTextField = new JTextField();
-        technologyColourTextField.setBounds(340, 130, 100, 14);
+        technologyColourTextField.setBounds(744, 453, 100, 14);
         technologyColourTextField.setColumns(10);
 
         schoolItemBrandLabel = new JLabel("Brand:");
-        schoolItemBrandLabel.setBounds(232, 78, 87, 14);
+        schoolItemBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        schoolItemBrandLabel.setForeground(new Color(255, 255, 255));
+        schoolItemBrandLabel.setBounds(608, 351, 87, 14);
         schoolItemBrandTextField = new JTextField();
-        schoolItemBrandTextField.setBounds(340, 78, 100, 14);
+        schoolItemBrandTextField.setBounds(744, 353, 100, 14);
         schoolItemBrandTextField.setColumns(10);
 
         schoolItemColourLabel = new JLabel("Colour:");
-        schoolItemColourLabel.setBounds(232, 104, 87, 14);
+        schoolItemColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        schoolItemColourLabel.setForeground(new Color(255, 255, 255));
+        schoolItemColourLabel.setBounds(608, 404, 87, 14);
         schoolItemColourTextField = new JTextField();
-        schoolItemColourTextField.setBounds(340, 104, 100, 14);
+        schoolItemColourTextField.setBounds(744, 406, 100, 14);
         schoolItemColourTextField.setColumns(10);
 
         clothingBrandLabel = new JLabel("Brand:");
-        clothingBrandLabel.setBounds(232, 78, 87, 14);
+        clothingBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        clothingBrandLabel.setForeground(new Color(255, 255, 255));
+        clothingBrandLabel.setBounds(608, 351, 87, 14);
         clothingBrandTextField = new JTextField();
-        clothingBrandTextField.setBounds(340, 78, 100, 14);
+        clothingBrandTextField.setBounds(744, 353, 100, 14);
         clothingBrandTextField.setColumns(10);
 
         clothingColourLabel = new JLabel("Colour:");
-        clothingColourLabel.setBounds(232, 104, 87, 14);
+        clothingColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        clothingColourLabel.setForeground(new Color(255, 255, 255));
+        clothingColourLabel.setBounds(608, 404, 87, 14);
         clothingColourComboBox = new JComboBox<>(new String[] {
             "red", "black", "blue", "green", "grey", "white", "purple", "orange",
                 "yellow", "brown", "beige", "pink", "multicolour"});
-        clothingColourComboBox.setBounds(340, 104, 100, 14);
+        clothingColourComboBox.setBounds(744, 406, 100, 14);
         clothingColourComboBox.setSelectedIndex(0);
 
         sizeLabel = new JLabel("Size:");
-        sizeLabel.setBounds(232, 130, 87, 14);
+        sizeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        sizeLabel.setForeground(new Color(255, 255, 255));
+        sizeLabel.setBounds(608, 451, 87, 14);
         sizeComboBox =
             new JComboBox<>(new String[] {"XXS", "XS", "S", "M", "L", "XL", "XXL"});
-        sizeComboBox.setBounds(340, 130, 100, 14);
+        sizeComboBox.setBounds(744, 453, 100, 14);
         sizeComboBox.setSelectedIndex(0);
 
         materialLabel = new JLabel("Material:");
-        materialLabel.setBounds(232, 156, 87, 14);
+        materialLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        materialLabel.setForeground(new Color(255, 255, 255));
+        materialLabel.setBounds(608, 502, 87, 14);
         materialTextField = new JTextField();
-        materialTextField.setBounds(340, 156, 100, 14);
+        materialTextField.setBounds(744, 504, 100, 14);
         materialTextField.setColumns(10);
 
         // Initially disable additional fields
@@ -644,8 +687,9 @@ public class PostView extends JPanel {
         this.add(materialTextField);
 
         lblTitle = new JLabel("Post Item");
-        lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblTitle.setBounds(186, 35, 122, 26);
+        lblTitle.setForeground(new Color(255, 255, 255));
+        lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 24));
+        lblTitle.setBounds(439, 66, 122, 26);
         add(lblTitle);
     }
 

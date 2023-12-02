@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -56,6 +57,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
             ContactingController contactingController, GoCreateOrderController goCreateOrderController) {
+    	setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
         this.contactingController = contactingController;
@@ -64,80 +66,96 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         this.viewItemViewModel.addPropertyChangeListener(this);
 
         this.setLayout(null);
-        this.setSize(new Dimension(650, 482));
+        this.setSize(new Dimension(1004, 802));
 
         lblTitle = new JLabel("View Item");
-        lblTitle.setBounds(256, 28, 133, 26);
-        lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 25));
+        lblTitle.setForeground(new Color(255, 255, 255));
+        lblTitle.setBounds(434, 101, 133, 26);
+        lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 26));
         add(lblTitle);
 
-        lblPhoto = new JLabel("Photo");
-        lblPhoto.setBounds(12, 211, 205, 17);
+        lblPhoto = new JLabel("Image:");
+        lblPhoto.setForeground(new Color(255, 255, 255));
+        lblPhoto.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblPhoto.setBounds(76, 334, 205, 17);
         add(lblPhoto);
 
         lblName = new JLabel("Name:");
-        lblName.setBounds(256, 66, 380, 17);
-        lblName.setFont(new Font("Modern No. 20", Font.BOLD, 15));
+        lblName.setForeground(new Color(255, 255, 255));
+        lblName.setBounds(76, 199, 380, 17);
+        lblName.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         add(lblName);
 
         lblDescription = new JLabel("Description:");
-        lblDescription.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblDescription.setBounds(256, 95, 380, 17);
+        lblDescription.setForeground(new Color(255, 255, 255));
+        lblDescription.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblDescription.setBounds(76, 246, 380, 17);
         add(lblDescription);
 
         lblCondition = new JLabel("Condition:");
-        lblCondition.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCondition.setBounds(256, 124, 380, 17);
+        lblCondition.setForeground(new Color(255, 255, 255));
+        lblCondition.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblCondition.setBounds(76, 293, 380, 17);
         add(lblCondition);
 
         lblSoldYet = new JLabel("Sold Yet:");
-        lblSoldYet.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblSoldYet.setBounds(256, 211, 380, 17);
+        lblSoldYet.setForeground(new Color(255, 255, 255));
+        lblSoldYet.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblSoldYet.setBounds(547, 293, 380, 17);
         add(lblSoldYet);
 
         lblAge = new JLabel("Age:");
-        lblAge.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblAge.setBounds(256, 182, 380, 17);
+        lblAge.setForeground(new Color(255, 255, 255));
+        lblAge.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblAge.setBounds(547, 246, 380, 17);
         add(lblAge);
 
         lblPrice = new JLabel("Price:");
-        lblPrice.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblPrice.setBounds(256, 153, 380, 17);
+        lblPrice.setForeground(new Color(255, 255, 255));
+        lblPrice.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblPrice.setBounds(547, 199, 380, 17);
         add(lblPrice);
 
         lblPostedAt = new JLabel("Posted at:");
-        lblPostedAt.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblPostedAt.setBounds(256, 298, 380, 17);
+        lblPostedAt.setForeground(new Color(255, 255, 255));
+        lblPostedAt.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblPostedAt.setBounds(547, 430, 380, 17);
         add(lblPostedAt);
 
         lblType = new JLabel("Type:");
-        lblType.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblType.setBounds(256, 269, 380, 17);
+        lblType.setForeground(new Color(255, 255, 255));
+        lblType.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblType.setBounds(547, 383, 380, 17);
         add(lblType);
 
         lblOwnerName = new JLabel("Owner Name:");
-        lblOwnerName.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblOwnerName.setBounds(256, 240, 380, 17);
+        lblOwnerName.setForeground(new Color(255, 255, 255));
+        lblOwnerName.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblOwnerName.setBounds(547, 334, 380, 17);
         add(lblOwnerName);
 
         lblCustom3 = new JLabel("Custom 3");
-        lblCustom3.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom3.setBounds(256, 385, 380, 17);
+        lblCustom3.setForeground(new Color(255, 255, 255));
+        lblCustom3.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblCustom3.setBounds(547, 564, 380, 17);
         add(lblCustom3);
 
         lblCustom2 = new JLabel("Custom 2");
-        lblCustom2.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom2.setBounds(256, 356, 380, 17);
+        lblCustom2.setForeground(new Color(255, 255, 255));
+        lblCustom2.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblCustom2.setBounds(547, 521, 380, 17);
         add(lblCustom2);
 
         lblCustom1 = new JLabel("Custom 1");
-        lblCustom1.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom1.setBounds(256, 327, 380, 17);
+        lblCustom1.setForeground(new Color(255, 255, 255));
+        lblCustom1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblCustom1.setBounds(547, 480, 380, 17);
         add(lblCustom1);
 
         lblCustom4 = new JLabel("Custom 4");
-        lblCustom4.setFont(new Font("Dialog", Font.BOLD, 15));
-        lblCustom4.setBounds(256, 414, 380, 17);
+        lblCustom4.setForeground(new Color(255, 255, 255));
+        lblCustom4.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblCustom4.setBounds(547, 609, 380, 17);
         add(lblCustom4);
 
         btnBack = new JButton("Done");
@@ -148,7 +166,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             }
         });
 
-        btnBack.setBounds(553, 443, 83, 27);
+        btnBack.setBounds(691, 710, 83, 27);
         add(btnBack);
 
         btnContactSeller = new JButton("Contact Seller");
@@ -161,7 +179,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
                         currentState.getCurrentItem());
             }
         });
-        btnContactSeller.setBounds(418, 443, 123, 27);
+        btnContactSeller.setBounds(165, 710, 123, 27);
         add(btnContactSeller);
 
         btnFulfillOrder = new JButton("Fulfill Order");
@@ -174,7 +192,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
                 goCreateOrderController.execute(currentStudent, item);
             }
         });
-        btnFulfillOrder.setBounds(418, 443, 123, 27);
+        btnFulfillOrder.setBounds(428, 710, 123, 27);
         add(btnFulfillOrder);
     }
 
