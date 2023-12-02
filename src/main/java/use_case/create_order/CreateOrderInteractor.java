@@ -65,11 +65,9 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getItem().getId());
             }
             try {
-                System.out.println("Create order is being called when YES is selected");
                 atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
                         createOrderInputData.getStudent().getHomeAddress(), createOrderInputData.getItemName());
-                System.out.println("the call to createOrder has concluded after selecting YES");
             } catch (IOException e){
                 createOrderPresenter.prepareFailView("Could not access Atlas database");
             }
@@ -89,11 +87,9 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getItem().getId());
             }
             try {
-                System.out.println("Create order is being called when NO is selected");
                 atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
                         createOrderInputData.getOtherAddress(), createOrderInputData.getItemName());
-                System.out.println("the call to createOrder has concluded after selecting NO");
             } catch (IOException e){
                 createOrderPresenter.prepareFailView("Could not access Atlas database");
             }

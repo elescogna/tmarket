@@ -27,14 +27,10 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     documentValue.put("pickupLocation", address);
     documentValue.put("itemName", itemName);
 
-    System.out.println("document value: " + documentValue);
-
     requestBodyMap.put("dataSource", atlasDataSourceName);
     requestBodyMap.put("database", atlasDatabaseName);
     requestBodyMap.put("collection", atlasCollectionName);
     requestBodyMap.put("document", documentValue);
-
-    System.out.println("request body: " + requestBodyMap);
 
     Request request = preparePostRequest(atlasCollectionName,
                                          "/action/insertOne", requestBodyMap);
@@ -42,8 +38,6 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     try (okhttp3.Response response = client.newCall(request).execute()) {
       if (response.isSuccessful()) {
         // Handle a successful response
-        System.out.println("reponse: " + response);
-        System.out.println("Inserted ID" + itemId);
         System.out.println("Item added successfully to the collection!");
         return itemId;
       } else {

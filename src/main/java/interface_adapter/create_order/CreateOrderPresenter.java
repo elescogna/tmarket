@@ -20,8 +20,7 @@ public class CreateOrderPresenter implements CreateOrderOutputBoundary {
 
     @Override
     public void prepareSuccessView() {
-        System.out.println("you reached the presenter");
-        viewManagerModel.setActiveView("home");
+        viewManagerModel.setActiveView("home"); // TODO: need to set the active view to view order
         viewManagerModel.firePropertyChanged();
     }
 
