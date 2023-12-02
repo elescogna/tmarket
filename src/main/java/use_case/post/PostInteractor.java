@@ -40,7 +40,6 @@ public class PostInteractor implements PostInputBoundary{
                     postInputData.getType(), "", now, postInputData.getLength(), postInputData.getWidth(), postInputData.getHeight());
             try {
                 furnitureDataAccessObject.addItemToFurnitureCollection(newFurniture);
-                // MAYBE MAYBE NOT OUTPUT DATA
                 PostOutputData postOutputData = new PostOutputData(postInputData.getStudent());
                 postPresenter.prepareSuccessView(postOutputData);
             } catch (IOException e) {
@@ -56,7 +55,6 @@ public class PostInteractor implements PostInputBoundary{
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getCapabilities(), postInputData.getColour());
             try {
                 technologyDataAccessObject.addItemToTechnologyCollection(newTechnology);
-                // MAYBE MAYBE NOT OUTPUT DATA
                 PostOutputData postOutputData = new PostOutputData(postInputData.getStudent());
                 postPresenter.prepareSuccessView(postOutputData);
             } catch (IOException e) {
@@ -71,7 +69,6 @@ public class PostInteractor implements PostInputBoundary{
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour(), postInputData.getSize(), postInputData.getMaterial());
             try {
                 clothingDataAccessObject.addItemToClothingCollection(newClothing);
-                // MAYBE MAYBE NOT OUTPUT DATA
                 PostOutputData postOutputData = new PostOutputData(postInputData.getStudent());
                 postPresenter.prepareSuccessView(postOutputData);
             } catch (IOException e) {
@@ -86,7 +83,6 @@ public class PostInteractor implements PostInputBoundary{
                     postInputData.getType(), "", now, postInputData.getBrand(), postInputData.getColour());
             try {
                 schoolItemDataAccessObject.addItemToSchoolItemCollection(newSchoolItem);
-                // MAYBE MAYBE NOT OUTPUT DATA
                 PostOutputData postOutputData = new PostOutputData(postInputData.getStudent());
                 postPresenter.prepareSuccessView(postOutputData);
             } catch (IOException e) {

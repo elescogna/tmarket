@@ -1,19 +1,24 @@
 package view;
 
 import entities.Item;
+import entities.Student;
 import interface_adapter.go_home.GoHomeController;
+import interface_adapter.search_result.SearchResultState;
 import interface_adapter.search_result.SearchResultViewModel;
+import interface_adapter.signup.SignupState;
 import interface_adapter.view_item.ViewItemController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
 
-public class SearchResultView extends JPanel {
+public class SearchResultView extends JPanel implements PropertyChangeListener {
     private static final long serialVersionUID = 1L;
     private final JList list;
     private JScrollPane listScrollPane;
@@ -34,6 +39,7 @@ public class SearchResultView extends JPanel {
         this.goHomeController = goHomeController;
         this.searchResultViewModel = searchResultViewModel;
         this.viewItemController = viewItemController;
+        this.searchResultViewModel.addPropertyChangeListener(this);
 
         list = new JList();
 
@@ -54,17 +60,6 @@ public class SearchResultView extends JPanel {
             }
         });
 
-        ArrayList<Item> items =
-            this.searchResultViewModel.getState().getFilteredItems();
-
-        DefaultListModel<String> listItemsModel = new DefaultListModel<String>();
-
-        for (Item item : items) {
-            listItemsModel.addElement(
-                    String.format("%s %s", item.getName(), item.getPrice()));
-        }
-
-        this.list.setModel(listItemsModel);
         
         lblNewLabel = new JLabel("Search Results");
         lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -81,13 +76,9 @@ public class SearchResultView extends JPanel {
                         .getFilteredItems()
                         .get(index)
                         .getId();
-
+                    Student currentStudent = searchResultViewModel.getState().getCurrentStudent();
                     SearchResultView.this.viewItemController.execute(
-                            itemId, null); // TODO:
-                                           // change
-                                           // null
-                                           // to
-                                           // currentStudent
+                            itemId, currentStudent);
                 }
             }
 
@@ -103,5 +94,24 @@ public class SearchResultView extends JPanel {
             @Override
             public void mouseReleased(MouseEvent arg0) {}
         });
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("searchResultState")) {
+            SearchResultState state = (SearchResultState) evt.getNewValue();
+            updateItemList(state.getFilteredItems());
+        }
+    }
+
+    private void updateItemList(ArrayList<Item> items) {
+        DefaultListModel<String> listItemsModel = new DefaultListModel<String>();
+
+        for (Item item : items) {
+            listItemsModel.addElement(
+                    String.format("%s %s", item.getName(), item.getPrice()));
+        }
+
+        this.list.setModel(listItemsModel);
     }
 }

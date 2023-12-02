@@ -12,12 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 import java.awt.Font;
 import java.awt.Color;
 
-public class SearchView extends JPanel {
+public class SearchView extends JPanel implements PropertyChangeListener {
 	private final SearchViewModel searchViewModel;
 	private final SearchController searchController;
 	private static final long serialVersionUID = 1L;
@@ -73,6 +75,8 @@ public class SearchView extends JPanel {
 		this.searchViewModel = searchViewModel;
 		this.searchController = searchController;
 		this.goHomeController = goHomeController;
+
+		this.searchViewModel.addPropertyChangeListener(this);
 		
 		JLabel lblNewLabel = new JLabel("Search");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -86,6 +90,7 @@ public class SearchView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(categoryComboBox)){
 						SearchState currentState = searchViewModel.getState();
+						//System.out.println(currentState.getCurrentStudent());
 						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = categoryComboBox.getSelectedItem();
 						currentFilters.put("category", (String) selectedItem);
@@ -629,5 +634,10 @@ public class SearchView extends JPanel {
 		colourComboBox.setVisible("Clothing".equals(selectedCategory));
 		sizeLabel.setVisible("Clothing".equals(selectedCategory));
 		sizeComboBox.setVisible("Clothing".equals(selectedCategory));
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+
 	}
 }
