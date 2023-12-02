@@ -51,19 +51,6 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
         if (!buyerEmailExists) {
             createOrderPresenter.prepareFailView("Buyer e-mail doesn't exist.");
         } else if (createOrderInputData.getSameAddress().equals("Yes")) {
-            try {
-                Order order = atlasOrderDataAccessObject.createOrder(
-                        createOrderInputData.getBuyerEmail(),
-                        createOrderInputData.getStudent().getUoftEmail(),
-                        createOrderInputData.getItem().getId(),
-                        createOrderInputData.getItem().getPickupAddress(),
-                        createOrderInputData.getItem().getName()
-                        );
-                atlasStudentDataAccessObject.updateOrders(
-                        createOrderInputData.getBuyerEmail(), order);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             if (createOrderInputData.getItem() instanceof Clothing) {
                 atlasClothingDataAccessObject.updateSoldYet(
                         createOrderInputData.getItem().getId());
@@ -79,18 +66,6 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             }
             createOrderPresenter.prepareSuccessView();
         } else {
-            try {
-                Order order = atlasOrderDataAccessObject.createOrder(
-                        createOrderInputData.getBuyerEmail(),
-                        createOrderInputData.getStudent().getUoftEmail(),
-                        createOrderInputData.getItem().getId(),
-                        createOrderInputData.getOtherAddress(),
-                        createOrderInputData.getItem().getName());
-                atlasStudentDataAccessObject.updateOrders(
-                        createOrderInputData.getBuyerEmail(), order);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             if (createOrderInputData.getItem() instanceof Clothing) {
                 atlasClothingDataAccessObject.updateSoldYet(
                         createOrderInputData.getItem().getId());

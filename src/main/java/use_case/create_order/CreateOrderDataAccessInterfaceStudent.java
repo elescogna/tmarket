@@ -6,5 +6,4 @@ import entities.Order;
 
 public interface CreateOrderDataAccessInterfaceStudent {
     public boolean existsByEmail(String email) throws IOException;
-    public void updateOrders(String email, Order order);
 }

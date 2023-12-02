@@ -34,6 +34,8 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         this.createOrderViewModel = createOrderViewModel;
         this.goHomeController = goHomeController;
 
+        this.createOrderViewModel.addPropertyChangeListener(this);
+
         JLabel lblNewLabel = new JLabel("Create New Order");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
         lblNewLabel.setBounds(315, 11, 268, 58);
@@ -119,6 +121,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
                 }
             }
         });
+
         create.setFont(new Font("Tahoma", Font.PLAIN, 20));
         create.setBounds(30, 490, 255, 65);
         add(create);
