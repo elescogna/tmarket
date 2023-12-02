@@ -30,6 +30,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class HomeView extends JPanel implements PropertyChangeListener {
     private static final long serialVersionUID = 1L;
@@ -55,6 +56,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             ProfileController profileController,
             SearchingController searchingController,
             ViewItemController viewItemController) {
+    	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
         homeViewModel.addPropertyChangeListener(this);
 
@@ -79,20 +81,25 @@ public class HomeView extends JPanel implements PropertyChangeListener {
 
     public void initializeComponents() {
         btnPost = new JButton("Post");
-        btnPost.setBounds(318, 67, 124, 47);
+        btnPost.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        btnPost.setBounds(690, 241, 124, 47);
         btnProfile = new JButton("Profile");
-        btnProfile.setBounds(318, 183, 124, 47);
+        btnProfile.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        btnProfile.setBounds(690, 445, 124, 47);
         btnSearch = new JButton("Search");
-        btnSearch.setBounds(318, 125, 124, 47);
+        btnSearch.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        btnSearch.setBounds(690, 344, 124, 47);
         lblTitle = new JLabel("TmarkeT");
+        lblTitle.setForeground(new Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 33));
-        lblTitle.setBounds(10, 22, 430, 37);
+        lblTitle.setBounds(130, 79, 430, 37);
         listItems = new JList<String>();
         scrollPaneItemsScrollPane = new JScrollPane(listItems);
-        scrollPaneItemsScrollPane.setBounds(21, 70, 285, 219);
+        scrollPaneItemsScrollPane.setBounds(100, 150, 500, 600);
         btnRefresh = new JButton("Refresh");
-        btnRefresh.setBounds(318, 242, 124, 47);
+        btnRefresh.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        btnRefresh.setBounds(690, 544, 124, 47);
     }
 
     public void addComponents() {
@@ -163,6 +170,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         btnRefresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 HomeView.this.homeController.execute();
+                HomeView.this.updateItemsList();
             }
         });
     }
