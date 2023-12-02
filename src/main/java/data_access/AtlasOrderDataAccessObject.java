@@ -5,6 +5,7 @@ import entities.Student;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -167,5 +168,55 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
 
             return newOrder;
         }
+    }
+
+    @Override
+    public ArrayList<String> getDirections(String currentStudentAddress,
+            String pickupAddress)
+        throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        final String API_KEY = System.getenv("GOOGLE_MAPS_API_KEY");
+        String url = "https://maps.googleapis.com/maps/api/directions/json?";
+        HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+
+        httpBuilder.addQueryParameter("origin", currentStudentAddress);
+        httpBuilder.addQueryParameter("destination", pickupAddress);
+        httpBuilder.addQueryParameter("key", API_KEY);
+
+        Request request = new Request.Builder()
+            .url(httpBuilder.build().toString())
+            .method("GET", null)
+            .addHeader("Content-Type", "application/json")
+            .build();
+
+        ArrayList<String> results = new ArrayList<String>();
+
+        try (Response response = client.newCall(request).execute()) {
+            JSONObject responseBodyJson = new JSONObject(response.body().string());
+            JSONObject suggestedRoute =
+                (JSONObject)responseBodyJson.getJSONArray("routes").get(0);
+            JSONArray suggestedRoutesLegs = suggestedRoute.getJSONArray("legs");
+
+            for (Object leg : suggestedRoutesLegs) {
+                JSONObject legJsonObj = (JSONObject)leg;
+                JSONArray steps = legJsonObj.getJSONArray("steps");
+
+                for (Object step : steps) {
+                    JSONObject stepJsonObj = (JSONObject)step;
+
+                    String distance =
+                        stepJsonObj.getJSONObject("distance").getString("text");
+                    String instructions =
+                        stepJsonObj.getString("html_instructions").replaceAll("</b>|<b>",
+                                "").replaceAll("</div>",
+                                    ".").replaceAll("<div.*>", ". ");
+
+                    results.add(String.format("(%s) %s", distance, instructions));
+                }
+            }
+        }
+
+        return results;
     }
 }

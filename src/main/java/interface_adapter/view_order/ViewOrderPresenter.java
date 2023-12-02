@@ -23,6 +23,7 @@ public class ViewOrderPresenter implements ViewOrderOutputBoundary {
 
         viewOrderState.setCurrentOrder(response.getOrderToShow());
         viewOrderState.setCurrentItemNameToShow(response.getItemName());
+        viewOrderState.setCurrentDirections(response.getDirections());
 
         this.viewOrderViewModel.setState(viewOrderState);
         viewOrderViewModel.firePropertyChanged();

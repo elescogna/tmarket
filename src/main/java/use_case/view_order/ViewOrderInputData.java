@@ -4,15 +4,12 @@ public class ViewOrderInputData {
     private String orderId;
     private String currentStudentEmail;
     private String currentStudentAddress;
-    private String pickupAddress;
 
     public ViewOrderInputData(String orderId, String currentStudentEmail,
-            String currentStudentAddress,
-            String pickupAddress) {
+            String currentStudentAddress) {
         this.orderId = orderId;
         this.currentStudentEmail = currentStudentEmail;
         this.currentStudentAddress = currentStudentAddress;
-        this.pickupAddress = pickupAddress;
     }
 
     public String getOrderId() { return orderId; }
@@ -29,11 +26,5 @@ public class ViewOrderInputData {
 
     public void setCurrentStudentAddress(String currentStudentAddress) {
         this.currentStudentAddress = currentStudentAddress;
-    }
-
-    public String getPickupAddress() { return pickupAddress; }
-
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
     }
 }
