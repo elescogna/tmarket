@@ -10,8 +10,9 @@ public class ProfileState {
     private String password;
     private String uoftEmail;
     private String homeAddress;
-    private ArrayList<Order> orders;
-    private ArrayList<Item> postedItems;
+    private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<Item> postedItems = new ArrayList<>();
+
     private String studentNotFoundError;
 
     public void setName(String name) {
@@ -34,5 +35,20 @@ public class ProfileState {
     }
     public void setStudentNotFoundError(String studentNotFoundError) {
         this.studentNotFoundError = studentNotFoundError;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public String getUoftEmail() {
+        return uoftEmail;
+    }
+
+    public ArrayList<Item> getPostedItems() {
+        return postedItems;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 }
