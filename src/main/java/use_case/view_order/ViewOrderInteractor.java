@@ -7,12 +7,11 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
     final ViewOrderDataAccessInterface orderDataAccessObject;
     final ViewOrderOutputBoundary viewOrderPresenter;
 
-    public ViewOrderInteractor(
-            ViewOrderDataAccessInterface orderDataAccessObject,
+    public ViewOrderInteractor(ViewOrderDataAccessInterface orderDataAccessObject,
             ViewOrderOutputBoundary viewOrderPresenter) {
         this.orderDataAccessObject = orderDataAccessObject;
         this.viewOrderPresenter = viewOrderPresenter;
-            }
+    }
 
     @Override
     public void execute(ViewOrderInputData viewOrderInputData) {
@@ -23,8 +22,9 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
 
             if ((ordertoDisplay = orderDataAccessObject.getOrder(orderIdToGet)) !=
                     null) {
-                viewOrderPresenter.prepareSuccessView(new ViewOrderOutputData(
-                            ordertoDisplay, viewOrderInputData.getCurrentStudentEmail()));
+                viewOrderPresenter.prepareSuccessView(new
+                        ViewOrderOutputData(ordertoDisplay,
+                            viewOrderInputData.getCurrentStudentEmail(), null));
             } else {
                 throw new IOException("Order with the given ID not found in database.");
             }

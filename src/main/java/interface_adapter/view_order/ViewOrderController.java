@@ -12,7 +12,7 @@ public class ViewOrderController {
 
     public void execute(String orderId, String currentStudentEmail) {
         ViewOrderInputData viewOrderInputData =
-            new ViewOrderInputData(orderId, currentStudentEmail);
+            new ViewOrderInputData(orderId, currentStudentEmail,);
 
         this.viewOrderInteractor.execute(viewOrderInputData);
     }

@@ -1,18 +1,19 @@
 package interface_adapter.view_order;
 
 import entities.Order;
-import entities.Student;
+import java.util.ArrayList;
 
 public class ViewOrderState {
     private Order currentOrder;
     private String currentOrderError;
     private String currentItemNameToShow;
+    private ArrayList<String> currentDirections;
 
-    public ViewOrderState(Order currentOrder, String currentOrderError,
-            String currentItemNameToShow) {
-        this.currentOrder = currentOrder;
-        this.currentOrderError = currentOrderError;
-        this.currentItemNameToShow = currentItemNameToShow;
+    public ViewOrderState(ViewOrderState copy) {
+        this.currentOrder = copy.currentOrder;
+        this.currentOrderError = copy.currentOrderError;
+        this.currentItemNameToShow = copy.currentItemNameToShow;
+        this.currentDirections = copy.currentDirections;
     }
 
     public ViewOrderState() {}
@@ -33,5 +34,11 @@ public class ViewOrderState {
 
     public void setCurrentItemNameToShow(String currentItemNameToShow) {
         this.currentItemNameToShow = currentItemNameToShow;
+    }
+
+    public ArrayList<String> getCurrentDirections() { return currentDirections; }
+
+    public void setCurrentDirections(ArrayList<String> currentDirections) {
+        this.currentDirections = currentDirections;
     }
 }
