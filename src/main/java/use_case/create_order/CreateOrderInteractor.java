@@ -64,6 +64,13 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                 atlasTechnologyDataAccessObject.updateSoldYet(
                         createOrderInputData.getItem().getId());
             }
+            try {
+                atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
+                        createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
+                        createOrderInputData.getStudent().getHomeAddress(), createOrderInputData.getItemName());
+            } catch (IOException e){
+                createOrderPresenter.prepareFailView("Could not access Atlas database");
+            }
             createOrderPresenter.prepareSuccessView();
         } else {
             if (createOrderInputData.getItem() instanceof Clothing) {
@@ -78,6 +85,13 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             } else {
                 atlasTechnologyDataAccessObject.updateSoldYet(
                         createOrderInputData.getItem().getId());
+            }
+            try {
+                atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
+                        createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
+                        createOrderInputData.getOtherAddress(), createOrderInputData.getItemName());
+            } catch (IOException e){
+                createOrderPresenter.prepareFailView("Could not access Atlas database");
             }
             createOrderPresenter.prepareSuccessView();
         }

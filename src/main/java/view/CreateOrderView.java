@@ -116,7 +116,8 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
                             currentState.getStudent(),
                             currentState.getBuyerEmail(),
                             currentState.getSameAddress(),
-                            currentState.getOtherAddress()
+                            currentState.getOtherAddress(),
+                            currentState.getItem().getName()
                     );
                 }
             }
