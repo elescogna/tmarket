@@ -23,10 +23,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameInputField;
 	private JTextField passwordInputField;
-	private JLabel imgLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-
 	private LoginController loginController;
 	private Image backgroundImage;
 
@@ -45,7 +43,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\trial.png";
 			backgroundImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
-			e.printStackTrace();  // Handle the exception according to your needs
+			e.printStackTrace();
 		}
 
 		JLabel lblNewLabel = new JLabel("User Login");
