@@ -23,8 +23,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameInputField;
 	private JTextField passwordInputField;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
+	private JLabel pwdLabel;
+	private JLabel userNameLabel;
 	private LoginController loginController;
 	private Image backgroundImage;
 
@@ -36,11 +36,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		setForeground(new Color(255, 255, 255));
 		this.setLayout(null);
 
+		loginViewModel.addPropertyChangeListener(this);
+
 		this.loginController = controller;
 		this.loginViewModel = loginViewModel;
 
 		try {
-			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\trial.png";
+			String imagePath = "/Users/eleonorascognamiglio/Dropbox/ELEONORA/UofT/Courses/Year2/csc207/Project/csc207-project/assets/backgroud_image.png";
 			backgroundImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -78,17 +80,17 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		passwordInputField.setBounds(552, 392, 207, 20);
 		add(passwordInputField);
 
-		lblNewLabel_1 = new JLabel("Enter your password:");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(286, 388, 263, 25);
-		add(lblNewLabel_1);
+		pwdLabel = new JLabel("Enter your password:");
+		pwdLabel.setForeground(new Color(255, 255, 255));
+		pwdLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+		pwdLabel.setBounds(286, 388, 263, 25);
+		add(pwdLabel);
 
-		lblNewLabel_2 = new JLabel("Enter your username:");
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(286, 317, 256, 25);
-		add(lblNewLabel_2);
+		userNameLabel = new JLabel("Enter your username:");
+		userNameLabel.setForeground(new Color(255, 255, 255));
+		userNameLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+		userNameLabel.setBounds(286, 317, 256, 25);
+		add(userNameLabel);
 
 		JButton submit = new JButton("Log In");
 		submit.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 16));
