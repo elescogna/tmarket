@@ -18,6 +18,7 @@ import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
+import interface_adapter.view_order.ViewOrderViewModel;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ import view.SearchView;
 import view.SignupView;
 import view.ViewItemView;
 import view.ViewManager;
+import view.ViewOrderView;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,6 +66,7 @@ public class Main {
         ViewItemViewModel viewItemViewModel = new ViewItemViewModel();
         CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
         ProfileViewModel profileViewModel = new ProfileViewModel();
+        ViewOrderViewModel viewOrderViewModel = new ViewOrderViewModel();
 
         // create all DAOs
         AtlasOrderDataAccessObject orderDataAccessObject;
@@ -94,15 +97,16 @@ public class Main {
 
         ViewItemView viewItemView = ViewItemUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewItemViewModel, contactViewModel,
-                createOrderViewModel, clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject,
-                clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject);
+                createOrderViewModel, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject);
         views.add(viewItemView, viewItemViewModel.getViewName());
 
         ContactView contactView =
-                ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
-                        homeViewModel, studentDataAccessObject);
+            ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
+                    homeViewModel, studentDataAccessObject);
         views.add(contactView, contactViewModel.getViewName());
 
         CreateOrderView createOrderView = CreateOrderUseCaseFactory.create(
@@ -117,20 +121,21 @@ public class Main {
                 profileViewModel, postViewModel, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject, studentDataAccessObject,
-                clothingDataAccessObject, furnitureDataAccessObject, schoolItemDataAccessObject,
-                technologyDataAccessObject, orderDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject);
+                schoolItemDataAccessObject, technologyDataAccessObject,
+                orderDataAccessObject, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject);
         views.add(homeView, homeViewModel.getViewName());
 
         LoginView loginView =
-                LoginUseCaseFactory.create(loginViewModel, homeViewModel,
-                        studentDataAccessObject, viewManagerModel);
+            LoginUseCaseFactory.create(loginViewModel, homeViewModel,
+                    studentDataAccessObject, viewManagerModel);
         views.add(loginView, loginViewModel.getViewName());
 
         SignupView signupView =
-                SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
-                        signupViewModel, studentDataAccessObject);
+            SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
+                    signupViewModel, studentDataAccessObject);
         views.add(signupView, signupViewModel.getViewName());
 
         PostView postView = PostUseCaseFactory.create(
@@ -139,10 +144,17 @@ public class Main {
                 technologyDataAccessObject, schoolItemDataAccessObject);
         views.add(postView, postViewModel.getViewName());
 
-        ProfileView profileView = ProfileUseCaseFactory.create(profileViewModel, viewManagerModel,
-                homeViewModel, studentDataAccessObject, clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject, orderDataAccessObject);
+        ProfileView profileView = ProfileUseCaseFactory.create(
+                profileViewModel, viewManagerModel, homeViewModel, viewOrderViewModel,
+                studentDataAccessObject, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject, orderDataAccessObject,
+                orderDataAccessObject);
         views.add(profileView, profileViewModel.getViewName());
+
+        ViewOrderView viewOrderView = ViewOrderUseCaseFactory.create(
+                viewManagerModel, homeViewModel, viewOrderViewModel);
+        views.add(viewOrderView, viewOrderViewModel.getViewName());
 
         viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

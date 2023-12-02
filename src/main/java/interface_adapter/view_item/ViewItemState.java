@@ -3,14 +3,12 @@ import entities.Item;
 import entities.Student;
 
 public class ViewItemState {
-    private String nextItemId;
     private Item currentItem;
     private String currentItemError;
 
     private Student currentStudent;
 
     public ViewItemState(ViewItemState copy) {
-        this.nextItemId = copy.nextItemId;
         this.currentItem = copy.currentItem;
         this.currentItemError = copy.currentItemError;
         this.currentStudent = copy.currentStudent;
@@ -35,8 +33,4 @@ public class ViewItemState {
     public void setCurrentStudent(Student currentStudent) {
         this.currentStudent = currentStudent;
     }
-
-    public String getNextItemId() { return nextItemId; }
-
-    public void setNextItemId(String nextItemId) { this.nextItemId = nextItemId; }
 }
