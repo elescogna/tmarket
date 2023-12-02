@@ -15,7 +15,7 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
   private static final String atlasCollectionName = "orders";
 
   public Order createOrder(String buyerEmail, String sellerEmail, String itemId,
-                      String address) throws IOException {
+                      String address, String itemName) throws IOException {
     OkHttpClient client = new OkHttpClient().newBuilder().build();
 
     HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -25,6 +25,7 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     documentValue.put("sellerEmail", sellerEmail);
     documentValue.put("itemId", itemId);
     documentValue.put("pickupLocation", address);
+    documentValue.put("itemName", itemName);
 
     requestBodyMap.put("dataSource", atlasDataSourceName);
     requestBodyMap.put("database", atlasDatabaseName);
@@ -37,6 +38,6 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     Response response = client.newCall(request).execute();
     JSONObject responseBodyJson = new JSONObject(response.body().string());
     String id = responseBodyJson.getString("insertedId");
-    return new Order(id, buyerEmail, sellerEmail, itemId, address);
+    return new Order(id, buyerEmail, sellerEmail, itemId, address, itemName);
   }
 }

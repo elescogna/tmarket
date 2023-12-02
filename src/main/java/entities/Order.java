@@ -6,14 +6,16 @@ public class Order {
     private String sellerEmail;
     private String itemId;
     private String pickupLocation;
+    private String itemName;
 
     public Order(String id, String buyerEmail, String sellerEmail, String itemId,
-            String pickupLocation) {
+            String pickupLocation, String itemName) {
         this.id = id;
         this.buyerEmail = buyerEmail;
         this.sellerEmail = sellerEmail;
         this.itemId = itemId;
         this.pickupLocation = pickupLocation;
+        this.itemName = itemName;
     }
 
     public void setBuyerEmail(String buyerEmail) { this.buyerEmail = buyerEmail; }
@@ -39,4 +41,8 @@ public class Order {
     public String getItemId() { return itemId; }
 
     public void setItemId(String itemId) { this.itemId = itemId; }
+
+    public String getItemName() { return itemName; }
+
+    public void setItemName(String itemName) { this.itemName = itemName; }
 }
