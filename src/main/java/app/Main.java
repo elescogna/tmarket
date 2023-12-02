@@ -135,16 +135,18 @@ public class Main {
         homeView.setPreferredSize(new Dimension(1000,800));
         views.add(homeView, homeViewModel.getViewName());
 
-        LoginView loginView =
-            LoginUseCaseFactory.create(loginViewModel, homeViewModel,
-                    studentDataAccessObject, viewManagerModel);
-        views.add(loginView, loginViewModel.getViewName());
-
         SignupView signupView =
             SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
                     signupViewModel, studentDataAccessObject);
         signupView.setPreferredSize(new Dimension(1000, 800));
         views.add(signupView, signupViewModel.getViewName());
+
+        LoginView loginView =
+                LoginUseCaseFactory.create(loginViewModel, homeViewModel,
+                        studentDataAccessObject, viewManagerModel);
+        loginView.setPreferredSize(new Dimension(1000, 800));
+        views.add(loginView, loginViewModel.getViewName());
+
 
         PostView postView = PostUseCaseFactory.create(
                 postViewModel, viewManagerModel, homeViewModel,
@@ -164,6 +166,7 @@ public class Main {
 
         ViewOrderView viewOrderView = ViewOrderUseCaseFactory.create(
                 viewManagerModel, homeViewModel, viewOrderViewModel);
+        viewOrderView.setPreferredSize(new Dimension(1000, 800));
         views.add(viewOrderView, viewOrderViewModel.getViewName());
 
         viewManagerModel.setActiveView(loginViewModel.getViewName());
