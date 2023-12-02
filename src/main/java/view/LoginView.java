@@ -16,12 +16,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
-//	private JPanel map;
-//	private JPanel home;
-//	private JFrame app;
 	public final String viewName = "log in";
 	private final LoginViewModel loginViewModel;
 	private static final long serialVersionUID = 1L;
@@ -45,53 +41,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		this.loginController = controller;
 		this.loginViewModel = loginViewModel;
 
-//		map = new JPanel();
-//		map.setPreferredSize(new Dimension(1200, 800));
-//		JLabel imgLabel = new JLabel(new ImageIcon("assets/trial.png"));
-//		imgLabel.setPreferredSize(new Dimension(1200, 500));
-//		map.add(imgLabel);
-//
-//		app = new JFrame();
-//
-//		home = new JPanel();
-//		home.setLayout(new FlowLayout());
-//		home.add(map);
-//		app.add(home);
-
-//		JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\trial_1.png"));
-//		imgLabel.setPreferredSize(new Dimension(1200, 500));
-//		System.out.println(imgLabel);
-//		add(imgLabel);
-//
-//		String currentDirectory = System.getProperty("user.dir");
-//
-//		// Print the current directory
-//		System.out.println("Current Directory: " + currentDirectory);
-//
-//		JLabel imgLabel = new JLabel(new ImageIcon("src/java/pleasework.png"));
-//		imgLabel.setPreferredSize(new Dimension(1200, 500));
-//		System.out.println(imgLabel);
-//		add(imgLabel);
-////		try {
-////			String imagePath = "/Users/apank/IdeaProjects/csc207-project/src/main/java/trial_1.png";
-////			backgroundImage = ImageIO.read(new File(imagePath));
-////		} catch (IOException e) {
-////			// Print the exception details to the console for debugging
-////			System.err.println("Error loading image: " + e.getMessage());
-////			e.printStackTrace();
-////		}
-//
-//		try {
-//			URL imageURL = getClass().getResource("src/main/java/pleasework.png");
-//			System.out.println("Image URL: " + imageURL);
-//			ImageIcon imageIcon = new ImageIcon(imageURL);
-//
-//			Image image = imageIcon.getImage();
-//			backgroundImage = image;
-//		} catch (Exception e) {
-//			System.out.println("Oh fuck");
-//			e.printStackTrace();
-//		}
+		try {
+			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\trial.png";
+			backgroundImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			e.printStackTrace();  // Handle the exception according to your needs
+		}
 
 		JLabel lblNewLabel = new JLabel("User Login");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -152,7 +107,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		submit.setBounds(452, 460, 96, 20);
 		add(submit);
 	}
-
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (backgroundImage != null) {
+			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+		}
+	}
 	public void actionPerformed(ActionEvent evt) {}
 
 	@Override
@@ -160,15 +121,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		LoginState state = (LoginState) evt.getNewValue();
 		if (state.getLoginError() != null) {
 			JOptionPane.showMessageDialog(this, state.getLoginError());
-		}
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		// Draw the background image
-		if (backgroundImage != null) {
-			g.drawImage(backgroundImage, 0, 0, this);
 		}
 	}
 }
