@@ -392,28 +392,28 @@ public class SearchView extends JPanel {
 		conditionScoreLabel = new JLabel("Condition Score");
 		conditionScoreLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		conditionScoreLabel.setForeground(new Color(255, 255, 255));
-		conditionScoreLabel.setBounds(63, 312, 80, 25);
+		conditionScoreLabel.setBounds(63, 312, 134, 25);
 		conditionScoreComboBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
 		conditionScoreComboBox.setBounds(207, 314, 185, 25);
 
 		maximumPriceLabel = new JLabel("Maximum price:");
 		maximumPriceLabel.setForeground(new Color(255, 255, 255));
 		maximumPriceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		maximumPriceLabel.setBounds(63, 396, 80, 25);
+		maximumPriceLabel.setBounds(63, 396, 134, 25);
 		maximumPriceTextField = new JTextField();
 		maximumPriceTextField.setBounds(207, 398, 185, 25);
 
 		maximumAgeLabel = new JLabel("Maximum age (years)");
 		maximumAgeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maximumAgeLabel.setForeground(new Color(255, 255, 255));
-		maximumAgeLabel.setBounds(63, 471, 80, 25);
+		maximumAgeLabel.setBounds(63, 471, 185, 25);
 		maximumAgeTextField = new JTextField();
 		maximumAgeTextField.setBounds(207, 473, 185, 25);
 
 		maximumDistanceLabel = new JLabel("Maximum Distance");
 		maximumDistanceLabel.setForeground(new Color(255, 255, 255));
 		maximumDistanceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		maximumDistanceLabel.setBounds(63, 549, 80, 25);
+		maximumDistanceLabel.setBounds(63, 549, 134, 25);
 		maximumDistanceTextField = new JTextField();
 		maximumDistanceTextField.setBounds(207, 551, 185, 25);
 
