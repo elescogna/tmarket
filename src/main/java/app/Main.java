@@ -144,7 +144,7 @@ public class Main {
             SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
                     signupViewModel, studentDataAccessObject);
         signupView.setPreferredSize(new Dimension(1000, 800));
-        views.add(signupView, homeViewModel.getViewName());
+        views.add(signupView, signupViewModel.getViewName());
 
         PostView postView = PostUseCaseFactory.create(
                 postViewModel, viewManagerModel, homeViewModel,
