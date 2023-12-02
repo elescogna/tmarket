@@ -14,7 +14,7 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
 
   private static final String atlasCollectionName = "orders";
 
-  public Order createOrder(String buyerEmail, String sellerEmail, String itemId,
+  public String createOrder(String buyerEmail, String sellerEmail, String itemId,
                       String address, String itemName) throws IOException {
     OkHttpClient client = new OkHttpClient().newBuilder().build();
 
@@ -35,9 +35,22 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     Request request = preparePostRequest(atlasCollectionName,
                                          "/action/insertOne", requestBodyMap);
 
-    Response response = client.newCall(request).execute();
-    JSONObject responseBodyJson = new JSONObject(response.body().string());
-    String id = responseBodyJson.getString("insertedId");
-    return new Order(id, buyerEmail, sellerEmail, itemId, address, itemName);
+    try (okhttp3.Response response = client.newCall(request).execute()) {
+      if (response.isSuccessful()) {
+        // Handle a successful response
+        JSONObject responseBodyJson = new JSONObject(response.body().string());
+        String id = responseBodyJson.getString("insertedId");
+        System.out.println("Item added successfully to the collection!");
+        return id;
+      } else {
+        // Handle an unsuccessful response
+        System.out.println(
+                "Failed to add item to the collection. HTTP status code: " +
+                        response.code());
+        // You might want to log more details or throw an exception based on
+        // your requirements
+      }
+    }
+    return null;
   }
 }
