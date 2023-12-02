@@ -146,8 +146,10 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     OkHttpClient client = new OkHttpClient().newBuilder().build();
 
     HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
-    HashMap<String, String> filterValue = new HashMap<String, String>();
-    filterValue.put("_id", itemId);
+    HashMap<Object, Object> filterValue = new HashMap<>();
+    HashMap<String, String> idMap = new HashMap<String, String>();
+    idMap.put("$oid", itemId);
+    filterValue.put("_id", idMap);
     HashMap<String, Boolean> newValue = new HashMap<String, Boolean>();
     newValue.put("soldYet", true);
     HashMap<String, HashMap<String, Boolean>> updateValue =
@@ -163,11 +165,12 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
     Request request = preparePostRequest(atlasCollectionName,
                                          "/action/updateOne", requestBodyMap);
 
-    try {
-      client.newCall(request).execute();
+    try (Response response  = client.newCall(request).execute()) {
+        System.out.println(response.body().string());
     } catch (IOException e) {
     }
   }
+
   @Override
   public Item getItem(String idtoGet) throws IOException {
     OkHttpClient client = new OkHttpClient().newBuilder().build();

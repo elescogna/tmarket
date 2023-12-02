@@ -84,54 +84,6 @@ public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
             }
     }
 
-    public void updateOrders(String email, Order order) {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-        HashMap<String, Object> requestBodyMap = new HashMap<>();
-        HashMap<String, String> filter = new HashMap<>();
-        filter.put("uoftEmail", email);
-
-        requestBodyMap.put("dataSource", atlasDataSourceName);
-        requestBodyMap.put("database", atlasDatabaseName);
-        requestBodyMap.put("collection", atlasCollectionName);
-        requestBodyMap.put("filter", filter);
-
-        Request request = preparePostRequest(atlasCollectionName, "/action/findOne",
-                requestBodyMap);
-
-        try (Response response = client.newCall(request).execute()) {
-            JSONObject responseBodyJson = new JSONObject(response.body().string());
-            JSONObject document = responseBodyJson.getJSONObject("document");
-            JSONArray ordersJson = document.getJSONArray("orders");
-            ArrayList<Order> orders = new ArrayList<Order>();
-            for (Object o : ordersJson) {
-                orders.add((Order)o);
-            }
-            orders.add(order);
-            requestBodyMap = new HashMap<String, Object>();
-            HashMap<String, String> filterValue = new HashMap<String, String>();
-            filterValue.put("uoftEmail", email);
-            HashMap<String, ArrayList<Order>> newValue =
-                new HashMap<String, ArrayList<Order>>();
-            newValue.put("orders", orders);
-            HashMap<String, HashMap<String, ArrayList<Order>>> updateValue =
-                new HashMap<String, HashMap<String, ArrayList<Order>>>();
-            updateValue.put("$set", newValue);
-
-            requestBodyMap.put("dataSource", atlasDataSourceName);
-            requestBodyMap.put("database", atlasDatabaseName);
-            requestBodyMap.put("collection", atlasCollectionName);
-            requestBodyMap.put("filter", filterValue);
-            requestBodyMap.put("update", updateValue);
-
-            Request secondRequest = preparePostRequest(
-                    atlasCollectionName, "/action/updateOne", requestBodyMap);
-            client.newCall(secondRequest).execute();
-        } catch (IOException e) {
-            System.out.println("Unable to get student orders!");
-        }
-    }
-
     // haven't used it, kept in case someone else needs it. If you are using it,
     // remove this comment.
     // If comment still exists in the end, will delete this method. Use at your
