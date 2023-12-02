@@ -12,11 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
 import use_case.profile.ProfileDataAccessInterface;
-import use_case.view_order.ViewOrderOrderDataAccessInterface;
+import use_case.view_order.ViewOrderDataAccessInterface;
 
 public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     implements CreateOrderDataAccessInterfaceOrder,
-               ViewOrderOrderDataAccessInterface, ProfileDataAccessInterface {
+               ViewOrderDataAccessInterface, ProfileDataAccessInterface {
 
     private static final String atlasCollectionName = "orders";
 

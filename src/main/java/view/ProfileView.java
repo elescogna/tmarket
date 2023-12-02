@@ -2,12 +2,12 @@ package view;
 
 import entities.Item;
 import entities.Order;
-import entities.Student;
 import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeState;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.profile.ProfileState;
 import interface_adapter.profile.ProfileViewModel;
+import interface_adapter.view_order.ViewOrderController;
+import interface_adapter.view_order.ViewOrderViewModel;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -25,13 +25,15 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 	private static final long serialVersionUID = 1L;
 	private GoHomeController goHomeController;
 	private ProfileViewModel profileViewModel;
+	private ViewOrderController viewOrderController;
 	private JLabel nameLabel;
 	private JLabel emailLabel;
 	private JList<String> listPostedItems;
 	private JList<String> listOrders;
 
-	public ProfileView(ProfileController profileController, ProfileViewModel
-			profileViewModel, GoHomeController goHomeController) {
+    public ProfileView(ProfileController profileController, ProfileViewModel
+            profileViewModel, GoHomeController goHomeController,
+            ViewOrderController viewOrderController) {
 		this.setLayout(null);
 		setBackground(new Color(214, 186, 250));
 
@@ -40,6 +42,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		this.profileViewModel = profileViewModel;
 		this.profileViewModel.addPropertyChangeListener(this);
 		this.goHomeController = goHomeController;
+		this.viewOrderController = viewOrderController;
 
 		JLabel nameDisplayLabel = new JLabel("Name: ");
 		nameDisplayLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -59,7 +62,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				goHomeController.execute();
+				ProfileView.this.goHomeController.execute();
 			}
 		});
 		btnNewButton.setBounds(669, 461, 123, 48);
@@ -97,15 +100,14 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					int index = listOrders.locationToIndex(e.getPoint());
+                    int index = listOrders.locationToIndex(e.getPoint());
 
-					ProfileState profileState = ProfileView.this.profileViewModel.getState();
+                    ProfileState profileState = ProfileView.this.profileViewModel.getState();
 
-					// TODO: Implement View Order
-					// String itemId = homeState.getAllPosts().get(index).getId();
-					// Student currentStudent = homeState.getStudent();
+                    String orderId = profileState.getOrders().get(index).getId();
+                    String currentStudentEmail = profileState.getUoftEmail();
 
-					// HomeView.this.viewItemController.execute(itemId, currentStudent);
+                    ProfileView.this.viewOrderController.execute(orderId, currentStudentEmail);
 				}
 			}
 
