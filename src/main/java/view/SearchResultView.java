@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.Font;
+import java.awt.Color;
 
 public class SearchResultView extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -19,6 +21,7 @@ public class SearchResultView extends JPanel {
     private GoHomeController goHomeController;
     private SearchResultViewModel searchResultViewModel;
     private ViewItemController viewItemController;
+    private JLabel lblNewLabel;
 
     /**
      * Create the panel.
@@ -26,6 +29,7 @@ public class SearchResultView extends JPanel {
     public SearchResultView(GoHomeController goHomeController,
             SearchResultViewModel searchResultViewModel,
             ViewItemController viewItemController) {
+    	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
         this.goHomeController = goHomeController;
         this.searchResultViewModel = searchResultViewModel;
@@ -34,11 +38,11 @@ public class SearchResultView extends JPanel {
         list = new JList();
 
         listScrollPane = new JScrollPane(list);
-        listScrollPane.setBounds(36, 33, 379, 199);
+        listScrollPane.setBounds(100, 150, 800, 500);
         add(listScrollPane);
 
         homeButton = new JButton("Home");
-        homeButton.setBounds(169, 244, 117, 29);
+        homeButton.setBounds(404, 699, 117, 29);
         add(homeButton);
 
         homeButton.addActionListener(new ActionListener() {
@@ -61,6 +65,12 @@ public class SearchResultView extends JPanel {
         }
 
         this.list.setModel(listItemsModel);
+        
+        lblNewLabel = new JLabel("Search Results");
+        lblNewLabel.setForeground(new Color(255, 255, 255));
+        lblNewLabel.setFont(new Font("Modern No. 20", Font.BOLD, 24));
+        lblNewLabel.setBounds(410, 83, 180, 33);
+        add(lblNewLabel);
 
         this.list.addMouseListener(new MouseListener() {
             @Override

@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.awt.Font;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -34,31 +35,41 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         this.signupViewModel.addPropertyChangeListener(this);
 
-        setBackground(new Color(197, 159, 247));
+        setBackground(new Color(0, 0, 0));
         this.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Name");
-        lblNewLabel.setBounds(58, 70, 49, 14);
+        lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblNewLabel.setForeground(new Color(255, 255, 255));
+        lblNewLabel.setBounds(289, 296, 49, 14);
         add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("Uoft Email");
-        lblNewLabel_1.setBounds(58, 102, 68, 14);
+        lblNewLabel_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblNewLabel_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1.setBounds(289, 344, 116, 14);
         add(lblNewLabel_1);
 
         JLabel lblNewLabel_1_1 = new JLabel("Home Address");
-        lblNewLabel_1_1.setBounds(58, 137, 82, 14);
+        lblNewLabel_1_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1_1.setBounds(289, 389, 116, 14);
         add(lblNewLabel_1_1);
 
         JLabel lblNewLabel_1_1_1 = new JLabel("Password");
-        lblNewLabel_1_1_1.setBounds(58, 175, 82, 14);
+        lblNewLabel_1_1_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblNewLabel_1_1_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1_1_1.setBounds(289, 439, 82, 14);
         add(lblNewLabel_1_1_1);
 
         JLabel lblNewLabel_1_1_1_1 = new JLabel("Repeat Password");
-        lblNewLabel_1_1_1_1.setBounds(58, 210, 82, 14);
+        lblNewLabel_1_1_1_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblNewLabel_1_1_1_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1_1_1_1.setBounds(289, 485, 116, 14);
         add(lblNewLabel_1_1_1_1);
 
         nameTextField = new JTextField();
-        nameTextField.setBounds(225, 67, 96, 20);
+        nameTextField.setBounds(568, 295, 187, 20);
         add(nameTextField);
         nameTextField.setColumns(10);
 
@@ -83,7 +94,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         uoftEmailTextField = new JTextField();
         uoftEmailTextField.setColumns(10);
-        uoftEmailTextField.setBounds(225, 99, 96, 20);
+        uoftEmailTextField.setBounds(568, 343, 187, 20);
         add(uoftEmailTextField);
 
         uoftEmailTextField.addKeyListener(
@@ -107,7 +118,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         pickupAddressTextField = new JTextField();
         pickupAddressTextField.setColumns(10);
-        pickupAddressTextField.setBounds(225, 134, 96, 20);
+        pickupAddressTextField.setBounds(568, 388, 187, 20);
         add(pickupAddressTextField);
 
         pickupAddressTextField.addKeyListener(
@@ -131,7 +142,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         passwordTextField = new JTextField();
         passwordTextField.setColumns(10);
-        passwordTextField.setBounds(225, 172, 96, 20);
+        passwordTextField.setBounds(568, 438, 187, 20);
         add(passwordTextField);
 
         passwordTextField.addKeyListener(
@@ -155,7 +166,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         repeatPasswordTextField = new JTextField();
         repeatPasswordTextField.setColumns(10);
-        repeatPasswordTextField.setBounds(225, 207, 96, 20);
+        repeatPasswordTextField.setBounds(568, 484, 187, 20);
         add(repeatPasswordTextField);
 
         repeatPasswordTextField.addKeyListener(
@@ -178,8 +189,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 });
 
         JButton signUp = new JButton("Sign Up");
-        signUp.setBounds(323, 253, 89, 23);
+        signUp.setBounds(455, 578, 89, 23);
         add(signUp);
+        
+        JLabel lblNewLabel_2 = new JLabel("Sign Up");
+        lblNewLabel_2.setFont(new Font("Modern No. 20", Font.BOLD, 26));
+        lblNewLabel_2.setForeground(new Color(255, 255, 255));
+        lblNewLabel_2.setBounds(447, 193, 106, 58);
+        add(lblNewLabel_2);
 
         signUp.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class ContactView extends JPanel implements PropertyChangeListener {
 
@@ -42,6 +43,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
     public ContactView(ContactViewModel contactViewModel,
             ContactController contactController,
             GoHomeController goHomeController) {
+    	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
 
         this.contactViewModel = contactViewModel;
@@ -49,12 +51,15 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         this.goHomeController = goHomeController;
 
         lblTitle = new JLabel("Contact");
-        lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblTitle.setBounds(179, 12, 97, 26);
+        lblTitle.setForeground(new Color(255, 255, 255));
+        lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 26));
+        lblTitle.setBounds(451, 115, 97, 26);
         add(lblTitle);
 
         lblSubject = new JLabel("Subject:");
-        lblSubject.setBounds(12, 91, 60, 17);
+        lblSubject.setForeground(new Color(255, 255, 255));
+        lblSubject.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblSubject.setBounds(80, 276, 60, 17);
         add(lblSubject);
 
         textFieldSubject = new JTextField();
@@ -67,12 +72,14 @@ public class ContactView extends JPanel implements PropertyChangeListener {
                         e.getKeyChar());
             }
         });
-        textFieldSubject.setBounds(65, 89, 373, 21);
+        textFieldSubject.setBounds(80, 326, 816, 21);
         add(textFieldSubject);
         textFieldSubject.setColumns(10);
 
         lblBody = new JLabel("Body:");
-        lblBody.setBounds(12, 122, 60, 17);
+        lblBody.setForeground(new Color(255, 255, 255));
+        lblBody.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblBody.setBounds(83, 386, 119, 17);
         add(lblBody);
 
         textAreaBody = new JTextArea();
@@ -84,15 +91,19 @@ public class ContactView extends JPanel implements PropertyChangeListener {
                 currentState.setBodyText(textAreaBody.getText() + e.getKeyChar());
             }
         });
-        textAreaBody.setBounds(12, 144, 426, 105);
+        textAreaBody.setBounds(83, 432, 813, 197);
         add(textAreaBody);
 
         lblTo = new JLabel("To:");
-        lblTo.setBounds(12, 33, 60, 17);
+        lblTo.setForeground(new Color(255, 255, 255));
+        lblTo.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblTo.setBounds(80, 187, 60, 17);
         add(lblTo);
 
         lblItem = new JLabel("Item:");
-        lblItem.setBounds(12, 62, 60, 17);
+        lblItem.setForeground(new Color(255, 255, 255));
+        lblItem.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        lblItem.setBounds(80, 231, 60, 17);
         add(lblItem);
 
         btnBack = new JButton("Back");
@@ -101,7 +112,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
                 ContactView.this.goHomeController.execute();
             }
         });
-        btnBack.setBounds(113, 261, 105, 27);
+        btnBack.setBounds(221, 702, 105, 27);
         add(btnBack);
 
         btnSend = new JButton("Send");
@@ -115,7 +126,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
                         currentState.getBodyText());
             }
         });
-        btnSend.setBounds(226, 261, 105, 27);
+        btnSend.setBounds(586, 702, 105, 27);
         add(btnSend);
     }
 

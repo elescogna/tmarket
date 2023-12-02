@@ -18,7 +18,9 @@ import interface_adapter.search.SearchViewModel;
 import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
-import java.awt.CardLayout;
+
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -40,6 +42,7 @@ public class Main {
 
         // The main application window.
         JFrame application = new JFrame("TMarkeT");
+        application.setResizable(false);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -123,6 +126,7 @@ public class Main {
         LoginView loginView =
             LoginUseCaseFactory.create(loginViewModel, homeViewModel,
                     studentDataAccessObject, viewManagerModel);
+        loginView.setPreferredSize(new Dimension(1000, 800));
         views.add(loginView, loginViewModel.getViewName());
 
         SignupView signupView =
