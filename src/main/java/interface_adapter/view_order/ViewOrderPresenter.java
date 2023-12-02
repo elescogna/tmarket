@@ -21,7 +21,6 @@ public class ViewOrderPresenter implements ViewOrderOutputBoundary {
     public void prepareSuccessView(ViewOrderOutputData response) {
         ViewOrderState viewOrderState = viewOrderViewModel.getState();
         viewOrderState.setCurrentOrder(response.getOrderToShow());
-        viewOrderState.setCurrentStudent(response.getCurrentStudent());
 
         this.viewOrderViewModel.setState(viewOrderState);
         viewOrderViewModel.firePropertyChanged();

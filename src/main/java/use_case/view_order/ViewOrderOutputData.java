@@ -5,20 +5,20 @@ import entities.Student;
 
 public class ViewOrderOutputData {
     Order orderToShow;
-    Student currentStudent;
+    String itemName;
 
-    public ViewOrderOutputData(Order orderToShow, Student currentStudent) {
+    public ViewOrderOutputData(Order orderToShow, String itemName) {
         this.orderToShow = orderToShow;
-        this.currentStudent = currentStudent;
+        this.itemName = itemName;
     }
 
     public Order getOrderToShow() { return orderToShow; }
 
-    public void setOrderToShow(Order orderToShow) { this.orderToShow = orderToShow; }
-
-    public Student getCurrentStudent() { return currentStudent; }
-
-    public void setCurrentStudent(Student currentStudent) {
-        this.currentStudent = currentStudent;
+    public void setOrderToShow(Order orderToShow) {
+        this.orderToShow = orderToShow;
     }
+
+    public String getItemName() { return itemName; }
+
+    public void setItemName(String itemName) { this.itemName = itemName; }
 }

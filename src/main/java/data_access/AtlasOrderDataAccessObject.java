@@ -11,11 +11,12 @@ import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
-import use_case.view_order.ViewOrderDataAccessInterface;
+import use_case.profile.ProfileDataAccessInterface;
+import use_case.view_order.ViewOrderOrderDataAccessInterface;
 
 public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
     implements CreateOrderDataAccessInterfaceOrder,
-               ViewOrderDataAccessInterface, ProfileDataAccessInterface {
+               ViewOrderOrderDataAccessInterface, ProfileDataAccessInterface {
 
     private static final String atlasCollectionName = "orders";
 
@@ -116,6 +117,7 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
         throws IOException {
         return null;
     }
+
     @Override
     public Order getOrder(String idToGet) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -154,13 +156,14 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
             String id = orderDocument.getString("_id");
             String buyerEmail = orderDocument.getString("buyerEmail");
             String sellerEmail = orderDocument.getString("sellerEmail");
-            String item = orderDocument.getString("item");
+            String itemName = orderDocument.getString("itemName");
             String pickupLocation = orderDocument.getString("pickupLocation");
+            String itemId = orderDocument.getString("itemId");
 
             // Order-specific attributes
 
-            Order newOrder =
-                new Order(id, buyerEmail, sellerEmail, item, pickupLocation);
+            Order newOrder = new Order(id, buyerEmail, sellerEmail, itemId,
+                    pickupLocation, itemName);
 
             return newOrder;
         }

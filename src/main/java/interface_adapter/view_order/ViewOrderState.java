@@ -6,13 +6,13 @@ import entities.Student;
 public class ViewOrderState {
     private Order currentOrder;
     private String currentOrderError;
+    private String currentItemNameToShow;
 
-    private Student currentStudent;
-
-    public ViewOrderState(ViewOrderState copy) {
-        this.currentOrder = copy.currentOrder;
-        this.currentOrderError = copy.currentOrderError;
-        this.currentStudent = copy.currentStudent;
+    public ViewOrderState(Order currentOrder, String currentOrderError,
+            String currentItemNameToShow, Student currentStudent) {
+        this.currentOrder = currentOrder;
+        this.currentOrderError = currentOrderError;
+        this.currentItemNameToShow = currentItemNameToShow;
     }
 
     public ViewOrderState() {}
@@ -29,9 +29,9 @@ public class ViewOrderState {
         this.currentOrderError = currentOrderError;
     }
 
-    public Student getCurrentStudent() { return currentStudent; }
+    public String getCurrentItemNameToShow() { return currentItemNameToShow; }
 
-    public void setCurrentStudent(Student currentStudent) {
-        this.currentStudent = currentStudent;
+    public void setCurrentItemNameToShow(String currentItemNameToShow) {
+        this.currentItemNameToShow = currentItemNameToShow;
     }
 }
