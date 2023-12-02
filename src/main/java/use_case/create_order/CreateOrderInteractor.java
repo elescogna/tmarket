@@ -56,7 +56,9 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(),
                         createOrderInputData.getItem().getId(),
-                        createOrderInputData.getItem().getPickupAddress());
+                        createOrderInputData.getItem().getPickupAddress(),
+                        createOrderInputData.getItem().getName()
+                        );
                 atlasStudentDataAccessObject.updateOrders(
                         createOrderInputData.getBuyerEmail(), order);
             } catch (IOException e) {
@@ -82,7 +84,8 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getBuyerEmail(),
                         createOrderInputData.getStudent().getUoftEmail(),
                         createOrderInputData.getItem().getId(),
-                        createOrderInputData.getOtherAddress());
+                        createOrderInputData.getOtherAddress(),
+                        createOrderInputData.getItem().getName());
                 atlasStudentDataAccessObject.updateOrders(
                         createOrderInputData.getBuyerEmail(), order);
             } catch (IOException e) {
