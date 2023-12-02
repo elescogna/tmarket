@@ -4,6 +4,8 @@ import interface_adapter.ViewManagerModel;
 import use_case.profile.ProfileOutputBoundary;
 import use_case.profile.ProfileOutputData;
 
+import javax.swing.*;
+
 public class ProfilePresenter implements ProfileOutputBoundary {
     private final ProfileViewModel profileViewModel;
     private ViewManagerModel viewManagerModel;
@@ -22,6 +24,8 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         profileState.setPassword(response.getPassword());
         profileState.setHomeAddress(response.getHomeAddress());
         profileState.setName(response.getName());
+        profileState.setOrders(response.getAllOrders());
+        profileState.setPostedItems(response.getAllItems());
 
 
         this.profileViewModel.setState(profileState);

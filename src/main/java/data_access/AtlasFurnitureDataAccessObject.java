@@ -2,6 +2,7 @@ package data_access;
 
 import entities.Furniture;
 import entities.Item;
+import entities.Order;
 import entities.Student;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -16,13 +17,14 @@ import org.json.JSONObject;
 import use_case.create_order.CreateOrderDataAccessInterfaceItem;
 import use_case.home.HomeDataAccessInterface;
 import use_case.post.FurniturePostDataAccessInterface;
+import use_case.profile.ProfileDataAccessInterface;
 import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
-    implements HomeDataAccessInterface, FurniturePostDataAccessInterface,
-               CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
-               SearchDataAccessInterface {
+        implements HomeDataAccessInterface, FurniturePostDataAccessInterface,
+        CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+        SearchDataAccessInterface, ProfileDataAccessInterface {
 
     private static final String atlasCollectionName = "furniture";
 
@@ -38,7 +40,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("filter", new HashMap<String, String>());
 
         Request request =
-            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200) {
@@ -67,7 +69,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
-                    LocalDateTime.parse(itemDocument.getString("creationTime"));
+                        LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
 
@@ -107,32 +109,32 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
 
     public void addItemToFurnitureCollection(Furniture newItem)
             throws IOException {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-            HashMap<String, Object> requestBodyMap = new HashMap<>();
-            requestBodyMap.put("dataSource", atlasDataSourceName);
-            requestBodyMap.put("database", atlasDatabaseName);
-            requestBodyMap.put("collection", atlasCollectionName);
-            requestBodyMap.put("document", itemToDocument(newItem));
+        HashMap<String, Object> requestBodyMap = new HashMap<>();
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("document", itemToDocument(newItem));
 
-            Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
-                    requestBodyMap);
+        Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
+                requestBodyMap);
 
-            try (okhttp3.Response response = client.newCall(request).execute()) {
-                if (response.isSuccessful()) {
-                    // Handle a successful response
-                    System.out.println("Item added successfully to the collection!");
-                }
-
-                else {
-                    // Handle an unsuccessful response
-                    System.out.println(
-                            "Failed to add item to the collection. HTTP status code: " +
-                            response.code());
-                    // You might want to log more details or throw an exception based on
-                    // your requirements
-                }
+        try (okhttp3.Response response = client.newCall(request).execute()) {
+            if (response.isSuccessful()) {
+                // Handle a successful response
+                System.out.println("Item added successfully to the collection!");
             }
+
+            else {
+                // Handle an unsuccessful response
+                System.out.println(
+                        "Failed to add item to the collection. HTTP status code: " +
+                                response.code());
+                // You might want to log more details or throw an exception based on
+                // your requirements
+            }
+        }
     }
 
     public void updateSoldYet(String itemId) {
@@ -211,7 +213,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
-                LocalDateTime.parse(itemDocument.getString("creationTime"));
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
 
             // Item-specific attributes
 
@@ -230,7 +232,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
     @Override
     public ArrayList<Item>
     getItemsByFilters(HashMap<String, Object> filteredAttributes,
-            Student currentStudent) throws IOException {
+                      Student currentStudent) throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -241,7 +243,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
 
         // create a deep copy so that you don't mutate the parameter
         HashMap<String, Object> newFilteredAttributes =
-            new HashMap<>(filteredAttributes.size());
+                new HashMap<>(filteredAttributes.size());
         for (HashMap.Entry<String, Object> entry : filteredAttributes.entrySet()) {
             newFilteredAttributes.put(new String(entry.getKey()),
                     new String(String.valueOf(entry.getValue())));
@@ -290,7 +292,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
         });
 
         Request request =
-            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             JSONObject responseBodyJson = new JSONObject(response.body().string());
@@ -315,7 +317,7 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
-                    LocalDateTime.parse(itemDocument.getString("creationTime"));
+                        LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
 
@@ -326,20 +328,90 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 // This line assumes that calculateDistance is implemented
                 // and that we have access to the current user infomation
                 double distance =
-                    calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
+                        calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
                 double maxDistance =
-                    Double.parseDouble((String)filteredAttributes.get("distanceRange"));
+                        Double.parseDouble((String)filteredAttributes.get("distanceRange"));
 
                 if (distance <= maxDistance) {
                     Furniture newItem =
-                        new Furniture(id, name, description, condition, price, age,
-                                soldYet, pickupAddress, ownerId, type, picture,
-                                creationTime, length, width, height);
+                            new Furniture(id, name, description, condition, price, age,
+                                    soldYet, pickupAddress, ownerId, type, picture,
+                                    creationTime, length, width, height);
 
                     result.add(newItem);
                 }
             }
             return result;
         }
+    }
+
+    public ArrayList<Item> getAllItemsByOwnerID(String ownerID) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+
+        HashMap<String, String> filter = new HashMap<>();
+        filter.put("ownerId", ownerID);
+
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("filter", filter);
+
+        Request request =
+                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200) {
+                throw new IOException("Bad request made to Atlas Data API");
+            }
+
+            JSONObject responseBodyJson = new JSONObject(response.body().string());
+            JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
+
+            ArrayList<Item> result = new ArrayList<Item>();
+
+            for (Object document : allItemDocuments) {
+                JSONObject itemDocument = (JSONObject)document;
+
+                // General item attributes
+
+                String id = itemDocument.getString("_id");
+                String name = itemDocument.getString("name");
+                String description = itemDocument.getString("description");
+                int condition = itemDocument.getInt("condition");
+                int price = itemDocument.getInt("price");
+                int age = itemDocument.getInt("age");
+                boolean soldYet = itemDocument.getBoolean("soldYet");
+                String pickupAddress = itemDocument.getString("pickupAddress");
+                String ownerId = itemDocument.getString("ownerId");
+                String type = itemDocument.getString("type");
+                String picture = itemDocument.getString("picture");
+                LocalDateTime creationTime =
+                        LocalDateTime.parse(itemDocument.getString("creationTime"));
+
+                // Item-specific attributes
+
+                double length = itemDocument.getDouble("length");
+                double width = itemDocument.getDouble("width");
+                double height = itemDocument.getDouble("height");
+
+                Furniture newItem = new Furniture(id,
+                        name, description, condition, price, age, soldYet, pickupAddress,
+                        ownerId, type, picture, creationTime, length, width, height);
+                result.add(newItem);
+            }
+
+            return result;
+        }
+    }
+
+    public Student getStudentByEmail(String id) throws IOException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Order> getAllOrdersBySellerEmail(String sellerEmail) throws IOException {
+        return null;
     }
 }
