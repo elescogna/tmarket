@@ -9,7 +9,7 @@ public class ViewOrderState {
     private String currentItemNameToShow;
 
     public ViewOrderState(Order currentOrder, String currentOrderError,
-            String currentItemNameToShow, Student currentStudent) {
+            String currentItemNameToShow) {
         this.currentOrder = currentOrder;
         this.currentOrderError = currentOrderError;
         this.currentItemNameToShow = currentItemNameToShow;

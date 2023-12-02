@@ -19,7 +19,6 @@ import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import interface_adapter.view_order.ViewOrderViewModel;
-
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,6 +34,7 @@ import view.SearchView;
 import view.SignupView;
 import view.ViewItemView;
 import view.ViewManager;
+import view.ViewOrderView;
 
 public class Main {
     public static void main(String[] args) {
@@ -144,14 +144,17 @@ public class Main {
                 technologyDataAccessObject, schoolItemDataAccessObject);
         views.add(postView, postViewModel.getViewName());
 
-        ProfileView profileView =
-            ProfileUseCaseFactory.create(profileViewModel, viewManagerModel,
-                    homeViewModel, viewOrderViewModel, studentDataAccessObject,
-                    clothingDataAccessObject, furnitureDataAccessObject,
-                    schoolItemDataAccessObject, technologyDataAccessObject,
-                    orderDataAccessObject,
-                    orderDataAccessObject);
+        ProfileView profileView = ProfileUseCaseFactory.create(
+                profileViewModel, viewManagerModel, homeViewModel, viewOrderViewModel,
+                studentDataAccessObject, clothingDataAccessObject,
+                furnitureDataAccessObject, schoolItemDataAccessObject,
+                technologyDataAccessObject, orderDataAccessObject,
+                orderDataAccessObject);
         views.add(profileView, profileViewModel.getViewName());
+
+        ViewOrderView viewOrderView = ViewOrderUseCaseFactory.create(
+                viewManagerModel, homeViewModel, viewOrderViewModel);
+        views.add(viewOrderView, viewOrderViewModel.getViewName());
 
         viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

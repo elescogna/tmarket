@@ -51,22 +51,22 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
         lblPhoto.setBounds(12, 211, 205, 17);
         add(lblPhoto);
 
-        lblItemName = new JLabel("Item Name:");
+        lblItemName = new JLabel("Item Name: ");
         lblItemName.setBounds(256, 90, 380, 17);
         lblItemName.setFont(new Font("Modern No. 20", Font.BOLD, 15));
         add(lblItemName);
 
-        lblBuyerEmail = new JLabel("Buyer Email:");
+        lblBuyerEmail = new JLabel("Buyer Email: ");
         lblBuyerEmail.setFont(new Font("Dialog", Font.BOLD, 15));
         lblBuyerEmail.setBounds(256, 119, 380, 17);
         add(lblBuyerEmail);
 
-        lblSellerEmail = new JLabel("Seller Email:");
+        lblSellerEmail = new JLabel("Seller Email: ");
         lblSellerEmail.setFont(new Font("Dialog", Font.BOLD, 15));
         lblSellerEmail.setBounds(256, 148, 380, 17);
         add(lblSellerEmail);
 
-        lblPickupAddress = new JLabel("Pickup Address:");
+        lblPickupAddress = new JLabel("Pickup Address: ");
         lblPickupAddress.setFont(new Font("Dialog", Font.BOLD, 15));
         lblPickupAddress.setBounds(256, 177, 380, 17);
         add(lblPickupAddress);
@@ -99,10 +99,11 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
             Order currentOrder = viewOrderState.getCurrentOrder();
             String currentItemNameToShow = viewOrderState.getCurrentItemNameToShow();
 
-            lblItemName.setText(currentItemNameToShow);
-            lblBuyerEmail.setText(currentOrder.getBuyerEmail());
-            lblSellerEmail.setText(currentOrder.getSellerEmail());
-            lblPickupAddress.setText(currentOrder.getPickupLocation());
+            lblItemName.setText("Item Name: " + currentItemNameToShow);
+            lblBuyerEmail.setText("Buyer Email: " + currentOrder.getBuyerEmail());
+            lblSellerEmail.setText("Seller Email: " + currentOrder.getSellerEmail());
+            lblPickupAddress.setText("Pickup Address: " +
+                    currentOrder.getPickupLocation());
         }
     }
 }
