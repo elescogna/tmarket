@@ -157,10 +157,13 @@ public class Main {
 
         ProfileView profileView = ProfileUseCaseFactory.create(
                 profileViewModel, viewManagerModel, homeViewModel, viewOrderViewModel,
+                viewItemViewModel,
                 studentDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject, orderDataAccessObject,
-                orderDataAccessObject);
+                orderDataAccessObject,
+                clothingDataAccessObject, furnitureDataAccessObject,
+                schoolItemDataAccessObject, technologyDataAccessObject);
         profileView.setPreferredSize(new Dimension(1000,800));
         views.add(profileView, profileViewModel.getViewName());
 

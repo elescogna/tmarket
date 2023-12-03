@@ -61,7 +61,7 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
         lblTitle = new JLabel("View Order");
         lblTitle.setForeground(new Color(255, 255, 255));
-        lblTitle.setBounds(255, 28, 140, 26);
+        lblTitle.setBounds(255, 28, 250, 26);
         lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 26));
         add(lblTitle);
 

@@ -26,6 +26,7 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         profileState.setName(response.getName());
         profileState.setOrders(response.getAllOrders());
         profileState.setPostedItems(response.getAllItems());
+        profileState.setStudent(response.getCurrentStudent());
 
 
         this.profileViewModel.setState(profileState);
