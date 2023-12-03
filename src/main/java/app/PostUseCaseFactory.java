@@ -33,7 +33,7 @@ public class PostUseCaseFactory {
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
 
-                return new PostView(goHomeController, postController, postViewModel);
+                return new PostView(goHomeController, postController, postViewModel, homeViewModel, viewManagerModel);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
             }

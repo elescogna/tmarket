@@ -65,7 +65,6 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             ViewItemController viewItemController, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
-        homeViewModel.addPropertyChangeListener(this);
 
         this.homeController = homeController;
         this.homeViewModel = homeViewModel;
@@ -74,6 +73,8 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         this.searchingController = searchingController;
         this.viewItemController = viewItemController;
         this.viewManagerModel = viewManagerModel;
+
+        homeViewModel.addPropertyChangeListener(this);
 
         try {
             String basePath = System.getProperty("user.dir");

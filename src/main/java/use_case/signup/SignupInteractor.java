@@ -22,13 +22,7 @@ public class SignupInteractor implements SignupInputBoundary {
     public void execute(SignupInputData signupInputData) {
         boolean existsByEmail;
 
-        try {
-            existsByEmail =
-                studentDataAccessObject.existsByEmail(signupInputData.getUoftEmail());
-        } catch (IOException e) {
-            userPresenter.prepareFailView("Cannot access Atlas database.");
-            return;
-        }
+        try {existsByEmail = studentDataAccessObject.existsByEmail(signupInputData.getUoftEmail());} catch (IOException e) {userPresenter.prepareFailView("Cannot access Atlas database.");return;}
 
         if (existsByEmail) {
             userPresenter.prepareFailView("User already exists.");
@@ -45,9 +39,7 @@ public class SignupInteractor implements SignupInputBoundary {
                 SignupOutputData signupOutputData =
                     new SignupOutputData(user.getName());
                 userPresenter.prepareSuccessView(signupOutputData);
-            } catch (IOException e) {
-                userPresenter.prepareFailView("Student not added");
-            }
+            } catch (IOException e) {userPresenter.prepareFailView("Student not added");}
         }
     }
 }

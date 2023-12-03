@@ -1,7 +1,10 @@
 package view;
 
 import entities.Student;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.go_home.GoHomeController;
+import interface_adapter.home.HomeViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.post.PostController;
 import interface_adapter.post.PostState;
 import interface_adapter.post.PostViewModel;
@@ -17,7 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PostView extends JPanel {
-    private final GoHomeController goHomeController;
+    //private final GoHomeController goHomeController;
     private final PostController postController;
     private final PostViewModel postViewModel;
     private JLabel categoryLabel;
@@ -65,13 +68,18 @@ public class PostView extends JPanel {
     private JButton backButton;
     private JLabel lblTitle;
     private Image backgroundImage;
+    private final HomeViewModel homeViewModel;
+
+    private final ViewManagerModel viewManagerModel;
 
     public PostView(GoHomeController goHomeController,
-            PostController postController, PostViewModel postViewModel) {
+                    PostController postController, PostViewModel postViewModel, HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));
         this.postController = postController;
         this.postViewModel = postViewModel;
-        this.goHomeController = goHomeController;
+        this.homeViewModel = homeViewModel;
+        this.viewManagerModel = viewManagerModel;
+        //this.goHomeController = goHomeController;
 
         try {
             String basePath = System.getProperty("user.dir");
@@ -134,7 +142,13 @@ public class PostView extends JPanel {
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(backButton)) {
-                    PostView.this.goHomeController.execute();
+                    //PostView.this.goHomeController.execute();
+                    // TODO: Don't know if we need this line because the view switches without it but idk if student is being passed
+                    homeViewModel.getState().setCurrentStudent(postViewModel.getState().getStudent());
+                    homeViewModel.firePropertyChanged();
+
+                    viewManagerModel.setActiveView(homeViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
                 }
             }
         });
@@ -441,7 +455,7 @@ public class PostView extends JPanel {
         postButton.setBounds(640, 672, 89, 23);
 
         backButton = new JButton("Back");
-        backButton.setBounds(211, 672, 89, 23);
+        backButton.setBounds(211, 500, 89, 23);
 
         categoryLabel = new JLabel("Category:");
         categoryLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));

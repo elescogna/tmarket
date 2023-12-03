@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.post.PostState;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
@@ -28,13 +30,18 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final SignupController signupController;
     private final SignupViewModel signupViewModel;
     private Image backgroundImage;
+    private final LoginViewModel loginViewModel;
+
+    private final ViewManagerModel viewManagerModel;
 
     /**
      * Create the panel.
      */
-    public SignupView(SignupController controller, SignupViewModel signupViewModel) {
+    public SignupView(SignupController controller, SignupViewModel signupViewModel, LoginViewModel loginViewModel, ViewManagerModel viewManagerModel) {
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
+        this.loginViewModel = loginViewModel;
+        this.viewManagerModel = viewManagerModel;
 
         this.signupViewModel.addPropertyChangeListener(this);
 
@@ -200,9 +207,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 });
 
         JButton signUp = new JButton("Sign Up");
-        signUp.setBounds(455, 578, 89, 23);
+        signUp.setBounds(380, 578, 89, 23);
         add(signUp);
-        
+
+        JButton login = new JButton("Login");
+        login.setBounds(510, 578, 89, 23);
+        add(login);
+
         JLabel lblNewLabel_2 = new JLabel("Sign Up");
         lblNewLabel_2.setFont(new Font("Modern No. 20", Font.BOLD, 26));
         lblNewLabel_2.setForeground(new Color(255, 255, 255));
@@ -223,6 +234,20 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                                     currentState.getPickupAddress(),
                                     currentState.getUoftEmail()
                             );
+                        }
+                    }
+                }
+        );
+
+        login.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(login)) {
+                            loginViewModel.firePropertyChanged();
+
+                            viewManagerModel.setActiveView(loginViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
                         }
                     }
                 }
