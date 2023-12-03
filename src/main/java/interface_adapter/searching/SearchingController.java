@@ -15,7 +15,6 @@ public class SearchingController {
 
     public void execute(Student currentStudent) {
         SearchingInputData searchingInputData = new SearchingInputData(currentStudent);
-        System.out.println("Searching Controller" + currentStudent);
         this.searchingInteractor.execute(searchingInputData);
     }
 }

@@ -82,7 +82,8 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		this.searchViewModel.addPropertyChangeListener(this);
 
 		try {
-			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            String basePath = System.getProperty("user.dir");
+            String imagePath = basePath + "/assets/images/background_image.png";
 			backgroundImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -568,10 +569,8 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 					SearchState currentState = searchViewModel.getState();
 					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
 					Student currentStudent = currentState.getCurrentStudent();
-					System.out.println("Search View" + currentStudent);
 
 					searchController.execute(filteredAttributes, currentStudent);
-					System.out.println(filteredAttributes);
 				}
 			}
 		});

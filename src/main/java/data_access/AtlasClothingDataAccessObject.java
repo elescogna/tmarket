@@ -165,7 +165,6 @@ public class AtlasClothingDataAccessObject extends AtlasDataAccessObject
             "/action/updateOne", requestBodyMap);
 
     try (Response response  = client.newCall(request).execute()) {
-        System.out.println(response.body().string());
     } catch (IOException e) {
     }
   }

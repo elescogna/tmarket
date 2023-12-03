@@ -14,7 +14,6 @@ public class SearchController {
     public SearchController(SearchInputBoundary searchInteractor) { this.searchInteractor = searchInteractor; }
 
     public void execute(HashMap<String, Object> filteredAttributes, Student currentStudent) {
-        System.out.println("In controller");
         SearchInputData searchInputData = new SearchInputData(filteredAttributes, currentStudent);
         this.searchInteractor.execute(searchInputData);
     }

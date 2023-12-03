@@ -160,7 +160,6 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
                 "/action/updateOne", requestBodyMap);
 
         try (Response response  = client.newCall(request).execute()) {
-            System.out.println(response.body().string());
         } catch (IOException e) {
         }
     }
@@ -290,8 +289,6 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             }
         });
 
-        System.out.println(requestBodyMap);
-
         Request request =
                 preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
@@ -299,7 +296,6 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             if (response.code() != 200) {
                 throw new IOException("Bad request made to Atlas Data API");
             }
-            System.out.println("In Try");
             JSONObject responseBodyJson = new JSONObject(response.body().string());
             if (responseBodyJson.isNull("documents")) {
                 return null;
