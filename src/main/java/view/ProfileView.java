@@ -56,16 +56,19 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		}
 
 		JLabel nameDisplayLabel = new JLabel("Name: ");
+		nameDisplayLabel.setForeground(new Color(255, 255, 255));
 		nameDisplayLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
 		nameDisplayLabel.setBounds(576, 97, 216, 24);
 		add(nameDisplayLabel);
 
 		JLabel emailDisplayLabel = new JLabel("UofT Email: ");
+		emailDisplayLabel.setForeground(new Color(255, 255, 255));
 		emailDisplayLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
 		emailDisplayLabel.setBounds(576, 233, 242, 41);
 		add(emailDisplayLabel);
 
 		JLabel lblUserProfile = new JLabel("My Profile");
+		lblUserProfile.setForeground(new Color(255, 255, 255));
 		lblUserProfile.setFont(new Font("Modern No. 20", Font.BOLD, 26));
 		lblUserProfile.setBounds(339, 11, 166, 41);
 		add(lblUserProfile);
@@ -84,6 +87,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		add(scrollPane);
 
 		JLabel lblOrders = new JLabel("My Posted Items:");
+		lblOrders.setForeground(new Color(255, 255, 255));
 		lblOrders.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 20));
 		lblOrders.setBounds(339, 46, 200, 41);
 		add(lblOrders);
@@ -93,16 +97,19 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		add(scrollPane_1);
 
 		JLabel lblOrders_1 = new JLabel("My Orders:");
+		lblOrders_1.setForeground(new Color(255, 255, 255));
 		lblOrders_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 20));
 		lblOrders_1.setBounds(88, 46, 117, 41);
 		add(lblOrders_1);
 
 		nameLabel = new JLabel("");
+		nameLabel.setForeground(new Color(255, 255, 255));
 		nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		nameLabel.setBounds(576, 120, 216, 61);
 		add(nameLabel);
 
 		emailLabel = new JLabel("");
+		emailLabel.setForeground(new Color(255, 255, 255));
 		emailLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		emailLabel.setBounds(576, 268, 216, 61);
 		add(emailLabel);
