@@ -8,7 +8,6 @@ import interface_adapter.post.PostViewModel;
 import java.io.IOException;
 import javax.swing.*;
 import use_case.post.*;
-import use_case.posting.PostingInputBoundary;
 import view.PostView;
 
 public class PostUseCaseFactory {

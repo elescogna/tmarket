@@ -6,16 +6,13 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomeState;
 import interface_adapter.home.HomeViewModel;
-import interface_adapter.posting.PostingController;
-import interface_adapter.posting.PostingState;
-import interface_adapter.posting.PostingViewModel;
+import interface_adapter.post.PostViewModel;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.searching.SearchingController;
 import interface_adapter.view_item.ViewItemController;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,8 +44,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private JList<String> listItems;
     private HomeController homeController;
     private HomeViewModel homeViewModel;
+    private PostViewModel postViewModel;
+    private ViewManagerModel viewManagerModel;
     private JButton btnRefresh;
-    private PostingController postingController;
     private ProfileController profileController;
     private SearchingController searchingController;
     private ViewItemController viewItemController;
@@ -59,22 +57,21 @@ public class HomeView extends JPanel implements PropertyChangeListener {
      * Create the panel.
      */
     public HomeView(HomeViewModel homeViewModel, HomeController homeController,
-            PostingController postingController,
+            PostViewModel postViewModel,
             ProfileController profileController,
             SearchingController searchingController,
-            ViewItemController viewItemController, ViewManagerModel viewManagerModel) {
-    	setBackground(new Color(0, 0, 0));
+            ViewItemController viewItemController,
+            ViewManagerModel viewManagerModel) {
+        setBackground(new Color(0, 0, 0));
         this.setLayout(null);
 
         this.homeController = homeController;
         this.homeViewModel = homeViewModel;
-        this.postingController = postingController;
         this.profileController = profileController;
         this.searchingController = searchingController;
         this.viewItemController = viewItemController;
+        this.postViewModel = postViewModel;
         this.viewManagerModel = viewManagerModel;
-
-        homeViewModel.addPropertyChangeListener(this);
 
         try {
             String basePath = System.getProperty("user.dir");
@@ -140,7 +137,13 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         btnPost.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Student student = HomeView.this.homeViewModel.getState().getStudent();
-                postingController.execute(student);
+
+                HomeView.this.postViewModel.getState().setStudent(student);
+                HomeView.this.postViewModel.firePropertyChanged();
+
+                HomeView.this.viewManagerModel.setActiveView(
+                        HomeView.this.postViewModel.getViewName());
+                HomeView.this.viewManagerModel.firePropertyChanged();
             }
         });
 

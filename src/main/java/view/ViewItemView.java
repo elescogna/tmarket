@@ -57,7 +57,6 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private HomeViewModel homeViewModel;
     private ViewManagerModel viewManagerModel;
     private CreateOrderViewModel createOrderViewModel;
-    private ViewManagerModel viewManagerModel;
     private ContactViewModel contactViewModel;
     private Image backgroundImage;
 

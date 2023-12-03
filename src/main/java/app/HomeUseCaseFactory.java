@@ -6,9 +6,6 @@ import interface_adapter.home.HomeController;
 import interface_adapter.home.HomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.post.PostViewModel;
-import interface_adapter.posting.PostingController;
-import interface_adapter.posting.PostingPresenter;
-import interface_adapter.posting.PostingViewModel;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.profile.ProfilePresenter;
 import interface_adapter.profile.ProfileViewModel;
@@ -25,8 +22,6 @@ import use_case.home.HomeDataAccessInterface;
 import use_case.home.HomeInputBoundary;
 import use_case.home.HomeInteractor;
 import use_case.home.HomeOutputBoundary;
-import use_case.posting.PostingInteractor;
-import use_case.posting.PostingOutputBoundary;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.profile.ProfileInteractor;
 import use_case.profile.ProfileOutputBoundary;
@@ -81,12 +76,10 @@ public class HomeUseCaseFactory {
                     schoolItemDataAccessObject,
                     technologyDataAccessObject,
                     orderDataAccessObject);
-            PostingController postingController =
-                    createPostingUseCase(viewManagerModel, postViewModel);
 
-            return new HomeView(homeViewModel, homeController, postingController,
-                    profileController, searchingController,
-                    viewItemController, viewManagerModel);
+            return new HomeView(homeViewModel, homeController, postViewModel,
+                    profileController, searchingController, viewItemController,
+                    viewManagerModel);
         } catch (IOException e) {
             // TODO: what should this actually print out?
             JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
@@ -151,17 +144,7 @@ public class HomeUseCaseFactory {
 
         return new ProfileController(profileInteractor);
     }
-    private static PostingController
-    createPostingUseCase(ViewManagerModel viewManagerModel,
-                         PostViewModel postViewModel) {
-        PostingOutputBoundary postingOutputBoundary =
-                new PostingPresenter(viewManagerModel, postViewModel);
-
-        PostingInteractor postingInteractor =
-                new PostingInteractor(postingOutputBoundary);
-
-        return new PostingController(postingInteractor);
-    }
+    
 
     private static ViewItemController createViewItemUseCase(
             ViewItemViewModel viewItemViewModel, ViewManagerModel viewManagerModel,
