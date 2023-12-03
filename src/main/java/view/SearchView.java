@@ -578,9 +578,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				if (evt.getSource().equals(backButton)) {
-					goHomeController.execute();
-				}
+                SearchView.this.goHomeController.execute();
 			}
 		});
 	}

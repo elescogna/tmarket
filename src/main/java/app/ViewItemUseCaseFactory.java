@@ -3,8 +3,6 @@ package app;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
 import interface_adapter.create_order.CreateOrderViewModel;
-import interface_adapter.go_create_order.GoCreateOrderController;
-import interface_adapter.go_create_order.GoCreateOrderPresenter;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
@@ -13,9 +11,6 @@ import interface_adapter.view_item.ViewItemPresenter;
 import interface_adapter.view_item.ViewItemViewModel;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import use_case.go_create_order.GoCreateOrderInputBoundary;
-import use_case.go_create_order.GoCreateOrderInteractor;
-import use_case.go_create_order.GoCreateOrderOutputBoundary;
 import use_case.go_home.GoHomeInputBoundary;
 import use_case.go_home.GoHomeInteractor;
 import use_case.go_home.GoHomeOutputBoundary;
@@ -47,11 +42,9 @@ public class ViewItemUseCaseFactory {
             try {
                 GoHomeController goHomeController =
                     createGoHomeUseCase(viewManagerModel, homeViewModel);
-                GoCreateOrderController goCreateOrderController =
-                    createGoCreateOrderUseCase(createOrderViewModel, viewManagerModel);
 
                 return new ViewItemView(viewItemViewModel, goHomeController,
-                        goCreateOrderController, viewManagerModel,
+                        createOrderViewModel, viewManagerModel,
                         contactViewModel);
 
             } catch (IOException e) {
@@ -72,18 +65,5 @@ public class ViewItemUseCaseFactory {
                 new GoHomeInteractor(goHomeOutputBoundary);
 
             return new GoHomeController(goHomeInteractor);
-        }
-
-    private static GoCreateOrderController
-        createGoCreateOrderUseCase(CreateOrderViewModel createOrderViewModel,
-                ViewManagerModel viewManagerModel)
-            throws IOException {
-            GoCreateOrderOutputBoundary goCreateOrderOutputBoundary =
-                new GoCreateOrderPresenter(createOrderViewModel, viewManagerModel);
-
-            GoCreateOrderInputBoundary goCreateOrderInteractor =
-                new GoCreateOrderInteractor(goCreateOrderOutputBoundary);
-
-            return new GoCreateOrderController(goCreateOrderInteractor);
         }
 }

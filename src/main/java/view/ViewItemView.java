@@ -8,7 +8,8 @@ import entities.Student;
 import entities.Technology;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
-import interface_adapter.go_create_order.GoCreateOrderController;
+import interface_adapter.create_order.CreateOrderController;
+import interface_adapter.create_order.CreateOrderViewModel;
 import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
@@ -49,7 +50,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
     private ViewItemViewModel viewItemViewModel;
     private GoHomeController goHomeController;
-    private GoCreateOrderController goCreateOrderController;
+    private CreateOrderViewModel createOrderViewModel;
     private ViewManagerModel viewManagerModel;
     private ContactViewModel contactViewModel;
     private Image backgroundImage;
@@ -59,15 +60,15 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
-            GoCreateOrderController goCreateOrderController,
+            CreateOrderViewModel createOrderViewModel,
             ViewManagerModel viewManagerModel,
             ContactViewModel contactViewModel) {
         setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
-        this.goCreateOrderController = goCreateOrderController;
         this.viewManagerModel = viewManagerModel;
         this.contactViewModel = contactViewModel;
+        this.createOrderViewModel = createOrderViewModel;
 
         this.viewItemViewModel.addPropertyChangeListener(this);
 
@@ -203,7 +204,12 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
                 ViewItemState state = viewItemViewModel.getState();
                 Student currentStudent = state.getCurrentStudent();
                 Item item = state.getCurrentItem();
-                ViewItemView.this.goCreateOrderController.execute(currentStudent, item);
+
+                ViewItemView.this.createOrderViewModel.getState().setStudent(currentStudent);
+                ViewItemView.this.createOrderViewModel.getState().setItem(item);
+
+                ViewItemView.this.viewManagerModel.setActiveView(createOrderViewModel.getViewName());
+                ViewItemView.this.viewManagerModel.firePropertyChanged();
             }
         });
         btnFulfillOrder.setBounds(428, 710, 123, 27);
