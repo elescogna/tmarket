@@ -195,6 +195,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 ViewItemView.this.contactViewModel.getState().setCurrentItem(
                         ViewItemView.this.viewItemViewModel.getState().getCurrentItem());
+                ViewItemView.this.contactViewModel.firePropertyChanged();
 
                 ViewItemView.this.viewManagerModel.setActiveView(
                         ViewItemView.this.contactViewModel.getViewName());
@@ -213,6 +214,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
                 ViewItemView.this.createOrderViewModel.getState().setStudent(currentStudent);
                 ViewItemView.this.createOrderViewModel.getState().setItem(item);
+                ViewItemView.this.createOrderViewModel.firePropertyChanged();
 
                 ViewItemView.this.viewManagerModel.setActiveView(createOrderViewModel.getViewName());
                 ViewItemView.this.viewManagerModel.firePropertyChanged();
