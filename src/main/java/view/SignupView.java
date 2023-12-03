@@ -23,8 +23,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private JTextField nameTextField;
     private JTextField uoftEmailTextField;
     private JTextField pickupAddressTextField;
-    private JTextField passwordTextField;
-    private JTextField repeatPasswordTextField;
+    private JPasswordField passwordTextField;
+    private JPasswordField repeatPasswordTextField;
     private final SignupController signupController;
     private final SignupViewModel signupViewModel;
     private Image backgroundImage;
@@ -151,7 +151,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
-        passwordTextField = new JTextField();
+        passwordTextField = new JPasswordField();
         passwordTextField.setColumns(10);
         passwordTextField.setBounds(568, 438, 187, 20);
         add(passwordTextField);
@@ -175,7 +175,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
-        repeatPasswordTextField = new JTextField();
+        repeatPasswordTextField = new JPasswordField();
         repeatPasswordTextField.setColumns(10);
         repeatPasswordTextField.setBounds(568, 484, 187, 20);
         add(repeatPasswordTextField);

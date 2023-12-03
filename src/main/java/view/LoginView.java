@@ -22,11 +22,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 	private final LoginViewModel loginViewModel;
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameInputField;
-	private JTextField passwordInputField;
 	private JLabel pwdLabel;
 	private JLabel userNameLabel;
 	private LoginController loginController;
 	private Image backgroundImage;
+	private JPasswordField passwordInputField;
 
 	/**
 	 * Create the panel.
@@ -68,7 +68,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		add(usernameInputField);
 		usernameInputField.setColumns(10);
 
-		passwordInputField = new JTextField();
+		passwordInputField = new JPasswordField();
 		passwordInputField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -77,6 +77,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 				loginViewModel.setState(currentState);
 			}
 		});
+
 		passwordInputField.setColumns(10);
 		passwordInputField.setBounds(552, 392, 207, 20);
 		add(passwordInputField);
@@ -87,7 +88,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		pwdLabel.setBounds(286, 388, 263, 25);
 		add(pwdLabel);
 
-		userNameLabel = new JLabel("Enter your username:");
+		userNameLabel = new JLabel("Enter your email:");
 		userNameLabel.setForeground(new Color(255, 255, 255));
 		userNameLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		userNameLabel.setBounds(286, 317, 256, 25);
