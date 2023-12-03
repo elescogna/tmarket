@@ -49,7 +49,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
 		try {
             String basePath = System.getProperty("user.dir");
-            String imagePath = basePath + "/assets/images/background_image.png";
+            String imagePath = basePath + "/assets/images/UC2.png";
 			backgroundImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		emailLabel = new JLabel("");
 		emailLabel.setForeground(new Color(255, 255, 255));
 		emailLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		emailLabel.setBounds(576, 268, 216, 61);
+		emailLabel.setBounds(576, 268, 275, 61);
 		add(emailLabel);
 
 		listOrders.addMouseListener(new MouseListener() {

@@ -40,7 +40,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         try {
             String basePath = System.getProperty("user.dir");
-            String imagePath = basePath + "/assets/images/background_image.png";
+            String imagePath = basePath + "/assets/images/UC2.png";
             backgroundImage = ImageIO.read(new File(imagePath));
         } catch (IOException e) {
             e.printStackTrace();
