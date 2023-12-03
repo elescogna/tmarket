@@ -2,10 +2,13 @@ package view;
 
 import entities.Item;
 import entities.Order;
+import entities.Student;
 import interface_adapter.go_home.GoHomeController;
+import interface_adapter.home.HomeState;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.profile.ProfileState;
 import interface_adapter.profile.ProfileViewModel;
+import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_order.ViewOrderController;
 import interface_adapter.view_order.ViewOrderViewModel;
 
@@ -28,6 +31,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 	private GoHomeController goHomeController;
 	private ProfileViewModel profileViewModel;
 	private ViewOrderController viewOrderController;
+	private ViewItemController viewItemController;
 	private JLabel nameLabel;
 	private JLabel emailLabel;
 	private JList<String> listPostedItems;
@@ -36,7 +40,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
     public ProfileView(ProfileController profileController, ProfileViewModel
             profileViewModel, GoHomeController goHomeController,
-            ViewOrderController viewOrderController) {
+					   ViewOrderController viewOrderController, ViewItemController viewItemController) {
 		this.setLayout(null);
 		setBackground(new Color(214, 186, 250));
 
@@ -46,6 +50,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		this.profileViewModel.addPropertyChangeListener(this);
 		this.goHomeController = goHomeController;
 		this.viewOrderController = viewOrderController;
+		this.viewItemController = viewItemController;
 
 		try {
             String basePath = System.getProperty("user.dir");
@@ -127,6 +132,34 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
                     String currentStudentAddress = profileState.getHomeAddress();
 
                     ProfileView.this.viewOrderController.execute(orderId, currentStudentEmail, currentStudentAddress);
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+
+		listPostedItems.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int index = listPostedItems.locationToIndex(e.getPoint());
+
+					ProfileState profileState = ProfileView.this.profileViewModel.getState();
+
+					String itemId = profileState.getPostedItems().get(index).getId();
+					Student currentStudent = profileState.getCurrentStudent();
+
+					ProfileView.this.viewItemController.execute(itemId, currentStudent);
 				}
 			}
 

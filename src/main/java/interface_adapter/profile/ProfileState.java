@@ -2,6 +2,8 @@ package interface_adapter.profile;
 
 import entities.Item;
 import entities.Order;
+import entities.Student;
+
 import java.util.ArrayList;
 
 public class ProfileState {
@@ -13,6 +15,7 @@ public class ProfileState {
     private ArrayList<Item> postedItems = new ArrayList<>();
 
     private String studentNotFoundError;
+    private Student currentStudent;
 
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }
@@ -27,6 +30,9 @@ public class ProfileState {
     public void setStudentNotFoundError(String studentNotFoundError) {
         this.studentNotFoundError = studentNotFoundError;
     }
+    public void setStudent(Student currentStudent) {
+        this.currentStudent = currentStudent;
+    }
 
     public String getName() { return name; }
     public String getUoftEmail() { return uoftEmail; }
@@ -37,4 +43,5 @@ public class ProfileState {
     public String getPassword() { return password; }
     public String getHomeAddress() { return homeAddress; }
     public String getStudentNotFoundError() { return studentNotFoundError; }
+    public Student getCurrentStudent() { return this.currentStudent;}
 }

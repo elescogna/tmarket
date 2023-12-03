@@ -56,7 +56,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
                 }
             });
             Collections.reverse(items);
-            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress, items, orders);
+            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress, items, orders, student);
             profilePresenter.prepareSuccessView(profileOutputData);
         }
         catch(IOException error){
