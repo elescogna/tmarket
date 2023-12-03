@@ -42,7 +42,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		this.loginViewModel = loginViewModel;
 
 		try {
-			String imagePath = "/Users/eleonorascognamiglio/Dropbox/ELEONORA/UofT/Courses/Year2/csc207/Project/csc207-project/assets/backgroud_image.png";
+			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
 			backgroundImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();

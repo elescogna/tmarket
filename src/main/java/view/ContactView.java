@@ -4,20 +4,23 @@ import interface_adapter.contact.ContactController;
 import interface_adapter.contact.ContactState;
 import interface_adapter.contact.ContactViewModel;
 import interface_adapter.go_home.GoHomeController;
-import java.awt.Font;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
 public class ContactView extends JPanel implements PropertyChangeListener {
 
@@ -36,6 +39,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
     private ContactViewModel contactViewModel;
     private ContactController contactController;
     private GoHomeController goHomeController;
+    private Image backgroundImage;
 
     /**
      * Create the panel.
@@ -49,6 +53,13 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         this.contactViewModel = contactViewModel;
         this.contactController = contactController;
         this.goHomeController = goHomeController;
+
+        try {
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         lblTitle = new JLabel("Contact");
         lblTitle.setForeground(new Color(255, 255, 255));
@@ -128,6 +139,13 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         });
         btnSend.setBounds(586, 702, 105, 27);
         add(btnSend);
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     @Override

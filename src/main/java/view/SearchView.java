@@ -7,17 +7,19 @@ import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
-import java.awt.Font;
-import java.awt.Color;
 
 public class SearchView extends JPanel implements PropertyChangeListener {
 	private final SearchViewModel searchViewModel;
@@ -55,8 +57,9 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 	private JComboBox sizeComboBox;
 	private JButton submitButton;
 	private JButton backButton;
-
 	private GoHomeController goHomeController;
+	private Image backgroundImage;
+
 
 	/**
 	 * Create the panel.
@@ -77,7 +80,13 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		this.goHomeController = goHomeController;
 
 		this.searchViewModel.addPropertyChangeListener(this);
-		
+
+		try {
+			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+			backgroundImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		JLabel lblNewLabel = new JLabel("Search");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Modern No. 20", Font.BOLD, 26));
@@ -90,7 +99,6 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource().equals(categoryComboBox)){
 						SearchState currentState = searchViewModel.getState();
-						//System.out.println(currentState.getCurrentStudent());
 						// HashMap<String, Object> currentFilters = currentState.getFilterChoices();
 						Object selectedItem = categoryComboBox.getSelectedItem();
 						currentFilters.put("category", (String) selectedItem);
@@ -634,6 +642,13 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		colourComboBox.setVisible("Clothing".equals(selectedCategory));
 		sizeLabel.setVisible("Clothing".equals(selectedCategory));
 		sizeComboBox.setVisible("Clothing".equals(selectedCategory));
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (backgroundImage != null) {
+			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+		}
 	}
 
 	@Override

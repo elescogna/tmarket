@@ -12,17 +12,19 @@ import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
-import java.awt.Dimension;
-import java.awt.Font;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -50,6 +52,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private GoHomeController goHomeController;
     private ContactingController contactingController;
     private GoCreateOrderController goCreateOrderController;
+    private Image backgroundImage;
 
     /**
      * Create the panel.
@@ -64,6 +67,13 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         this.goCreateOrderController = goCreateOrderController;
 
         this.viewItemViewModel.addPropertyChangeListener(this);
+
+        try {
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         this.setLayout(null);
         this.setSize(new Dimension(1004, 802));
@@ -195,7 +205,13 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         btnFulfillOrder.setBounds(428, 710, 123, 27);
         add(btnFulfillOrder);
     }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // someone outside of this will have updated the state and caused this

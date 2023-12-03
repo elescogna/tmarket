@@ -74,7 +74,7 @@ public class PostView extends JPanel {
         this.goHomeController = goHomeController;
 
         try {
-            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\trial.png";
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
             backgroundImage = ImageIO.read(new File(imagePath));
         } catch (IOException e) {
             e.printStackTrace();

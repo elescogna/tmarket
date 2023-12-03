@@ -5,15 +5,17 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -25,6 +27,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private JTextField repeatPasswordTextField;
     private final SignupController signupController;
     private final SignupViewModel signupViewModel;
+    private Image backgroundImage;
 
     /**
      * Create the panel.
@@ -34,6 +37,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.signupViewModel = signupViewModel;
 
         this.signupViewModel.addPropertyChangeListener(this);
+
+        try {
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         setBackground(new Color(0, 0, 0));
         this.setLayout(null);
@@ -216,6 +226,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     }
                 }
         );
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     @Override
