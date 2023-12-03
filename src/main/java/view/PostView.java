@@ -106,7 +106,7 @@ public class PostView extends JPanel {
                             currentState.getDescription(), currentState.getPickupAddress(),
                             currentState.getConditionScore(), currentState.getAge(),
                             currentState.getPrice(), currentState.getLength(),
-                            currentState.getWidth(), currentState.getHeight());
+                            currentState.getWidth(), currentState.getHeight(), currentState.getImagePath());
                 } else if ("Technology".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
@@ -114,7 +114,7 @@ public class PostView extends JPanel {
                             currentState.getDescription(), currentState.getPickupAddress(),
                             currentState.getConditionScore(), currentState.getAge(),
                             currentState.getPrice(), currentState.getBrand(),
-                            currentState.getCapabilities(), currentState.getColour());
+                            currentState.getCapabilities(), currentState.getColour(), currentState.getImagePath());
                 } else if ("SchoolItem".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
@@ -122,7 +122,7 @@ public class PostView extends JPanel {
                             currentState.getDescription(), currentState.getPickupAddress(),
                             currentState.getConditionScore(), currentState.getAge(),
                             currentState.getPrice(), currentState.getBrand(),
-                            currentState.getColour());
+                            currentState.getColour(), currentState.getImagePath());
                 } else if ("Clothing".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
@@ -131,7 +131,7 @@ public class PostView extends JPanel {
                             currentState.getConditionScore(), currentState.getAge(),
                             currentState.getPrice(), currentState.getBrand(),
                             currentState.getColour(), currentState.getSize(),
-                            currentState.getMaterial());
+                            currentState.getMaterial(), currentState.getImagePath());
                 } else {
                     System.out.println(
                             "Invalid category selected or all fields have not been filled");
@@ -498,7 +498,8 @@ public class PostView extends JPanel {
         conditionScoreComboBox.setSelectedIndex(0);
 
         pickupAddressLabel = new JLabel("Pickup Address:");
-        pickupAddressLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        pickupAddressLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         pickupAddressLabel.setForeground(new Color(255, 255, 255));
         pickupAddressLabel.setBounds(76, 404, 120, 20);
         pickupAddressTextField = new JTextField();
@@ -518,10 +519,10 @@ public class PostView extends JPanel {
         priceLabel.setForeground(new Color(255, 255, 255));
         priceLabel.setBounds(76, 502, 87, 20);
         priceTextField = new JTextField();
-        priceTextField.setBounds(211, 504, 100, 20);
+        priceTextField.setBounds(211, 502, 100, 20);
         priceTextField.setColumns(10);
 
-        imageLabel = new JLabel("Image:");
+        imageLabel = new JLabel("Image (png):");
         imageLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         imageLabel.setForeground(new Color(255, 255, 255));
         imageLabel.setBounds(76, 545, 100, 20);
@@ -551,7 +552,8 @@ public class PostView extends JPanel {
         heightTextField.setColumns(10);
 
         technologyBrandLabel = new JLabel("Brand:");
-        technologyBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        technologyBrandLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         technologyBrandLabel.setForeground(new Color(255, 255, 255));
         technologyBrandLabel.setBounds(608, 351, 87, 20);
         technologyBrandComboBox =
@@ -562,7 +564,8 @@ public class PostView extends JPanel {
         technologyBrandComboBox.setSelectedIndex(0);
 
         capabilitiesLabel = new JLabel("Capabilities:");
-        capabilitiesLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        capabilitiesLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         capabilitiesLabel.setForeground(new Color(255, 255, 255));
         capabilitiesLabel.setBounds(608, 404, 87, 20);
         capabilitiesTextField = new JTextField();
@@ -570,7 +573,8 @@ public class PostView extends JPanel {
         capabilitiesTextField.setColumns(10);
 
         technologyColourLabel = new JLabel("Colour:");
-        technologyColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        technologyColourLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         technologyColourLabel.setForeground(new Color(255, 255, 255));
         technologyColourLabel.setBounds(608, 451, 87, 20);
         technologyColourTextField = new JTextField();
@@ -578,7 +582,8 @@ public class PostView extends JPanel {
         technologyColourTextField.setColumns(10);
 
         schoolItemBrandLabel = new JLabel("Brand:");
-        schoolItemBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        schoolItemBrandLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         schoolItemBrandLabel.setForeground(new Color(255, 255, 255));
         schoolItemBrandLabel.setBounds(608, 351, 87, 20);
         schoolItemBrandTextField = new JTextField();
@@ -586,7 +591,8 @@ public class PostView extends JPanel {
         schoolItemBrandTextField.setColumns(10);
 
         schoolItemColourLabel = new JLabel("Colour:");
-        schoolItemColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        schoolItemColourLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         schoolItemColourLabel.setForeground(new Color(255, 255, 255));
         schoolItemColourLabel.setBounds(608, 404, 87, 20);
         schoolItemColourTextField = new JTextField();
@@ -594,7 +600,8 @@ public class PostView extends JPanel {
         schoolItemColourTextField.setColumns(10);
 
         clothingBrandLabel = new JLabel("Brand:");
-        clothingBrandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        clothingBrandLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         clothingBrandLabel.setForeground(new Color(255, 255, 255));
         clothingBrandLabel.setBounds(608, 351, 87, 20);
         clothingBrandTextField = new JTextField();
@@ -602,7 +609,8 @@ public class PostView extends JPanel {
         clothingBrandTextField.setColumns(10);
 
         clothingColourLabel = new JLabel("Colour:");
-        clothingColourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        clothingColourLabel.setFont(
+                new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         clothingColourLabel.setForeground(new Color(255, 255, 255));
         clothingColourLabel.setBounds(608, 404, 87, 20);
         clothingColourComboBox = new JComboBox<>(new String[] {
@@ -716,6 +724,15 @@ public class PostView extends JPanel {
         lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 24));
         lblTitle.setBounds(439, 66, 122, 28);
         add(lblTitle);
+
+        imageTextField = new JTextField();
+        imageTextField.setBounds(211, 545, 100, 20);
+        add(imageTextField);
+        imageTextField.setColumns(10);
+
+        btnBrowse = new JButton("Browse");
+        btnBrowse.setBounds(323, 545, 100, 20);
+        add(btnBrowse);
     }
 
     private void addListeners() {
@@ -724,6 +741,20 @@ public class PostView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 updateTypeComboBox();
                 updateAdditionalFields();
+            }
+        });
+
+        btnBrowse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(PostView.this);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                    PostView.this.imageTextField.setText(filePath);
+                    PostView.this.postViewModel.getState().setImagePath(filePath);
+                }
             }
         });
     }

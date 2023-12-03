@@ -6,4 +6,5 @@ import java.io.IOException;
 
 public interface ClothingPostDataAccessInterface {
     void addItemToClothingCollection(Clothing newClothing) throws IOException;
+    int getLastImageIndex() throws IOException;
 }
