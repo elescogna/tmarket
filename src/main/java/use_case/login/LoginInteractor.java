@@ -20,12 +20,7 @@ public class LoginInteractor implements LoginInputBoundary {
 
         boolean passwordCheck;
 
-        try {
-            passwordCheck = studentDataAccessObject.checkPassword(username, password);
-        } catch (IOException e) {
-            this.loginPresenter.prepareFailView("Cannot access Atlas database.");
-            return;
-        }
+        try {passwordCheck = studentDataAccessObject.checkPassword(username, password);} catch (IOException e) {this.loginPresenter.prepareFailView("Cannot access Atlas database.");return;}
 
         if (!passwordCheck) {
             loginPresenter.prepareFailView("Invalid username or password!");
@@ -35,9 +30,7 @@ public class LoginInteractor implements LoginInputBoundary {
                         loginInputData.getUsername());
                 LoginOutputData loginOutputData = new LoginOutputData(student);
                 loginPresenter.prepareSuccessView(loginOutputData);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (IOException e) {throw new RuntimeException(e);}
         }
     }
 }

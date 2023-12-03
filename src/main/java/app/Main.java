@@ -172,7 +172,7 @@ public class Main {
         viewOrderView.setPreferredSize(new Dimension(1000, 800));
         views.add(viewOrderView, viewOrderViewModel.getViewName());
 
-        viewManagerModel.setActiveView(loginViewModel.getViewName());
+        viewManagerModel.setActiveView(signupViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
         application.pack();
