@@ -76,7 +76,7 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
         lblNewLabel = new JLabel("Search Results");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Modern No. 20", Font.BOLD, 24));
-        lblNewLabel.setBounds(410, 83, 180, 33);
+        lblNewLabel.setBounds(410, 83, 210, 33);
         add(lblNewLabel);
 
         this.list.addMouseListener(new MouseListener() {

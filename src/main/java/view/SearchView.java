@@ -424,7 +424,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		maximumAgeTextField = new JTextField();
 		maximumAgeTextField.setBounds(250, 473, 185, 25);
 
-		maximumDistanceLabel = new JLabel("Maximum Distance (km)");
+		maximumDistanceLabel = new JLabel("Maximum Distance (m)");
 		maximumDistanceLabel.setForeground(new Color(255, 255, 255));
 		maximumDistanceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maximumDistanceLabel.setBounds(63, 549, 180, 25);
