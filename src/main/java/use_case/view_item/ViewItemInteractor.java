@@ -2,6 +2,13 @@ package use_case.view_item;
 
 import entities.Item;
 import java.io.IOException;
+import javax.swing.ImageIcon;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.core.ResponseInputStream;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 
 public class ViewItemInteractor implements ViewItemInputBoundary {
     final ViewItemDataAccessInterface clothingDataAccessObject;
@@ -23,6 +30,26 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
         this.viewItemPresenter = viewItemOutputBoundary;
             }
 
+    private ImageIcon retrieveImage(String key) throws IOException {
+        Region region = Region.US_EAST_2;
+        String bucketName = System.getenv("AWS_S3_BUCKET_NAME");
+
+        S3Client s3 = S3Client.builder()
+            .region(region)
+            .credentialsProvider(
+                    EnvironmentVariableCredentialsProvider.create())
+            .build();
+        ResponseInputStream<GetObjectResponse> image = s3.getObject(
+                GetObjectRequest.builder().bucket(bucketName).key(key).build());
+
+        ImageIcon imageIcon = new ImageIcon(
+                new ImageIcon(image.readAllBytes())
+                .getImage()
+                .getScaledInstance(399, 316, java.awt.Image.SCALE_SMOOTH));
+
+        return imageIcon;
+    }
+
     @Override
     public void execute(ViewItemInputData viewItemData) {
         try {
@@ -39,8 +66,9 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
                     null ||
                     (itemToDisplay = technologyDataAccessObject.getItem(itemIdToGet)) !=
                     null) {
-                viewItemPresenter.prepareSuccessView(
-                        new ViewItemOutputData(itemToDisplay, viewItemData.getCurrentStudent()));
+                viewItemPresenter.prepareSuccessView(new ViewItemOutputData(
+                            itemToDisplay, retrieveImage(itemToDisplay.getPicture()),
+                            viewItemData.getCurrentStudent()));
             } else { // if the item wasn't found in any collection
                 throw new IOException("Item with the given ID not found in database.");
             }

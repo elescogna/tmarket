@@ -37,13 +37,10 @@ public class PostInteractor implements PostInputBoundary {
 
         ArrayList<Integer> indices = new ArrayList<Integer>();
 
-        try {
-            indices.add(this.clothingDataAccessObject.getLastImageIndex());
-            indices.add(this.furnitureDataAccessObject.getLastImageIndex());
-            indices.add(this.schoolItemDataAccessObject.getLastImageIndex());
-            indices.add(this.technologyDataAccessObject.getLastImageIndex());
-        } finally {
-        }
+        indices.add(this.clothingDataAccessObject.getLastImageIndex());
+        indices.add(this.furnitureDataAccessObject.getLastImageIndex());
+        indices.add(this.schoolItemDataAccessObject.getLastImageIndex());
+        indices.add(this.technologyDataAccessObject.getLastImageIndex());
 
         return Collections.max(indices);
     }

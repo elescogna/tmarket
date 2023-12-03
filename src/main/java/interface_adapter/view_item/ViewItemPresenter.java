@@ -22,6 +22,7 @@ public class ViewItemPresenter implements ViewItemOutputBoundary {
         ViewItemState viewItemState = viewItemViewModel.getState();
         viewItemState.setCurrentItem(response.getItemToShow());
         viewItemState.setCurrentStudent(response.getCurrentStudent());
+        viewItemState.setCurrentItemImage(response.getItemImageIcon());
 
         this.viewItemViewModel.setState(viewItemState);
         viewItemViewModel.firePropertyChanged();
