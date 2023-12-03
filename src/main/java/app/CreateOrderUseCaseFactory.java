@@ -15,7 +15,6 @@ import use_case.go_home.GoHomeInputBoundary;
 import use_case.go_home.GoHomeInteractor;
 import use_case.go_home.GoHomeOutputBoundary;
 import view.CreateOrderView;
-import view.HomeView;
 
 public class CreateOrderUseCaseFactory {
     private CreateOrderUseCaseFactory() {}
@@ -23,7 +22,7 @@ public class CreateOrderUseCaseFactory {
     public static CreateOrderView
         create(ViewManagerModel viewManagerModel, ViewItemViewModel viewItemViewModel,
                 CreateOrderViewModel createOrderViewModel, HomeViewModel homeViewModel,
-                CreateOrderDataAccessInterfaceOrder orderDataAccessObject,
+                CreateOrderDataAccessInterface orderDataAccessObject,
                 CreateOrderDataAccessInterfaceStudent studentDataAccessObject,
                 CreateOrderDataAccessInterfaceItem clothingDataAccessObject,
                 CreateOrderDataAccessInterfaceItem furnitureDataAccessObject,
@@ -51,7 +50,7 @@ public class CreateOrderUseCaseFactory {
             ViewManagerModel viewManagerModel,
             CreateOrderViewModel createOrderViewModel,
             ViewItemViewModel viewItemViewModel,
-            CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject,
+            CreateOrderDataAccessInterface atlasOrderDataAccessObject,
             CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessObject,
             CreateOrderDataAccessInterfaceItem atlasClothingDataAccessObject,
             CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessObject,
@@ -60,8 +59,7 @@ public class CreateOrderUseCaseFactory {
             throws IOException {
 
             CreateOrderOutputBoundary createOrderOutputBoundary =
-                new CreateOrderPresenter(viewManagerModel, createOrderViewModel,
-                        viewItemViewModel);
+                new CreateOrderPresenter(viewManagerModel, createOrderViewModel);
 
             CreateOrderInputBoundary createOrderInteractor = new CreateOrderInteractor(
                     atlasOrderDataAccessObject, atlasStudentDataAccessObject,

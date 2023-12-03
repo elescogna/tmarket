@@ -12,19 +12,18 @@ import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.io.File;
-import java.io.IOException;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -59,8 +58,9 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
-            ContactingController contactingController, GoCreateOrderController goCreateOrderController) {
-    	setBackground(new Color(0, 0, 0));
+            ContactingController contactingController,
+            GoCreateOrderController goCreateOrderController) {
+        setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
         this.contactingController = contactingController;

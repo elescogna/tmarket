@@ -2,29 +2,28 @@ package use_case.view_order;
 
 public class ViewOrderInputData {
     private String orderId;
-    private String currentStudentEmail;
-    private String currentStudentAddress;
+    private String studentEmail;
+    private String studentAddress;
 
-    public ViewOrderInputData(String orderId, String currentStudentEmail,
-            String currentStudentAddress) {
+    public ViewOrderInputData(String orderId, String studentEmail, String studentAddress) {
         this.orderId = orderId;
-        this.currentStudentEmail = currentStudentEmail;
-        this.currentStudentAddress = currentStudentAddress;
+        this.studentEmail = studentEmail;
+        this.studentAddress = studentAddress;
     }
 
     public String getOrderId() { return orderId; }
 
     public void setOrderId(String orderId) { this.orderId = orderId; }
 
-    public String getCurrentStudentEmail() { return currentStudentEmail; }
+    public String getStudentEmail() { return studentEmail; }
 
-    public void setCurrentStudentEmail(String currentStudentEmail) {
-        this.currentStudentEmail = currentStudentEmail;
+    public void setStudentEmail(String currentStudentEmail) {
+        this.studentEmail = currentStudentEmail;
     }
 
-    public String getCurrentStudentAddress() { return currentStudentAddress; }
+    public String getStudentAddress() { return studentAddress; }
 
-    public void setCurrentStudentAddress(String currentStudentAddress) {
-        this.currentStudentAddress = currentStudentAddress;
+    public void setStudentAddress(String currentStudentAddress) {
+        this.studentAddress = currentStudentAddress;
     }
 }

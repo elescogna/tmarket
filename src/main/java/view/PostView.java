@@ -64,8 +64,10 @@ public class PostView extends JPanel {
     private JComboBox<String> sizeComboBox;
     private JTextField materialTextField;
     private JTextField clothingBrandTextField;
+    private JTextField imageTextField;
     private JButton postButton;
     private JButton backButton;
+    private JButton btnBrowse;
     private JLabel lblTitle;
     private Image backgroundImage;
     private final HomeViewModel homeViewModel;

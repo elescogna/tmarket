@@ -109,13 +109,13 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
 		nameLabel = new JLabel("");
 		nameLabel.setForeground(new Color(255, 255, 255));
-		nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		nameLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 20));
 		nameLabel.setBounds(576, 120, 216, 61);
 		add(nameLabel);
 
 		emailLabel = new JLabel("");
 		emailLabel.setForeground(new Color(255, 255, 255));
-		emailLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		emailLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 20));
 		emailLabel.setBounds(576, 268, 275, 61);
 		add(emailLabel);
 

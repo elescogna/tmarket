@@ -107,7 +107,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 				);
 			}
 		});
-		submit.setBounds(452, 460, 96, 20);
+		submit.setBounds(452, 460, 96, 33);
 		add(submit);
 	}
 	@Override

@@ -61,14 +61,14 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
         lblTitle = new JLabel("View Order");
         lblTitle.setForeground(new Color(255, 255, 255));
-        lblTitle.setBounds(255, 28, 250, 26);
+        lblTitle.setBounds(249, 28, 152, 26);
         lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 26));
         add(lblTitle);
 
         lblPhoto = new JLabel("Photo");
         lblPhoto.setForeground(new Color(255, 255, 255));
         lblPhoto.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-        lblPhoto.setBounds(12, 211, 205, 17);
+        lblPhoto.setBounds(19, 168, 225, 164);
         add(lblPhoto);
 
         lblItemName = new JLabel("Item Name: ");
@@ -147,6 +147,7 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
             lblSellerEmail.setText("Seller Email: " + currentOrder.getSellerEmail());
             lblPickupAddress.setText("Pickup Address: " +
                     currentOrder.getPickupLocation());
+            lblPhoto.setIcon(viewOrderState.getCurrentOrderItemImage());
 
             DefaultListModel<String> listDirectionsModel =
                 new DefaultListModel<String>();
