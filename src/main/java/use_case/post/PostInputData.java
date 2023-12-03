@@ -20,6 +20,7 @@ public class PostInputData {
     private String colour;
     private String size;
     private String material;
+
     public PostInputData(Student student, String category, String type, String name, String description,
                          String pickupAddress, int conditionScore, int age, int price, double length,
                          double width, double height) {
@@ -36,6 +37,7 @@ public class PostInputData {
         this.height = height;
         this.width = width;
     }
+
     public PostInputData(Student student, String category, String type,
                          String name, String description, String pickupAddress, int conditionScore,
                          int age, int price, String brand, String capabilities, String colour){
@@ -53,6 +55,7 @@ public class PostInputData {
         this.colour = colour;
 
     }
+
     public PostInputData(Student student, String category, String type,
                          String name, String description, String pickupAddress, int conditionScore,
                          int age, int price, String brand, String colour){
@@ -67,8 +70,6 @@ public class PostInputData {
         this.price = price;
         this.brand = brand;
         this.colour = colour;
-
-
     }
 
     public  PostInputData(Student student, String category, String type,

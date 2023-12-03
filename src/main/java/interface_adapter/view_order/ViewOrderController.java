@@ -10,9 +10,9 @@ public class ViewOrderController {
         this.viewOrderInteractor = viewOrderInteractor;
     }
 
-    public void execute(String orderId, String currentStudentEmail) {
+    public void execute(String orderId, String currentStudentEmail, String currentStudentAddress) {
         ViewOrderInputData viewOrderInputData =
-            new ViewOrderInputData(orderId, currentStudentEmail);
+            new ViewOrderInputData(orderId, currentStudentEmail, currentStudentAddress);
 
         this.viewOrderInteractor.execute(viewOrderInputData);
     }

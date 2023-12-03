@@ -2,32 +2,39 @@ package use_case.view_order;
 
 import entities.Order;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewOrderInteractor implements ViewOrderInputBoundary {
     final ViewOrderDataAccessInterface orderDataAccessObject;
     final ViewOrderOutputBoundary viewOrderPresenter;
 
-    public ViewOrderInteractor(
-            ViewOrderDataAccessInterface orderDataAccessObject,
+    public ViewOrderInteractor(ViewOrderDataAccessInterface orderDataAccessObject,
             ViewOrderOutputBoundary viewOrderPresenter) {
         this.orderDataAccessObject = orderDataAccessObject;
         this.viewOrderPresenter = viewOrderPresenter;
-            }
+    }
 
     @Override
     public void execute(ViewOrderInputData viewOrderInputData) {
         try {
-            Order ordertoDisplay;
 
             String orderIdToGet = viewOrderInputData.getOrderId();
+            String currentStudentAddress =
+                viewOrderInputData.getCurrentStudentAddress();
 
-            if ((ordertoDisplay = orderDataAccessObject.getOrder(orderIdToGet)) !=
-                    null) {
+            Order ordertoDisplay = orderDataAccessObject.getOrder(orderIdToGet);
+
+            if (ordertoDisplay != null) {
+                ArrayList<String> directions = orderDataAccessObject.getDirections(
+                        currentStudentAddress, ordertoDisplay.getPickupLocation());
+
                 viewOrderPresenter.prepareSuccessView(new ViewOrderOutputData(
-                            ordertoDisplay, viewOrderInputData.getCurrentStudentEmail()));
+                            ordertoDisplay, viewOrderInputData.getCurrentStudentEmail(),
+                            directions));
             } else {
-                throw new IOException("Order with the given ID not found in database.");
+                throw new IOException();
             }
+
         } catch (IOException e) {
             viewOrderPresenter.prepareFailView("Could not access Atlas database.");
         }
