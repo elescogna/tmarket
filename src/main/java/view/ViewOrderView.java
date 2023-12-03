@@ -10,10 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
@@ -28,6 +32,7 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
     private ViewOrderViewModel viewOrderViewModel;
     private GoHomeController goHomeController;
+    private JList<String> listDirections;
 
     /**
      * Create the panel.
@@ -81,6 +86,16 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
         btnBack.setBounds(553, 443, 83, 27);
         add(btnBack);
+
+        JLabel lblDirections = new JLabel("Directions:");
+        lblDirections.setFont(new Font("Dialog", Font.BOLD, 15));
+        lblDirections.setBounds(255, 211, 380, 17);
+        add(lblDirections);
+
+        listDirections = new JList<String>();
+        JScrollPane directionsScrollPane = new JScrollPane(listDirections);
+        directionsScrollPane.setBounds(255, 240, 381, 191);
+        add(directionsScrollPane);
     }
 
     @Override
@@ -98,12 +113,23 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
         } else {     // display everything as normal
             Order currentOrder = viewOrderState.getCurrentOrder();
             String currentItemNameToShow = viewOrderState.getCurrentItemNameToShow();
+            ArrayList<String> currentDirections =
+                viewOrderState.getCurrentDirections();
 
             lblItemName.setText("Item Name: " + currentItemNameToShow);
             lblBuyerEmail.setText("Buyer Email: " + currentOrder.getBuyerEmail());
             lblSellerEmail.setText("Seller Email: " + currentOrder.getSellerEmail());
             lblPickupAddress.setText("Pickup Address: " +
                     currentOrder.getPickupLocation());
+
+            DefaultListModel<String> listDirectionsModel =
+                new DefaultListModel<String>();
+
+            for (String direction : currentDirections) {
+                listDirectionsModel.addElement(direction);
+            }
+
+            this.listDirections.setModel(listDirectionsModel);
         }
     }
 }
