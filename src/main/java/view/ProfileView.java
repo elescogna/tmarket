@@ -131,7 +131,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
                     String currentStudentEmail = profileState.getUoftEmail();
                     String currentStudentAddress = profileState.getHomeAddress();
 
-                    ProfileView.this.viewOrderController.execute(orderId, currentStudentEmail, currentStudentAddress);
+					ProfileView.this.viewOrderController.execute(orderId, currentStudentEmail, currentStudentAddress);
 				}
 			}
 
