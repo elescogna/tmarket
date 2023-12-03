@@ -2,6 +2,7 @@ package view;
 
 import entities.Item;
 import entities.Student;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeController;
 import interface_adapter.home.HomeState;
 import interface_adapter.home.HomeViewModel;
@@ -40,6 +41,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private JButton btnPost;
     private JButton btnProfile;
     private JButton btnSearch;
+    private JButton btnLogout;
     private JLabel lblTitle;
     private JScrollPane scrollPaneItemsScrollPane;
     private JList<String> listItems;
@@ -51,6 +53,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private SearchingController searchingController;
     private ViewItemController viewItemController;
     private Image backgroundImage;
+    private ViewManagerModel viewManagerModel;
 
     /**
      * Create the panel.
@@ -59,7 +62,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             PostingController postingController,
             ProfileController profileController,
             SearchingController searchingController,
-            ViewItemController viewItemController) {
+            ViewItemController viewItemController, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
         homeViewModel.addPropertyChangeListener(this);
@@ -70,6 +73,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         this.profileController = profileController;
         this.searchingController = searchingController;
         this.viewItemController = viewItemController;
+        this.viewManagerModel = viewManagerModel;
 
         try {
             String basePath = System.getProperty("user.dir");
@@ -116,6 +120,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         btnRefresh = new JButton("Refresh");
         btnRefresh.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         btnRefresh.setBounds(690, 544, 124, 47);
+        btnLogout = new JButton("Logout");
+        btnLogout.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
+        btnLogout.setBounds(690, 650, 124, 47);
     }
 
     public void addComponents() {
@@ -125,6 +132,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         add(lblTitle);
         add(scrollPaneItemsScrollPane);
         add(btnRefresh);
+        add(btnLogout);
     }
 
     public void addActionListeners() {
@@ -186,6 +194,15 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 HomeView.this.homeController.execute();
                 HomeView.this.updateItemsList();
+            }
+        });
+
+        btnLogout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(btnLogout)) {
+                    viewManagerModel.setActiveView("sign_up");
+                    viewManagerModel.firePropertyChanged();
+                }
             }
         });
     }
