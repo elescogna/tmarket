@@ -20,6 +20,7 @@ public class PostState {
     private String colour = "";
     private String size = "";
     private String material = "";
+    private String imagePath = "";
 
     public PostState() {
     }
@@ -91,6 +92,11 @@ public class PostState {
         this.material = text;
     }
 
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+
     public Student getStudent(){
         return student;
     }
@@ -157,4 +163,9 @@ public class PostState {
     public String getMaterial() {
         return material;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
 }

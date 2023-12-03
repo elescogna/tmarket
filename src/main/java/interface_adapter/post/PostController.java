@@ -6,45 +6,52 @@ import use_case.post.PostInputData;
 
 public class PostController {
     final PostInputBoundary postUseCaseInteractor;
-    public PostController(PostInputBoundary postUseCaseInteractor){
+    public PostController(PostInputBoundary postUseCaseInteractor) {
         this.postUseCaseInteractor = postUseCaseInteractor;
     }
 
     // furniture
     public void execute(Student student, String category, String type,
-                        String name, String description, String pickupAddress, int conditionScore,
-                        int age, int price, double length, double width, double height) {
-        PostInputData postInputData = new PostInputData(student, category, type, name, description, pickupAddress,
-                conditionScore, age, price, length, width, height);
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, double length,
+            double width, double height, String imagePath) {
+        PostInputData postInputData = new PostInputData(
+                student, category, type, name, description, pickupAddress,
+                conditionScore, age, price, length, width, height, imagePath);
         postUseCaseInteractor.execute(postInputData);
     }
 
-    //technology
+    // technology
     public void execute(Student student, String category, String type,
-                        String name, String description, String pickupAddress, int conditionScore,
-                        int age, int price, String brand, String capabilities, String colour) {
-        PostInputData postInputData = new PostInputData(student, category, type, name, description, pickupAddress,
-                conditionScore, age, price, brand, capabilities, colour);
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String capabilities, String colour, String imagePath) {
+        PostInputData postInputData = new PostInputData(
+                student, category, type, name, description, pickupAddress,
+                conditionScore, age, price, brand, capabilities, colour, imagePath);
         postUseCaseInteractor.execute(postInputData);
     }
 
-    //school item
+    // school item
     public void execute(Student student, String category, String type,
-                        String name, String description, String pickupAddress, int conditionScore,
-                        int age, int price, String brand, String colour) {
-        PostInputData postInputData = new PostInputData(student, category, type, name, description, pickupAddress,
-                conditionScore, age, price, brand, colour);
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String colour, String imagePath) {
+        PostInputData postInputData = new PostInputData(
+                student, category, type, name, description, pickupAddress,
+                conditionScore, age, price, brand, colour, imagePath);
         postUseCaseInteractor.execute(postInputData);
-
     }
 
     // clothing
     public void execute(Student student, String category, String type,
-                        String name, String description, String pickupAddress, int conditionScore,
-                        int age, int price, String brand, String colour, String size, String material) {
-        PostInputData postInputData = new PostInputData(student, category, type, name, description, pickupAddress,
-                conditionScore, age, price, brand, colour, size, material);
+            String name, String description, String pickupAddress,
+            int conditionScore, int age, int price, String brand,
+            String colour, String size, String material,
+            String imagePath) {
+        PostInputData postInputData = new PostInputData(
+                student, category, type, name, description, pickupAddress,
+                conditionScore, age, price, brand, colour, size, material, imagePath);
         postUseCaseInteractor.execute(postInputData);
-
     }
 }

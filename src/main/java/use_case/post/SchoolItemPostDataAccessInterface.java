@@ -6,4 +6,5 @@ import java.io.IOException;
 
 public interface SchoolItemPostDataAccessInterface {
     void addItemToSchoolItemCollection(SchoolItem newSchoolItem) throws IOException;
+    int getLastImageIndex() throws IOException;
 }

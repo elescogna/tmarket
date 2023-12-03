@@ -1,7 +1,6 @@
 package data_access;
 
 import entities.*;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,9 +20,9 @@ import use_case.search.SearchDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
-        implements HomeDataAccessInterface, TechnologyPostDataAccessInterface,
-        CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
-        SearchDataAccessInterface, ProfileDataAccessInterface {
+    implements HomeDataAccessInterface, TechnologyPostDataAccessInterface,
+               CreateOrderDataAccessInterfaceItem, ViewItemDataAccessInterface,
+               SearchDataAccessInterface, ProfileDataAccessInterface {
     private static final String atlasCollectionName = "technology";
 
     @Override
@@ -37,7 +36,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         requestBodyMap.put("filter", new HashMap<String, String>());
 
         Request request =
-                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200) {
@@ -66,7 +65,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
-                        LocalDateTime.parse(itemDocument.getString("creationTime"));
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
 
@@ -74,9 +73,10 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String colour = itemDocument.getString("colour");
                 String capabilities = itemDocument.getString("capabilities");
 
-                Technology newItem = new Technology(id,
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        ownerId, type, picture, creationTime, brand, capabilities, colour);
+                Technology newItem =
+                    new Technology(id, name, description, condition, price, age,
+                            soldYet, pickupAddress, ownerId, type, picture,
+                            creationTime, brand, capabilities, colour);
 
                 result.add(newItem);
             }
@@ -107,30 +107,30 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
 
     public void addItemToTechnologyCollection(Technology newItem)
             throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+            OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-        HashMap<String, Object> requestBodyMap = new HashMap<>();
-        requestBodyMap.put("dataSource", atlasDataSourceName);
-        requestBodyMap.put("database", atlasDatabaseName);
-        requestBodyMap.put("collection", atlasCollectionName);
-        requestBodyMap.put("document", itemToDocument(newItem));
+            HashMap<String, Object> requestBodyMap = new HashMap<>();
+            requestBodyMap.put("dataSource", atlasDataSourceName);
+            requestBodyMap.put("database", atlasDatabaseName);
+            requestBodyMap.put("collection", atlasCollectionName);
+            requestBodyMap.put("document", itemToDocument(newItem));
 
-        Request request = preparePostRequest(atlasCollectionName, "/action/insertOne",
-                requestBodyMap);
+            Request request = preparePostRequest(atlasCollectionName,
+                    "/action/insertOne", requestBodyMap);
 
-        try (okhttp3.Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                // Handle a successful response
-                System.out.println("Item added successfully to the collection!");
-            } else {
-                // Handle an unsuccessful response
-                System.out.println(
-                        "Failed to add item to the collection. HTTP status code: " +
-                                response.code());
-                // You might want to log more details or throw an exception based on
-                // your requirements
+            try (okhttp3.Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful()) {
+                    // Handle a successful response
+                    System.out.println("Item added successfully to the collection!");
+                } else {
+                    // Handle an unsuccessful response
+                    System.out.println(
+                            "Failed to add item to the collection. HTTP status code: " +
+                            response.code());
+                    // You might want to log more details or throw an exception based on
+                    // your requirements
+                }
             }
-        }
     }
 
     public void updateSoldYet(String itemId) {
@@ -144,7 +144,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         HashMap<String, Boolean> newValue = new HashMap<String, Boolean>();
         newValue.put("soldYet", true);
         HashMap<String, HashMap<String, Boolean>> updateValue =
-                new HashMap<String, HashMap<String, Boolean>>();
+            new HashMap<String, HashMap<String, Boolean>>();
         updateValue.put("$set", newValue);
 
         requestBodyMap.put("dataSource", atlasDataSourceName);
@@ -156,7 +156,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         Request request = preparePostRequest(atlasCollectionName,
                 "/action/updateOne", requestBodyMap);
 
-        try (Response response  = client.newCall(request).execute()) {
+        try (Response response = client.newCall(request).execute()) {
             System.out.println(response.body().string());
         } catch (IOException e) {
         }
@@ -209,7 +209,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             String type = itemDocument.getString("type");
             String picture = itemDocument.getString("picture");
             LocalDateTime creationTime =
-                    LocalDateTime.parse(itemDocument.getString("creationTime"));
+                LocalDateTime.parse(itemDocument.getString("creationTime"));
 
             // Item-specific attributes
 
@@ -217,8 +217,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
             String colour = itemDocument.getString("colour");
             String capabilities = itemDocument.getString("capabilities");
 
-            Technology newItem = new Technology(id,
-                    name, description, condition, price, age, soldYet, pickupAddress,
+            Technology newItem = new Technology(
+                    id, name, description, condition, price, age, soldYet, pickupAddress,
                     ownerId, type, picture, creationTime, brand, capabilities, colour);
             return newItem;
         }
@@ -227,7 +227,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
     @Override
     public ArrayList<Item>
     getItemsByFilters(HashMap<String, Object> filteredAttributes,
-                      Student currentStudent) throws IOException {
+            Student currentStudent) throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
@@ -239,7 +239,8 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         HashMap<String, Object> newFilteredAttributes = new HashMap<>();
 
         // List of keys to include
-        ArrayList<String> keysToInclude = new ArrayList<>(Arrays.asList("soldYet", "type", "brand"));
+        ArrayList<String> keysToInclude =
+            new ArrayList<>(Arrays.asList("soldYet", "type", "brand"));
 
         for (String key : keysToInclude) {
             if (filteredAttributes.containsKey(key)) {
@@ -272,7 +273,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         System.out.println(requestBodyMap);
 
         Request request =
-                preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
+            preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
 
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200) {
@@ -304,7 +305,7 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 String type = itemDocument.getString("type");
                 String picture = itemDocument.getString("picture");
                 LocalDateTime creationTime =
-                        LocalDateTime.parse(itemDocument.getString("creationTime"));
+                    LocalDateTime.parse(itemDocument.getString("creationTime"));
 
                 // Item-specific attributes
 
@@ -316,12 +317,13 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
                 // and that we have access to the current user information
                 double distance =
                     calculateDistance(currentStudent.getHomeAddress(), pickupAddress);
-                double maxDistance = (double) filteredAttributes.get("distanceRange");
+                double maxDistance = (double)filteredAttributes.get("distanceRange");
 
                 if (distance < maxDistance) {
-                    Technology newItem = new Technology(id,
-                            name, description, condition, price, age, soldYet, pickupAddress,
-                            ownerId, type, picture, creationTime, brand, capabilities, colour);
+                    Technology newItem =
+                        new Technology(id, name, description, condition, price, age,
+                                soldYet, pickupAddress, ownerId, type, picture,
+                                creationTime, brand, capabilities, colour);
 
                     result.add(newItem);
                 }
@@ -331,63 +333,65 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
         }
     }
 
-    public ArrayList<Item> getAllItemsByOwnerID(String ownerID) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+    public ArrayList<Item> getAllItemsByOwnerID(String ownerID)
+            throws IOException {
+            OkHttpClient client = new OkHttpClient().newBuilder().build();
+            HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
 
-        HashMap<String, String> filter = new HashMap<>();
-        filter.put("ownerId", ownerID);
+            HashMap<String, String> filter = new HashMap<>();
+            filter.put("ownerId", ownerID);
 
-        requestBodyMap.put("dataSource", atlasDataSourceName);
-        requestBodyMap.put("database", atlasDatabaseName);
-        requestBodyMap.put("collection", atlasCollectionName);
-        requestBodyMap.put("filter", filter);
+            requestBodyMap.put("dataSource", atlasDataSourceName);
+            requestBodyMap.put("database", atlasDatabaseName);
+            requestBodyMap.put("collection", atlasCollectionName);
+            requestBodyMap.put("filter", filter);
 
-        Request request =
+            Request request =
                 preparePostRequest(atlasCollectionName, "/action/find", requestBodyMap);
-        try (Response response = client.newCall(request).execute()) {
-            if (response.code() != 200) {
-                throw new IOException("Bad request made to Atlas Data API");
-            }
+            try (Response response = client.newCall(request).execute()) {
+                if (response.code() != 200) {
+                    throw new IOException("Bad request made to Atlas Data API");
+                }
 
-            JSONObject responseBodyJson = new JSONObject(response.body().string());
-            JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
+                JSONObject responseBodyJson = new JSONObject(response.body().string());
+                JSONArray allItemDocuments = responseBodyJson.getJSONArray("documents");
 
-            ArrayList<Item> result = new ArrayList<Item>();
+                ArrayList<Item> result = new ArrayList<Item>();
 
-            for (Object document : allItemDocuments) {
-                JSONObject itemDocument = (JSONObject)document;
+                for (Object document : allItemDocuments) {
+                    JSONObject itemDocument = (JSONObject)document;
 
-                // General item attributes
+                    // General item attributes
 
-                String id = itemDocument.getString("_id");
-                String name = itemDocument.getString("name");
-                String description = itemDocument.getString("description");
-                int condition = itemDocument.getInt("condition");
-                int price = itemDocument.getInt("price");
-                int age = itemDocument.getInt("age");
-                boolean soldYet = itemDocument.getBoolean("soldYet");
-                String pickupAddress = itemDocument.getString("pickupAddress");
-                String ownerId = itemDocument.getString("ownerId");
-                String type = itemDocument.getString("type");
-                String picture = itemDocument.getString("picture");
-                LocalDateTime creationTime =
+                    String id = itemDocument.getString("_id");
+                    String name = itemDocument.getString("name");
+                    String description = itemDocument.getString("description");
+                    int condition = itemDocument.getInt("condition");
+                    int price = itemDocument.getInt("price");
+                    int age = itemDocument.getInt("age");
+                    boolean soldYet = itemDocument.getBoolean("soldYet");
+                    String pickupAddress = itemDocument.getString("pickupAddress");
+                    String ownerId = itemDocument.getString("ownerId");
+                    String type = itemDocument.getString("type");
+                    String picture = itemDocument.getString("picture");
+                    LocalDateTime creationTime =
                         LocalDateTime.parse(itemDocument.getString("creationTime"));
 
-                // Item-specific attributes
+                    // Item-specific attributes
 
-                String brand = itemDocument.getString("brand");
-                String colour = itemDocument.getString("colour");
-                String capabilities = itemDocument.getString("capabilities");
+                    String brand = itemDocument.getString("brand");
+                    String colour = itemDocument.getString("colour");
+                    String capabilities = itemDocument.getString("capabilities");
 
-                Technology newItem = new Technology(id,
-                        name, description, condition, price, age, soldYet, pickupAddress,
-                        ownerId, type, picture, creationTime, brand, capabilities, colour);
+                    Technology newItem =
+                        new Technology(id, name, description, condition, price, age,
+                                soldYet, pickupAddress, ownerId, type, picture,
+                                creationTime, brand, capabilities, colour);
 
-                result.add(newItem);
+                    result.add(newItem);
+                }
+                return result;
             }
-            return result;
-        }
     }
 
     public Student getStudentByEmail(String id) throws IOException {
@@ -395,7 +399,25 @@ public class AtlasTechnologyDataAccessObject extends AtlasDataAccessObject
     }
 
     @Override
-    public ArrayList<Order> getAllOrdersBySellerEmail(String sellerEmail) throws IOException {
+    public ArrayList<Order> getAllOrdersBySellerEmail(String sellerEmail)
+        throws IOException {
         return null;
+    }
+
+    @Override
+    public int getLastImageIndex() throws IOException {
+        ArrayList<Item> items = this.getAllItems();
+
+        int maxIndexSoFar = 0;
+
+        for (Item item : items) {
+            int id = Integer.valueOf(item.getPicture());
+
+            if (id > maxIndexSoFar) {
+                maxIndexSoFar = id;
+            }
+        }
+
+        return (int)maxIndexSoFar;
     }
 }
