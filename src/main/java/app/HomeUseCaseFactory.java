@@ -86,7 +86,7 @@ public class HomeUseCaseFactory {
 
             return new HomeView(homeViewModel, homeController, postingController,
                     profileController, searchingController,
-                    viewItemController);
+                    viewItemController, viewManagerModel);
         } catch (IOException e) {
             // TODO: what should this actually print out?
             JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
