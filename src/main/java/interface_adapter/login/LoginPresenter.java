@@ -1,7 +1,6 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeState;
 import interface_adapter.home.HomeViewModel;
 import use_case.login.LoginOutputBoundary;

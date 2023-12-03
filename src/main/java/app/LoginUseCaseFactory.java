@@ -1,7 +1,6 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.go_home.GoHomeController;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;

@@ -4,16 +4,11 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.create_order.CreateOrderController;
 import interface_adapter.create_order.CreateOrderPresenter;
 import interface_adapter.create_order.CreateOrderViewModel;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import java.io.IOException;
 import javax.swing.*;
 import use_case.create_order.*;
-import use_case.go_home.GoHomeInputBoundary;
-import use_case.go_home.GoHomeInteractor;
-import use_case.go_home.GoHomeOutputBoundary;
 import view.CreateOrderView;
 
 public class CreateOrderUseCaseFactory {
@@ -35,10 +30,7 @@ public class CreateOrderUseCaseFactory {
                         orderDataAccessObject, studentDataAccessObject,
                         clothingDataAccessObject, furnitureDataAccessObject,
                         schoolItemDataAccessObject, technologyDataAccessObject);
-                GoHomeController goHomeController =
-                    createGoHomeUseCase(viewManagerModel, homeViewModel);
-                return new CreateOrderView(createOrderController, createOrderViewModel,
-                        goHomeController);
+                return new CreateOrderView(createOrderController, createOrderViewModel, homeViewModel, viewManagerModel);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not open database.");
             }
@@ -69,15 +61,4 @@ public class CreateOrderUseCaseFactory {
 
             return new CreateOrderController(createOrderInteractor);
             }
-    private static GoHomeController
-        createGoHomeUseCase(ViewManagerModel viewManagerModel,
-                HomeViewModel homeViewModel) {
-            GoHomeOutputBoundary goHomeOutputBoundary =
-                new GoHomePresenter(viewManagerModel, homeViewModel);
-
-            GoHomeInputBoundary goHomeInteractor =
-                new GoHomeInteractor(goHomeOutputBoundary);
-
-            return new GoHomeController(goHomeInteractor);
-        }
 }

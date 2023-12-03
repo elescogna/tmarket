@@ -1,11 +1,7 @@
 package view;
 
-import entities.Order;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.view_order.ViewOrderState;
-import interface_adapter.view_order.ViewOrderViewModel;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -13,7 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,6 +17,12 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import entities.Order;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeViewModel;
+import interface_adapter.view_order.ViewOrderState;
+import interface_adapter.view_order.ViewOrderViewModel;
 
 public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
@@ -34,7 +36,8 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
     private JButton btnBack;
 
     private ViewOrderViewModel viewOrderViewModel;
-    private GoHomeController goHomeController;
+    private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
     private JList<String> listDirections;
     private Image backgroundImage;
 
@@ -42,10 +45,10 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
      * Create the panel.
      */
     public ViewOrderView(ViewOrderViewModel viewOrderViewModel,
-            GoHomeController goHomeController) {
-    	setBackground(new Color(0, 0, 0));
+            HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
         this.viewOrderViewModel = viewOrderViewModel;
-        this.goHomeController = goHomeController;
+        this.homeViewModel = homeViewModel;
+        this.viewManagerModel = viewManagerModel;
 
         this.viewOrderViewModel.addPropertyChangeListener(this);
 
@@ -99,7 +102,8 @@ public class ViewOrderView extends JPanel implements PropertyChangeListener {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ViewOrderView.this.goHomeController.execute();
+                ViewOrderView.this.viewManagerModel.setActiveView(ViewOrderView.this.homeViewModel.getViewName());
+                ViewOrderView.this.viewManagerModel.firePropertyChanged();
             }
         });
 

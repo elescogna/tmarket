@@ -1,5 +1,23 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import entities.Clothing;
 import entities.Furniture;
 import entities.Item;
@@ -8,23 +26,10 @@ import entities.Student;
 import entities.Technology;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
-import interface_adapter.create_order.CreateOrderController;
 import interface_adapter.create_order.CreateOrderViewModel;
-import interface_adapter.go_home.GoHomeController;
+import interface_adapter.home.HomeViewModel;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -49,7 +54,8 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
     private JButton btnFulfillOrder;
 
     private ViewItemViewModel viewItemViewModel;
-    private GoHomeController goHomeController;
+    private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
     private CreateOrderViewModel createOrderViewModel;
     private ViewManagerModel viewManagerModel;
     private ContactViewModel contactViewModel;
@@ -59,13 +65,13 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      * Create the panel.
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
-            GoHomeController goHomeController,
+            HomeViewModel homeViewModel,
             CreateOrderViewModel createOrderViewModel,
             ViewManagerModel viewManagerModel,
             ContactViewModel contactViewModel) {
         setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
-        this.goHomeController = goHomeController;
+        this.homeViewModel = homeViewModel;
         this.viewManagerModel = viewManagerModel;
         this.contactViewModel = contactViewModel;
         this.createOrderViewModel = createOrderViewModel;
@@ -177,7 +183,8 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ViewItemView.this.goHomeController.execute();
+                ViewItemView.this.viewManagerModel.setActiveView(ViewItemView.this.homeViewModel.getViewName());
+                ViewItemView.this.viewManagerModel.firePropertyChanged();
             }
         });
 

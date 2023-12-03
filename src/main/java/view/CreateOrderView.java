@@ -1,10 +1,9 @@
 package view;
 
-import interface_adapter.create_order.CreateOrderController;
-import interface_adapter.create_order.CreateOrderState;
-import interface_adapter.create_order.CreateOrderViewModel;
-import interface_adapter.go_home.GoHomeController;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -13,11 +12,23 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
-public class CreateOrderView
-    extends JPanel implements ActionListener, PropertyChangeListener {
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import interface_adapter.ViewManagerModel;
+import interface_adapter.create_order.CreateOrderController;
+import interface_adapter.create_order.CreateOrderState;
+import interface_adapter.create_order.CreateOrderViewModel;
+import interface_adapter.home.HomeViewModel;
+
+public class CreateOrderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "create order";
     private static final long serialVersionUID = 1L;
     private JTextField otherAddress;
@@ -25,22 +36,22 @@ public class CreateOrderView
     private CreateOrderController createOrderController;
     private CreateOrderViewModel createOrderViewModel;
     private JButton create;
-    private GoHomeController goHomeController;
+    private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
     private Image backgroundImage;
     private JLabel lblItemName;
 
     /**
      * Create the panel.
      */
-    public CreateOrderView(CreateOrderController createOrderController,
-            CreateOrderViewModel createOrderViewModel,
-            GoHomeController goHomeController) {
-        setBackground(new Color(0, 0, 0));
+    public CreateOrderView(CreateOrderController createOrderController, CreateOrderViewModel createOrderViewModel, HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
+    	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
 
         this.createOrderController = createOrderController;
         this.createOrderViewModel = createOrderViewModel;
-        this.goHomeController = goHomeController;
+        this.homeViewModel = homeViewModel;
+        this.viewManagerModel = viewManagerModel;
 
         this.createOrderViewModel.addPropertyChangeListener(this);
 
@@ -149,7 +160,8 @@ public class CreateOrderView
         JButton btnBackToHome = new JButton("Back To Home");
         btnBackToHome.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-                CreateOrderView.this.goHomeController.execute();
+                CreateOrderView.this.viewManagerModel.setActiveView(CreateOrderView.this.homeViewModel.getViewName());
+                CreateOrderView.this.viewManagerModel.firePropertyChanged();
         	}
         });
         btnBackToHome.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));

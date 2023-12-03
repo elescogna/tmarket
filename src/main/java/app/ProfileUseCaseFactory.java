@@ -1,8 +1,6 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.profile.ProfilePresenter;
@@ -15,18 +13,12 @@ import interface_adapter.view_order.ViewOrderPresenter;
 import interface_adapter.view_order.ViewOrderViewModel;
 import java.io.IOException;
 import javax.swing.*;
-import use_case.go_home.GoHomeInputBoundary;
-import use_case.go_home.GoHomeInteractor;
-import use_case.go_home.GoHomeOutputBoundary;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.profile.ProfileInputBoundary;
 import use_case.profile.ProfileInteractor;
 import use_case.profile.ProfileOutputBoundary;
-import use_case.view_item.ViewItemDataAccessInterface;
-import use_case.view_item.ViewItemInteractor;
-import use_case.view_item.ViewItemOutputBoundary;
-import use_case.view_order.ViewOrderInteractor;
 import use_case.view_order.ViewOrderDataAccessInterface;
+import use_case.view_order.ViewOrderInteractor;
 import use_case.view_order.ViewOrderOutputBoundary;
 import view.ProfileView;
 
@@ -42,21 +34,24 @@ public class ProfileUseCaseFactory {
                 ProfileDataAccessInterface schoolItemDataAccessObject,
                 ProfileDataAccessInterface technologyDataAccessObject,
                 ProfileDataAccessInterface profileOrderDataAccessInterface,
+<<<<<<< HEAD
                 ViewOrderDataAccessInterface viewOrderDataAccessObject,
                 ViewItemDataAccessInterface clothingViewItemDataAccessObject,
                 ViewItemDataAccessInterface furnitureViewItemDataAccessObject,
                 ViewItemDataAccessInterface schoolItemViewItemDataAccessObject,
                 ViewItemDataAccessInterface technologyViewItemDataAccessObject
                 ) {
+=======
+                ViewOrderDataAccessInterface viewOrderDataAccessObject) {
+>>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
             try {
                 ProfileController profileController = createProfileUseCase(
                         viewManagerModel, profileViewModel, studentDataAccessObject,
                         clothingDataAccessObject, furnitureDataAccessObject,
                         schoolItemDataAccessObject, technologyDataAccessObject,
                         profileOrderDataAccessInterface);
-                GoHomeController goHomeController =
-                    createGoHomeUseCase(viewManagerModel, homeViewModel);
                 ViewOrderController viewOrderController =
+<<<<<<< HEAD
                     createViewOrderUseCase(viewOrderViewModel,
                             viewManagerModel, homeViewModel,
                             viewOrderDataAccessObject);
@@ -67,6 +62,13 @@ public class ProfileUseCaseFactory {
 
                 return new ProfileView(profileController, profileViewModel,
                         goHomeController, viewOrderController, viewItemController);
+=======
+                    createViewOrderUseCase(viewOrderViewModel, viewManagerModel,
+                            homeViewModel, viewOrderDataAccessObject);
+
+                return new ProfileView(profileController, profileViewModel, homeViewModel,
+                        viewOrderController, viewManagerModel);
+>>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
             }
@@ -74,6 +76,7 @@ public class ProfileUseCaseFactory {
             return null;
         }
 
+<<<<<<< HEAD
     private static ViewItemController createViewItemUseCase(
             ViewItemViewModel viewItemViewModel, ViewManagerModel viewManagerModel,
             HomeViewModel homeViewModel,
@@ -96,26 +99,21 @@ public class ProfileUseCaseFactory {
             ViewOrderViewModel viewOrderViewModel, ViewManagerModel viewManagerModel,
             HomeViewModel homeViewModel,
             ViewOrderDataAccessInterface orderDataAccessObject) {
+=======
+    private static ViewOrderController
+        createViewOrderUseCase(ViewOrderViewModel viewOrderViewModel,
+                ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel,
+                ViewOrderDataAccessInterface orderDataAccessObject) {
+>>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
 
-        ViewOrderOutputBoundary viewOrderPresenter = new ViewOrderPresenter(
-                viewOrderViewModel, viewManagerModel, homeViewModel);
+            ViewOrderOutputBoundary viewOrderPresenter = new ViewOrderPresenter(
+                    viewOrderViewModel, viewManagerModel, homeViewModel);
 
-        ViewOrderInteractor viewOrderInteractor =
-            new ViewOrderInteractor(orderDataAccessObject, viewOrderPresenter);
+            ViewOrderInteractor viewOrderInteractor =
+                new ViewOrderInteractor(orderDataAccessObject, viewOrderPresenter);
 
-        return new ViewOrderController(viewOrderInteractor);
-            }
-
-    private static GoHomeController
-        createGoHomeUseCase(ViewManagerModel viewManagerModel,
-                HomeViewModel homeViewModel) {
-            GoHomeOutputBoundary goHomeOutputBoundary =
-                new GoHomePresenter(viewManagerModel, homeViewModel);
-
-            GoHomeInputBoundary goHomeInteractor =
-                new GoHomeInteractor(goHomeOutputBoundary);
-
-            return new GoHomeController(goHomeInteractor);
+            return new ViewOrderController(viewOrderInteractor);
         }
 
     private static ProfileController createProfileUseCase(

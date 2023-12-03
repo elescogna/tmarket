@@ -3,17 +3,12 @@ package app;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.contact.ContactViewModel;
 import interface_adapter.create_order.CreateOrderViewModel;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.go_home.GoHomePresenter;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemPresenter;
 import interface_adapter.view_item.ViewItemViewModel;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import use_case.go_home.GoHomeInputBoundary;
-import use_case.go_home.GoHomeInteractor;
-import use_case.go_home.GoHomeOutputBoundary;
 import use_case.home.HomeDataAccessInterface;
 import use_case.view_item.ViewItemDataAccessInterface;
 import use_case.view_item.ViewItemInputBoundary;
@@ -39,31 +34,8 @@ public class ViewItemUseCaseFactory {
                 ViewItemDataAccessInterface schoolItemViewItemDataAccessObject,
                 ViewItemDataAccessInterface technologyViewItemDataAccessObject) {
 
-            try {
-                GoHomeController goHomeController =
-                    createGoHomeUseCase(viewManagerModel, homeViewModel);
-
-                return new ViewItemView(viewItemViewModel, goHomeController,
-                        createOrderViewModel, viewManagerModel,
-                        contactViewModel);
-
-            } catch (IOException e) {
-                // TODO: what should this actually print out?
-                JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
-            }
-
-            return null;
-        }
-
-    private static GoHomeController
-        createGoHomeUseCase(ViewManagerModel viewManagerModel,
-                HomeViewModel homeViewModel) throws IOException {
-            GoHomeOutputBoundary goHomeOutputBoundary =
-                new GoHomePresenter(viewManagerModel, homeViewModel);
-
-            GoHomeInputBoundary goHomeInteractor =
-                new GoHomeInteractor(goHomeOutputBoundary);
-
-            return new GoHomeController(goHomeInteractor);
+            return new ViewItemView(viewItemViewModel, homeViewModel,
+                    createOrderViewModel, viewManagerModel,
+                    contactViewModel);
         }
 }
