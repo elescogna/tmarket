@@ -52,7 +52,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 		JLabel lblNewLabel = new JLabel("User Login");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Modern No. 20", Font.BOLD, 26));
-		lblNewLabel.setBounds(431, 241, 138, 49);
+		lblNewLabel.setBounds(431, 241, 170, 49);
 		add(lblNewLabel);
 
 		usernameInputField = new JTextField();
