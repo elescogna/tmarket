@@ -31,9 +31,9 @@ public class ContactInteractor implements ContactInputBoundary {
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true"); // TLS
+        prop.put("mail.smtp.port", "465"); // prev: 587
+        prop.put("mail.smtp.ssl.enable", "true"); // TLS // prev: "mail.smtp.starttls.enable"
+        prop.put("mail.smtp.auth", "true"); // check
 
         Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -41,17 +41,25 @@ public class ContactInteractor implements ContactInputBoundary {
             }
         });
 
+        // need the authentication part
+
         String recipientEmail = "";
         try {
+            System.out.println("i am reaching before the error");
+            System.out.println(contactInputData.getItemToSell().getOwnerId()); // print the id: works
+            System.out.println();
             recipientEmail =
                 studentDataAccessObject
                 .getStudentById(contactInputData.getItemToSell().getOwnerId())
                 .getUoftEmail();
+            System.out.println(recipientEmail);
+            System.out.println("i am not reaching after the error");
         } catch (IOException e) {
             this.contactPresenter.prepareFailView("Cannot access Atlas database.");
         }
 
         try {
+            System.out.println("I reached the block that sends emails");
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(Message.RecipientType.TO,
@@ -59,6 +67,7 @@ public class ContactInteractor implements ContactInputBoundary {
             message.setSubject(contactInputData.getSubject());
             message.setText(contactInputData.getBody());
 
+            System.out.println("I reached the line that should send the email");
             Transport.send(message);
 
             this.contactPresenter.prepareSuccessView();
