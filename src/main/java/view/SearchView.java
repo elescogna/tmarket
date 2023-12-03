@@ -394,78 +394,78 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		categoryLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		categoryLabel.setBounds(63, 173, 80, 25);
 		categoryComboBox = new JComboBox<>(new String[]{"Furniture", "Technology", "SchoolItem", "Clothing"});
-		categoryComboBox.setBounds(207, 175, 185, 25);
+		categoryComboBox.setBounds(250, 175, 185, 25);
 
 		typeLabel = new JLabel("Type:");
 		typeLabel.setForeground(new Color(255, 255, 255));
 		typeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		typeLabel.setBounds(63, 237, 80, 25);
 		typeComboBox = new JComboBox<>();
-		typeComboBox.setBounds(207, 239, 185, 25);
+		typeComboBox.setBounds(250, 239, 185, 25);
 
 		conditionScoreLabel = new JLabel("Condition Score");
 		conditionScoreLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		conditionScoreLabel.setForeground(new Color(255, 255, 255));
 		conditionScoreLabel.setBounds(63, 312, 134, 25);
 		conditionScoreComboBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-		conditionScoreComboBox.setBounds(207, 314, 185, 25);
+		conditionScoreComboBox.setBounds(250, 314, 185, 25);
 
 		maximumPriceLabel = new JLabel("Maximum price:");
 		maximumPriceLabel.setForeground(new Color(255, 255, 255));
 		maximumPriceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maximumPriceLabel.setBounds(63, 396, 134, 25);
 		maximumPriceTextField = new JTextField();
-		maximumPriceTextField.setBounds(207, 398, 185, 25);
+		maximumPriceTextField.setBounds(250, 398, 185, 25);
 
 		maximumAgeLabel = new JLabel("Maximum age (years)");
 		maximumAgeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maximumAgeLabel.setForeground(new Color(255, 255, 255));
 		maximumAgeLabel.setBounds(63, 471, 185, 25);
 		maximumAgeTextField = new JTextField();
-		maximumAgeTextField.setBounds(207, 473, 185, 25);
+		maximumAgeTextField.setBounds(250, 473, 185, 25);
 
-		maximumDistanceLabel = new JLabel("Maximum Distance");
+		maximumDistanceLabel = new JLabel("Maximum Distance (km)");
 		maximumDistanceLabel.setForeground(new Color(255, 255, 255));
 		maximumDistanceLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		maximumDistanceLabel.setBounds(63, 549, 134, 25);
+		maximumDistanceLabel.setBounds(63, 549, 180, 25);
 		maximumDistanceTextField = new JTextField();
-		maximumDistanceTextField.setBounds(207, 551, 185, 25);
+		maximumDistanceTextField.setBounds(250, 551, 185, 25);
 
 		// Additional furniture fields
 		minLengthLabel = new JLabel("Minimum Length:");
 		minLengthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		minLengthLabel.setForeground(new Color(255, 255, 255));
-		minLengthLabel.setBounds(496, 173, 160, 25);
+		minLengthLabel.setBounds(510, 173, 160, 25);
 		minLengthTextField = new JTextField();
 		minLengthTextField.setBounds(689, 173, 185, 25);
 		minWidthLabel = new JLabel("Minimum Width:");
 		minWidthLabel.setForeground(new Color(255, 255, 255));
 		minWidthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		minWidthLabel.setBounds(496, 237, 160, 25);
+		minWidthLabel.setBounds(510, 237, 160, 25);
 		minWidthTextField = new JTextField();
 		minWidthTextField.setBounds(689, 239, 185, 25);
 		minHeightLabel = new JLabel("Minimum Height:");
 		minHeightLabel.setForeground(new Color(255, 255, 255));
 		minHeightLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		minHeightLabel.setBounds(496, 312, 160, 25);
+		minHeightLabel.setBounds(510, 312, 160, 25);
 		minHeightTextField = new JTextField();
 		minHeightTextField.setBounds(689, 314, 185, 25);
-		maxLengthLabel = new JLabel("Maximum Length");
+		maxLengthLabel = new JLabel("Maximum Length:");
 		maxLengthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maxLengthLabel.setForeground(new Color(255, 255, 255));
-		maxLengthLabel.setBounds(496, 396, 160, 25);
+		maxLengthLabel.setBounds(510, 396, 160, 25);
 		maxLengthTextField = new JTextField();
 		maxLengthTextField.setBounds(689, 398, 185, 25);
 		maxWidthLabel = new JLabel("Maximum Width:");
 		maxWidthLabel.setForeground(new Color(255, 255, 255));
 		maxWidthLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		maxWidthLabel.setBounds(496, 471, 160, 25);
+		maxWidthLabel.setBounds(510, 471, 160, 25);
 		maxWidthTextField = new JTextField();
 		maxWidthTextField.setBounds(689, 473, 185, 25);
 		maxHeightLabel = new JLabel("Maximum Height:");
 		maxHeightLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		maxHeightLabel.setForeground(new Color(255, 255, 255));
-		maxHeightLabel.setBounds(496, 549, 160, 25);
+		maxHeightLabel.setBounds(510, 549, 160, 25);
 		maxHeightTextField = new JTextField();
 		maxHeightTextField.setBounds(689, 551, 185, 25);
 
@@ -473,7 +473,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		brandLabel = new JLabel("Brand:");
 		brandLabel.setForeground(new Color(255, 255, 255));
 		brandLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		brandLabel.setBounds(496, 175, 160, 25);
+		brandLabel.setBounds(510, 175, 160, 25);
 		brandComboBox = new JComboBox<>(new String[]{"Apple", "Samsung", "Huawei",
 				"Dell", "HP", "Xiaomi", "Lenovo", "Asus"});
 		brandComboBox.setBounds(689, 173, 185, 25);
@@ -482,14 +482,14 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		colourLabel = new JLabel("Colour:");
 		colourLabel.setForeground(new Color(255, 255, 255));
 		colourLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		colourLabel.setBounds(496, 175, 160, 25);
+		colourLabel.setBounds(510, 175, 160, 25);
 		colourComboBox = new JComboBox<>(new String[]{"Red", "Black", "Green", "Blue", "Grey", "White",
 				"Orange", "Purple", "Yellow", "Brown", "Beige", "Pink", "Multicolour"});
 		colourComboBox.setBounds(689, 173, 185, 25);
 		sizeLabel = new JLabel("Size:");
 		sizeLabel.setForeground(new Color(255, 255, 255));
 		sizeLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-		sizeLabel.setBounds(496, 237, 160, 25);
+		sizeLabel.setBounds(510, 237, 160, 25);
 		sizeComboBox = new JComboBox<>(new String[]{"XXS", "XS", "S", "M", "L", "XL", "XXL"});
 		sizeComboBox.setBounds(689, 239, 185, 25);
 
