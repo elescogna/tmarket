@@ -569,10 +569,8 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 					SearchState currentState = searchViewModel.getState();
 					HashMap<String, Object> filteredAttributes = currentState.getFilterChoices();
 					Student currentStudent = currentState.getCurrentStudent();
-					System.out.println("Search View" + currentStudent);
 
 					searchController.execute(filteredAttributes, currentStudent);
-					System.out.println(filteredAttributes);
 				}
 			}
 		});

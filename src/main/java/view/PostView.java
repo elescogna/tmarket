@@ -91,7 +91,6 @@ public class PostView extends JPanel {
         postButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 PostState currentState = PostView.this.postViewModel.getState();
-                System.out.println(currentState.getCategory());
                 if ("Furniture".equals(currentState.getCategory())) {
                     PostView.this.postController.execute(
                             currentState.getStudent(), currentState.getCategory(),
