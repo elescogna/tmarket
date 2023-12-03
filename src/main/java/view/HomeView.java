@@ -72,7 +72,8 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         this.viewItemController = viewItemController;
 
         try {
-            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            String basePath = System.getProperty("user.dir");
+            String imagePath = basePath + "/assets/images/background_image.png";
             backgroundImage = ImageIO.read(new File(imagePath));
         } catch (IOException e) {
             e.printStackTrace();
