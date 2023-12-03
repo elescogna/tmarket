@@ -12,12 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeViewModel;
@@ -453,7 +448,7 @@ public class PostView extends JPanel {
         postButton.setBounds(640, 672, 89, 23);
 
         backButton = new JButton("Back");
-        backButton.setBounds(211, 500, 89, 23);
+        backButton.setBounds(323, 672, 89, 23);
 
         categoryLabel = new JLabel("Category:");
         categoryLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));

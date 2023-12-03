@@ -12,11 +12,14 @@ import interface_adapter.view_order.ViewOrderController;
 import interface_adapter.view_order.ViewOrderPresenter;
 import interface_adapter.view_order.ViewOrderViewModel;
 import java.io.IOException;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.profile.ProfileInputBoundary;
 import use_case.profile.ProfileInteractor;
 import use_case.profile.ProfileOutputBoundary;
+import use_case.view_item.ViewItemDataAccessInterface;
+import use_case.view_item.ViewItemInteractor;
+import use_case.view_item.ViewItemOutputBoundary;
 import use_case.view_order.ViewOrderDataAccessInterface;
 import use_case.view_order.ViewOrderInteractor;
 import use_case.view_order.ViewOrderOutputBoundary;
@@ -28,47 +31,37 @@ public class ProfileUseCaseFactory {
         create(ProfileViewModel profileViewModel, ViewManagerModel viewManagerModel,
                 HomeViewModel homeViewModel, ViewOrderViewModel viewOrderViewModel,
                 ViewItemViewModel viewItemViewModel,
-                ProfileDataAccessInterface studentDataAccessObject,
-                ProfileDataAccessInterface clothingDataAccessObject,
-                ProfileDataAccessInterface furnitureDataAccessObject,
-                ProfileDataAccessInterface schoolItemDataAccessObject,
-                ProfileDataAccessInterface technologyDataAccessObject,
-                ProfileDataAccessInterface profileOrderDataAccessInterface,
-<<<<<<< HEAD
-                ViewOrderDataAccessInterface viewOrderDataAccessObject,
-                ViewItemDataAccessInterface clothingViewItemDataAccessObject,
-                ViewItemDataAccessInterface furnitureViewItemDataAccessObject,
-                ViewItemDataAccessInterface schoolItemViewItemDataAccessObject,
-                ViewItemDataAccessInterface technologyViewItemDataAccessObject
-                ) {
-=======
+                ProfileDataAccessInterface profileStudentDataAccessObject,
+                ProfileDataAccessInterface profileClothingDataAccessObject,
+                ProfileDataAccessInterface profileFurnitureDataAccessObject,
+                ProfileDataAccessInterface profileSchoolItemDataAccessObject,
+                ProfileDataAccessInterface profileTechnologyDataAccessObject,
+                ProfileDataAccessInterface profileOrderDataAccessObject,
+                ViewItemDataAccessInterface viewItemClothingDataAccessObject,
+                ViewItemDataAccessInterface viewItemFurnitureDataAccessObject,
+                ViewItemDataAccessInterface viewItemSchoolItemDataAccessObject,
+                ViewItemDataAccessInterface viewItemTechnologyDataAccessObject,
                 ViewOrderDataAccessInterface viewOrderDataAccessObject) {
->>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
             try {
                 ProfileController profileController = createProfileUseCase(
-                        viewManagerModel, profileViewModel, studentDataAccessObject,
-                        clothingDataAccessObject, furnitureDataAccessObject,
-                        schoolItemDataAccessObject, technologyDataAccessObject,
-                        profileOrderDataAccessInterface);
-                ViewOrderController viewOrderController =
-<<<<<<< HEAD
-                    createViewOrderUseCase(viewOrderViewModel,
-                            viewManagerModel, homeViewModel,
-                            viewOrderDataAccessObject);
-                ViewItemController viewItemController =
-                        createViewItemUseCase(viewItemViewModel, viewManagerModel, homeViewModel,
-                                clothingViewItemDataAccessObject, furnitureViewItemDataAccessObject,
-                                technologyViewItemDataAccessObject, schoolItemViewItemDataAccessObject);
+                        viewManagerModel, profileViewModel, profileStudentDataAccessObject,
+                        profileClothingDataAccessObject, profileFurnitureDataAccessObject,
+                        profileSchoolItemDataAccessObject, profileTechnologyDataAccessObject,
+                        profileOrderDataAccessObject);
 
-                return new ProfileView(profileController, profileViewModel,
-                        goHomeController, viewOrderController, viewItemController);
-=======
+                ViewOrderController viewOrderController =
                     createViewOrderUseCase(viewOrderViewModel, viewManagerModel,
                             homeViewModel, viewOrderDataAccessObject);
 
+                ViewItemController viewItemController = createViewItemUseCase(
+                        viewItemViewModel, viewManagerModel, homeViewModel,
+                        viewItemClothingDataAccessObject, viewItemFurnitureDataAccessObject,
+                        viewItemTechnologyDataAccessObject,
+                        viewItemSchoolItemDataAccessObject);
+
                 return new ProfileView(profileController, profileViewModel, homeViewModel,
-                        viewOrderController, viewManagerModel);
->>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
+                        viewOrderController, viewManagerModel,
+                        viewItemController);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not access Atlas Database.");
             }
@@ -76,36 +69,11 @@ public class ProfileUseCaseFactory {
             return null;
         }
 
-<<<<<<< HEAD
-    private static ViewItemController createViewItemUseCase(
-            ViewItemViewModel viewItemViewModel, ViewManagerModel viewManagerModel,
-            HomeViewModel homeViewModel,
-            ViewItemDataAccessInterface clothingDataAccessObject,
-            ViewItemDataAccessInterface furnitureDataAccessObject,
-            ViewItemDataAccessInterface technologyDataAccessObject,
-            ViewItemDataAccessInterface schoolItemDataAccessObject) {
-        ViewItemOutputBoundary viewItemOutputBoundary = new ViewItemPresenter(
-                viewItemViewModel, viewManagerModel, homeViewModel);
-
-        ViewItemInteractor viewItemInteractor = new ViewItemInteractor(
-                clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject,
-                viewItemOutputBoundary);
-
-        return new ViewItemController(viewItemInteractor);
-    }
-
-    private static ViewOrderController createViewOrderUseCase(
-            ViewOrderViewModel viewOrderViewModel, ViewManagerModel viewManagerModel,
-            HomeViewModel homeViewModel,
-            ViewOrderDataAccessInterface orderDataAccessObject) {
-=======
     private static ViewOrderController
         createViewOrderUseCase(ViewOrderViewModel viewOrderViewModel,
                 ViewManagerModel viewManagerModel,
                 HomeViewModel homeViewModel,
                 ViewOrderDataAccessInterface orderDataAccessObject) {
->>>>>>> c6d67e0 (chore(remove-dummy-use-cases): removed go home use case)
 
             ViewOrderOutputBoundary viewOrderPresenter = new ViewOrderPresenter(
                     viewOrderViewModel, viewManagerModel, homeViewModel);
@@ -134,4 +102,24 @@ public class ProfileUseCaseFactory {
 
         return new ProfileController(profileInteractor);
             }
+
+    private static ViewItemController
+        createViewItemUseCase(ViewItemViewModel viewItemViewModel,
+                ViewManagerModel viewManagerModel,
+                HomeViewModel homeViewModel,
+                ViewItemDataAccessInterface clothingDataAccessObject,
+                ViewItemDataAccessInterface furnitureDataAccessObject,
+                ViewItemDataAccessInterface technologyDataAccessObject,
+                ViewItemDataAccessInterface schoolItemDataAccessObject)
+            throws IOException {
+            ViewItemOutputBoundary viewItemOutputBoundary = new ViewItemPresenter(
+                    viewItemViewModel, viewManagerModel, homeViewModel);
+
+            ViewItemInteractor viewItemInteractor = new ViewItemInteractor(
+                    clothingDataAccessObject, furnitureDataAccessObject,
+                    schoolItemDataAccessObject, technologyDataAccessObject,
+                    viewItemOutputBoundary);
+
+            return new ViewItemController(viewItemInteractor);
+        }
 }

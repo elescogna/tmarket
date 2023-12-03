@@ -24,11 +24,13 @@ import javax.swing.JScrollPane;
 
 import entities.Item;
 import entities.Order;
+import entities.Student;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeViewModel;
 import interface_adapter.profile.ProfileController;
 import interface_adapter.profile.ProfileState;
 import interface_adapter.profile.ProfileViewModel;
+import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_order.ViewOrderController;
 
 public class ProfileView extends JPanel implements PropertyChangeListener {
@@ -47,7 +49,8 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
     public ProfileView(ProfileController profileController, ProfileViewModel
             profileViewModel, HomeViewModel homeViewModel,
-            ViewOrderController viewOrderController, ViewManagerModel viewManagerModel) {
+            ViewOrderController viewOrderController, ViewManagerModel
+            viewManagerModel, ViewItemController viewItemController) {
 		this.setLayout(null);
 		setBackground(new Color(214, 186, 250));
 

@@ -11,7 +11,6 @@ import interface_adapter.profile.ProfileController;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
-import interface_adapter.searching.SearchingController;
 import interface_adapter.view_item.ViewItemController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -48,10 +47,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private ViewManagerModel viewManagerModel;
     private JButton btnRefresh;
     private ProfileController profileController;
-    private SearchingController searchingController;
+    private SearchViewModel searchViewModel;
     private ViewItemController viewItemController;
     private Image backgroundImage;
-    private ViewManagerModel viewManagerModel;
 
     /**
      * Create the panel.
@@ -59,7 +57,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     public HomeView(HomeViewModel homeViewModel, HomeController homeController,
             PostViewModel postViewModel,
             ProfileController profileController,
-            SearchingController searchingController,
+            SearchViewModel searchViewModel,
             ViewItemController viewItemController,
             ViewManagerModel viewManagerModel) {
         setBackground(new Color(0, 0, 0));
@@ -68,7 +66,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         this.homeController = homeController;
         this.homeViewModel = homeViewModel;
         this.profileController = profileController;
-        this.searchingController = searchingController;
+        this.searchViewModel = searchViewModel;
         this.viewItemController = viewItemController;
         this.postViewModel = postViewModel;
         this.viewManagerModel = viewManagerModel;
@@ -161,7 +159,12 @@ public class HomeView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(btnSearch)) {
                     Student currentStudent = homeViewModel.getState().getStudent();
-                    searchingController.execute(currentStudent);
+
+                    HomeView.this.searchViewModel.getState().setCurrentStudent(currentStudent);
+                    HomeView.this.searchViewModel.firePropertyChanged();
+
+                    HomeView.this.viewManagerModel.setActiveView(HomeView.this.searchViewModel.getViewName());
+                    HomeView.this.viewManagerModel.firePropertyChanged();
                 }
             }
         });
@@ -219,7 +222,7 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         for (Item item : items) {
             if (!item.isSoldYet()) {
                 listItemsModel.addElement(
-                        String.format("%s %s", item.getName(), item.getPrice()));
+                        String.format("%s (%s)", item.getName(), item.getPrice()));
             }
         }
 

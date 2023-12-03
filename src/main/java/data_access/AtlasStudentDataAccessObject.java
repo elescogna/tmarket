@@ -15,11 +15,12 @@ import use_case.create_order.CreateOrderDataAccessInterfaceStudent;
 import use_case.login.LoginDataAccessInterface;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
+import use_case.view_item.ViewItemDataAccessInterface;
 
 public class AtlasStudentDataAccessObject extends AtlasDataAccessObject
         implements ProfileDataAccessInterface, SignupUserDataAccessInterface,
         CreateOrderDataAccessInterfaceStudent, LoginDataAccessInterface,
-        ContactDataAccessInterface {
+        ContactDataAccessInterface{
     private static final String atlasCollectionName = "students";
 
     public boolean existsByEmail(String email) throws IOException {
