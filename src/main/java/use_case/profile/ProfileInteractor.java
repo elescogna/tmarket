@@ -43,27 +43,28 @@ public class ProfileInteractor implements ProfileInputBoundary{
             Student student = studentDataAccessObject.getStudentByEmail(profileInputData.getStudent().getUoftEmail());
             if (student == null) {
                 profilePresenter.prepareFailView("Student not found");
+            } else {
+                String name = student.getName();
+                String password = student.getPassword();
+                String uoftEmail = student.getUoftEmail();
+                String homeAddress = student.getHomeAddress();
+                ArrayList<Item> items = new ArrayList<>();
+                ArrayList<Order> orders = new ArrayList<>();
+                items.addAll(clothingDataAccessObject.getAllItemsByOwnerID(student.getId()));
+                items.addAll(furnitureDataAccessObject.getAllItemsByOwnerID(student.getId()));
+                items.addAll(schoolItemDataAccessObject.getAllItemsByOwnerID(student.getId()));
+                items.addAll(technologyDataAccessObject.getAllItemsByOwnerID(student.getId()));
+                orders.addAll(orderDataAccessObject.getAllOrdersBySellerEmail(uoftEmail));
+                items.sort(new Comparator<Item>() {
+                    @Override
+                    public int compare(Item firstItem, Item secondItem) {
+                        return firstItem.getCreationTime().compareTo(secondItem.getCreationTime());
+                    }
+                });
+                Collections.reverse(items);
+                ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress, items, orders, student);
+                profilePresenter.prepareSuccessView(profileOutputData);
             }
-            String name = student.getName();
-            String password = student.getPassword();
-            String uoftEmail = student.getUoftEmail();
-            String homeAddress = student.getHomeAddress();
-            ArrayList<Item> items = new ArrayList<>();
-            ArrayList<Order> orders = new ArrayList<>();
-            items.addAll(clothingDataAccessObject.getAllItemsByOwnerID(student.getId()));
-            items.addAll(furnitureDataAccessObject.getAllItemsByOwnerID(student.getId()));
-            items.addAll(schoolItemDataAccessObject.getAllItemsByOwnerID(student.getId()));
-            items.addAll(technologyDataAccessObject.getAllItemsByOwnerID(student.getId()));
-            orders.addAll(orderDataAccessObject.getAllOrdersBySellerEmail(uoftEmail));
-            items.sort(new Comparator<Item>() {
-                @Override
-                public int compare(Item firstItem, Item secondItem) {
-                    return firstItem.getCreationTime().compareTo(secondItem.getCreationTime());
-                }
-            });
-            Collections.reverse(items);
-            ProfileOutputData profileOutputData = new ProfileOutputData(name, password, uoftEmail, homeAddress, items, orders, student);
-            profilePresenter.prepareSuccessView(profileOutputData);
         }
         catch(IOException error){
             //come up with better error message
