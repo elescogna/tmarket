@@ -9,15 +9,17 @@ import interface_adapter.profile.ProfileViewModel;
 import interface_adapter.view_order.ViewOrderController;
 import interface_adapter.view_order.ViewOrderViewModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileView extends JPanel implements PropertyChangeListener {
@@ -30,6 +32,7 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 	private JLabel emailLabel;
 	private JList<String> listPostedItems;
 	private JList<String> listOrders;
+	private Image backgroundImage;
 
     public ProfileView(ProfileController profileController, ProfileViewModel
             profileViewModel, GoHomeController goHomeController,
@@ -43,6 +46,13 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		this.profileViewModel.addPropertyChangeListener(this);
 		this.goHomeController = goHomeController;
 		this.viewOrderController = viewOrderController;
+
+		try {
+			String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+			backgroundImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		JLabel nameDisplayLabel = new JLabel("Name: ");
 		nameDisplayLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -124,6 +134,13 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 			public void mouseReleased(MouseEvent arg0) {}
 		});
 
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (backgroundImage != null) {
+			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+		}
 	}
 
 	public void updateLists() {

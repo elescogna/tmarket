@@ -5,15 +5,17 @@ import interface_adapter.create_order.CreateOrderState;
 import interface_adapter.create_order.CreateOrderViewModel;
 import interface_adapter.go_home.GoHomeController;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
 public class CreateOrderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "create order";
@@ -24,6 +26,7 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
     private CreateOrderViewModel createOrderViewModel;
     private JButton create;
     private GoHomeController goHomeController;
+    private Image backgroundImage;
 
     /**
      * Create the panel.
@@ -37,6 +40,13 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         this.goHomeController = goHomeController;
 
         this.createOrderViewModel.addPropertyChangeListener(this);
+
+        try {
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         JLabel lblNewLabel = new JLabel("Create New Order");
         lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -144,7 +154,13 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
         btnBackToHome.setBounds(610, 698, 236, 43);
         add(btnBackToHome);
     }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
     public void actionPerformed(ActionEvent evt) {}
 
     @Override

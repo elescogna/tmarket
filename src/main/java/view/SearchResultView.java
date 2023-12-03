@@ -7,16 +7,19 @@ import interface_adapter.search_result.SearchResultState;
 import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.view_item.ViewItemController;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Font;
-import java.awt.Color;
 
 public class SearchResultView extends JPanel implements PropertyChangeListener {
     private static final long serialVersionUID = 1L;
@@ -27,6 +30,7 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
     private SearchResultViewModel searchResultViewModel;
     private ViewItemController viewItemController;
     private JLabel lblNewLabel;
+    private Image backgroundImage;
 
     /**
      * Create the panel.
@@ -40,6 +44,13 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
         this.searchResultViewModel = searchResultViewModel;
         this.viewItemController = viewItemController;
         this.searchResultViewModel.addPropertyChangeListener(this);
+
+        try {
+            String imagePath = "C:\\Users\\Aina\\IdeaProjects\\csc207-project\\assets\\background_image.png";
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         list = new JList();
 
@@ -95,7 +106,13 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
             public void mouseReleased(MouseEvent arg0) {}
         });
     }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("searchResultState")) {
