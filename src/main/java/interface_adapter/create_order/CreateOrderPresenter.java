@@ -1,26 +1,25 @@
 package interface_adapter.create_order;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.view_item.ViewItemState;
-import interface_adapter.view_item.ViewItemViewModel;
 import use_case.create_order.CreateOrderOutputBoundary;
+import use_case.create_order.CreateOrderOutputData;
 
 public class CreateOrderPresenter implements CreateOrderOutputBoundary {
     private CreateOrderViewModel createOrderViewModel;
-    private ViewItemViewModel viewItemViewModel;
     private ViewManagerModel viewManagerModel;
 
     public CreateOrderPresenter(ViewManagerModel viewManagerModel,
-                                 CreateOrderViewModel createOrderViewModel,
-                                 ViewItemViewModel viewItemViewModel) {
+                                 CreateOrderViewModel createOrderViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.createOrderViewModel = createOrderViewModel;
-        this.viewItemViewModel = viewItemViewModel;
     }
 
     @Override
-    public void prepareSuccessView() {
-        viewManagerModel.setActiveView("home"); // TODO: need to set the active view to view order
+    public void prepareSuccessView(CreateOrderOutputData outputData) {
+        createOrderViewModel.getState().setItem(outputData.getItem());
+        createOrderViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView("home");
         viewManagerModel.firePropertyChanged();
     }
 

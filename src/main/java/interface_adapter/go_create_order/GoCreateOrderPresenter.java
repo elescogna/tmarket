@@ -21,6 +21,7 @@ public class GoCreateOrderPresenter implements GoCreateOrderOutputBoundary {
         createOrderState.setStudent(goCreateOrderOutputData.getUser());
         createOrderState.setItem(goCreateOrderOutputData.getItem());
         createOrderViewModel.setState(createOrderState);
+        createOrderViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(createOrderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

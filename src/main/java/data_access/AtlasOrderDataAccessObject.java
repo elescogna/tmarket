@@ -1,4 +1,5 @@
 package data_access;
+
 import entities.Item;
 import entities.Order;
 import entities.Student;
@@ -11,53 +12,54 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
+import use_case.create_order.CreateOrderDataAccessInterface;
 import use_case.profile.ProfileDataAccessInterface;
 import use_case.view_order.ViewOrderDataAccessInterface;
 
 public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
-    implements CreateOrderDataAccessInterfaceOrder,
-               ViewOrderDataAccessInterface, ProfileDataAccessInterface {
+    implements CreateOrderDataAccessInterface, ViewOrderDataAccessInterface,
+               ProfileDataAccessInterface {
 
     private static final String atlasCollectionName = "orders";
 
     public String createOrder(String buyerEmail, String sellerEmail,
-            String itemId, String address, String itemName)
-            throws IOException {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
+            String itemId, String address, String itemName,
+            String itemImageKey) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
 
-            HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
-            HashMap<String, Object> documentValue = new HashMap<String, Object>();
+        HashMap<String, Object> requestBodyMap = new HashMap<String, Object>();
+        HashMap<String, Object> documentValue = new HashMap<String, Object>();
 
-            documentValue.put("buyerEmail", buyerEmail);
-            documentValue.put("sellerEmail", sellerEmail);
-            documentValue.put("itemId", itemId);
-            documentValue.put("pickupLocation", address);
-            documentValue.put("itemName", itemName);
+        documentValue.put("buyerEmail", buyerEmail);
+        documentValue.put("sellerEmail", sellerEmail);
+        documentValue.put("itemId", itemId);
+        documentValue.put("pickupLocation", address);
+        documentValue.put("itemName", itemName);
+        documentValue.put("itemImageKey", itemImageKey);
 
-            requestBodyMap.put("dataSource", atlasDataSourceName);
-            requestBodyMap.put("database", atlasDatabaseName);
-            requestBodyMap.put("collection", atlasCollectionName);
-            requestBodyMap.put("document", documentValue);
+        requestBodyMap.put("dataSource", atlasDataSourceName);
+        requestBodyMap.put("database", atlasDatabaseName);
+        requestBodyMap.put("collection", atlasCollectionName);
+        requestBodyMap.put("document", documentValue);
 
-            Request request = preparePostRequest(atlasCollectionName,
-                    "/action/insertOne", requestBodyMap);
+        Request request = preparePostRequest(atlasCollectionName,
+                "/action/insertOne", requestBodyMap);
 
-            try (okhttp3.Response response = client.newCall(request).execute()) {
-                if (response.isSuccessful()) {
-                    // Handle a successful response
-                    System.out.println("Item added successfully to the collection!");
-                    return itemId;
-                } else {
-                    // Handle an unsuccessful response
-                    System.out.println(
-                            "Failed to add item to the collection. HTTP status code: " +
-                            response.code());
-                    // You might want to log more details or throw an exception based on
-                    // your requirements
-                }
+        try (okhttp3.Response response = client.newCall(request).execute()) {
+            if (response.isSuccessful()) {
+                // Handle a successful response
+                System.out.println("Item added successfully to the collection!");
+                return itemId;
+            } else {
+                // Handle an unsuccessful response
+                System.out.println(
+                        "Failed to add item to the collection. HTTP status code: " +
+                        response.code());
+                // You might want to log more details or throw an exception based on
+                // your requirements
             }
-            return null;
+        }
+        return null;
     }
 
     @Override
@@ -98,9 +100,10 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
                 String itemId = itemDocument.getString("itemId");
                 String pickupLocation = itemDocument.getString("pickupLocation");
                 String itemName = itemDocument.getString("itemName");
+                String itemImageKey = itemDocument.getString("itemImageKey");
 
                 Order newOrder = new Order(id, buyerEmail, retrievedSellerEmail, itemId,
-                        pickupLocation, itemName);
+                        pickupLocation, itemName, itemImageKey);
 
                 result.add(newOrder);
             }
@@ -160,11 +163,12 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
             String itemName = orderDocument.getString("itemName");
             String pickupLocation = orderDocument.getString("pickupLocation");
             String itemId = orderDocument.getString("itemId");
+            String itemImageKey = orderDocument.getString("itemImageKey");
 
             // Order-specific attributes
 
             Order newOrder = new Order(id, buyerEmail, sellerEmail, itemId,
-                    pickupLocation, itemName);
+                    pickupLocation, itemName, itemImageKey);
 
             return newOrder;
         }
@@ -207,10 +211,10 @@ public class AtlasOrderDataAccessObject extends AtlasDataAccessObject
 
                     String distance =
                         stepJsonObj.getJSONObject("distance").getString("text");
-                    String instructions =
-                        stepJsonObj.getString("html_instructions").replaceAll("</b>|<b>",
-                                "").replaceAll("</div>",
-                                    ".").replaceAll("<div.*>", ". ");
+                    String instructions = stepJsonObj.getString("html_instructions")
+                        .replaceAll("</b>|<b>", "")
+                        .replaceAll("</div>", ".")
+                        .replaceAll("<div.*>", ". ");
 
                     results.add(String.format("(%s) %s", distance, instructions));
                 }

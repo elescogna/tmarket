@@ -12,19 +12,18 @@ import interface_adapter.go_home.GoHomeController;
 import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.io.File;
-import java.io.IOException;
 
 public class ViewItemView extends JPanel implements PropertyChangeListener {
 
@@ -59,8 +58,9 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
-            ContactingController contactingController, GoCreateOrderController goCreateOrderController) {
-    	setBackground(new Color(0, 0, 0));
+            ContactingController contactingController,
+            GoCreateOrderController goCreateOrderController) {
+        setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
         this.contactingController = contactingController;
@@ -88,7 +88,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         lblPhoto = new JLabel("Image:");
         lblPhoto.setForeground(new Color(255, 255, 255));
         lblPhoto.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
-        lblPhoto.setBounds(76, 334, 205, 17);
+        lblPhoto.setBounds(76, 334, 399, 316);
         add(lblPhoto);
 
         lblName = new JLabel("Name:");
@@ -196,11 +196,10 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         btnFulfillOrder = new JButton("Fulfill Order");
         btnFulfillOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: execute CreateOrder
                 ViewItemState state = viewItemViewModel.getState();
                 Student currentStudent = state.getCurrentStudent();
                 Item item = state.getCurrentItem();
-                goCreateOrderController.execute(currentStudent, item);
+                ViewItemView.this.goCreateOrderController.execute(currentStudent, item);
             }
         });
         btnFulfillOrder.setBounds(428, 710, 123, 27);
@@ -246,6 +245,7 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
             this.lblType.setText("Type: " + currentItem.getType());
             this.lblPostedAt.setText("Posted At: " +
                     currentItem.getCreationTime().toString());
+            this.lblPhoto.setIcon(viewItemState.getCurrentItemImage());
 
             if (currentItem instanceof Clothing) {
                 lblCustom1.setText("Brand: " + ((Clothing)currentItem).getBrand());

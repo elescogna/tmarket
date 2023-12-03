@@ -7,7 +7,7 @@ import entities.SchoolItem;
 import java.io.IOException;
 
 public class CreateOrderInteractor implements CreateOrderInputBoundary {
-    final CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessObject;
+    final CreateOrderDataAccessInterface atlasOrderDataAccessObject;
     final CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessObject;
     final CreateOrderDataAccessInterfaceItem atlasClothingDataAccessObject;
     final CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessObject;
@@ -17,7 +17,7 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
     final CreateOrderOutputBoundary createOrderPresenter;
 
     public CreateOrderInteractor(
-            CreateOrderDataAccessInterfaceOrder atlasOrderDataAccessInterface,
+            CreateOrderDataAccessInterface atlasOrderDataAccessInterface,
             CreateOrderDataAccessInterfaceStudent atlasStudentDataAccessInterface,
             CreateOrderDataAccessInterfaceItem atlasClothingDataAccessInterface,
             CreateOrderDataAccessInterfaceItem atlasFurnitureDataAccessInterface,
@@ -65,13 +65,17 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getItem().getId());
             }
             try {
-                atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
-                        createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
-                        createOrderInputData.getStudent().getHomeAddress(), createOrderInputData.getItemName());
-            } catch (IOException e){
+                atlasOrderDataAccessObject.createOrder(
+                        createOrderInputData.getBuyerEmail(),
+                        createOrderInputData.getStudent().getUoftEmail(),
+                        createOrderInputData.getItem().getId(),
+                        createOrderInputData.getItem().getPickupAddress(),
+                        createOrderInputData.getItem().getName(),
+                        createOrderInputData.getItem().getPicture());
+            } catch (IOException e) {
                 createOrderPresenter.prepareFailView("Could not access Atlas database");
             }
-            createOrderPresenter.prepareSuccessView();
+            createOrderPresenter.prepareSuccessView(new CreateOrderOutputData(createOrderInputData.getItem()));
         } else {
             if (createOrderInputData.getItem() instanceof Clothing) {
                 atlasClothingDataAccessObject.updateSoldYet(
@@ -87,13 +91,17 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
                         createOrderInputData.getItem().getId());
             }
             try {
-                atlasOrderDataAccessObject.createOrder(createOrderInputData.getBuyerEmail(),
-                        createOrderInputData.getStudent().getUoftEmail(), createOrderInputData.getItem().getId(),
-                        createOrderInputData.getOtherAddress(), createOrderInputData.getItemName());
-            } catch (IOException e){
+                atlasOrderDataAccessObject.createOrder(
+                        createOrderInputData.getBuyerEmail(),
+                        createOrderInputData.getStudent().getUoftEmail(),
+                        createOrderInputData.getItem().getId(),
+                        createOrderInputData.getOtherAddress(),
+                        createOrderInputData.getItem().getName(),
+                        createOrderInputData.getItem().getPicture());
+            } catch (IOException e) {
                 createOrderPresenter.prepareFailView("Could not access Atlas database");
             }
-            createOrderPresenter.prepareSuccessView();
+            createOrderPresenter.prepareSuccessView(new CreateOrderOutputData(createOrderInputData.getItem()));
         }
     }
 }

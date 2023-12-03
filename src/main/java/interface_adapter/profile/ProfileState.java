@@ -11,11 +11,14 @@ public class ProfileState {
     private String password;
     private String uoftEmail;
     private String homeAddress;
+    private String imageKey;
     private ArrayList<Order> orders = new ArrayList<>();
     private ArrayList<Item> postedItems = new ArrayList<>();
 
     private String studentNotFoundError;
     private Student currentStudent;
+
+
 
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }

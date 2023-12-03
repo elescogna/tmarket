@@ -14,10 +14,9 @@ public class CreateOrderController {
             }
 
     public void execute(Item item, Student student, String buyerEmail,
-            String sameAddress, String otherAddress,
-            String itemName) {
+            String sameAddress, String otherAddress) {
         CreateOrderInputData createOrderInputData = new CreateOrderInputData(
-                item, student, buyerEmail, sameAddress, otherAddress, itemName);
+                item, student, buyerEmail, sameAddress, otherAddress);
 
         createOrderUseCaseInteractor.execute(createOrderInputData);
     }

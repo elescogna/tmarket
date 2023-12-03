@@ -7,15 +7,17 @@ public class Order {
     private String itemId;
     private String pickupLocation;
     private String itemName;
+    private String itemImageKey;
 
     public Order(String id, String buyerEmail, String sellerEmail, String itemId,
-            String pickupLocation, String itemName) {
+            String pickupLocation, String itemName, String itemImageKey) {
         this.id = id;
         this.buyerEmail = buyerEmail;
         this.sellerEmail = sellerEmail;
         this.itemId = itemId;
         this.pickupLocation = pickupLocation;
         this.itemName = itemName;
+        this.itemImageKey = itemImageKey;
     }
 
     public void setBuyerEmail(String buyerEmail) { this.buyerEmail = buyerEmail; }
@@ -45,4 +47,10 @@ public class Order {
     public String getItemName() { return itemName; }
 
     public void setItemName(String itemName) { this.itemName = itemName; }
+
+    public String getItemImageKey() { return itemImageKey; }
+
+    public void setItemImageKey(String itemImageKey) {
+        this.itemImageKey = itemImageKey;
+    }
 }
