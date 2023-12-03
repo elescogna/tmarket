@@ -6,10 +6,10 @@ import entities.Item;
 import entities.SchoolItem;
 import entities.Student;
 import entities.Technology;
-import interface_adapter.contacting.ContactingController;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.contact.ContactViewModel;
 import interface_adapter.go_create_order.GoCreateOrderController;
 import interface_adapter.go_home.GoHomeController;
-import interface_adapter.view_item.ViewItemController;
 import interface_adapter.view_item.ViewItemState;
 import interface_adapter.view_item.ViewItemViewModel;
 import java.awt.*;
@@ -49,8 +49,9 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
 
     private ViewItemViewModel viewItemViewModel;
     private GoHomeController goHomeController;
-    private ContactingController contactingController;
     private GoCreateOrderController goCreateOrderController;
+    private ViewManagerModel viewManagerModel;
+    private ContactViewModel contactViewModel;
     private Image backgroundImage;
 
     /**
@@ -58,13 +59,15 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
      */
     public ViewItemView(ViewItemViewModel viewItemViewModel,
             GoHomeController goHomeController,
-            ContactingController contactingController,
-            GoCreateOrderController goCreateOrderController) {
+            GoCreateOrderController goCreateOrderController,
+            ViewManagerModel viewManagerModel,
+            ContactViewModel contactViewModel) {
         setBackground(new Color(0, 0, 0));
         this.viewItemViewModel = viewItemViewModel;
         this.goHomeController = goHomeController;
-        this.contactingController = contactingController;
         this.goCreateOrderController = goCreateOrderController;
+        this.viewManagerModel = viewManagerModel;
+        this.contactViewModel = contactViewModel;
 
         this.viewItemViewModel.addPropertyChangeListener(this);
 
@@ -183,11 +186,12 @@ public class ViewItemView extends JPanel implements PropertyChangeListener {
         btnContactSeller = new JButton("Contact Seller");
         btnContactSeller.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ViewItemState currentState =
-                    ViewItemView.this.viewItemViewModel.getState();
+                ViewItemView.this.contactViewModel.getState().setCurrentItem(
+                        ViewItemView.this.viewItemViewModel.getState().getCurrentItem());
 
-                ViewItemView.this.contactingController.execute(
-                        currentState.getCurrentItem());
+                ViewItemView.this.viewManagerModel.setActiveView(
+                        ViewItemView.this.contactViewModel.getViewName());
+                ViewItemView.this.viewManagerModel.firePropertyChanged();
             }
         });
         btnContactSeller.setBounds(165, 710, 123, 27);
