@@ -18,8 +18,8 @@ import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_item.ViewItemViewModel;
 import interface_adapter.view_order.ViewOrderViewModel;
-import java.awt.CardLayout;
 import java.awt.*;
+import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -105,12 +105,12 @@ public class Main {
                 technologyDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject);
-        viewItemView.setPreferredSize(new Dimension(1000,800));
+        viewItemView.setPreferredSize(new Dimension(1000, 800));
         views.add(viewItemView, viewItemViewModel.getViewName());
 
         ContactView contactView =
-                ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
-                        homeViewModel, studentDataAccessObject);
+            ContactUseCaseFactory.create(contactViewModel, viewManagerModel,
+                    homeViewModel, studentDataAccessObject);
         contactView.setPreferredSize(new Dimension(1000, 800));
         views.add(contactView, contactViewModel.getViewName());
 
@@ -132,7 +132,7 @@ public class Main {
                 orderDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject);
-        homeView.setPreferredSize(new Dimension(1000,800));
+        homeView.setPreferredSize(new Dimension(1000, 800));
         views.add(homeView, homeViewModel.getViewName());
 
         SignupView signupView =
@@ -142,11 +142,10 @@ public class Main {
         views.add(signupView, signupViewModel.getViewName());
 
         LoginView loginView =
-                LoginUseCaseFactory.create(loginViewModel, homeViewModel,
-                        studentDataAccessObject, viewManagerModel);
+            LoginUseCaseFactory.create(loginViewModel, homeViewModel,
+                    studentDataAccessObject, viewManagerModel);
         loginView.setPreferredSize(new Dimension(1000, 800));
         views.add(loginView, loginViewModel.getViewName());
-
 
         PostView postView = PostUseCaseFactory.create(
                 postViewModel, viewManagerModel, homeViewModel,
@@ -157,14 +156,13 @@ public class Main {
 
         ProfileView profileView = ProfileUseCaseFactory.create(
                 profileViewModel, viewManagerModel, homeViewModel, viewOrderViewModel,
-                viewItemViewModel,
-                studentDataAccessObject, clothingDataAccessObject,
+                viewItemViewModel, studentDataAccessObject, clothingDataAccessObject,
                 furnitureDataAccessObject, schoolItemDataAccessObject,
                 technologyDataAccessObject, orderDataAccessObject,
-                orderDataAccessObject,
                 clothingDataAccessObject, furnitureDataAccessObject,
-                schoolItemDataAccessObject, technologyDataAccessObject);
-        profileView.setPreferredSize(new Dimension(1000,800));
+                schoolItemDataAccessObject, technologyDataAccessObject,
+                orderDataAccessObject);
+        profileView.setPreferredSize(new Dimension(1000, 800));
         views.add(profileView, profileViewModel.getViewName());
 
         ViewOrderView viewOrderView = ViewOrderUseCaseFactory.create(

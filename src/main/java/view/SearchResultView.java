@@ -2,7 +2,8 @@ package view;
 
 import entities.Item;
 import entities.Student;
-import interface_adapter.go_home.GoHomeController;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeViewModel;
 import interface_adapter.search_result.SearchResultState;
 import interface_adapter.search_result.SearchResultViewModel;
 import interface_adapter.signup.SignupState;
@@ -26,7 +27,8 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
     private final JList list;
     private JScrollPane listScrollPane;
     private JButton homeButton;
-    private GoHomeController goHomeController;
+    private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
     private SearchResultViewModel searchResultViewModel;
     private ViewItemController viewItemController;
     private JLabel lblNewLabel;
@@ -35,14 +37,15 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
     /**
      * Create the panel.
      */
-    public SearchResultView(GoHomeController goHomeController,
+    public SearchResultView(HomeViewModel homeViewModel,
             SearchResultViewModel searchResultViewModel,
-            ViewItemController viewItemController) {
+            ViewItemController viewItemController, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
-        this.goHomeController = goHomeController;
         this.searchResultViewModel = searchResultViewModel;
         this.viewItemController = viewItemController;
+        this.homeViewModel = homeViewModel;
+        this.viewManagerModel = viewManagerModel;
         this.searchResultViewModel.addPropertyChangeListener(this);
 
         try {
@@ -67,7 +70,8 @@ public class SearchResultView extends JPanel implements PropertyChangeListener {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(homeButton)) {
-                    SearchResultView.this.goHomeController.execute();
+                    SearchResultView.this.viewManagerModel.setActiveView(SearchResultView.this.homeViewModel.getViewName());
+                    SearchResultView.this.viewManagerModel.firePropertyChanged();
                 }
             }
         });

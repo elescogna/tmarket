@@ -1,17 +1,18 @@
 package view;
 
-import interface_adapter.contact.ContactController;
-import interface_adapter.contact.ContactState;
-import interface_adapter.contact.ContactViewModel;
-import interface_adapter.go_home.GoHomeController;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,8 +20,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.io.File;
-import java.io.IOException;
+
+import interface_adapter.ViewManagerModel;
+import interface_adapter.contact.ContactController;
+import interface_adapter.contact.ContactState;
+import interface_adapter.contact.ContactViewModel;
+import interface_adapter.home.HomeViewModel;
 
 public class ContactView extends JPanel implements PropertyChangeListener {
 
@@ -38,7 +43,8 @@ public class ContactView extends JPanel implements PropertyChangeListener {
 
     private ContactViewModel contactViewModel;
     private ContactController contactController;
-    private GoHomeController goHomeController;
+    private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
     private Image backgroundImage;
 
     /**
@@ -46,13 +52,14 @@ public class ContactView extends JPanel implements PropertyChangeListener {
      */
     public ContactView(ContactViewModel contactViewModel,
             ContactController contactController,
-            GoHomeController goHomeController) {
+            HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));
         this.setLayout(null);
 
         this.contactViewModel = contactViewModel;
         this.contactController = contactController;
-        this.goHomeController = goHomeController;
+        this.homeViewModel = homeViewModel;
+        this.viewManagerModel = viewManagerModel;
 
         try {
             String basePath = System.getProperty("user.dir");
@@ -121,7 +128,8 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ContactView.this.goHomeController.execute();
+                ContactView.this.viewManagerModel.setActiveView(ContactView.this.homeViewModel.getViewName());
+                ContactView.this.viewManagerModel.firePropertyChanged();
             }
         });
         btnBack.setBounds(221, 702, 105, 27);

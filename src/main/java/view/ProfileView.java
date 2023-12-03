@@ -1,22 +1,11 @@
 package view;
 
-import entities.Item;
-import entities.Order;
-import entities.Student;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeState;
-import interface_adapter.profile.ProfileController;
-import interface_adapter.profile.ProfileState;
-import interface_adapter.profile.ProfileViewModel;
-import interface_adapter.view_item.ViewItemController;
-import interface_adapter.view_order.ViewOrderController;
-import interface_adapter.view_order.ViewOrderViewModel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
@@ -25,10 +14,30 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import entities.Item;
+import entities.Order;
+import entities.Student;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeViewModel;
+import interface_adapter.profile.ProfileController;
+import interface_adapter.profile.ProfileState;
+import interface_adapter.profile.ProfileViewModel;
+import interface_adapter.view_item.ViewItemController;
+import interface_adapter.view_order.ViewOrderController;
+
 public class ProfileView extends JPanel implements PropertyChangeListener {
 
 	private static final long serialVersionUID = 1L;
-	private GoHomeController goHomeController;
+	private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
 	private ProfileViewModel profileViewModel;
 	private ViewOrderController viewOrderController;
 	private ViewItemController viewItemController;
@@ -39,8 +48,9 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 	private Image backgroundImage;
 
     public ProfileView(ProfileController profileController, ProfileViewModel
-            profileViewModel, GoHomeController goHomeController,
-					   ViewOrderController viewOrderController, ViewItemController viewItemController) {
+            profileViewModel, HomeViewModel homeViewModel,
+            ViewOrderController viewOrderController, ViewManagerModel
+            viewManagerModel, ViewItemController viewItemController) {
 		this.setLayout(null);
 		setBackground(new Color(214, 186, 250));
 
@@ -48,7 +58,8 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		listOrders = new JList<String>();
 		this.profileViewModel = profileViewModel;
 		this.profileViewModel.addPropertyChangeListener(this);
-		this.goHomeController = goHomeController;
+		this.homeViewModel = homeViewModel;
+		this.viewManagerModel = viewManagerModel;
 		this.viewOrderController = viewOrderController;
 		this.viewItemController = viewItemController;
 
@@ -81,7 +92,8 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProfileView.this.goHomeController.execute();
+				ProfileView.this.viewManagerModel.setActiveView(ProfileView.this.homeViewModel.getViewName());
+				ProfileView.this.viewManagerModel.firePropertyChanged();
 			}
 		});
 		btnNewButton.setBounds(669, 461, 123, 48);

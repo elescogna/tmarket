@@ -1,15 +1,9 @@
 package view;
 
-import entities.Student;
-import interface_adapter.go_home.GoHomeController;
-import interface_adapter.home.HomeController;
-import interface_adapter.search.SearchController;
-import interface_adapter.search.SearchState;
-import interface_adapter.search.SearchViewModel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -19,7 +13,21 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.concurrent.Executor;
+
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import entities.Student;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeViewModel;
+import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchState;
+import interface_adapter.search.SearchViewModel;
 
 public class SearchView extends JPanel implements PropertyChangeListener {
 	private final SearchViewModel searchViewModel;
@@ -57,14 +65,15 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 	private JComboBox sizeComboBox;
 	private JButton submitButton;
 	private JButton backButton;
-	private GoHomeController goHomeController;
+	private HomeViewModel homeViewModel;
+    private ViewManagerModel viewManagerModel;
 	private Image backgroundImage;
 
 
 	/**
 	 * Create the panel.
 	 */
-	public SearchView(SearchViewModel searchViewModel, SearchController searchController, GoHomeController goHomeController) {
+	public SearchView(SearchViewModel searchViewModel, SearchController searchController, HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
 		setBackground(new Color(0, 0, 0));
 		this.setLayout(null);
 		initializeComponents();
@@ -77,7 +86,8 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 
 		this.searchViewModel = searchViewModel;
 		this.searchController = searchController;
-		this.goHomeController = goHomeController;
+		this.homeViewModel = homeViewModel;
+		this.viewManagerModel = viewManagerModel;
 
 		this.searchViewModel.addPropertyChangeListener(this);
 
@@ -578,9 +588,8 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				if (evt.getSource().equals(backButton)) {
-					goHomeController.execute();
-				}
+                SearchView.this.viewManagerModel.setActiveView(SearchView.this.homeViewModel.getViewName());
+                SearchView.this.viewManagerModel.firePropertyChanged();
 			}
 		});
 	}
