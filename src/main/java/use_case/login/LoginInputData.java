@@ -16,11 +16,11 @@ public class LoginInputData {
         this.password = password;
     }
 
-    String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return password;
     }
 

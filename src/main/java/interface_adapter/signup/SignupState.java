@@ -4,25 +4,9 @@ public class SignupState {
     private String username = "";
     private String usernameError = null;
     private String password = "";
-    private String passwordError = null;
     private String repeatPassword = "";
-    private String repeatPasswordError = null;
     private String pickupAddress = "";
     private String uoftEmail = "";
-
-    /**
-     * Constructor for the SignupState that makes a new state from a copy.
-     *
-     * @param copy A SignupState from which to make this SignupState.
-     */
-    public SignupState(SignupState copy) {
-        username = copy.username;
-        usernameError = copy.usernameError;
-        password = copy.password;
-        passwordError = copy.passwordError;
-        repeatPassword = copy.repeatPassword;
-        repeatPasswordError = copy.repeatPasswordError;
-    }
 
     /**
      * Default empty constructor for SignupState.
@@ -42,16 +26,8 @@ public class SignupState {
         return password;
     }
 
-    public String getPasswordError() {
-        return passwordError;
-    }
-
     public String getRepeatPassword() {
         return repeatPassword;
-    }
-
-    public String getRepeatPasswordError() {
-        return repeatPasswordError;
     }
 
     public void setUsername(String username) {
@@ -66,16 +42,8 @@ public class SignupState {
         this.password = password;
     }
 
-    public void setPasswordError(String passwordError) {
-        this.passwordError = passwordError;
-    }
-
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
-    }
-
-    public void setRepeatPasswordError(String repeatPasswordError) {
-        this.repeatPasswordError = repeatPasswordError;
     }
     public String getPickupAddress(){
         return pickupAddress;
