@@ -18,11 +18,8 @@ public class ContactViewModel extends ViewModel {
     public void firePropertyChanged() {
         support.firePropertyChange("contactState", null, this.state);
     }
-
     @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 
     public ContactState getState() { return state; }
 

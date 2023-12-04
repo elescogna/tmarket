@@ -12,21 +12,6 @@ public class CreateOrderState {
     private Item item;
 
     /**
-     * Constructor for the CreateOrderState that makes a new state from a copy.
-     *
-     * @param copy A CreateOrderState from which to make this CreateOrderState.
-     */
-    public CreateOrderState(CreateOrderState copy) {
-        student = copy.student;
-        emailError = copy.emailError;
-        buyerEmail = copy.buyerEmail;
-        otherAddress = copy.otherAddress;
-        sameAddress = copy.sameAddress;
-        item = copy.item;
-
-    }
-
-    /**
      * Default constructor for the CreateOrderState.
      */
     public CreateOrderState() {

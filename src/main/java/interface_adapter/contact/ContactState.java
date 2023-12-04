@@ -9,18 +9,6 @@ public class ContactState {
     private String error = "";
 
     /**
-     * Constructor for the ContactState that makes a new state from a copy.
-     *
-     * @param copy A ContactState from which to make this ContactState.
-     */
-    public ContactState(ContactState copy) {
-        currentItem = copy.currentItem;
-        subjectText = copy.subjectText;
-        bodyText = copy.bodyText;
-        error = copy.error;
-    }
-
-    /**
      * Default constructor from which to make the ContactState.
      */
     public ContactState() {}
