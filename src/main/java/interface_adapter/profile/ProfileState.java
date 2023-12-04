@@ -31,6 +31,11 @@ public class ProfileState {
     public void setStudentNotFoundError(String studentNotFoundError) {
         this.studentNotFoundError = studentNotFoundError;
     }
+
+    public String getStudentNotFoundError() {
+        return studentNotFoundError;
+    }
+
     public void setStudent(Student currentStudent) {
         this.currentStudent = currentStudent;
     }
