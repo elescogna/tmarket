@@ -22,7 +22,7 @@ class CreateOrderInteractorTest {
         buyer = new Student("Jay", "Go", "700 University Avenue, Toronto", "jay.go@mail.utoronto.ca");
         item = new SchoolItem("testId","John's Pen", "Pen of John",
                 12, 12, 12, false, "700 University Avenue, Toronto", "656bad0c2c9d206181466c20", "Pen",
-                "", LocalDateTime.now(), "hilroy", "red");
+                "0", LocalDateTime.now(), "hilroy", "red");
         SchoolItemPostDataAccessInterface schoolItemDAO = new AtlasSchoolItemDataAccessObject();
         SignupUserDataAccessInterface studentDAO = new AtlasStudentDataAccessObject();
         try {
@@ -36,10 +36,11 @@ class CreateOrderInteractorTest {
 
     @Test
     void successTest() {
-        CreateOrderInputData inputData = new CreateOrderInputData(item, seller, buyer.getUoftEmail(), "Yes", "", item.getName());
+        CreateOrderInputData inputData = new CreateOrderInputData(item, seller, buyer.getUoftEmail(), "Yes", "");
         CreateOrderOutputBoundary successPresenter = new CreateOrderOutputBoundary(){
             @Override
-            public void prepareSuccessView() {
+            public void prepareSuccessView(CreateOrderOutputData response) {
+                assertEquals(item, response.getItem());
             }
 
             @Override
@@ -56,10 +57,10 @@ class CreateOrderInteractorTest {
 
     @Test
     void failTest() {
-        CreateOrderInputData inputData = new CreateOrderInputData(item, seller, "emailthatwon'teverexist", "Yes", "", item.getName());
+        CreateOrderInputData inputData = new CreateOrderInputData(item, seller, "emailthatwon'teverexist", "Yes", "");
         CreateOrderOutputBoundary successPresenter = new CreateOrderOutputBoundary(){
             @Override
-            public void prepareSuccessView() {
+            public void prepareSuccessView(CreateOrderOutputData response) {
                 fail("Use case success is unexpected.");
             }
 
