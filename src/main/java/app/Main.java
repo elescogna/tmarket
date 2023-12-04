@@ -37,6 +37,12 @@ import view.ViewManager;
 import view.ViewOrderView;
 
 public class Main {
+    /**
+     * Driver code for the program. Creates all views, view models, and DAOs,
+     * arranges them, and launches the application client.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.

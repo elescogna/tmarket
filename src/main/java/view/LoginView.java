@@ -28,9 +28,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 	private Image backgroundImage;
 	private JPasswordField passwordInputField;
 
-	/**
-	 * Create the panel.
-	 */
+ /**
+  * Constructor for the login view.
+  *
+  * @param loginViewModel the login view model for this view
+  * @param controller the login controller for this view
+  */
 	public LoginView(LoginViewModel loginViewModel, LoginController controller) {
 		setBackground(new Color(0, 0, 0));
 		setForeground(new Color(255, 255, 255));

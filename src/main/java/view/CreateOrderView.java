@@ -42,7 +42,13 @@ public class CreateOrderView extends JPanel implements ActionListener, PropertyC
     private JLabel lblItemName;
 
     /**
-     * Create the panel.
+     *
+     * Constructor for the create order view; this function is called by the use case factory.
+     *
+     * @param createOrderController the CreateOrderController for this view
+     * @param createOrderViewModel the CreateOrderViewModel for this view
+     * @param homeViewModel the HomeViewModel for this view
+     * @param viewManagerModel  the ViewManagerModel for this application
      */
     public CreateOrderView(CreateOrderController createOrderController, CreateOrderViewModel createOrderViewModel, HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
     	setBackground(new Color(0, 0, 0));

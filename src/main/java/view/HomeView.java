@@ -51,9 +51,6 @@ public class HomeView extends JPanel implements PropertyChangeListener {
     private ViewItemController viewItemController;
     private Image backgroundImage;
 
-    /**
-     * Create the panel.
-     */
     public HomeView(HomeViewModel homeViewModel, HomeController homeController,
             PostViewModel postViewModel,
             ProfileController profileController,
@@ -95,6 +92,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         }
     }
 
+    /**
+     * Initializes components on the home screen.
+     */
     public void initializeComponents() {
         btnPost = new JButton("Post");
         btnPost.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
@@ -121,6 +121,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         btnLogout.setBounds(690, 650, 124, 47);
     }
 
+    /**
+     * Adds all components to the home screen.
+     */
     public void addComponents() {
         add(btnPost);
         add(btnProfile);
@@ -131,6 +134,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         add(btnLogout);
     }
 
+    /**
+     * Adds all action listeners to components on the home view.
+     */
     public void addActionListeners() {
         btnPost.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -214,6 +220,9 @@ public class HomeView extends JPanel implements PropertyChangeListener {
         });
     }
 
+    /**
+     * Fetches all posts from the home state and updates the view with them.
+     */
     public void updateItemsList() {
         ArrayList<Item> items = this.homeViewModel.getState().getAllPosts();
 

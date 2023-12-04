@@ -7,6 +7,9 @@ import java.beans.PropertyChangeSupport;
 public class ViewItemViewModel extends ViewModel {
     private ViewItemState state = new ViewItemState();
 
+    /**
+     * Default constructor for ViewItemViewModel.
+     */
     public ViewItemViewModel() { super("view_item"); }
 
     public void setState(ViewItemState state) { this.state = state; }

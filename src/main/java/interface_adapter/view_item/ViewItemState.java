@@ -10,6 +10,11 @@ public class ViewItemState {
 
     private Student currentStudent;
 
+    /**
+     * Constructor for the ViewItemState that makes a new state from a copy.
+     *
+     * @param copy A ViewItemState from which to make this ViewItemState.
+     */
     public ViewItemState(ViewItemState copy) {
         this.currentItem = copy.currentItem;
         this.currentItemImage = copy.currentItemImage;
@@ -17,6 +22,9 @@ public class ViewItemState {
         this.currentStudent = copy.currentStudent;
     }
 
+    /**
+     * An empty default constructor for the ViewItemState.
+     */
     public ViewItemState() {}
 
     public Item getCurrentItem() { return currentItem; }

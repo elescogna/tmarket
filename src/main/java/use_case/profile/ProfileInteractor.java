@@ -31,6 +31,12 @@ public class ProfileInteractor implements ProfileInputBoundary{
         this.orderDataAccessObject = orderDataAccessObject;
         this.profilePresenter = profilePresenter;
     }
+    /**
+     * Calls all appropriate DAO methods with the given input data and calls
+     * the Profile presenter with the output data.
+     *
+     * @param profileInputData the input data with which to call the DAO methods
+     */
     @Override
     public void execute(ProfileInputData profileInputData) {
         try{

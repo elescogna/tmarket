@@ -9,6 +9,9 @@ public class CreateOrderViewModel extends ViewModel {
 
     private CreateOrderState state = new CreateOrderState();
 
+    /**
+     * Default CreateOrderViewModel constructor.
+     */
     public CreateOrderViewModel() {
         super("create_order");
     }

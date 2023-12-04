@@ -33,6 +33,12 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
         this.createOrderPresenter = createOrderOutputBoundary;
             }
 
+    /**
+     * Calls all appropriate DAO methods with the given input data and calls
+     * the Create Order presenter with the output data.
+     *
+     * @param createOrderInputData the input data with which to call the DAO methods
+     */
     @Override
     public void execute(CreateOrderInputData createOrderInputData) {
         // Create new order & save to database

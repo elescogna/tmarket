@@ -10,6 +10,15 @@ public class CreateOrderInputData {
     private String sameAddress = "";
     private String otherAddress = "";
 
+    /**
+     * Creates a new CreateOrderInputData with the parameters given
+     *
+     * @param item the item with which to create the CreateOrderInputData
+     * @param student the student with which to create the CreateOrderInputData
+     * @param buyerEmail the buyer email with which to create the CreateOrderInputData
+     * @param sameAddress the boolean same address option with which to create the CreateOrderInputData
+     * @param otherAddress the "other" address with which to create the CreateOrderInputData
+     */
     public CreateOrderInputData(Item item, Student student, String buyerEmail, String sameAddress, String otherAddress) {
         this.item = item;
         this.student = student;

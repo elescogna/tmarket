@@ -8,6 +8,9 @@ import java.beans.PropertyChangeSupport;
 public class ViewOrderViewModel extends ViewModel {
     private ViewOrderState state = new ViewOrderState();
 
+    /**
+     * Default constructor for ViewOrderViewModel
+     */
     public ViewOrderViewModel() { super("view_order"); }
 
     public void setState(ViewOrderState state) { this.state = state; }

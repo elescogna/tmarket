@@ -14,6 +14,11 @@ public class CreateOrderPresenter implements CreateOrderOutputBoundary {
         this.createOrderViewModel = createOrderViewModel;
     }
 
+    /**
+     * Prepares to display the CreateOrderView with the output data given.
+     *
+     * @param outputData the output data with which to display the CreateOrderView
+     */
     @Override
     public void prepareSuccessView(CreateOrderOutputData outputData) {
         createOrderViewModel.getState().setItem(outputData.getItem());
@@ -23,6 +28,11 @@ public class CreateOrderPresenter implements CreateOrderOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error message given.
+     *
+     * @param message the error message to display
+     */
     @Override
     public void prepareFailView(String message) {
         CreateOrderState createOrderState = createOrderViewModel.getState();

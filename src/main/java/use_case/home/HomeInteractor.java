@@ -23,6 +23,11 @@ public class HomeInteractor implements HomeInputBoundary {
         this.homePresenter = homeOutputBoundary;
     }
 
+    /**
+     * Performs DAO calls for Home given the input data and calls HomePresenter.
+     *
+     * @param homeInputData the input data with which to call the DAO
+     */
     @Override
     public void execute(HomeInputData homeInputData) {
         try {

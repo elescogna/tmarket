@@ -17,6 +17,12 @@ public class ViewOrderPresenter implements ViewOrderOutputBoundary {
         this.homeViewModel = homeViewModel;
     }
 
+    /**
+     * Prepares the view order view with the info from the output data given.
+     *
+     * @param response the ViewOrderViewModel containing the correct info to
+     * display on the login screen.
+     */
     @Override
     public void prepareSuccessView(ViewOrderOutputData response) {
         ViewOrderState viewOrderState = viewOrderViewModel.getState();
@@ -33,6 +39,11 @@ public class ViewOrderPresenter implements ViewOrderOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     *  Prepares to display the error given.
+     *
+     * @param error the error to display
+     */
     @Override
     public void prepareFailView(String error) {
         ViewOrderState viewOrderState = viewOrderViewModel.getState();

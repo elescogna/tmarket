@@ -11,11 +11,19 @@ public class SearchResultState {
     private String filteredItemsError = "";
     private Student currentStudent;
 
+    /**
+     * Constructor for the SearchResultState that makes a new state from a copy.
+     *
+     * @param copy A SearchResultState from which to make this SearchResultState.
+     */
     public SearchResultState(SearchResultState copy) {
         this.filteredItems = copy.filteredItems;
         this.filteredItemsError = copy.filteredItemsError;
     }
 
+    /**
+     * Default empty constructor for SearchResultState
+     */
     public SearchResultState() {}
 
     public ArrayList<Item> getFilteredItems() { return filteredItems; }

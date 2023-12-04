@@ -73,6 +73,11 @@ public class PostInteractor implements PostInputBoundary {
         }
     }
 
+    /**
+     *
+     *
+     * @param postInputData
+     */
     @Override
     public void execute(PostInputData postInputData) {
         if (postInputData.getCategory().equals("Furniture")) {

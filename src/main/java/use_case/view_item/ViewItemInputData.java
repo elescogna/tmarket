@@ -6,6 +6,12 @@ public class ViewItemInputData {
     private String itemId;
     private Student currentStudent;
 
+    /**
+     * Creates a new ViewItemInputData with the given parameters.
+     *
+     * @param itemId the item ID with which to create the ViewItemInputData
+     * @param currentStudent the currentStudent with which to create the ViewItemInputData
+     */
     public ViewItemInputData(String itemId, Student currentStudent) {
         this.itemId = itemId;
         this.currentStudent = currentStudent;

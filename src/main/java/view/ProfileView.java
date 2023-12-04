@@ -197,6 +197,9 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 		}
 	}
 
+ /**
+  * Updates the order and item lists on this view.
+  */
 	public void updateLists() {
 		ArrayList<Order> orders = this.profileViewModel.getState().getOrders();
 		ArrayList<Item> items = this.profileViewModel.getState().getPostedItems();

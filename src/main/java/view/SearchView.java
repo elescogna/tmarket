@@ -69,10 +69,14 @@ public class SearchView extends JPanel implements PropertyChangeListener {
     private ViewManagerModel viewManagerModel;
 	private Image backgroundImage;
 
-
-	/**
-	 * Create the panel.
-	 */
+ /**
+  *  Constructor for the search view; this function is called by the use case factory.
+  *
+  * @param searchViewModel the SearchViewModel for this view
+  * @param searchController the SearchController for this view
+  * @param homeViewModel  the HomeViewModel for this view
+  * @param viewManagerModel the ViewManagerModel for this application
+  */
 	public SearchView(SearchViewModel searchViewModel, SearchController searchController, HomeViewModel homeViewModel, ViewManagerModel viewManagerModel) {
 		setBackground(new Color(0, 0, 0));
 		this.setLayout(null);

@@ -25,6 +25,11 @@ public class SearchInteractor implements SearchInputBoundary{
         this.technologyDataAccessObject = technologyDataAccessObject;
         this.searchPresenter = searchOutputBoundary;
     }
+    /**
+     * Makes the required DAO calls with the SearchInputData given.
+     *
+     * @param searchInputData the input data with which to make the DAO calls
+     */
     @Override
     public void execute(SearchInputData searchInputData) {
         try {

@@ -11,6 +11,11 @@ public class CreateOrderState {
     private String otherAddress = "";
     private Item item;
 
+    /**
+     * Constructor for the CreateOrderState that makes a new state from a copy.
+     *
+     * @param copy A CreateOrderState from which to make this CreateOrderState.
+     */
     public CreateOrderState(CreateOrderState copy) {
         student = copy.student;
         emailError = copy.emailError;
@@ -21,7 +26,9 @@ public class CreateOrderState {
 
     }
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
+    /**
+     * Default constructor for the CreateOrderState.
+     */
     public CreateOrderState() {
     }
 
