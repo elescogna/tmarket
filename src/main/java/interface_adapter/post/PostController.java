@@ -6,6 +6,11 @@ import use_case.post.PostInputData;
 
 public class PostController {
     final PostInputBoundary postUseCaseInteractor;
+    /**
+     * Creates a new PostController with the PostInteractor given.
+     *
+     * @param postUseCaseInteractor the PostInteractor with which to call the PostController.
+     */
     public PostController(PostInputBoundary postUseCaseInteractor) {
         this.postUseCaseInteractor = postUseCaseInteractor;
     }

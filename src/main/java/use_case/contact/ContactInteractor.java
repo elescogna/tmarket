@@ -24,6 +24,12 @@ public class ContactInteractor implements ContactInputBoundary {
         return contactPresenter;
     }
 
+    /**
+     * Calls all required DAO methods with the given input data and calls the
+     * Contact presenter with the correct output data.
+     *
+     * @param contactInputData the input data with which to call the DAO methods
+     */
     @Override
     public void execute(ContactInputData contactInputData) {
         String senderEmail = System.getenv("MAIL_SENDER_ADDRESS");

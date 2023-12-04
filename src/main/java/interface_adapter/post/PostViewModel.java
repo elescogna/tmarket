@@ -8,6 +8,9 @@ import java.beans.PropertyChangeSupport;
 public class PostViewModel extends ViewModel {
     private PostState state = new PostState();
 
+    /**
+     * Default constructor of PostViewModel.
+     */
     public PostViewModel() {
         super("post");
     }

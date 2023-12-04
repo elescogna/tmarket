@@ -41,6 +41,11 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
         return imageIcon;
     }
 
+    /**
+     * Performs DAO calls for ViewOrder given the input data and calls ViewOrderPresenter.
+     *
+     * @param viewOrderInputData the input data with which to call the DAO
+     */
     @Override
     public void execute(ViewOrderInputData viewOrderInputData) {
         try {

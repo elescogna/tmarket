@@ -16,6 +16,11 @@ public class PostPresenter implements PostOutputBoundary {
         this.homeViewModel = homeViewModel;
     }
 
+    /**
+     * Prepares to display the post view with the output data given in the parameters.
+     *
+     * @param postOutputData the output data to display on the post view
+     */
     @Override
     public void prepareSuccessView(PostOutputData postOutputData) {
         HomeState homeState = homeViewModel.getState();
@@ -27,6 +32,11 @@ public class PostPresenter implements PostOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to print out the error given.
+     *
+     * @param s the error string to print
+     */
     @Override
     public void prepareFailView(String s) {
         System.out.println(s);

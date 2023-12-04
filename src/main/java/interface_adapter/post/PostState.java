@@ -22,6 +22,9 @@ public class PostState {
     private String material = "";
     private String imagePath = "";
 
+    /**
+     * Default constructor for PostState.
+     */
     public PostState() {
     }
 

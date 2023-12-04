@@ -18,6 +18,12 @@ public class SignupInteractor implements SignupInputBoundary {
         this.userFactory = userFactory;
             }
 
+    /**
+     * Calls the required DAO methods with the given SignupInputData and then
+     * calls the SignupPresenter.
+     *
+     * @param signupInputData the input data with which to call DAO methods
+     */
     @Override
     public void execute(SignupInputData signupInputData) {
         boolean existsByEmail;

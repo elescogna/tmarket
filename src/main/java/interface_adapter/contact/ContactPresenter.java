@@ -16,6 +16,9 @@ public class ContactPresenter implements ContactOutputBoundary {
         this.homeViewModel = homeViewModel;
     }
 
+    /**
+     * Prepares to display the success message after the contact use case.
+     */
     @Override
     public void prepareSuccessView() {
         contactViewModel.getState().setError(""); // explicitly set error to none
@@ -27,6 +30,11 @@ public class ContactPresenter implements ContactOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error message given.
+     *
+     * @param error the error message to display
+     */
     @Override
     public void prepareFailView(String error) {
         // TODO: if something goes wrong, this and related syntax is the first

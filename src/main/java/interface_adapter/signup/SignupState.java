@@ -10,6 +10,11 @@ public class SignupState {
     private String pickupAddress = "";
     private String uoftEmail = "";
 
+    /**
+     * Constructor for the SignupState that makes a new state from a copy.
+     *
+     * @param copy A SignupState from which to make this SignupState.
+     */
     public SignupState(SignupState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
@@ -19,7 +24,9 @@ public class SignupState {
         repeatPasswordError = copy.repeatPasswordError;
     }
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
+    /**
+     * Default empty constructor for SignupState.
+     */
     public SignupState() {
     }
 

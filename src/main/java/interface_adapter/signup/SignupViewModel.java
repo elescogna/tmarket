@@ -17,6 +17,9 @@ public class SignupViewModel extends ViewModel {
 
     private SignupState state = new SignupState();
 
+    /**
+     * Default constructor for SignupViewModel
+     */
     public SignupViewModel() {
         super("sign_up");
     }

@@ -10,11 +10,22 @@ public class ProfilePresenter implements ProfileOutputBoundary {
     private final ProfileViewModel profileViewModel;
     private ViewManagerModel viewManagerModel;
 
+    /**
+     * Creates a new ProfilePresenter with the ViewManagerModel and the ProfileViewModel given.
+     *
+     * @param viewManagerModel the ViewManagerModel with which to create the ProfilePresenter
+     * @param profileViewModel the ProfilePresenter with which to create the ProfilePresenter
+     */
     public ProfilePresenter(ViewManagerModel viewManagerModel, ProfileViewModel profileViewModel) {
         this.profileViewModel = profileViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Prepares to display the ProfileView with the output data given.
+     *
+     * @param response the output data with which to display the ProfileView
+     */
     @Override
     public void prepareSuccessView(ProfileOutputData response) {
 
@@ -35,6 +46,11 @@ public class ProfilePresenter implements ProfileOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error message given.
+     *
+     * @param error the error message to display
+     */
     @Override
     public void prepareFailView(String error) {
         ProfileState profileState = profileViewModel.getState();

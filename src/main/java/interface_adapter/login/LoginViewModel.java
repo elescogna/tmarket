@@ -9,6 +9,9 @@ public class LoginViewModel extends ViewModel {
 
     private LoginState state = new LoginState();
 
+    /**
+     * Default constructor for LoginViewModel.
+     */
     public LoginViewModel() {
         super("log_in");
     }

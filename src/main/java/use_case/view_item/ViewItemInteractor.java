@@ -50,6 +50,11 @@ public class ViewItemInteractor implements ViewItemInputBoundary {
         return imageIcon;
     }
 
+    /**
+     * Makes the required DAO calls with the given ViewItemInputData
+     *
+     * @param viewItemData the input data with which to call by the ViewItemPresenter
+     */
     @Override
     public void execute(ViewItemInputData viewItemData) {
         try {

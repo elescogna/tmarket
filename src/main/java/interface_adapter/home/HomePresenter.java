@@ -12,6 +12,11 @@ public class HomePresenter implements HomeOutputBoundary {
         this.homeViewModel = homeViewModel;
         this.viewManagerModel = viewManagerModel;
     }
+    /**
+     * Prepares the home view with the posts from the output data given.
+     *
+     * @param response the HomeOutputData containing the correct posts to display on the home screen.
+     */
     @Override
     public void prepareSuccessView(HomeOutputData response) {
         this.homeViewModel.getState().setAllPosts(response.getAllPosts());

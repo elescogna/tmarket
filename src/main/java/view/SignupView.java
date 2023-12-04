@@ -34,8 +34,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     private final ViewManagerModel viewManagerModel;
 
-    /**
-     * Create the panel.
+    /** Constructor for the signup view; this function is called by the use case factory.
+     *
+     *
+     * @param controller the SignupController for this view
+     * @param signupViewModel the SignupViewModel for this view
+     * @param loginViewModel  the LoginViewModel for this view
+     * @param viewManagerModel the ViewManagerModel for this application
      */
     public SignupView(SignupController controller, SignupViewModel signupViewModel, LoginViewModel loginViewModel, ViewManagerModel viewManagerModel) {
         this.signupController = controller;

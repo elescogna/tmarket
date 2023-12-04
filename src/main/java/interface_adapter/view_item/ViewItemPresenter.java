@@ -17,6 +17,11 @@ public class ViewItemPresenter implements ViewItemOutputBoundary {
         this.homeViewModel = homeViewModel;
     }
 
+    /**
+     * Prepares the view item view with the info from the output data given.
+     *
+     * @param response the ViewItemOutputData containing the correct info to display on the view screen.
+     */
     @Override
     public void prepareSuccessView(ViewItemOutputData response) {
         ViewItemState viewItemState = viewItemViewModel.getState();
@@ -31,6 +36,11 @@ public class ViewItemPresenter implements ViewItemOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error message given.
+     *
+     * @param error the error to display
+     */
     @Override
     public void prepareFailView(String error) {
         ViewItemState viewItemState = viewItemViewModel.getState();

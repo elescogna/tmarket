@@ -11,6 +11,9 @@ public class SearchResultViewModel extends ViewModel {
     private SearchResultState state = new SearchResultState();
     private Student currentStudent;
 
+    /**
+     * Default constructor for SearchResultViewModel
+     */
     public SearchResultViewModel() {
         super("search_result");
     }

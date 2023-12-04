@@ -12,6 +12,11 @@ public class ViewOrderState {
     private ImageIcon currentOrderItemImage;
     private ArrayList<String> currentDirections;
 
+    /**
+     * Constructor for the ViewOrderState that makes a new state from a copy.
+     *
+     * @param copy A ViewOrderState from which to make this SearchState.
+     */
     public ViewOrderState(ViewOrderState copy) {
         this.currentOrder = copy.currentOrder;
         this.currentOrderError = copy.currentOrderError;
@@ -20,6 +25,9 @@ public class ViewOrderState {
         this.currentDirections = copy.currentDirections;
     }
 
+    /**
+     * Default constructor for ViewOrderState.
+     */
     public ViewOrderState() {}
 
     public Order getCurrentOrder() { return currentOrder; }

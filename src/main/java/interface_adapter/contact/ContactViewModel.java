@@ -7,6 +7,9 @@ import java.beans.PropertyChangeSupport;
 public class ContactViewModel extends ViewModel {
     private ContactState state = new ContactState();
 
+    /**
+     * Default constructor for ContactViewModel.
+     */
     public ContactViewModel() { super("contact"); }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);

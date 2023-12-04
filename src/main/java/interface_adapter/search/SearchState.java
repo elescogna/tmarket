@@ -11,11 +11,19 @@ public class SearchState {
     private String filterChoicesError;
     private Student currentStudent;
 
+    /**
+     * Constructor for the SearchState that makes a new state from a copy.
+     *
+     * @param copy A SearchState from which to make this SearchState.
+     */
     public SearchState(SearchState copy) {
         this.filterableAttributes = copy.filterableAttributes;
         this.filterChoices = copy.filterChoices;
     }
 
+    /**
+     * Default constructor for search state.
+     */
     public SearchState() {}
 
     public HashMap<String, Object> getFilterableAttributes() { return this.filterableAttributes; }

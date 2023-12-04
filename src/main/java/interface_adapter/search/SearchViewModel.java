@@ -9,6 +9,9 @@ public class SearchViewModel extends ViewModel {
     private SearchState state = new SearchState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
+    /**
+     * Default constructor for SearchViewModel.
+     */
     public SearchViewModel() { super("search"); }
 
     public SearchState getState() { return state; }

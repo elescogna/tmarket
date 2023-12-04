@@ -137,6 +137,11 @@ public class AtlasFurnitureDataAccessObject extends AtlasDataAccessObject
             }
     }
 
+    /**
+     * Updates the sold status of the item with the given itemId to true.
+     *
+     * @param itemId the itemId to update the soldYet attribute for
+     */
     public void updateSoldYet(String itemId) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 

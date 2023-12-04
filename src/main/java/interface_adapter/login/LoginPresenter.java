@@ -19,6 +19,12 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Prepares the login view with the info from the output data given.
+     *
+     * @param response the LoginOutputData containing the correct info to
+     * display on the login screen.
+     */
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         HomeState homeState = homeViewModel.getState();
@@ -28,6 +34,11 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error message given.
+     *
+     * @param error the error to display
+     */
     @Override
     public void prepareFailView(String error) {
         LoginState loginState = loginViewModel.getState();

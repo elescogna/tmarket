@@ -5,6 +5,13 @@ public class ViewOrderInputData {
     private String studentEmail;
     private String studentAddress;
 
+    /**
+     * Creates a new ViewOrderInputData with the given parameters.
+     *
+     * @param orderId the order ID with which to create this input data
+     * @param studentEmail  the student email with which to create this input data
+     * @param studentAddress  the student address with which to create this input data
+     */
     public ViewOrderInputData(String orderId, String studentEmail, String studentAddress) {
         this.orderId = orderId;
         this.studentEmail = studentEmail;

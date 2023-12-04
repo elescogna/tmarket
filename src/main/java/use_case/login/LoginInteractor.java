@@ -13,6 +13,11 @@ public class LoginInteractor implements LoginInputBoundary {
         this.loginPresenter = loginOutputBoundary;
     }
 
+    /**
+     * Makes the required DAO calls given the input data.
+     *
+     * @param loginInputData the input data with which to make the DAO calls
+     */
     @Override
     public void execute(LoginInputData loginInputData) {
         String username = loginInputData.getUsername();

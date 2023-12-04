@@ -21,6 +21,12 @@ public class SearchPresenter implements SearchOutputBoundary {
         this.searchResultViewModel = searchResultViewModel;
     }
 
+    /**
+     * Prepares the search view with the info from the output data given.
+     *
+     * @param response the SearchOutputData containing the correct info to
+     * display on the search screen.
+     */
     @Override
     public void prepareSuccessView(SearchOutputData response) {
         // On success, switch to the SearchResult view
@@ -35,6 +41,11 @@ public class SearchPresenter implements SearchOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Prepares to display the error given.
+     *
+     * @param error the error to display
+     */
     @Override
     public void prepareFailView(String error) {
         SearchState searchState = searchViewModel.getState();

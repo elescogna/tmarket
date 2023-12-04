@@ -9,6 +9,9 @@ import java.beans.PropertyChangeSupport;
 
 public class ProfileViewModel extends ViewModel {
     private ProfileState state = new ProfileState();
+    /**
+     * Default constructor for ProfileViewModel.
+     */
     public ProfileViewModel() {
         super("profile");
     }
