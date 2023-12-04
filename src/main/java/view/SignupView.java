@@ -83,7 +83,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         JLabel lblNewLabel_1_1_1_1 = new JLabel("Repeat Password");
         lblNewLabel_1_1_1_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
         lblNewLabel_1_1_1_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1_1_1_1.setBounds(289, 485, 116, 14);
+        lblNewLabel_1_1_1_1.setBounds(289, 485, 150, 14);
         add(lblNewLabel_1_1_1_1);
 
         nameTextField = new JTextField();
