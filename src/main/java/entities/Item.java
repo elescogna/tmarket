@@ -99,5 +99,9 @@ public abstract class Item {
 
     public void setId(String id) { this.id = id; }
 
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public String getOwnerId() { return ownerId; }
 }
