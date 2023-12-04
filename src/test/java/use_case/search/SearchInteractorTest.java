@@ -13,12 +13,11 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SearchInteractorTest {
-
     @BeforeEach
     public void before() {
         SchoolItem schoolItem = new SchoolItem("John's Pen", "Pen of John",
                 12, 12, 12, false, "700 University Avenue, Toronto", "656bad0c2c9d206181466c20", "Pen",
-                "", LocalDateTime.now(), "hilroy", "red");
+                "0", LocalDateTime.now(), "hilroy", "red");
         SchoolItemPostDataAccessInterface schoolItemDAO = new AtlasSchoolItemDataAccessObject();
         try {
             schoolItemDAO.addItemToSchoolItemCollection(schoolItem);

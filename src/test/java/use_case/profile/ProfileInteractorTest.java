@@ -5,7 +5,7 @@ import entities.Furniture;
 import entities.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.create_order.CreateOrderDataAccessInterfaceOrder;
+import use_case.create_order.CreateOrderDataAccessInterface;
 import use_case.post.*;
 import use_case.signup.SignupUserDataAccessInterface;
 import java.time.LocalDateTime;
@@ -14,16 +14,15 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProfileInteractorTest {
-
     @BeforeEach
     public void before() {
         Student student = new Student("John", "Doe", "700 University", "john.doe@mail.utoronto.ca");
         Furniture furniture = new Furniture("someId","John's Chair", "Chair of John",3,
                 12, 12, false, "700 University", "656bad0c2c9d206181466c20",
-                "Chair", "", LocalDateTime.now(), 12.34, 12.45, 15.3);
+                "Chair", "0", LocalDateTime.now(), 12.34, 12.45, 15.3);
         SignupUserDataAccessInterface studentDAO = new AtlasStudentDataAccessObject();
         FurniturePostDataAccessInterface furnitureDAO = new AtlasFurnitureDataAccessObject();
-        CreateOrderDataAccessInterfaceOrder orderDAO = new AtlasOrderDataAccessObject();
+        CreateOrderDataAccessInterface orderDAO = new AtlasOrderDataAccessObject();
         try {
             studentDAO.addStudent(student);
         } catch (IOException e) {
@@ -42,7 +41,7 @@ class ProfileInteractorTest {
         }
         try {
             orderDAO.createOrder("testEmail", "john.doe@mail.utoronto.ca", "testId",
-                    "700 University", "John's Chair");
+                    "700 University", "John's Chair", "0");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
