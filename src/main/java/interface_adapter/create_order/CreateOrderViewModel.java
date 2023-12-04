@@ -26,9 +26,7 @@ public class CreateOrderViewModel extends ViewModel {
         support.firePropertyChange("state", null, this.state);
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 
     public CreateOrderState getState() {
         return state;

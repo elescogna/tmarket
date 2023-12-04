@@ -26,7 +26,5 @@ public class PostViewModel extends ViewModel {
     public void firePropertyChanged() {
         support.firePropertyChange("postState", null, this.state);
     }
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 }

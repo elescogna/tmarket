@@ -20,9 +20,7 @@ public class HomeViewModel extends ViewModel {
         support.firePropertyChange("homeState", null, this.state);
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 
     public HomeState getState() { return state; }
 }

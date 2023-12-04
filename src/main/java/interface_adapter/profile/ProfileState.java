@@ -11,10 +11,8 @@ public class ProfileState {
     private String password;
     private String uoftEmail;
     private String homeAddress;
-    private String imageKey;
     private ArrayList<Order> orders = new ArrayList<>();
     private ArrayList<Item> postedItems = new ArrayList<>();
-
     private String studentNotFoundError;
     private Student currentStudent;
 
@@ -45,6 +43,5 @@ public class ProfileState {
     public ArrayList<Order> getOrders() { return orders; }
     public String getPassword() { return password; }
     public String getHomeAddress() { return homeAddress; }
-    public String getStudentNotFoundError() { return studentNotFoundError; }
     public Student getCurrentStudent() { return this.currentStudent;}
 }

@@ -23,8 +23,6 @@ public class ContactPresenter implements ContactOutputBoundary {
     public void prepareSuccessView() {
         contactViewModel.getState().setError(""); // explicitly set error to none
         contactViewModel.firePropertyChanged();   // state has been changed,
-                                                  // trigger to display success
-                                                  // message
 
         viewManagerModel.setActiveView(homeViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
@@ -37,9 +35,6 @@ public class ContactPresenter implements ContactOutputBoundary {
      */
     @Override
     public void prepareFailView(String error) {
-        // TODO: if something goes wrong, this and related syntax is the first
-        // suspect (fix: get current state, update it, set state back to that
-        // current state)
         contactViewModel.getState().setError(error);
         contactViewModel.firePropertyChanged();
     }

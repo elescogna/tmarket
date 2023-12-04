@@ -4,6 +4,9 @@ public class LoginState {
     private String username = "";
     private String password = "";
     private String loginError = null;
+    /**
+     * Default constructor for LoginState.
+     */
     public LoginState() {}
 
     public String getUsername() {
