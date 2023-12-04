@@ -21,9 +21,7 @@ public class ProfileViewModel extends ViewModel {
         support.firePropertyChange("profileState", null, this.state);
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
     public ProfileState getState() {
         return state;
     }
