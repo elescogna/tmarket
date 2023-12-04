@@ -7,7 +7,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class SearchResultViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Search results";
     private SearchResultState state = new SearchResultState();
     private Student currentStudent;
 
@@ -29,9 +28,7 @@ public class SearchResultViewModel extends ViewModel {
     }
 
     @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 
     public SearchResultState getState() {
         return state;

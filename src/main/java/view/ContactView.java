@@ -163,7 +163,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         // (flash error message)
         ContactState currentState = (ContactState)e.getNewValue();
 
-        if (currentState.getError() == null) {
+        if (currentState.getError().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Message sent successfully.");
         } else {
             JOptionPane.showMessageDialog(this, "Failed to send message.");
