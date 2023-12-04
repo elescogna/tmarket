@@ -72,7 +72,7 @@ public class ContactView extends JPanel implements PropertyChangeListener {
         lblTitle = new JLabel("Contact");
         lblTitle.setForeground(new Color(255, 255, 255));
         lblTitle.setFont(new Font("Modern No. 20", Font.BOLD, 26));
-        lblTitle.setBounds(451, 115, 97, 26);
+        lblTitle.setBounds(451, 115, 200, 26);
         add(lblTitle);
 
         lblSubject = new JLabel("Subject:");
